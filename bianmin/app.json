@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index1",
+    "pages/exception/exception",
+    "pages/fabu/fabu",
+    "pages/wode/list"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "white",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark",
+    "navigationBarTitleText": "WeChat",
+    "onReachBottomDistance": 0,
+    "navigationStyle": "custom"
+  }
+}

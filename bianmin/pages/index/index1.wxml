@@ -1,0 +1,43 @@
+<view wx:for="{{Res}}" wx:key="">
+  <view>{{item.leibie}}</view>
+   <view>{{item.nick_name}}</view> 
+  <view>{{item.neirong}}</view>
+
+  <swiper>
+    <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
+      <swiper-item>
+        <image src="{{img.url}}"  catchtap='yulan' data-img='{{item.with_img}}' data-index='{{index}}' />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view>--------------</view>
+</view>
+
+
+
+<!-- -----------分享按钮----------- -->
+<view class='juzhong'>
+  <view class='fenxiang' catchtap='go_wode'>
+    <view class=''>+</view>
+  </view>
+</view>
+
+<!-- -----------分享点击出现蒙层------------ -->
+<view wx:if="{{mask}}" class='mask' catchtap='fenxiang'>
+  <view class='mask-1' catchtap='fenxiang'>
+    <view>分享</view>
+    <view class='mask-2'>
+      <view catchtap='shengcheng'>
+        <view class="iconfont icon-xiazai" style='font-size:60rpx;text-align: center;'></view>
+        <view>生成分享海报</view>
+      </view>
+
+      <button class='mybutton' open-type="share">
+        <view class="iconfont icon-wechat" style='font-size:60rpx;text-align: center;'></view>
+        <view>转发给好友</view>
+      </button>
+
+    </view>
+  </view>
+</view>

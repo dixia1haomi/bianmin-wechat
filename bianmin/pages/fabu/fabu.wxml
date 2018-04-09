@@ -1,0 +1,26 @@
+<view>
+
+  <view>类别</view>
+  <view>
+    <picker bindchange="leibiexuanzeqi" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        当前选择：{{array[index]}}
+      </view>
+    </picker>
+  </view>
+
+  <view>内容</view>
+  <view>
+    <textarea value='{{}}' placeholder="默认值" maxlength="140" auto-height bindinput="text"></textarea>
+    <view>{{textarea.cursor}}</view>
+  </view>
+
+  <view catchtap='updateimg' style='color: #007AFF;'>上传图片</view>
+  <!-- 显示img -->
+  <view wx:for="{{img}}" wx:key="">
+    <image src='{{item}}'></image>
+  </view>
+
+</view>
+
+<view catchtap='tijiao'>提交</view>

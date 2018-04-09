@@ -1,0 +1,70 @@
+/* 分享 */
+
+.juzhong {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+   /* width: 100%;  */
+  position: fixed;
+  bottom: 40rpx;
+  right: 40rpx;
+}
+
+.fenxiang {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #2c2c2c;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 分享的蒙层 */
+
+.mask {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.mask-1 {
+  height: auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  /* z-index: 11; */
+  background-color: #fff;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.mask-2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 40rpx 0;
+  font-size: 28rpx;
+}
+
+.mybutton {
+  /* color: red; *//* opacity: 1; *//* display: inline-block; */
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  margin: 0 0;
+  padding: 0 0;
+  line-height: normal;
+  font-size: 28rpx;
+}
+
+button::after {
+  display: none;
+}
