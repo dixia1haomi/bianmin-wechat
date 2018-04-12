@@ -1,26 +1,54 @@
 <view>
 
-  <view>类别</view>
-  <view>
-    <picker bindchange="leibiexuanzeqi" value="{{index}}" range="{{array}}">
-      <view class="picker">
-        当前选择：{{array[index]}}
+  <view class='neirong'>
+
+    <textarea class='textarea' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充.." value='{{textareaValue}}' show-confirm-bar=''>
+      <text class='cursor'>{{textarea.cursor+'/200'}}</text>
+    </textarea>
+
+    <view class='tianchong-img'>
+
+      <view class='img-block'>
+        <!-- 显示小图片 -->
+        <block wx:for="{{img}}" wx:key="">
+          <image class='img' src='{{item}}' mode='aspectFill' id='{{index}}' catchtap='shanchuImg'></image>
+        </block>
+        <view wx:if="{{img.length < 3}}" class='tianjiatupian' catchtap='updateimg'>+</view>
       </view>
-    </picker>
+
+      <text class='tianchongmoban' catchtap='tianchong'>填 充\n模 板</text>
+    </view>
+
   </view>
 
-  <view>内容</view>
-  <view>
-    <textarea value='{{}}' placeholder="默认值" maxlength="140" auto-height bindinput="text"></textarea>
-    <view>{{textarea.cursor}}</view>
+  <view class='dizhi-dianhua'>
+
+    <view class='danhang-list' catchtap='dizhi'>
+      <view class='dizhi'>地址：{{address}}</view>
+      <view class='youjiantou7'></view>
+    </view>
+
+    <view class='dianhua'>
+      <view style='font-size: 34rpx;'>电话：{{phone}}</view>
+      <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取电话</button>
+    </view>
+
   </view>
 
-  <view catchtap='updateimg' style='color: #007AFF;'>上传图片</view>
-  <!-- 显示img -->
-  <view wx:for="{{img}}" wx:key="">
-    <image src='{{item}}'></image>
+
+  <!-- <view>{{textarea.cursor}}</view> -->
+
+  <view class='form2'>
   </view>
+
+
 
 </view>
 
-<view catchtap='tijiao'>提交</view>
+<view class='tijiao' catchtap='tijiao'>
+  <text class='tijiao-item'>确认发布</text>
+</view>
+
+
+<!-- --------------------------------------------- -->
+<my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>

@@ -4,6 +4,8 @@ page {
   height: 100%;
   background-color: #efefef;
   font-size: 32rpx;
+  letter-spacing: 1rpx;
+  color: #3e3e3e;
 }
 
 /* 原来是打开的 */
@@ -136,6 +138,19 @@ page {
 }
 
 /* ----------------------------------------------------------- */
+
+/* 带箭头的单行列表 */
+.danhang-list {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-top: 10rpx;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* flex */
 

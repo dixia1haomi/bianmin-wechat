@@ -1,6 +1,8 @@
 
 import { Api } from '../../utils/Api.js'
+import { Base } from '../../utils/Base.js'
 import { Cos } from '../../utils/Cos.js'
+import { Config } from '../../utils/Config.js'
 
 const cos = new Cos()
 const api = new Api()
@@ -11,8 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 类别
-    array: ['美国', '中国', '巴西', '日本'],
+    // index
     index: 0,
 
     // 内容
@@ -24,21 +25,58 @@ Page({
     // 图片
     img: [],
 
+    // 填充textarea
+    textareaValue: "",
+
+    // 电话
+    phone: "",
+    // 地址
+    address: "",
+    // 经度
+    longitude: "",
+    // 纬度
+    latitude: "",
+    // leimu下的填充选项
+    leimuObj: Config.moban,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (op) {
+    // op携带类目的key
+    this.setData({ index: op.leimu })
   },
 
   // 类别事件
-  leibiexuanzeqi: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail)
-    this.setData({
-      index: e.detail.value,
-    })
+  // leibiexuanzeqi: function (e) {
+  //   console.log('picker发送选择改变，携带值为', e.detail)
+  //   this.setData({
+  //     index: e.detail.value,
+  //   })
+  // },
+
+  // 填充模板
+  tianchong() {
+
+    // 根据index获得Config.moban对应的item
+    let item = this.data.leimuObj[this.data.index].item
+    console.log('item', item)
+    // 判断item的长度，大于1就用组件选择，否则直接填充
+    if (item.length > 1) {
+      // 有多中选择，提取出数组给选择组件
+      let itemArray = []
+      for (let i in item) { itemArray.push(item[i].name) }
+
+      // 打开选择组件填充
+      wx.showActionSheet({
+        itemList: itemArray,
+        success: (res) => { this.setData({ textareaValue: item[res.tapIndex].value }) }
+      })
+    } else {
+      // 直接填充
+      this.setData({ textareaValue: item[0].value })
+    }
   },
 
   // textarea事件
@@ -51,8 +89,10 @@ Page({
   },
 
   updateimg: function () {
+    let imgArray = this.data.img
+
     wx.chooseImage({
-      count: 9, // 默认9
+      count: 3 - imgArray.length, // 默认9
       // sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -60,8 +100,10 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         // var tempFilePaths = res.tempFilePaths
         console.log('chooseImage', res)
-
-        this.setData({ img: res.tempFilePaths })
+        // 把选择的图片push进imgArray
+        imgArray = imgArray.concat(res.tempFilePaths)
+        console.log('imgArray', imgArray)
+        this.setData({ img: imgArray })
       }
     })
   },
@@ -81,12 +123,30 @@ Page({
     });
   },
 
+  // 删除图片
+  shanchuImg(e) {
+
+    wx.showModal({
+      title: '删除这张图片？',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let key = e.currentTarget.id, imgArray = this.data.img
+          // splice删除数组中的元素
+          imgArray.splice(key, 1)
+          this.setData({ img: imgArray })
+        }
+      }
+    })
+  },
+
   // tijiao
   tijiao() {
     // 给服务器的参数，user_id服务器获取
     let params = {
-      leibie: this.data.array[this.data.index],
-      neirong: this.data.textarea.value
+      leibie: this.data.leimuObj[this.data.index].leimu,
+      neirong: this.data.textarea.value,
+      phone: this.data.phone
     }
     console.log('params', params)
 
@@ -98,12 +158,11 @@ Page({
     // 禁止穿透
     wx.showLoading({ title: '发布中..', mask: true })
 
-    api.createList(params, res => {
-
-      console.log('create', res)
-      // 检查是否有图片准备上传
-      if (this.data.img.length != 0) {
-        //有图片,上传,获取ID
+    // 检查是否有图片准备上传
+    if (this.data.img.length != 0) {
+      api.createList(params, res => {
+        console.log('有图片create', res)
+        // 有图片,上传,获取ID
         let list_id = res.data.id
         this.updateImg(back => {
           console.log('update-img', back)
@@ -116,18 +175,76 @@ Page({
           // 隐藏Loading
           wx.hideLoading()
           // 返回主页
-          wx.redirectTo({
-            url: '/pages/index/index1'
-          })
-
+          wx.reLaunch({ url: '/pages/index/index1' })
         })
-      }
-    })
+      })
+    } else {
+      // 没图片
+      api.createList(params, res => {
+        console.log('没图片create', res)
+        // 隐藏Loading
+        wx.hideLoading()
+        // 返回主页
+        wx.reLaunch({ url: '/pages/index/index1' })
+      })
+    }
   },
 
 
 
   // ----------------------------------------------------------
+  // 选择地址事件
+  dizhi() {
+    // 授权地理位置
+    new Base().authorize_userLocation(back => {
+      console.log('授权地理位置', back)
+      // 选择位置
+      wx.chooseLocation({
+        success: (e) => {
+          console.log('success', e)
+          // 记录已选择的位置
+          this.setData({ address: e.name, latitude: e.latitude, longitude: e.longitude })
+        },
+        fail: (e) => {
+          console.log('fail', e)
+        }
+      })
+    })
+  },
+
+  // button事件 获取电话
+  getPhoneNumber(e) {
+    console.log('电话', e)
+    // 如果用户允许获取电话
+    if (e.detail.iv && e.detail.encryptedData) {
+      // 检查session_key是否过期
+      wx.checkSession({
+        success: () => {
+          //session_key 未过期，直接请求，服务器获取session_key
+          console.log('未过期')
+          this._getPhone(e)
+        },
+        fail: () => {
+          // session_key 已经失效，重新登录后再请求
+          console.log('已过期')
+          getApp().newGetToken(back => {
+            // 登陆成功，请求
+            this._getPhone(e)
+          })
+        }
+      })
+    }
+  },
+
+  // API获取电话号码
+  _getPhone(e) {
+    api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
+      console.log('phone', res.data)
+      // 返回了电话号码
+      this.setData({ phone: res.data })
+    })
+  },
+
 
 
 

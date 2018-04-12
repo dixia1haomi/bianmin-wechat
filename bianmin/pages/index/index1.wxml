@@ -1,18 +1,35 @@
-<view wx:for="{{Res}}" wx:key="">
-  <view>{{item.leibie}}</view>
-   <view>{{item.nick_name}}</view> 
-  <view>{{item.neirong}}</view>
+<block wx:for="{{Res}}" wx:key="">
+  <view class='base'>
 
-  <swiper>
-    <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
-      <swiper-item>
-        <image src="{{img.url}}"  catchtap='yulan' data-img='{{item.with_img}}' data-index='{{index}}' />
-      </swiper-item>
-    </block>
-  </swiper>
+    <view class='user'>
+      <image class='avatar' src='{{item.avatar_url}}'></image>
+      <text class='leibie'>{{item.leibie}}</text>
+      <text class='nick-name'>{{item.nick_name}} -- ID:{{item.id}}</text>
+    </view>
 
-  <view>--------------</view>
-</view>
+    <view class='xinxi'>
+
+      <view class="{{item.hid ?'extend':'flod' }}" data-index='{{index}}' catchtap="flodFn">
+        <!-- 触发点击次数,只有展开会触发 -->
+        <!-- <view class='tishi' wx:if="{{!item.hid}}" catchtap='liulangcishu'> ↓ </view> -->
+        <text>{{item.neirong}}</text>
+      </view>
+
+      <view class='img-view'>
+        <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
+          <image class='img' src="{{img.url}}" catchtap='yulan' data-img='{{item.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
+        </block>
+      </view>
+
+    </view>
+
+    <view class='info'>
+      <text>点击：{{item.liulangcishu}}</text>
+      <text>{{item.update_time}}</text>
+      <text>分享</text>
+    </view>
+  </view>
+</block>
 
 
 

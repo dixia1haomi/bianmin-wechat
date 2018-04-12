@@ -17,10 +17,10 @@
 
     <block wx:for="{{Res}}" wx:key="">
       <view>
-        <view>{{item.leibie}}</view>
+        <view>{{item.leibie}} -- {{item.id}}</view>
         <view>{{item.neirong}}</view>
         <view>图片数量{{item.with_img.length}}</view>
-        <view catchtap='myXiajia'>下架</view>
+        <view catchtap='updateTime' id='{{item.id}}'>刷新</view>
         <view catchtap='myDelete' id='{{item.id}}'>删除</view>
         <view>-------------------</view>
       </view>

@@ -4,6 +4,8 @@ import { Base } from './utils/Base.js'
 const base = new Base()
 const api = new Api()
 
+// 全屏模式
+// "navigationStyle": "custom"
 
 App({
 

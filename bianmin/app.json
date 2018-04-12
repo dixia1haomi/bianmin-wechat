@@ -3,14 +3,22 @@
     "pages/index/index1",
     "pages/exception/exception",
     "pages/fabu/fabu",
-    "pages/wode/list"
+    "pages/wode/list",
+    "pages/wode/index",
+    "pages/wode/myfabu",
+    "pages/wode/guanyuwo",
+    "pages/leimu/zhaopin",
+    "pages/leimu/qiuzhi",
+    "pages/leimu/shenghuo",
+    "pages/leimu/chuzu",
+    "pages/leimu/chushou",
+    "pages/leimu/zhuanrang"
   ],
   "window": {
     "navigationBarBackgroundColor": "white",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
     "navigationBarTitleText": "WeChat",
-    "onReachBottomDistance": 0,
-    "navigationStyle": "custom"
+    "onReachBottomDistance": 0
   }
 }

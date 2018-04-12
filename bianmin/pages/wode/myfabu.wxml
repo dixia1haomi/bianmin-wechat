@@ -1,0 +1,8 @@
+<view>
+  <block wx:for="{{Res}}" wx:key="">
+    <view>
+      <view>{{item.leibie}} -- {{item.id}}</view>
+    </view>
+  </block>
+
+</view>

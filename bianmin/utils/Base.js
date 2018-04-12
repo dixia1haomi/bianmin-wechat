@@ -20,7 +20,7 @@ class Base {
         // if (res.statusCode == 200) {
         //   // 成功
         // if (res.data.errorCode == 0) {
-          params.sCallback && params.sCallback(res.data)
+        params.sCallback && params.sCallback(res.data)
         // }else{
         //   console.log('base-errorCode不等于0')
         // }
@@ -88,7 +88,17 @@ class Base {
       success: (res) => {
         if (!res.authSetting['scope.userLocation']) {
           console.log('base-没有授权地理位置')
-          wx.openSetting({ success: (res) => { if (res.authSetting['scope.userLocation']) { callBack && callBack(true) } } })
+          // 提前授权
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {
+              // 用户已经同意
+              callBack && callBack(true)
+            },
+            fail() {
+              wx.openSetting({ success: (res) => { if (res.authSetting['scope.userLocation']) { callBack && callBack(true) } } })
+            }
+          })
         } else {
           callBack && callBack(true)
         }

@@ -20,6 +20,11 @@ class Api extends Base {
     this.request({ url: 'index/createimg', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
+  // 增加点击量
+  incLiulangcishu(data, callback) {
+    this.request({ url: 'index/incliulangcishu', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
   // ------------------------------------------------- 我的 ---------------------------------------------------
   // 我的发布
   myFabu(data, callback) {
@@ -29,6 +34,16 @@ class Api extends Base {
   // 删除我的发布(接受list_id)
   deleteMyFabu(data, callback) {
     this.request({ url: 'index/deletemyfabu', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 刷新(接受id)
+  updateTime(data, callback) {
+    this.request({ url: 'index/updatetime', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 获取电话
+  getPhone(data, callback) {
+    this.request({ url: 'index/getphone', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
   // ------------------------------------------------- COS ---------------------------------------------------
