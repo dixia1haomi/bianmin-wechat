@@ -23,13 +23,14 @@
 
   <view class='dizhi-dianhua'>
 
-    <view class='danhang-list' catchtap='dizhi'>
+    <!-- 下次更新增加 -->
+    <!-- <view class='danhang-list' catchtap='dizhi'>
       <view class='dizhi'>地址：{{address}}</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
     <view class='dianhua'>
-      <view style='font-size: 34rpx;'>电话：{{phone}}</view>
+      <view style='flex: 3;'>电话：{{phone}}</view>
       <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取电话</button>
     </view>
 

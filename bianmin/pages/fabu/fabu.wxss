@@ -6,8 +6,8 @@
 
 .textarea {
   width: 100%;
-  /* background-color: aliceblue; */
-  margin-bottom: 20rpx;
+  background-color: aliceblue; 
+  /* margin-bottom: 20rpx; */
   height: 500rpx;
   font-size: 36rpx;
   position: relative;
@@ -88,9 +88,11 @@
 }
 
 .button-phone {
-  width: 30%;
+  /* width: 30%; */
+  flex: 1;
   border-radius: 0%;
-  margin-right: 0;
+   margin: 0; 
+   /* float: right;  */
   border-left: 1rpx solid #e5e5e5;
   font-size: 34rpx;
 }

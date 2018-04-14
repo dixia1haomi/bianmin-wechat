@@ -6,14 +6,14 @@
       <image class='avatarImg' src='{{userinfo.avatar_url}}'></image>
     </view>
     <view style='text-align: center;'>{{userinfo.nick_name}}</view>
-    <view wx:if="{{loginState == false}}" catchtap='_login' style='text-align: center;'>登陆</view>
+    <view wx:if="{{loginButton == false}}" catchtap='_login' style='text-align: center;'>登陆</view>
 
   </view>
 
   <view class='base2'>
 
     <view class='danhang-list' catchtap='go_fabu'>
-      <view>发布</view>
+      <view>发布信息</view>
       <view class='youjiantou7'></view>
     </view>
 

@@ -1,8 +1,47 @@
 <view>
   <block wx:for="{{Res}}" wx:key="">
-    <view>
-      <view>{{item.leibie}} -- {{item.id}}</view>
+    <view class='base'>
+
+      <view class='user'>
+        <text class='leibie'>{{item.leibie}}</text>
+        <image class='avatar' src='{{item.avatar_url}}'></image>
+        <view class='name-time'>
+          <view class='nick-name'>{{item.nick_name}}</view>
+          <view class='time'>{{item.time}}</view>
+        </view>
+      </view>
+
+      <view class='xinxi'>
+
+        <view class="{{item.hid ?'':'flod' }}" style='margin: 0 20rpx 0 20rpx;' data-index='{{index}}' catchtap="flodFn">
+          <!-- id用于获取内容实际高度 -->
+          <text id='neirong'>{{item.neirong}}</text>
+        </view>
+
+        <!-- 开展提示 -->
+        <view class='tishi' wx:if="{{item.height > 65 && item.hid == false}}" data-index='{{index}}' catchtap='flodFn'>
+          <text class='iconfont icon-zhankai'></text>
+        </view>
+
+        <view class='img-view'>
+          <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
+            <image class='img' src="{{img.url}}" catchtap='yulan' data-img='{{item.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
+          </block>
+        </view>
+
+      </view>
+
+      <view class='info'>
+        <text catchtap='myDelete' id='{{item.id}}'>删除</text>
+        <text catchtap='updateTime' id='{{item.id}}'>刷新</text>
+      </view>
+
     </view>
   </block>
+  <!-- <view class='info'>
+        <text>{{item.update_time}}</text>
+        <text catchtap='myDelete' id='{{item.id}}'>删除</text>
+        <text catchtap='updateTime' id='{{item.id}}'>刷新</text>
+      </view> -->
 
 </view>

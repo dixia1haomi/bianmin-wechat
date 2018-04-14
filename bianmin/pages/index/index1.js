@@ -1,5 +1,7 @@
 import { Api } from '../../utils/Api.js'
+import { Base } from '../../utils/Base.js'
 
+const base = new Base()
 const api = new Api()
 const app = getApp()
 
@@ -9,7 +11,14 @@ Page({
     Res: [],
 
     // 展开折叠
-    isFold: true
+    isFold: true,
+
+    // 轮播图
+    imgUrls: [
+      "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/yunmu/a.png",
+      "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/b.png",
+      "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/c.png"
+    ]
   },
 
 
@@ -18,17 +27,37 @@ Page({
     this._load()
   },
 
+  onReady: function () {
+
+  },
+
 
   // 请求数据
   _load(callback) {
     api.getList({}, res => {
       console.log('aa', res.data)
       // 加入展开折叠
-      for (let i in res.data) { res.data[i].hid = false }
-      this.setData({ Res: res.data })
+      for (let i in res.data) {
+        res.data[i].hid = false
+        // 转化时间
+        res.data[i].time = base.time(res.data[i].update_time)
+      }
+      this.setData({ Res: res.data }, () => {
+        // 获取并设置内容高度，用于超出显示范围就提示展开
+        this._getHeight(res.data)
+      })
       // 回调给下拉刷新用
       callback && callback()
     })
+  },
+
+  _getHeight(res) {
+    //创建节点选择器
+    var query = wx.createSelectorQuery();
+    query.selectAll('#neirong').boundingClientRect((rects) => {
+      rects.forEach(function (rect, index) { res[index].height = rect.height })
+      this.setData({ Res: res })
+    }).exec()
   },
 
   // 发布页
@@ -67,54 +96,31 @@ Page({
   flodFn: function (e) {
     let index = e.currentTarget.dataset.index, res = this.data.Res
 
-
-
-    var param = {};
-    var str = "Res[" + index + "].hid"
-    param[str] = !res[index].hid  // 展开折叠
-    this.setData(param, () => {
-      // 增加展开时的流浪次数,如果当前点击的信息是折叠状态，就增加一次点击量
-      if (res[index].hid == true) {
+    // 如果hid是初始的false,允许改成true
+    if (res[index].hid == false) {
+      var param = {};
+      var str = "Res[" + index + "].hid"
+      // param[str] = !res[index].hid  // 展开折叠
+      param[str] = true             // 只展开
+      this.setData(param, () => {
+        // 增加展开时的流浪次数,如果当前点击的信息是折叠状态，就增加一次点击量
+        // if (res[index].hid == true) {
         // 调用API发送请求增加点击
         api.incLiulangcishu({ id: res[index].id }, back => {
           console.log('增加点击成功', back)
         })
-      }
-    })
-
-
-    // if(){} -----------------------------------
-
-    // // 处理被点击的id的hid
-    // let res = this.data.Res
-    // var param = {};
-    // for (let i in res) {
-    //   if (res[i].id == e.currentTarget.id) {
-
-    //     // 增加展开时的流浪次数,如果当前点击的信息是折叠状态，就增加一次点击量
-    //     if (res[i].hid == false) {
-    //       // 调用API发送请求增加点击
-    //       api.incLiulangcishu({ id: e.currentTarget.id }, back => {
-    //         console.log('增加点击成功', back)
-    //       })
-    //     }
-
-    //     // 处理展开折叠
-    //     var str = "Res[" + i + "].hid"
-    //     param[str] = !res[i].hid  // 展开折叠
-    //     // param[str] = true  // 只展开
-
-    //     // 终止for
-    //     break
-    //   }
-    // }
-    // this.setData(param);
+        // }
+      })
+    }
   },
 
-  // 浏览次数请求
-  liulangcishu(id) {
-    // 接受信息ID
-    console.log('增加点击次数')
+
+  // 拨打电话
+  call_phone(e) {
+    console.log('拨打电话', e.currentTarget.id)
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.id //仅为示例，并非真实的电话号码
+    })
   },
 
 

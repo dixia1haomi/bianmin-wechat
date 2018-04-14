@@ -66,7 +66,6 @@ Page({
 
   // 删除我的信息
   myDelete(e) {
-
     wx.showModal({
       title: '删除这条信息？',
       success: (res) => {

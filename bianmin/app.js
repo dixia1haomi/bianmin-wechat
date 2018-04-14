@@ -7,6 +7,11 @@ const api = new Api()
 // 全屏模式
 // "navigationStyle": "custom"
 
+// 未完成事项
+// * 分页
+// * 限制刷新时间
+// * 顶置
+
 App({
 
   appData: {
@@ -37,7 +42,7 @@ App({
     // if (op.path == "pages/canting/detail") { this.appData.path = true }
 
     // 小程序初始化检查token
-    this.checkToken()
+    // this.checkToken()
 
     // 获取地理位置
     // this._check_userLocation()
@@ -93,33 +98,38 @@ App({
 
   // ---------------------------------------------------Token-----------------------------------------------------
   // 小程序初始化检查token
-  checkToken() {
+  checkToken(callback) {
     let token_key = wx.getStorageSync('token_key')
     //用户可能第一次来，缓存中没有token
     if (!token_key) {
       console.log('第一次来,我要去获取token')
-      // 要求授权，同意后去服务器获取token,拒绝不管
-      wx.authorize({
-        scope: 'scope.userInfo', success: () => { this.newGetToken() }
+
+      this.newGetToken(() => {
+        callback && callback()
       })
     } else {
       console.log('我要去服务器检查token是否有效')
-      this.service_CheckToken(token_key)
+      this.service_CheckToken(token_key, () => {
+        callback && callback()
+      })
     }
   },
 
 
   // 去服务器检查token,如果失效,调用获取token
-  service_CheckToken(token_key) {
+  service_CheckToken(token_key, callback) {
     api.checkToken({ token: token_key }, back => {
       console.log('service_CheckToken', back)
       if (back) {
         console.log('服务器token还有效,设置登录态')
         // 登录态
         this.appData.LoginState = true
+        callback && callback()
       } else {
         console.log('服务器token已失效,重新登陆')
-        this.newGetToken()
+        this.newGetToken(() => {
+          callback && callback()
+        })
       }
     })
   },

@@ -6,6 +6,7 @@ import { Config } from '../../utils/Config.js'
 
 const cos = new Cos()
 const api = new Api()
+const app = getApp()
 
 Page({
 
@@ -48,17 +49,9 @@ Page({
     this.setData({ index: op.leimu })
   },
 
-  // 类别事件
-  // leibiexuanzeqi: function (e) {
-  //   console.log('picker发送选择改变，携带值为', e.detail)
-  //   this.setData({
-  //     index: e.detail.value,
-  //   })
-  // },
 
   // 填充模板
   tianchong() {
-
     // 根据index获得Config.moban对应的item
     let item = this.data.leimuObj[this.data.index].item
     console.log('item', item)
@@ -125,7 +118,6 @@ Page({
 
   // 删除图片
   shanchuImg(e) {
-
     wx.showModal({
       title: '删除这张图片？',
       success: (res) => {
@@ -151,7 +143,12 @@ Page({
     console.log('params', params)
 
     if (!this.data.textarea.value) {
-      wx.showToast({ title: '内容不能为空' })
+      wx.showToast({ title: '请认真填写内容' })
+      return
+    }
+
+    if (!this.data.phone) {
+      wx.showToast({ title: '电话不能为空' })
       return
     }
 
@@ -218,21 +215,25 @@ Page({
     // 如果用户允许获取电话
     if (e.detail.iv && e.detail.encryptedData) {
       // 检查session_key是否过期
-      wx.checkSession({
-        success: () => {
-          //session_key 未过期，直接请求，服务器获取session_key
-          console.log('未过期')
-          this._getPhone(e)
-        },
-        fail: () => {
-          // session_key 已经失效，重新登录后再请求
-          console.log('已过期')
-          getApp().newGetToken(back => {
-            // 登陆成功，请求
-            this._getPhone(e)
-          })
-        }
+      // wx.checkSession({
+      //   success: () => {
+      //     //session_key 未过期，直接请求，服务器获取session_key
+      //     console.log('未过期')
+      //     this._getPhone(e)
+      //   },
+      //   fail: () => {
+      //     // session_key 已经失效，重新登录后再请求
+      //     console.log('已过期')
+      //     getApp().newGetToken(back => {
+      //       // 登陆成功，请求
+      //       this._getPhone(e)
+      //     })
+      //   }
+      // })
+      app.checkToken(() => {
+        this._getPhone(e)
       })
+
     }
   },
 

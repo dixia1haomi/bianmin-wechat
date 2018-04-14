@@ -1,18 +1,38 @@
+<view class='title'>
+  沾益袋鼠同城
+</view>
+
+<!-- 轮播图 -->
+<!-- <swiper class='swiper'>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="swiper" />
+    </swiper-item>
+  </block>
+</swiper> -->
+
 <block wx:for="{{Res}}" wx:key="">
   <view class='base'>
 
     <view class='user'>
-      <image class='avatar' src='{{item.avatar_url}}'></image>
       <text class='leibie'>{{item.leibie}}</text>
-      <text class='nick-name'>{{item.nick_name}} -- ID:{{item.id}}</text>
+      <image class='avatar' src='{{item.avatar_url}}'></image>
+      <view class='name-time'>
+        <view class='nick-name'>{{item.nick_name}}</view>
+        <view class='time'>{{item.time}}</view>
+      </view>
     </view>
 
     <view class='xinxi'>
 
-      <view class="{{item.hid ?'extend':'flod' }}" data-index='{{index}}' catchtap="flodFn">
-        <!-- 触发点击次数,只有展开会触发 -->
-        <!-- <view class='tishi' wx:if="{{!item.hid}}" catchtap='liulangcishu'> ↓ </view> -->
-        <text>{{item.neirong}}</text>
+      <view class="{{item.hid ?'':'flod' }}" style='margin: 0 20rpx 0 20rpx;' data-index='{{index}}' catchtap="flodFn">
+        <!-- id用于获取内容实际高度 -->
+        <text id='neirong'>{{item.neirong}}</text>
+      </view>
+
+      <!-- 开展提示 -->
+      <view class='tishi' wx:if="{{item.height > 65 && item.hid == false}}" data-index='{{index}}' catchtap='flodFn'>
+        <text class='iconfont icon-zhankai'></text>
       </view>
 
       <view class='img-view'>
@@ -24,10 +44,16 @@
     </view>
 
     <view class='info'>
-      <text>点击：{{item.liulangcishu}}</text>
-      <text>{{item.update_time}}</text>
-      <text>分享</text>
+      <view>
+        <text class='iconfont icon-yueduliang' />
+        <text> {{item.liulangcishu}}</text>
+      </view>
+      <view id='{{item.phone}}' catchtap='call_phone'>
+        <text class='iconfont icon-phone' />
+        <text> 电话</text>
+      </view>
     </view>
+
   </view>
 </block>
 
@@ -41,7 +67,7 @@
 </view>
 
 <!-- -----------分享点击出现蒙层------------ -->
-<view wx:if="{{mask}}" class='mask' catchtap='fenxiang'>
+<!-- <view wx:if="{{mask}}" class='mask' catchtap='fenxiang'>
   <view class='mask-1' catchtap='fenxiang'>
     <view>分享</view>
     <view class='mask-2'>
@@ -57,4 +83,4 @@
 
     </view>
   </view>
-</view>
+</view> -->

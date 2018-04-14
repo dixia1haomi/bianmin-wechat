@@ -11,7 +11,7 @@ Page({
 
   data: {
     // 登陆按钮状态
-    loginState: false,
+    loginButton: false,
     // 用户信息
     // userinfo: null,
     Res: [],
@@ -23,17 +23,27 @@ Page({
 
   onLoad: function (op) {
     // 进入时判断用户是否有info缓存，没有则显示登陆按钮
-    let info = wx.getStorageSync('userinfo')
-    if (info) { this.setData({ userinfo: info, loginState: true }) }
+    // let info = wx.getStorageSync('userinfo')
+    // if (info) { this.setData({ userinfo: info, loginState: true }) }
+
+    if (app.appData.LoginState) {
+      this._set_UserInfo()
+    } else {
+      app.checkToken(() => {
+        this._set_UserInfo()
+      })
+    }
   },
 
   // 登陆
-  _load() {
-
+  _set_UserInfo() {
+    this.setData({ userinfo: wx.getStorageSync('userinfo'), loginButton: true })
   },
 
   // 登陆按钮
-  _login() { app.newGetToken(back => { this.onLoad() }) },
+  _login() {
+    this.onLoad()
+  },
 
 
   // 发布信息
@@ -51,20 +61,22 @@ Page({
         success: (res) => { wx.navigateTo({ url: '/pages/fabu/fabu?leimu=' + res.tapIndex }) }  // 去发布页
       })
     } else {
-      app.newGetToken(back => {
+      app.checkToken(() => {
         this.go_fabu()
-        this.onLoad()
+        this._set_UserInfo()
       })
     }
+
+
     // app.appData.LoginState ? wx.navigateTo({ url: '/pages/fabu/fabu' }) : app.newGetToken(back => { this.go_fabu() })
   },
 
   // 我的发布
   my_fabu(e) {
     // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
-    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/myfabu' }) : app.newGetToken(back => {
+    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/myfabu' }) : app.checkToken(() => {
       this.my_fabu()
-      this.onLoad()
+      this._set_UserInfo()
     })
   },
 
