@@ -8,33 +8,16 @@ const api = new Api()
 // "navigationStyle": "custom"
 
 // 未完成事项
-// * 分页
-// * 限制刷新时间
-// * 顶置
+// * 分页 / 初步完成，找找内容提示展开的其他实现办法
+// * 模板详情
+// * 限制信息发布条数
 
 App({
 
   appData: {
     LoginState: false,   // 登陆状态
-    // LocationState: false,// 地理位置是否授权标识位
-    // longitude: null,     // 用户经度
-    // latitude: null,      // 用户纬度
-    // userinfo: null,      // 用户信息
-    // path: false,         // 是否来自餐厅详情页
   },
 
-  // 用户授权
-  // scope.userInfo	wx.getUserInfo	用户信息
-  // scope.userLocation	wx.getLocation, wx.chooseLocation	地理位置
-  // scope.address	wx.chooseAddress	通讯地址
-  // scope.invoiceTitle	wx.chooseInvoiceTitle	发票抬头
-  // scope.werun	wx.getWeRunData	微信运动步数
-  // scope.record	wx.startRecord	录音功能
-  // scope.writePhotosAlbum	wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum	保存到相册
-  // scope.camera		摄像头
-  // authSetting: {
-
-  // },
 
   onLaunch: function (op) {
     // console.log('app op', op.path)

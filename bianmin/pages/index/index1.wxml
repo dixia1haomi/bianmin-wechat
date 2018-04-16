@@ -1,5 +1,6 @@
 <view class='title'>
   沾益袋鼠同城
+  <contact-button type="default-dark" size="25"></contact-button>
 </view>
 
 <!-- 轮播图 -->
@@ -10,6 +11,8 @@
     </swiper-item>
   </block>
 </swiper> -->
+
+
 
 <block wx:for="{{Res}}" wx:key="">
   <view class='base'>

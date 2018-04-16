@@ -2,7 +2,9 @@
 
   <view class='neirong'>
 
-    <textarea class='textarea' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充.." value='{{textareaValue}}' show-confirm-bar=''>
+    <view class='title'>{{leimuObj[index].leimu}}</view>
+
+    <textarea class='textarea' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充一些基本信息，请自行删改.." value='{{textareaValue}}'>
       <text class='cursor'>{{textarea.cursor+'/200'}}</text>
     </textarea>
 
@@ -39,10 +41,6 @@
 
   <!-- <view>{{textarea.cursor}}</view> -->
 
-  <view class='form2'>
-  </view>
-
-
 
 </view>
 
@@ -52,4 +50,4 @@
 
 
 <!-- --------------------------------------------- -->
-<my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>
+<!-- <my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips> -->

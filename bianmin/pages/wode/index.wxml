@@ -25,10 +25,10 @@
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='danhang-list' catchtap='go_guanyuwo'>
+    <!-- <view class='danhang-list' catchtap='go_guanyuwo'>
       <view>关于我</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
 
   </view>

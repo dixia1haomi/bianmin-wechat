@@ -5,9 +5,15 @@ class Api extends Base {
     super()
   }
 
-
+  // 获取信息列表
   getList(data, callback) {
-    this.request({ url: 'index/getlist', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '加载中' })
+    this.request({
+      url: 'index/getlist', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 创建list

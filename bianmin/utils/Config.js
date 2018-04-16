@@ -4,8 +4,8 @@ class Config {
 }
 
 // 服务器接口请求地址
-// Config.url = 'http://bianmin.com/api/'
-Config.url = 'https://bianmin.qujingdaishuyanxuan.org/api/'
+Config.url = 'http://bianmin.com/api/'
+// Config.url = 'https://bianmin.qujingdaishuyanxuan.org/api/'
 
 // 类目
 // Config.leimu = ['招聘', '求职', '生活', '出租', '出售', '转让']
@@ -17,89 +17,75 @@ Config.moban = [
     item: [
       {
         name: '招聘',
-        value: "招聘,\n哈哈。"
+        value: "XXXX招聘XXXX职位,\n工作内容：XXXX\n待遇：1500-2000 ？ 2000-3000\n年龄：18-40岁\n性别：男女不限\n地址：XXXX"
       }
-    ],
-    index: 0
+    ]
   },
   {
     leimu: '求职',
     item: [
       {
         name: '求职',
-        value: "期望职位：XXXX\n期望薪资：XXXX\n性别：XXXX\n年龄：XX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX\n详细描述：XXXX"
+        value: "期望职位：XXXX\n期望薪资：XXXX\n性别：?\n年龄：?\n详细描述：文化程度？ 吃苦耐劳？ 特殊技能？"
       }
-    ],
-    index: 1
-  },
-  {
-    leimu: '生活',
-    item: [
-      {
-        name: '生活1',
-        value: "生活1,\n哈哈。"
-      },
-      {
-        name: '生活2',
-        value: "生活2,\n哈哈。"
-      },
-      {
-        name: '生活3',
-        value: "生活3,\n哈哈。"
-      },
-      {
-        name: '生活4',
-        value: "生活4,\n哈哈。"
-      },
-      {
-        name: '生活5',
-        value: "生活5,\n哈哈。"
-      },
-      {
-        name: '生活6',
-        value: "生活6,\n哈哈。"
-      }
-    ],
-    index: 2
+    ]
   },
   {
     leimu: '出租',
     item: [
       {
         name: '租车',
-        value: "租车,\n哈哈。"
+        value: "抱歉，待后续添加。"
       },
       {
         name: '租房',
-        value: "租房,\n哈哈。"
+        value: "100平米2室1厅1卫？房屋干净、清爽、简单装修\n楼层：5/7层\n付款：季付？半年副？年付？\n地址：沾益-XX小区\n描述：采光好，带部分家具，交通便利"
       }
-    ],
-    index: 3
+    ]
   },
   {
     leimu: '出售',
     item: [
       {
         name: '售车',
-        value: "售车,\n哈哈。"
+        value: "抱歉，待后续添加。"
       },
       {
         name: '售房',
-        value: "售房,\n哈哈。"
+        value: "抱歉，待后续添加。"
       }
-    ],
-    index: 4
+    ]
   },
   {
     leimu: '转让',
     item: [{
       name: '店铺',
-      value: "店铺,\n哈哈。"
+      value: "抱歉，待后续添加。"
     }, {
       name: '生意',
-      value: "生意,\n哈哈。"
-    }],
-    index: 5
+      value: "抱歉，待后续添加。"
+    }]
+  },
+  {
+    leimu: '生活',
+    item: [
+      {
+        name: '家政',
+        value: "抱歉，待后续添加。"
+      },
+      {
+        name: '商务',
+        value: "抱歉，待后续添加。"
+      },
+      {
+        name: '教育',
+        value: "抱歉，待后续添加。"
+      },
+      {
+        name: '休闲',
+        value: "抱歉，待后续添加。"
+      }
+    ]
   }
 ]
 

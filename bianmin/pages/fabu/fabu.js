@@ -3,10 +3,25 @@ import { Api } from '../../utils/Api.js'
 import { Base } from '../../utils/Base.js'
 import { Cos } from '../../utils/Cos.js'
 import { Config } from '../../utils/Config.js'
+// import WxValidate from '../../validate/WxValidate.js'
 
 const cos = new Cos()
 const api = new Api()
 const app = getApp()
+
+//---------------------------------------------- 验证 ----------------------------------------------------
+// 验证字段的规则
+// const rules = {
+//   neirong: { required: true, rangelength: [10, 200] },
+//   phone: { required: true, rangelength: [10, 200] }
+// }
+// // 验证字段的提示信息，若不传则调用默认的信息
+// const messages = {
+//   neirong: { required: '请修改内容', rangelength: '内容长度在 10 到 200 之间' },
+//   phone: { required: '请输入电话',rangelength: '内容长度在 10 到 200 之间' }
+// }
+
+// const wxValidate = new WxValidate(rules, messages)
 
 Page({
 
@@ -39,6 +54,11 @@ Page({
     latitude: "",
     // leimu下的填充选项
     leimuObj: Config.moban,
+
+    // 错误提示开关
+    // toptips_kaiguan: '',
+    // // 错误提示内容
+    // toptips_text: '',
   },
 
   /**
@@ -142,7 +162,15 @@ Page({
     }
     console.log('params', params)
 
-    if (!this.data.textarea.value) {
+    // 传入表单数据，调用验证方法
+    // if (!wxValidate.checkForm({ neirong: neirong, phone: phone })) {
+    //   const error = wxValidate.errorList[0]
+    //   // 调用组件tips提示
+    //   this.setData({ toptips_kaiguan: true, toptips_text: error.msg })
+    //   return false
+    // }
+
+    if (params.neirong.length < 10) {
       wx.showToast({ title: '请认真填写内容' })
       return
     }
@@ -239,7 +267,9 @@ Page({
 
   // API获取电话号码
   _getPhone(e) {
+    wx.showLoading({ title: '请稍候' })
     api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
+      wx.hideLoading()
       console.log('phone', res.data)
       // 返回了电话号码
       this.setData({ phone: res.data })
@@ -299,3 +329,5 @@ Page({
 
   }
 })
+
+

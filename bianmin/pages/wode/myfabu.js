@@ -1,7 +1,7 @@
 import { Api } from '../../utils/Api.js'
-import { Base } from '../../utils/Base.js'
+// import { Base } from '../../utils/Base.js'
 
-const base = new Base()
+// const base = new Base()
 const api = new Api()
 
 Page({
@@ -21,16 +21,10 @@ Page({
   },
 
   _load() {
+    wx.showLoading({ title: '加载中' })
     api.myFabu({}, back => {
+      wx.hideLoading()
       console.log('我的发布', back)
-      // this.setData({ Res: back.data })
-
-      // 加入展开折叠
-      for (let i in back.data) {
-        back.data[i].hid = false
-        // 转化时间
-        back.data[i].time = base.time(back.data[i].update_time)
-      }
       this.setData({ Res: back.data }, () => {
         // 获取并设置内容高度，用于超出显示范围就提示展开
         this._getHeight(back.data)
@@ -85,10 +79,10 @@ Page({
   // 刷新 ， 更新update_time
   updateTime(e) {
     wx.showLoading({ title: '刷新中..', mask: true })
-
     api.updateTime({ id: e.currentTarget.id }, back => {
-      console.log('刷新成功.', back)
       wx.hideLoading()
+      console.log('刷新', back)
+      wx.showModal({ content: back.data })
       this._load()
     })
   },
