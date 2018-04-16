@@ -9,7 +9,7 @@ page {
 }
 
 /* 原来是打开的 */
-@import "/wxParse/wxParse.wxss";
+ /* @import "/wxParse/wxParse.wxss";  */
 
 /* ----------------------------------------------------------- */
 

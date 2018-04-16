@@ -1,12 +1,35 @@
-
-
-.title{
+.title {
   padding: 120rpx 60rpx 60rpx 60rpx;
   font-size: 36rpx;
   font-weight: 700;
 }
 
-.swiper{
+.scroll {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 0 20rpx 0 20rpx;
+}
+
+.tuijian {
+  padding: 20rpx 0 20rpx 0;
+  font-size: 34rpx;
+}
+
+.scroll-title {
+  padding-bottom: 20rpx;
+  width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wenzhang-img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 4rpx;
+}
+
+.swiper {
   height: 200rpx;
   width: 100%;
 }
@@ -16,13 +39,11 @@
   max-height: 130rpx;
   /* overflow-y: scroll; */
   overflow-y: hidden;
-  /* white-space: nowrap; *//* text-overflow: ellipsis; *//* margin-bottom: 20rpx; */
-  /* margin: 0 20rpx 0 20rpx; */
+  /* white-space: nowrap; *//* text-overflow: ellipsis; *//* margin-bottom: 20rpx; *//* margin: 0 20rpx 0 20rpx; */
 }
 
 .extend {
-  /* //展开样式 *//* height: 150rpx; *//* margin-bottom: 20rpx; */
-  /* margin: 0 20rpx 0 20rpx; */
+  /* //展开样式 *//* height: 150rpx; *//* margin-bottom: 20rpx; *//* margin: 0 20rpx 0 20rpx; */
 }
 
 .tishi {
@@ -32,15 +53,14 @@
   /* height: 60rpx; */
   text-align: center;
   padding: 10rpx 0 10rpx 0;
-  /* right: 375rpx; */
-   /* margin-bottom: 20rpx;  */
+  /* right: 375rpx; *//* margin-bottom: 20rpx;  */
 }
 
 .img-view {
   width: 100%;
   /* height: 100rpx; */
-   margin-top: 60rpx; 
-    margin-bottom: 10rpx; 
+  margin-top: 60rpx;
+  margin-bottom: 10rpx;
   /* padding-left: 10rpx; *//* padding: 0 10rpx 0 10rpx;  *//* display: flex; *//* justify-content: space-between;  */
   overflow: hidden;
 }
@@ -50,7 +70,7 @@
   height: 223rpx;
   /* padding: 0 10rpx 0 10rpx; */
   margin-left: 20rpx;
-  border-radius: 2rpx;
+  border-radius: 4rpx;
 }
 
 /* 740 */
@@ -79,16 +99,15 @@
 }
 
 .leibie {
-    /* margin-left: 30rpx;   */
-  /* background-color: tomato; */
+  /* margin-left: 30rpx;   *//* background-color: tomato; */
   color: #808080;
   /* font-size: 36rpx; */
-   padding: 8rpx 20rpx 8rpx 20rpx; 
+  padding: 8rpx 20rpx 8rpx 20rpx;
   /* border-radius: 6rpx; */
-  border: 1rpx solid tomato;
+  border: 3rpx solid tomato;
 }
 
-.name-time{
+.name-time {
   margin-left: 20rpx;
 }
 
@@ -118,7 +137,6 @@
   display: flex;
   justify-content: space-around;
 }
-
 
 /* 分享 */
 

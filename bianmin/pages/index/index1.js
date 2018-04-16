@@ -12,25 +12,37 @@ Page({
   data: {
     Res: [],
 
+    // 文章列表
+    wenzhangList: [],
+
     // 展开折叠
     isFold: true,
 
     // 轮播图
-    imgUrls: [
-      "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/yunmu/a.png",
-      "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/b.png",
-      "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/c.png"
-    ]
+    // imgUrls: [
+    //   "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/yunmu/a.png",
+    //   "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/b.png",
+    //   "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/c.png"
+    // ]
   },
 
 
   onLoad: function (op) {
     console.log('bb')
     this._load()
+    this._getWenzhangList()
   },
 
   onReady: function () {
 
+  },
+
+  // 获取文章列表
+  _getWenzhangList() {
+    api.wenzhangList({}, back => {
+      console.log('获取文章列表', back)
+      this.setData({ wenzhangList: back.data })
+    })
   },
 
 
@@ -75,7 +87,7 @@ Page({
 
   // 预览
   yulan(e) {
-    console.log(e.currentTarget.dataset)
+    console.log('预览',e.currentTarget.dataset)
     let img = e.currentTarget.dataset.img
     let index = e.currentTarget.dataset.index
     let arr = []
@@ -85,7 +97,7 @@ Page({
     console.log('arr', arr)
 
     wx.previewImage({
-      current: index, // 当前显示图片的http链接
+      current: arr[index], // 当前显示图片的http链接
       urls: arr // 需要预览的图片http链接列表
     })
   },
@@ -144,6 +156,12 @@ Page({
         })
       })
     }
+  },
+
+  // --------------------------- 滚动视图 ----------------------------
+  scroll(e) {
+    console.log('scroll', e.currentTarget.id)
+    wx.navigateTo({ url: '/pages/wenzhang/index?id=' + e.currentTarget.id })
   },
 
   // 下拉刷新

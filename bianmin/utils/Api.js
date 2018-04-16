@@ -71,6 +71,18 @@ class Api extends Base {
   }
 
 
+   // ------------------------------------------------- 文章 ---------------------------------------------------
+  // 获取文章列表
+  wenzhangList(data, callback) {
+    this.request({ url: 'index/wenzhanglist', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 获取文章详情
+  wenzhangDetail(data, callback) {
+    this.request({ url: 'index/wenzhangdetail', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+
   // // ------------------------------------------------- 卡卷接口测试 ---------------------------------------------------
 
 

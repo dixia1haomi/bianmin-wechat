@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{Res.length > 0}}">
   <block wx:for="{{Res}}" wx:key="">
     <view class='base'>
 
@@ -38,10 +38,7 @@
 
     </view>
   </block>
-  <!-- <view class='info'>
-        <text>{{item.update_time}}</text>
-        <text catchtap='myDelete' id='{{item.id}}'>删除</text>
-        <text catchtap='updateTime' id='{{item.id}}'>刷新</text>
-      </view> -->
-
+</view>
+<view wx:else>
+  <view class='noxinxi'>没有信息，快去发布。</view>
 </view>

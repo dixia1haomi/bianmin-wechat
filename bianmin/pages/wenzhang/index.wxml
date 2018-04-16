@@ -1,0 +1,9 @@
+<!-- // 引入HTML解析模板 -->
+<import src="/wxParse/wxParse.wxml" />
+
+
+<!-- 文章 -->
+<view class='base'>
+  <!-- <view>{{wenzhangDetail.html}}</view> -->
+  <template is="wxParse" data="{{wxParseData:wenzhang.nodes}}" />
+</view>

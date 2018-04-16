@@ -12,6 +12,19 @@
   </block>
 </swiper> -->
 
+<block wx:if="{{wenzhangList.length > 0}}">
+  <view class='scroll'>
+    <view class='tuijian'>头条推荐</view>
+    <scroll-view scroll-x style='white-space: nowrap'>
+      <block wx:for="{{wenzhangList}}" wx:key="">
+        <view style='display: inline-block;padding-right: 20rpx;' id='{{item.id}}' catchtap='scroll'>
+          <image class='wenzhang-img' src='{{item.img}}'></image>
+          <view class='scroll-title'>{{item.title}}</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</block>
 
 
 <block wx:for="{{Res}}" wx:key="">
