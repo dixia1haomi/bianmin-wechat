@@ -4,9 +4,11 @@
 
     <view class='title'>{{leimuObj[index].leimu}}</view>
 
-    <textarea class='textarea' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充一些基本信息，请自行删改.." value='{{textareaValue}}'>
-      <text class='cursor'>{{textarea.cursor+'/200'}}</text>
-    </textarea>
+    <view class='textarea'>
+      <textarea class='textarea-1' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充一些基本信息，请自行删改.." value='{{textareaValue}}'>
+        <text class='cursor'>{{textarea.cursor+'/200'}}</text>
+      </textarea>
+    </view>
 
     <view class='tianchong-img'>
 
@@ -15,7 +17,7 @@
         <block wx:for="{{img}}" wx:key="">
           <image class='img' src='{{item}}' mode='aspectFill' id='{{index}}' catchtap='shanchuImg'></image>
         </block>
-        <view wx:if="{{img.length < 3}}" class='tianjiatupian' catchtap='updateimg'>+</view>
+        <view wx:if="{{img.length < 4}}" class='tianjiatupian' catchtap='updateimg'>+</view>
       </view>
 
       <text class='tianchongmoban' catchtap='tianchong'>填 充\n模 板</text>

@@ -13,7 +13,7 @@ Page({
     Res: [],
 
     // 文章列表
-    wenzhangList: [],
+    shangjiaList: [],
 
     // 展开折叠
     isFold: true,
@@ -30,7 +30,11 @@ Page({
   onLoad: function (op) {
     console.log('bb')
     this._load()
-    this._getWenzhangList()
+    this._getShangjiaList()
+
+    // api.selectShangjia({ page: 1 }, res => {
+    //   console.log('商家列表', res)
+    // })
   },
 
   onReady: function () {
@@ -38,10 +42,10 @@ Page({
   },
 
   // 获取文章列表
-  _getWenzhangList() {
-    api.wenzhangList({}, back => {
-      console.log('获取文章列表', back)
-      this.setData({ wenzhangList: back.data })
+  _getShangjiaList() {
+    api.selectShangjia({}, res => {
+      console.log('商家列表', res)
+      this.setData({ shangjiaList: res.data })
     })
   },
 
@@ -87,7 +91,7 @@ Page({
 
   // 预览
   yulan(e) {
-    console.log('预览',e.currentTarget.dataset)
+    console.log('预览', e.currentTarget.dataset)
     let img = e.currentTarget.dataset.img
     let index = e.currentTarget.dataset.index
     let arr = []
@@ -161,7 +165,7 @@ Page({
   // --------------------------- 滚动视图 ----------------------------
   scroll(e) {
     console.log('scroll', e.currentTarget.id)
-    wx.navigateTo({ url: '/pages/wenzhang/index?id=' + e.currentTarget.id })
+    wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id })
   },
 
   // 下拉刷新

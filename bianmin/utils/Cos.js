@@ -7,8 +7,8 @@ class Cos {
   constructor() { }
 
   // 服务器单次签名
-  qianmin(callback) {
-    api.cosQianming({}, res => {
+  qianmin(cospath, callback) {
+    api.cosQianming({ cospath: cospath }, res => {
       console.log('qianming', res.data)
       callback(res.data);
     })
@@ -16,18 +16,19 @@ class Cos {
 
 
   // 上传基本方法
-  uploadDIY(filePaths, successUp, failUp, i, length, callback, callbackSucc) {
+  uploadDIY(cospath, filePaths, successUp, failUp, i, length, callback, callbackSucc) {
     // 获取签名
-    this.qianmin(qianmin => {
+    this.qianmin(cospath, qianmin => {
       // 调用上传
-      this.uploadFile(qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc)
+      this.uploadFile(cospath, qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc)
     })
   }
 
-  // 上传
-  uploadFile(qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc) {
 
-    var cosUrl = "https://" + "cd" + ".file.myqcloud.com/files/v2/" + "1253443226" + "/" + "cosceshi" + "/bianmin"
+  // 上传
+  uploadFile(cospath, qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc) {
+
+    var cosUrl = "https://" + "cd" + ".file.myqcloud.com/files/v2/" + "1253443226" + "/" + "cosceshi" + cospath
     var fileName = filePaths[i].substr(filePaths[i].lastIndexOf('/') + 1)
 
     var uploadTask = wx.uploadFile({
@@ -51,85 +52,82 @@ class Cos {
       complete: () => {
         i++;
         if (i == length) {
-          // this.showToast('总共' + successUp + '张上传成功,' + failUp + '张上传失败！');
-          // console.log('3', '总共' + successUp + '张上传成功,' + failUp + '张上传失败！')
           callbackSucc && callbackSucc('成功' + successUp + '失败' + failUp)
         }
         else {  //递归调用uploadDIY函数
-          this.uploadFile(qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc);
+          this.uploadFile(cospath, qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc);
         }
       },
     });
-
   }
 
 
-  updateCos(res, callback, callbackTask) {
+  // updateCos(res, callback, callbackTask) {
 
-    // cosUrl
-    var cosUrl = "https://" + "cd" + ".file.myqcloud.com/files/v2/" + "1253443226" + "/" + "cosceshi" + "/bianmin"
+  //   // cosUrl
+  //   var cosUrl = "https://" + "cd" + ".file.myqcloud.com/files/v2/" + "1253443226" + "/" + "cosceshi" + "/bianmin"
 
-    // 获取签名
-    this.qianmin(qianmin => {
+  //   // 获取签名
+  //   this.qianmin(qianmin => {
 
-      // console.log('updateCos-Res', res)
+  //     // console.log('updateCos-Res', res)
 
-      // let temp = res.tempFilePaths
+  //     // let temp = res.tempFilePaths
 
-      // for (let i in temp) {
-      //   console.log('-Res', temp[i])
+  //     // for (let i in temp) {
+  //     //   console.log('-Res', temp[i])
 
-      //   // 获取文件路径
-      //   var filePath = res.tempFilePaths[0];
-      //   // 获取文件名
-      //   var fileName = filePath.substr(filePath.lastIndexOf('/') + 1)
+  //     //   // 获取文件路径
+  //     //   var filePath = res.tempFilePaths[0];
+  //     //   // 获取文件名
+  //     //   var fileName = filePath.substr(filePath.lastIndexOf('/') + 1)
 
-      // }
+  //     // }
 
-      // 获取文件路径
-      // var filePath = res.tempFilePaths[0];
-      // console.log('filePath', filePath)
-      // 获取文件名
-      // var fileName = filePath.substr(filePath.lastIndexOf('/') + 1)
-      // var fileName = new Date().getTime()
-      // console.log('fileName', fileName)
+  //     // 获取文件路径
+  //     // var filePath = res.tempFilePaths[0];
+  //     // console.log('filePath', filePath)
+  //     // 获取文件名
+  //     // var fileName = filePath.substr(filePath.lastIndexOf('/') + 1)
+  //     // var fileName = new Date().getTime()
+  //     // console.log('fileName', fileName)
 
-      // var uploadTask = wx.uploadFile({
-      //   url: cosUrl + '/' + fileName,
-      //   filePath: filePath,
-      //   header: { 'Authorization': qianmin },
-      //   name: 'filecontent',
-      //   formData: { op: 'upload' },
-      //   success: (uploadRes) => {
-      //     //do something 
-      //     console.log('uploadRes1', JSON.parse(uploadRes.data))
-      //     // if (uploadRes.statusCode == 200) {
-      //     //   callback(uploadRes.data)
-      //     // }else{
-      //     //   console.log('上传失败')
-      //     // }
+  //     // var uploadTask = wx.uploadFile({
+  //     //   url: cosUrl + '/' + fileName,
+  //     //   filePath: filePath,
+  //     //   header: { 'Authorization': qianmin },
+  //     //   name: 'filecontent',
+  //     //   formData: { op: 'upload' },
+  //     //   success: (uploadRes) => {
+  //     //     //do something 
+  //     //     console.log('uploadRes1', JSON.parse(uploadRes.data))
+  //     //     // if (uploadRes.statusCode == 200) {
+  //     //     //   callback(uploadRes.data)
+  //     //     // }else{
+  //     //     //   console.log('上传失败')
+  //     //     // }
 
-      //   }
-      // })
+  //     //   }
+  //     // })
 
-      // 上传进度条
-      // uploadTask.onProgressUpdate((Task) => {
-      //   // console.log(Task)
-      //   callbackTask(Task)
-      //   // this.setData({
-      //   //   percent: Task.progress
-      //   // })
-      //   // if (Task.progress === 100) {
-      //   //   // tempFilePath可以作为img标签的src属性显示图片
-      //   //   this.setData({ img: res.tempFilePaths })
-      //   // }
-      // })
-    })
-  }
+  //     // 上传进度条
+  //     // uploadTask.onProgressUpdate((Task) => {
+  //     //   // console.log(Task)
+  //     //   callbackTask(Task)
+  //     //   // this.setData({
+  //     //   //   percent: Task.progress
+  //     //   // })
+  //     //   // if (Task.progress === 100) {
+  //     //   //   // tempFilePath可以作为img标签的src属性显示图片
+  //     //   //   this.setData({ img: res.tempFilePaths })
+  //     //   // }
+  //     // })
+  //   })
+  // }
 
-  deleteCos() {
+  // deleteCos() {
 
-  }
+  // }
 
 }
 

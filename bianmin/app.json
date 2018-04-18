@@ -6,7 +6,10 @@
     "pages/wenzhang/index",
     "pages/wode/index",
     "pages/wode/myfabu",
-    "pages/wode/guanyuwo"
+    "pages/wode/guanyuwo",
+    "pages/wode/create-shangjia",
+    "pages/wode/my-shangjia",
+    "pages/shangjia/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "white",

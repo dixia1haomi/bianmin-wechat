@@ -17,11 +17,18 @@
       <view class='youjiantou7'></view>
     </view>
 
- 
-
-
     <view class='danhang-list' catchtap='my_fabu'>
       <view>我的发布</view>
+      <view class='youjiantou7'></view>
+    </view>
+
+    <view class='danhang-list' catchtap='create_shangjia'>
+      <view>商家入驻</view>
+      <view class='youjiantou7'></view>
+    </view>
+
+    <view class='danhang-list' catchtap='my_shangjia'>
+      <view>我的店铺</view>
       <view class='youjiantou7'></view>
     </view>
 

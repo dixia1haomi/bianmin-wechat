@@ -1,0 +1,47 @@
+<view>
+  <view class='title'>商家入驻</view>
+
+  <!-- 商家名称 -->
+  <view class='name'>
+    <view>填商家名称</view>
+    <input bindinput='name_'></input>
+  </view>
+
+  <!-- 上传头图 -->
+  <view class='toutu'>
+    <view class='toutu-title'>上传头图</view>
+    <view class='toutu-1'>
+      <block wx:for="{{toutu}}" wx:key="">
+        <image class='toutu-img-item' src='{{item}}'></image>
+      </block>
+      <view wx:if="{{toutu.length == 0}}" class='tianjia-toutu' catchtap='toutu_'>+</view>
+    </view>
+  </view>
+
+  <!-- 获取地理位置 -->
+  <view class='dizhi' catchtap='dizhi_'>
+    <view class='dizhi-title'>获取地理位置</view>
+    <view class='dizhi-text'>{{dizhi}}</view>
+  </view>
+
+  <!-- 描述 -->
+  <view class='miaoshu'>
+    <view class='miaoshu-title'>描述</view>
+    <textarea class='miaoshu-text' bindinput='miaoshu_' maxlength='200' placeholder='请输入详细描述，最多200字。'>
+      <text class='miaoshu-cursor'>{{miaoshuCursor}}/200</text>
+    </textarea>
+  </view>
+
+  <!-- 上传详情图片 -->
+  <view class='xiangqingtu'>
+    <view class='xiangqingtu-title'>上传详情图片</view>
+    <view class='xiangqingtu-1'>
+      <block wx:for="{{xiangqingtu}}" wx:key="">
+        <image class='xiangqingtu-img-item' src='{{item}}'></image>
+      </block>
+      <view wx:if="{{xiangqingtu.length < 9}}" class='tianjia-xiangqingtu' catchtap='xiangqingtu_'>+</view>
+    </view>
+  </view>
+
+  <view class='tijiao' catchtap='tijiao_'>提交</view>
+</view>

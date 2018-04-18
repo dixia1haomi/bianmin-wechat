@@ -105,7 +105,7 @@ Page({
     let imgArray = this.data.img
 
     wx.chooseImage({
-      count: 3 - imgArray.length, // 默认9
+      count: 4 - imgArray.length, // 默认9
       // sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -122,12 +122,12 @@ Page({
   },
 
   // 上传图片
-  updateImg(callback, callbackupdateOk) {
+  updateImg(cospath, callback, callbackupdateOk) {
     var successUp = 0; //成功个数
     var failUp = 0; //失败个数
     var length = this.data.img.length; //总共个数
     var i = 0; //第几个
-    cos.uploadDIY(this.data.img, successUp, failUp, i, length, back => {
+    cos.uploadDIY(cospath, this.data.img, successUp, failUp, i, length, back => {
       console.log('back--------------', JSON.parse(back))
       callback && callback(JSON.parse(back))
     }, updateOk => {
@@ -189,7 +189,8 @@ Page({
         console.log('有图片create', res)
         // 有图片,上传,获取ID
         let list_id = res.data.id
-        this.updateImg(back => {
+        let cospath = "/bianmin"
+        this.updateImg(cospath, back => {
           console.log('update-img', back)
           // 上传成功，写入数据库
           api.createImg({ list_id: list_id, url: back.data.source_url }, res => {

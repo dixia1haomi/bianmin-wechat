@@ -82,10 +82,19 @@ Page({
   },
 
   // 我的发布
-  my_fabu(e) {
+  my_fabu() {
     // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
     app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/myfabu' }) : app.checkToken(() => {
       this.my_fabu()
+      this._set_UserInfo()
+    })
+  },
+
+  // 商家入驻
+  create_shangjia() {
+    // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
+    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/create-shangjia' }) : app.checkToken(() => {
+      this.create_shangjia()
       this._set_UserInfo()
     })
   },

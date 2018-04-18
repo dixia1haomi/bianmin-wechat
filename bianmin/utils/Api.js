@@ -71,7 +71,7 @@ class Api extends Base {
   }
 
 
-   // ------------------------------------------------- 文章 ---------------------------------------------------
+  // ------------------------------------------------- 文章 ---------------------------------------------------
   // 获取文章列表
   wenzhangList(data, callback) {
     this.request({ url: 'index/wenzhanglist', data: data, sCallback: (res) => { callback && callback(res) } })
@@ -80,6 +80,28 @@ class Api extends Base {
   // 获取文章详情
   wenzhangDetail(data, callback) {
     this.request({ url: 'index/wenzhangdetail', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+
+  // ------------------------------------------------- 商家 ---------------------------------------------------
+  // 新增商家
+  createShangjia(data, callback) {
+    this.request({ url: 'index/createshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 新增商家图片
+  createShangjiaImg(data, callback) {
+    this.request({ url: 'index/createshangjiaimg', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 查询商家详情(接受商家ID)
+  findShangjia(data, callback) {
+    this.request({ url: 'index/findshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 查询商家列表
+  selectShangjia(data, callback) {
+    this.request({ url: 'index/selectshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
 

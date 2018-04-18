@@ -1,0 +1,34 @@
+<view>
+
+  <view>
+    <image src='{{shangjiaRes.toutu}}'></image>
+  </view>
+
+  <view>
+    <view>{{shangjiaRes.name}}</view>
+  </view>
+
+  <view>
+    地址
+    <view>{{shangjiaRes.dizhi}}</view>
+  </view>
+
+  <view>
+    电话
+    <view>{{shangjiaRes.phone}}</view>
+  </view>
+
+  <view>
+    商家描述
+    <view>{{shangjiaRes.miaoshu}}</view>
+  </view>
+
+  <view>
+    for-图片
+    <view>
+      <block wx:for="{{shangjiaRes.withshangjia_img}}" wx:key="">
+        <image src='{{item.url}}'></image>
+      </block>
+    </view>
+  </view>
+</view>
