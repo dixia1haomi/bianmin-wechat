@@ -34,8 +34,8 @@
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/wode/create-shangjia",
-					"query": ""
+					"pathName": "pages/shangjia/detail",
+					"query": "id=4"
 				}
 			]
 		}

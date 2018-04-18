@@ -1,34 +1,37 @@
 <view>
 
-  <view>
-    <image src='{{shangjiaRes.toutu}}'></image>
+  <!-- 头图 -->
+  <view class='toutu'>
+    <image class='toutu-img' src='{{shangjiaRes.toutu}}'></image>
   </view>
 
-  <view>
-    <view>{{shangjiaRes.name}}</view>
-  </view>
-
-  <view>
-    地址
-    <view>{{shangjiaRes.dizhi}}</view>
-  </view>
-
-  <view>
-    电话
-    <view>{{shangjiaRes.phone}}</view>
-  </view>
-
-  <view>
-    商家描述
-    <view>{{shangjiaRes.miaoshu}}</view>
-  </view>
-
-  <view>
-    for-图片
-    <view>
-      <block wx:for="{{shangjiaRes.withshangjia_img}}" wx:key="">
-        <image src='{{item.url}}'></image>
-      </block>
+  <!-- 名称,地址，电话 -->
+  <view class='name-dizhi-dianhua'>
+    <!-- 名称,地址 -->
+    <view class='name-dizhi'>
+      <view class='name'>{{shangjiaRes.name}}</view>
+      <view class='dizhi' catchtap='open_map_'>
+        <text class='iconfont icon-dizhi' style='color:#2c2c2c;'></text> {{shangjiaRes.dizhi}}
+      </view>
     </view>
+
+    <!-- 电话 -->
+    <view class='dianhua' catchtap='call_phone_'>
+      <text class='iconfont icon-shangjia-dianhua' style='font-size: 70rpx;'></text>
+    </view>
+  </view>
+
+
+  <!-- 描述 -->
+  <view class='miaoshu'>
+    <view class='miaoshu-title'>商家描述</view>
+    <view class='miaoshu-text'>{{shangjiaRes.miaoshu}}</view>
+  </view>
+
+  <!-- 详情图 -->
+  <view class='xiangqingtu'>
+    <block wx:for="{{shangjiaRes.withshangjia_img}}" wx:key="">
+      <image class='xiangqingtu-img' src='{{item.url}}'></image>
+    </block>
   </view>
 </view>

@@ -1,1 +1,76 @@
-/* pages/shangjia/detail.wxss */
+/* 头图 */
+
+.toutu {
+  height: 421.875rpx;
+}
+
+.toutu-img {
+  /* 16:9 */
+  width: 100%;
+  height: 421.875rpx;
+}
+
+/* 名称，地址，电话 */
+
+.name-dizhi-dianhua {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+/* 名称，地址 */
+
+.name-dizhi {
+  flex: 1;
+}
+
+.name {
+  font-size: 38rpx;
+  font-weight: 700;
+  padding-bottom: 20rpx;
+}
+
+.dizhi {
+  /* flex: 1; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 电话 */
+
+.dianhua {
+  padding: 20rpx 20rpx 20rpx 40rpx;
+  border-left: 1rpx solid #e5e5e5;
+  color: skyblue;
+}
+
+/* 描述 */
+
+.miaoshu {
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.miaoshu-title {
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.miaoshu-text {
+  padding-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 详情图 */
+
+.xiangqingtu {
+  background-color: #fff;
+  padding: 0 20rpx 0 20rpx;
+}
+
+.xiangqingtu-img {
+  width: 100%;
+  margin-bottom: 40rpx;
+}

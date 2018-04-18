@@ -21,6 +21,9 @@ Page({
     longitude: "",
     latitude: "",
 
+    // 电话
+    phone: '',
+
     // 描述
     miaoshu: "",
     miaoshuCursor: 0,
@@ -74,6 +77,25 @@ Page({
     })
   },
 
+  // 电话
+  phone_(e) {
+    console.log('电话')
+    wx.showLoading({ title: '请稍候' })
+    api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
+      wx.hideLoading()
+      console.log('phone', res.data)
+      // 返回了电话号码
+      this.setData({ phone: res.data })
+    })
+  },
+
+  // button事件 获取电话
+  getPhoneNumber(e) {
+    console.log('电话', e)
+    // 如果用户允许获取电话
+    if (e.detail.iv && e.detail.encryptedData) { app.checkToken(() => { this.phone_(e) }) }
+  },
+
   // 描述
   miaoshu_(e) {
     console.log('描述', e.detail.value)
@@ -106,12 +128,13 @@ Page({
       dizhi: this.data.dizhi,
       longitude: this.data.longitude,
       latitude: this.data.latitude,
+      phone: this.data.phone,
       miaoshu: this.data.miaoshu,
       // xiangqingtu: this.data.xiangqingtu
     }
 
     // 验证
-    if (params.name.length == 0) {
+    if (this.data.name.length == 0) {
       wx.showToast({ title: '请认真填写name' })
       return
     }
@@ -136,6 +159,11 @@ Page({
       return
     }
 
+    if (this.data.phone.length == 0) {
+      wx.showToast({ title: '电话不能为空' })
+      return
+    }
+
     if (this.data.miaoshu.length == 0) {
       wx.showToast({ title: 'miaoshu不能为空' })
       return
@@ -155,7 +183,7 @@ Page({
     let cospath = "/shangjia"
 
     this.updateImg(cospath, img, length, (back) => {
-      console.log('先传头图-back', back)
+      console.log('头图上传成功-back', back)
       // 上传成功，写入数据库
       params.toutu = back.data.source_url
       api.createShangjia(params, res => {

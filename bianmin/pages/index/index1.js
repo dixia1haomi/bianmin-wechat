@@ -31,22 +31,23 @@ Page({
     console.log('bb')
     this._load()
     this._getShangjiaList()
-
-    // api.selectShangjia({ page: 1 }, res => {
-    //   console.log('商家列表', res)
-    // })
   },
 
   onReady: function () {
 
   },
 
-  // 获取文章列表
+  // 获取商家列表
   _getShangjiaList() {
     api.selectShangjia({}, res => {
       console.log('商家列表', res)
       this.setData({ shangjiaList: res.data })
     })
+  },
+
+  // 去商家列表页
+  go_shangjiaList_() {
+    wx.navigateTo({ url: '/pages/shangjia/list' })
   },
 
 

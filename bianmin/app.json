@@ -9,7 +9,8 @@
     "pages/wode/guanyuwo",
     "pages/wode/create-shangjia",
     "pages/wode/my-shangjia",
-    "pages/shangjia/detail"
+    "pages/shangjia/detail",
+    "pages/shangjia/list"
   ],
   "window": {
     "navigationBarBackgroundColor": "white",

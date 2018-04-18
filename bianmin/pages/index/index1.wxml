@@ -15,17 +15,20 @@
 </swiper> -->
 
 <!-- <block wx:if="{{shangjiaList.length > 0}}"> -->
-  <view class='scroll'>
-    <view class='tuijian'>本地商家</view>
-    <scroll-view scroll-x style='white-space: nowrap'>
-      <block wx:for="{{shangjiaList}}" wx:key="">
-        <view style='display: inline-block;padding-right: 20rpx;' id='{{item.id}}' catchtap='scroll'>
-          <image class='wenzhang-img' src='{{item.toutu}}' mode='aspectFill'></image>
-          <view class='scroll-title'>{{item.name}}</view>
-        </view>
-      </block>
-    </scroll-view>
-  </view>
+<view class='scroll'>
+  <view class='tuijian'>本地商家</view>
+
+  <scroll-view scroll-x class='scroll-view'>
+    <block wx:for="{{shangjiaList}}" wx:key="">
+      <view style='display: inline-block; padding-right: 20rpx;' id='{{item.id}}' catchtap='scroll'>
+        <image class='wenzhang-img' src='{{item.toutu}}' mode='aspectFill'></image>
+        <view class='scroll-title'>{{item.name}}</view>
+      </view>
+    </block>
+    <view class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多</view>
+  </scroll-view>
+
+</view>
 <!-- </block> -->
 
 
@@ -68,7 +71,7 @@
       </view>
       <view id='{{item.phone}}' catchtap='call_phone'>
         <text class='iconfont icon-phone' />
-        <text> 电话</text>
+        <text> 拨打电话</text>
       </view>
     </view>
 
