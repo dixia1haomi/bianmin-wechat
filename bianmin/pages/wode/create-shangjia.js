@@ -2,35 +2,58 @@ import { Api } from '../../utils/Api.js'
 import { Base } from '../../utils/Base.js'
 import { Cos } from '../../utils/Cos.js'
 
+import WxValidate from '../../validate/WxValidate.js'
+
 const cos = new Cos()
 const api = new Api()
 const app = getApp()
 
+//---------------------------------------------- 验证 ----------------------------------------------------
+// 验证字段的规则
+const rules = {
+  name: { required: true },
+  toutu: { required: true },
+  dizhi: { required: true },
+  phone: { required: true },
+  miaoshu: { required: true, rangelength: [10, 200] },
+  xiangqingtu: { required: true },
+}
+// 验证字段的提示信息，若不传则调用默认的信息
+const messages = {
+  name: { required: '名称不能为空' },
+  toutu: { required: '头图不能为空' },
+  dizhi: { required: '地址不能为空' },
+  phone: { required: '电话不能为空' },
+  miaoshu: { required: '描述不能为空', rangelength: '描述长度在 10 到 200 之间' },
+  xiangqingtu: { required: '详情图不能为空' },
+}
+
+const wxValidate = new WxValidate(rules, messages)
+
+//---------------------------------------------- 验证 ----------------------------------------------------
+
 Page({
 
   data: {
-
     // 商家名称
     name: "",
-
     // 头图
     toutu: [],
-
     // 地址
     dizhi: "",
     longitude: "",
     latitude: "",
-
     // 电话
     phone: '',
-
     // 描述
     miaoshu: "",
     miaoshuCursor: 0,
-
     // 详情图
     xiangqingtu: [],
-
+    // 错误提示开关
+    toptips_kaiguan: '',
+    // // 错误提示内容
+    toptips_text: '',
   },
 
 
@@ -70,8 +93,12 @@ Page({
       wx.chooseLocation({
         success: (e) => {
           console.log('success', e)
+          // 去除“云南省曲靖市”
+          if ((e.address.indexOf("云南省曲靖市")) != -1) {
+            e.address = e.address.substring((e.address.indexOf("市") + 1), e.address.length);
+          }
           // 记录已选择的位置
-          this.setData({ dizhi: e.name, latitude: e.latitude, longitude: e.longitude })
+          this.setData({ dizhi: e.address, latitude: e.latitude, longitude: e.longitude })
         }
       })
     })
@@ -119,60 +146,62 @@ Page({
     })
   },
 
+
+  // 删除头图
+  shanchu_toutu_(e) {
+    wx.showModal({
+      title: '删除这张图片？', success: (res) => {
+        if (res.confirm) {
+          let key = e.currentTarget.id, toutuArray = this.data.toutu
+          // splice删除数组中的元素
+          toutuArray.splice(key, 1)
+          this.setData({ toutu: toutuArray })
+        }
+      }
+    })
+  },
+
+  // 删除详情图
+  shanchu_xiangqingtu_(e) {
+    wx.showModal({
+      title: '删除这张图片？', success: (res) => {
+        if (res.confirm) {
+          let key = e.currentTarget.id, xiangqingtuArray = this.data.xiangqingtu
+          // splice删除数组中的元素
+          xiangqingtuArray.splice(key, 1)
+          this.setData({ xiangqingtu: xiangqingtuArray })
+        }
+      }
+    })
+  },
+
   // 提交
   tijiao_() {
     console.log('提交')
     let params = {
       name: this.data.name,
-      // toutu: this.data.toutu,
       dizhi: this.data.dizhi,
       longitude: this.data.longitude,
       latitude: this.data.latitude,
       phone: this.data.phone,
       miaoshu: this.data.miaoshu,
-      // xiangqingtu: this.data.xiangqingtu
     }
 
-    // 验证
-    if (this.data.name.length == 0) {
-      wx.showToast({ title: '请认真填写name' })
-      return
+    // 传入表单数据，调用验证方法
+    let checkObj = {
+      name: params.name,
+      toutu: this.data.toutu,
+      dizhi: params.dizhi,
+      phone: params.phone,
+      miaoshu: params.miaoshu,
+      xiangqingtu: this.data.xiangqingtu
     }
-
-    if (this.data.toutu.length == 0) {
-      wx.showToast({ title: 'toutu不能为空' })
-      return
+    if (!wxValidate.checkForm(checkObj)) {
+      const error = wxValidate.errorList[0]
+      // 调用组件tips提示
+      this.setData({ toptips_kaiguan: true, toptips_text: error.msg })
+      return false
     }
-
-    if (this.data.dizhi.length == 0) {
-      wx.showToast({ title: 'dizhi不能为空' })
-      return
-    }
-
-    if (this.data.longitude.length == 0) {
-      wx.showToast({ title: 'longitude不能为空' })
-      return
-    }
-
-    if (this.data.latitude.length == 0) {
-      wx.showToast({ title: 'latitude不能为空' })
-      return
-    }
-
-    if (this.data.phone.length == 0) {
-      wx.showToast({ title: '电话不能为空' })
-      return
-    }
-
-    if (this.data.miaoshu.length == 0) {
-      wx.showToast({ title: 'miaoshu不能为空' })
-      return
-    }
-
-    // if (this.data.xiangqingtu.length == 0) {
-    //   wx.showToast({ title: 'xiangqingtu不能为空' })
-    //   return
-    // }
 
     // 禁止穿透
     wx.showLoading({ title: '发布中..', mask: true })
@@ -202,31 +231,13 @@ Page({
           console.log('传详情图OK', xiangqingtuOk)
           // 隐藏loading
           wx.hideLoading()
+          // 返回主页
+          wx.reLaunch({ url: '/pages/index/index1' })
         })
       })
     }, (ok) => {
       console.log('传头图OK', ok)
     })
-
-
-    // api.createList(params, res => {
-    //   console.log('有图片create', res)
-    //   // 有图片,上传,获取ID
-    //   let list_id = res.data.id
-    //   this.updateImg(back => {
-    //     console.log('update-img', back)
-    //     // 上传成功，写入数据库
-    //     api.createImg({ list_id: list_id, url: back.data.source_url }, res => {
-    //       console.log('写入图片到数据库OK', res)
-    //     })
-    //   }, ok => {
-    //     console.log('ok', ok)
-    //     // 隐藏Loading
-    //     wx.hideLoading()
-    //     // 返回主页
-    //     wx.reLaunch({ url: '/pages/index/index1' })
-    //   })
-    // })
   },
 
   // 上传图片

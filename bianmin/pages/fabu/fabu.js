@@ -3,7 +3,8 @@ import { Api } from '../../utils/Api.js'
 import { Base } from '../../utils/Base.js'
 import { Cos } from '../../utils/Cos.js'
 import { Config } from '../../utils/Config.js'
-// import WxValidate from '../../validate/WxValidate.js'
+
+import WxValidate from '../../validate/WxValidate.js'
 
 const cos = new Cos()
 const api = new Api()
@@ -11,17 +12,19 @@ const app = getApp()
 
 //---------------------------------------------- 验证 ----------------------------------------------------
 // 验证字段的规则
-// const rules = {
-//   neirong: { required: true, rangelength: [10, 200] },
-//   phone: { required: true, rangelength: [10, 200] }
-// }
-// // 验证字段的提示信息，若不传则调用默认的信息
-// const messages = {
-//   neirong: { required: '请修改内容', rangelength: '内容长度在 10 到 200 之间' },
-//   phone: { required: '请输入电话',rangelength: '内容长度在 10 到 200 之间' }
-// }
+const rules = {
+  neirong: { required: true, rangelength: [10, 200] },
+  address: { required: true },
+  phone: { required: true }
+}
+// 验证字段的提示信息，若不传则调用默认的信息
+const messages = {
+  neirong: { required: '请修改内容', rangelength: '内容长度在 10 到 200 之间' },
+  address: { required: '地址不能为空' },
+  phone: { required: '电话不能为空' }
+}
 
-// const wxValidate = new WxValidate(rules, messages)
+const wxValidate = new WxValidate(rules, messages)
 
 Page({
 
@@ -31,19 +34,15 @@ Page({
   data: {
     // index
     index: 0,
-
     // 内容
     textarea: {
       value: "",
       cursor: 0
     },
-
     // 图片
     img: [],
-
     // 填充textarea
     textareaValue: "",
-
     // 电话
     phone: "",
     // 地址
@@ -56,9 +55,9 @@ Page({
     leimuObj: Config.moban,
 
     // 错误提示开关
-    // toptips_kaiguan: '',
+    toptips_kaiguan: '',
     // // 错误提示内容
-    // toptips_text: '',
+    toptips_text: '',
   },
 
   /**
@@ -158,26 +157,19 @@ Page({
     let params = {
       leibie: this.data.leimuObj[this.data.index].leimu,
       neirong: this.data.textarea.value,
-      phone: this.data.phone
+      phone: this.data.phone,
+      address: this.data.address,
+      longitude: this.data.longitude,
+      latitude: this.data.latitude
     }
     console.log('params', params)
 
     // 传入表单数据，调用验证方法
-    // if (!wxValidate.checkForm({ neirong: neirong, phone: phone })) {
-    //   const error = wxValidate.errorList[0]
-    //   // 调用组件tips提示
-    //   this.setData({ toptips_kaiguan: true, toptips_text: error.msg })
-    //   return false
-    // }
-
-    if (params.neirong.length < 10) {
-      wx.showToast({ title: '请认真填写内容' })
-      return
-    }
-
-    if (!this.data.phone) {
-      wx.showToast({ title: '电话不能为空' })
-      return
+    if (!wxValidate.checkForm({ neirong: params.neirong, phone: params.phone, address: params.address })) {
+      const error = wxValidate.errorList[0]
+      // 调用组件tips提示
+      this.setData({ toptips_kaiguan: true, toptips_text: error.msg })
+      return false
     }
 
     // 禁止穿透
@@ -230,9 +222,6 @@ Page({
           console.log('success', e)
           // 记录已选择的位置
           this.setData({ address: e.name, latitude: e.latitude, longitude: e.longitude })
-        },
-        fail: (e) => {
-          console.log('fail', e)
         }
       })
     })
@@ -240,29 +229,9 @@ Page({
 
   // button事件 获取电话
   getPhoneNumber(e) {
-    console.log('电话', e)
     // 如果用户允许获取电话
     if (e.detail.iv && e.detail.encryptedData) {
-      // 检查session_key是否过期
-      // wx.checkSession({
-      //   success: () => {
-      //     //session_key 未过期，直接请求，服务器获取session_key
-      //     console.log('未过期')
-      //     this._getPhone(e)
-      //   },
-      //   fail: () => {
-      //     // session_key 已经失效，重新登录后再请求
-      //     console.log('已过期')
-      //     getApp().newGetToken(back => {
-      //       // 登陆成功，请求
-      //       this._getPhone(e)
-      //     })
-      //   }
-      // })
-      app.checkToken(() => {
-        this._getPhone(e)
-      })
-
+      app.checkToken(() => { this._getPhone(e) })
     }
   },
 

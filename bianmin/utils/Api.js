@@ -71,17 +71,6 @@ class Api extends Base {
   }
 
 
-  // ------------------------------------------------- 文章 ---------------------------------------------------
-  // 获取文章列表
-  wenzhangList(data, callback) {
-    this.request({ url: 'index/wenzhanglist', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
-
-  // 获取文章详情
-  wenzhangDetail(data, callback) {
-    this.request({ url: 'index/wenzhangdetail', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
-
 
   // ------------------------------------------------- 商家 ---------------------------------------------------
   // 新增商家
@@ -103,6 +92,17 @@ class Api extends Base {
   selectShangjia(data, callback) {
     this.request({ url: 'index/selectshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
   }
+
+  // 查询我的店铺
+  getMyShangjia(data, callback) {
+    this.request({ url: 'index/myshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 删除店铺
+  deleteShangjia(data, callback) {
+    this.request({ url: 'index/deleteshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
 
 
   // // ------------------------------------------------- 卡卷接口测试 ---------------------------------------------------

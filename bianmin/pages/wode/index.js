@@ -93,8 +93,32 @@ Page({
   // 商家入驻
   create_shangjia() {
     // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
-    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/create-shangjia' }) : app.checkToken(() => {
-      this.create_shangjia()
+    if (app.appData.LoginState) {
+      wx.showLoading({ title: '请稍候' })
+      api.getMyShangjia({}, (res) => {
+        console.log('我的店铺', res)
+        wx.hideLoading()
+        if (res.data == null) {
+          wx.navigateTo({ url: '/pages/wode/create-shangjia' })
+        } else {
+          wx.showModal({ content: '已入驻过,可以先去「我的店铺」删除旧店铺' })
+        }
+      })
+    } else {
+      app.checkToken(() => {
+        this.create_shangjia()
+        this._set_UserInfo()
+      })
+    }
+
+
+  },
+
+  // 我的店铺
+  my_shangjia() {
+    // 是否登陆过 ？
+    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/my-shangjia' }) : app.checkToken(() => {
+      this.my_shangjia()
       this._set_UserInfo()
     })
   },

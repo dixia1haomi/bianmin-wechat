@@ -1,7 +1,7 @@
 <view class='title'>
-  沾益袋鼠同城+
-  <contact-button type="default-dark" size="25"></contact-button>
-  <view class='title-1'>找沾益同城信息,来袋鼠同城</view>
+  <view style='font-size: 40rpx;font-weight: 700;'>沾益袋鼠同城+</view>
+  <!-- <contact-button type="default-dark" size="25"></contact-button> -->
+  <view class='title-1'>找同城信息,来袋鼠同城</view>
 </view>
 
 
@@ -25,7 +25,7 @@
         <view class='scroll-title'>{{item.name}}</view>
       </view>
     </block>
-    <view class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多</view>
+    <view wx:if="{{shangjiaList.length == 10}}" class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多></view>
   </scroll-view>
 
 </view>
@@ -45,7 +45,6 @@
     </view>
 
     <view class='xinxi'>
-
       <view class="{{item.hid ?'':'flod' }}" style='margin: 0 20rpx 0 20rpx;' data-index='{{index}}' catchtap="flodFn">
         <!-- id用于获取内容实际高度 -->
         <text id='neirong'>{{item.neirong}}</text>
@@ -61,7 +60,11 @@
           <image class='img' src="{{img.url}}" catchtap='yulan' data-img='{{item.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
         </block>
       </view>
+    </view>
 
+    <view class='dizhi'>
+      <text class='iconfont icon-dizhi' />
+      <text catchtap='dizhi_' data-longitude='{{item.longitude}}' data-latitude='{{item.latitude}}' data-address='{{item.address}}'>地址：{{item.address}}</text>
     </view>
 
     <view class='info'>

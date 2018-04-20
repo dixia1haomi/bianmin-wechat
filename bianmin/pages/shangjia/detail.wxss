@@ -17,6 +17,8 @@
   background-color: #fff;
   margin-bottom: 20rpx;
   display: flex;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
 }
 
 /* 名称，地址 */
@@ -29,6 +31,14 @@
   font-size: 38rpx;
   font-weight: 700;
   padding-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.liulangcishu {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #808080;
 }
 
 .dizhi {
@@ -36,6 +46,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #007aff;
 }
 
 /* 电话 */
@@ -43,7 +54,7 @@
 .dianhua {
   padding: 20rpx 20rpx 20rpx 40rpx;
   border-left: 1rpx solid #e5e5e5;
-  color: skyblue;
+  color: tomato;
 }
 
 /* 描述 */
@@ -56,6 +67,7 @@
 .miaoshu-title {
   padding-bottom: 20rpx;
   border-bottom: 1rpx solid #e5e5e5;
+  display: flex;
 }
 
 .miaoshu-text {
@@ -71,6 +83,7 @@
 }
 
 .xiangqingtu-img {
+  /* height: 100%; */
   width: 100%;
   margin-bottom: 40rpx;
 }

@@ -1,2 +1,18 @@
-<!--pages/wode/my-shangjia.wxml-->
-<text>pages/wode/my-shangjia.wxml</text>
+<view wx:if="{{myShangjiaRes}}">
+  <view class='title'>我的店铺</view>
+
+  <view class='shangjia-item' catchtap='go_shangjiaDetail_'>
+    <image class='item-toutu' src='{{myShangjiaRes.toutu}}'></image>
+
+    <view class='item-xinxi'>
+      <view>{{myShangjiaRes.name}}</view>
+      <view>{{myShangjiaRes.dizhi}}</view>
+      <view>{{myShangjiaRes.phone}}</view>
+    </view>
+  </view>
+
+  <view class='delete' catchtap='deleteShangjia_' id='{{myShangjiaRes.id}}'>删除</view>
+</view>
+<view wx:else>
+  <view>还有没入驻店铺</view>
+</view>

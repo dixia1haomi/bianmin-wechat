@@ -34,8 +34,8 @@
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/shangjia/detail",
-					"query": "id=4"
+					"pathName": "pages/fabu/fabu",
+					"query": ""
 				}
 			]
 		}

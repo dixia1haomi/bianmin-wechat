@@ -1,1 +1,33 @@
-/* pages/wode/my-shangjia.wxss */
+.title {
+  padding: 60rpx;
+  background-color: #fff;
+  /* margin-bottom: 20rpx; */
+}
+
+.shangjia-item {
+  display: flex;
+  /* padding: 0 20rpx 0 20rpx; */
+  /* margin-bottom: 10rpx; */
+  background-color: #fff;
+   border-bottom: 1rpx solid #e5e5e5; 
+   border-top: 1rpx solid #e5e5e5; 
+}
+
+.item-toutu {
+  height: 180rpx;
+  width: 180rpx;
+}
+
+.item-xinxi {
+  flex: 1;
+  margin: 20rpx 0 20rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delete {
+  padding: 20rpx;
+  background-color: #fff;
+  text-align: center;
+}

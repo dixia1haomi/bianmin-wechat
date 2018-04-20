@@ -28,7 +28,6 @@ Page({
 
 
   onLoad: function (op) {
-    console.log('bb')
     this._load()
     this._getShangjiaList()
   },
@@ -107,6 +106,18 @@ Page({
     })
   },
 
+  // 地址
+  dizhi_(e) {
+    console.log('地址', e.currentTarget.dataset.longitude)
+
+    wx.openLocation({
+      latitude: parseFloat(e.currentTarget.dataset.latitude),
+      longitude: parseFloat(e.currentTarget.dataset.longitude),
+      name: e.currentTarget.dataset.address,
+      scale: 28
+    })
+  },
+
   // 展开，折叠
   flodFn: function (e) {
     let index = e.currentTarget.dataset.index, res = this.data.Res
@@ -172,6 +183,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     this._load(back => { wx.stopPullDownRefresh() })
+    this._getShangjiaList()
   },
 
 

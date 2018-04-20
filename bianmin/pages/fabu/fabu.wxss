@@ -17,7 +17,7 @@
 .textarea-1 {
   width: 100%;
   background-color: aliceblue;
-  height: 760rpx;
+  height: 660rpx;
   font-size: 36rpx;
   position: relative;
 }

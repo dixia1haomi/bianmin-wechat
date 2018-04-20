@@ -2,7 +2,7 @@
 
   <!-- 头图 -->
   <view class='toutu'>
-    <image class='toutu-img' src='{{shangjiaRes.toutu}}'></image>
+    <image class='toutu-img' src='{{shangjiaRes.toutu}}' mode='aspectFill'></image>
   </view>
 
   <!-- 名称,地址，电话 -->
@@ -13,6 +13,7 @@
       <view class='dizhi' catchtap='open_map_'>
         <text class='iconfont icon-dizhi' style='color:#2c2c2c;'></text> {{shangjiaRes.dizhi}}
       </view>
+
     </view>
 
     <!-- 电话 -->
@@ -24,14 +25,19 @@
 
   <!-- 描述 -->
   <view class='miaoshu'>
-    <view class='miaoshu-title'>商家描述</view>
+    <view class='miaoshu-title'>
+      <view>商家描述</view>
+      <view class='liulangcishu'>
+        <text class='iconfont icon-yueduliang' /> {{shangjiaRes.liulangcishu}}
+      </view>
+    </view>
     <view class='miaoshu-text'>{{shangjiaRes.miaoshu}}</view>
   </view>
 
   <!-- 详情图 -->
   <view class='xiangqingtu'>
     <block wx:for="{{shangjiaRes.withshangjia_img}}" wx:key="">
-      <image class='xiangqingtu-img' src='{{item.url}}'></image>
+      <image class='xiangqingtu-img' src='{{item.url}}' mode='widthFix'></image>
     </block>
   </view>
 </view>

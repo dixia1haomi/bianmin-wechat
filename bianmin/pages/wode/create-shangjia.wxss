@@ -10,6 +10,9 @@
   background-color: #fff;
   padding: 20rpx;
   margin-bottom: 20rpx;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 /* 头图 */
@@ -31,13 +34,11 @@
 .toutu-img-item {
   height: 130rpx;
   width: 130rpx;
-  margin-right: 10rpx;
-  margin-bottom: 10rpx;
 }
 
 .tianjia-toutu {
-  height: 130rpx;
-  width: 130rpx;
+  height: 126rpx;
+  width: 126rpx;
   background-color: aliceblue;
   border: 1rpx dashed #808080;
   display: flex;
@@ -53,6 +54,12 @@
   background-color: #fff;
   margin-bottom: 20rpx;
   padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
 }
 
 /* 电话 */
@@ -127,8 +134,8 @@
 }
 
 .tianjia-xiangqingtu {
-  height: 130rpx;
-  width: 130rpx;
+  height: 126rpx;
+  width: 126rpx;
   background-color: aliceblue;
   border: 1rpx dashed #808080;
   display: flex;
@@ -141,13 +148,14 @@
 .xiangqingtu-img-item {
   height: 130rpx;
   width: 130rpx;
-  margin-right: 10rpx;
-  margin-bottom: 10rpx;
+   margin-right: 10rpx; 
+   margin-bottom: 10rpx; 
 }
 
 /* 提交 */
 
 .tijiao {
+  /* position: fixed; *//* width: 100%; *//* bottom: 0; */
   background-color: tomato;
   padding: 30rpx;
   text-align: center;

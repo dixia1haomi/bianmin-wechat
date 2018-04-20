@@ -1,66 +1,45 @@
-// pages/wode/my-shangjia.js
+import { Api } from '../../utils/Api.js'
+
+const api = new Api()
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    myShangjiaRes: {},
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 我的店铺
   onLoad: function (options) {
-  
+    this._load()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  _load() {
+    api.getMyShangjia({}, (res) => {
+      console.log('我的店铺', res)
+      this.setData({ myShangjiaRes: res.data })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 转到商家详情页
+  go_shangjiaDetail_() {
+    wx.navigateTo({ url: '/pages/shangjia/detail?id=' + this.data.myShangjiaRes.id })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 删除店铺
+  deleteShangjia_(e) {
+    wx.showModal({
+      title: '删除店铺？', success: (res) => {
+        if (res.confirm) {
+          wx.showLoading({ title: '删除中..', mask: true })
+          api.deleteShangjia({ id: e.currentTarget.id }, (res) => {
+            console.log('删除店铺', res)
+            wx.hideLoading()
+            wx.showToast({ title: '删除成功' })
+            this._load()
+          })
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
