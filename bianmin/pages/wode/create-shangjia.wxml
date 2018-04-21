@@ -22,9 +22,7 @@
 
   <!-- 获取地理位置 -->
   <view class='dizhi' catchtap='dizhi_'>
-    <view>地址：
-      <text style='white-space: nowrap;'>{{dizhi}}</text>
-    </view>
+    <view class='dizhi-text'>地址：{{dizhi}}</view>
     <view class='youjiantou7'></view>
   </view>
 

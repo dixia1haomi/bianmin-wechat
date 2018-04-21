@@ -40,5 +40,7 @@
   </block>
 </view>
 <view wx:else>
-  <view class='noxinxi'>没有信息，快去发布。</view>
+  <navigator open-type='navigateBack' delta="1">
+    <view class='noxinxi'>没有信息，快去发布。</view>
+  </navigator>
 </view>

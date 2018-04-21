@@ -1,13 +1,13 @@
 /* 头图 */
 
 .toutu {
-  height: 421.875rpx;
+  height: 562.5rpx;
 }
 
 .toutu-img {
   /* 16:9 */
   width: 100%;
-  height: 421.875rpx;
+  height: 562.5rpx;
 }
 
 /* 名称，地址，电话 */
@@ -24,15 +24,19 @@
 /* 名称，地址 */
 
 .name-dizhi {
-  flex: 1;
+  /* flex: 1; */
+  width: 577rpx;
 }
 
 .name {
   font-size: 38rpx;
   font-weight: 700;
   padding-bottom: 20rpx;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
 }
 
 .liulangcishu {
@@ -42,19 +46,21 @@
 }
 
 .dizhi {
-  /* flex: 1; */
-  overflow: hidden;
+  /* overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap; */
   color: #007aff;
 }
 
 /* 电话 */
 
 .dianhua {
-  padding: 20rpx 20rpx 20rpx 40rpx;
+   flex: 1; 
   border-left: 1rpx solid #e5e5e5;
   color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 描述 */

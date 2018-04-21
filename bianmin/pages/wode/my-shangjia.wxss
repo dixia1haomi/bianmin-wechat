@@ -31,3 +31,9 @@
   background-color: #fff;
   text-align: center;
 }
+
+.noxinxi {
+  text-align: center;
+  padding-top: 400rpx;
+  color: #007aff;
+}

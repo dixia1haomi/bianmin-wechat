@@ -17,6 +17,8 @@ Page({
 
     // 展开折叠
     isFold: true,
+    // 上拉更多
+    noData: false
 
     // 轮播图
     // imgUrls: [
@@ -106,10 +108,9 @@ Page({
     })
   },
 
-  // 地址
+  // 打开地图
   dizhi_(e) {
-    console.log('地址', e.currentTarget.dataset.longitude)
-
+    console.log('地址', e.currentTarget.dataset)
     wx.openLocation({
       latitude: parseFloat(e.currentTarget.dataset.latitude),
       longitude: parseFloat(e.currentTarget.dataset.longitude),
@@ -152,25 +153,32 @@ Page({
   // 上拉触底
   onReachBottom: function () {
     console.log('上拉触底')
-    page++
-    // 最多显示100条数据
-    if (page <= 5) {
-      api.getList({ page: page }, res => {
-        console.log('上拉触底分页', page)
-
-        // 如果没有数据直接终止并且下次不再请求
-        if (res.data.length == 0) {
-          page = 6
-          return;
-        }
-
-        let newRes = this.data.Res.concat(res.data)
-
-        this.setData({ Res: newRes }, () => {
-          // 获取并设置内容高度，用于超出显示范围就提示展开
-          this._getHeight(newRes)
+    if (this.data.noData != true) {
+      if (this.data.Res.length < 20) {
+        this.setData({ noData: true })
+      } else {
+        page++
+        api.getList({ page: page }, res => {
+          console.log('上拉触底分页', page)
+          if (res.data.length == 0) {
+            this.setData({ noData: true })
+          } else {
+            if (res.data.length < 20) {
+              let newRes = this.data.Res.concat(res.data)
+              this.setData({ Res: newRes, noData: true }, () => {
+                // 获取并设置内容高度，用于超出显示范围就提示展开
+                this._getHeight(newRes)
+              })
+            } else {
+              let newRes = this.data.Res.concat(res.data)
+              this.setData({ Res: newRes }, () => {
+                // 获取并设置内容高度，用于超出显示范围就提示展开
+                this._getHeight(newRes)
+              })
+            }
+          }
         })
-      })
+      }
     }
   },
 

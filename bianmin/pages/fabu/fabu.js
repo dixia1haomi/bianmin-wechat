@@ -220,8 +220,12 @@ Page({
       wx.chooseLocation({
         success: (e) => {
           console.log('success', e)
+          // 去除“云南省曲靖市”
+          if ((e.address.indexOf("云南省曲靖市")) != -1) {
+            e.address = e.address.substring((e.address.indexOf("市") + 1), e.address.length)
+          }
           // 记录已选择的位置
-          this.setData({ address: e.name, latitude: e.latitude, longitude: e.longitude })
+          this.setData({ address: e.address, latitude: e.latitude, longitude: e.longitude })
         }
       })
     })

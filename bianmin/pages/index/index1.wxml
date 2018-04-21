@@ -1,7 +1,10 @@
 <view class='title'>
-  <view style='font-size: 40rpx;font-weight: 700;'>沾益袋鼠同城+</view>
+  <image class='title-img' src='/img/150.jpg'></image>
+  <view>
+    <view style='font-size: 46rpx;font-weight: 700;'>沾益袋鼠同城+</view>
+    <view class='title-1'>找沾益同城信息,来袋鼠同城</view>
+  </view>
   <!-- <contact-button type="default-dark" size="25"></contact-button> -->
-  <view class='title-1'>找同城信息,来袋鼠同城</view>
 </view>
 
 
@@ -14,7 +17,7 @@
   </block>
 </swiper> -->
 
-<!-- <block wx:if="{{shangjiaList.length > 0}}"> -->
+<!-- 本地商家 -->
 <view class='scroll'>
   <view class='tuijian'>本地商家</view>
 
@@ -27,9 +30,7 @@
     </block>
     <view wx:if="{{shangjiaList.length == 10}}" class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多></view>
   </scroll-view>
-
 </view>
-<!-- </block> -->
 
 
 <block wx:for="{{Res}}" wx:key="">
@@ -81,9 +82,11 @@
   </view>
 </block>
 
+<!-- 没有更多了 -->
+<view wx:if="{{noData}}" class='nodata'>---- 没有更多了 ----</view>
 
 
-<!-- -----------分享按钮----------- -->
+<!-- -----------按钮----------- -->
 <view class='juzhong'>
   <view class='fenxiang' catchtap='go_wode'>
     <view class=''>+</view>

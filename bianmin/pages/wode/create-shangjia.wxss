@@ -61,6 +61,11 @@
   /* overflow: hidden; */
   /* text-overflow: ellipsis; */
 }
+.dizhi-text{
+    white-space: nowrap;
+   overflow: hidden; 
+   text-overflow: ellipsis; 
+}
 
 /* 电话 */
 

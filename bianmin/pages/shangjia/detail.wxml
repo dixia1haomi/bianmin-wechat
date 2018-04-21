@@ -2,7 +2,7 @@
 
   <!-- 头图 -->
   <view class='toutu'>
-    <image class='toutu-img' src='{{shangjiaRes.toutu}}' mode='aspectFill'></image>
+    <image class='toutu-img' src='{{shangjiaRes.toutu}}' mode=''></image>
   </view>
 
   <!-- 名称,地址，电话 -->

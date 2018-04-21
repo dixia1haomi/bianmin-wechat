@@ -14,5 +14,7 @@
   <view class='delete' catchtap='deleteShangjia_' id='{{myShangjiaRes.id}}'>删除</view>
 </view>
 <view wx:else>
-  <view>还有没入驻店铺</view>
+  <navigator open-type='navigateBack' delta="1">
+    <view class='noxinxi'>没有店铺，快去发布。</view>
+  </navigator>
 </view>
