@@ -29,7 +29,7 @@
   <!-- 电话 -->
   <view class='phone'>
     <view style='flex: 3;'>电话：{{phone}}</view>
-    <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取电话</button>
+    <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber_">获取电话</button>
   </view>
 
   <!-- 描述 -->

@@ -1,0 +1,11 @@
+<view>
+  <view class='title'>修改内容</view>
+
+  <view style='margin: 0 20rpx 0 20rpx;'>
+    <textarea class='textarea' bindinput='textarea_' value='{{Res.neirong}}' maxlength='200'>
+      <text class='neirong-cursor'>{{cursor || Res.neirong.length}}/200</text>
+    </textarea>
+  </view>
+
+  <view wx:if="{{neirong}}" class='tijiao' catchtap='tijiao_'>提交</view>
+</view>

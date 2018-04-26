@@ -14,29 +14,150 @@ Page({
 
     // 文章列表
     shangjiaList: [],
-
     // 展开折叠
     isFold: true,
     // 上拉更多
-    noData: false
+    noData: false,
+    // 登陆弹窗
+    loginTanChuang: false,
+    // tanchuang: true,
 
-    // 轮播图
-    // imgUrls: [
-    //   "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/yunmu/a.png",
-    //   "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/b.png",
-    //   "http://pinyinshizi-1253443226.coscd.myqcloud.com/pinyin-png-mp3/shengmu/c.png"
-    // ]
+    // ---- 留言回复 ----
+    tanChuang: false,
+    title: '留言',
+    input: null,
+
+    // ---- 留言 ----
+    bianmin_id: null,
+    bianmin_index: null,
+
+    // ---- 回复 ----
+    liuyan_id: null,
+    huifu_user_id: null,
+
+
+    // LiuYanHuiFu: {
+    //   // 留言回复弹窗
+    //   TanChuang: true,
+    //   // Input
+    //   Input: null,
+    //   // Title
+    //   Title: '留言',
+    //   // 信息ID
+    //   BianMin_ID: null,
+    //   // 信息index
+    //   BianMin_Index: null,
+    //   // 留言ID
+    //   LiuYan_ID: null,
+    //   // 回复用户ID
+    //   HuiFu_User_ID: null,
+    // }
   },
 
+  // ------------------------------------------------- 留言回复 -------------------------------------------------
+
+  // 弹窗开关事件(清空input、bmxx_id)
+  tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
+
+  // 留言、回复输入事件
+  liuyan_huifu_input_(e) { this.setData({ input: e.detail.value }) },
+
+  // ---- 留言事件 ----
+  liuyan_(e) {
+    if (app.data.LoginState) {
+      this.tanchuang_()
+      this.setData({
+        bianmin_id: e.currentTarget.dataset.bianmin_id,
+        bianmin_index: e.currentTarget.dataset.index,
+        title: '留言'
+      })
+    } else {
+      // 登陆弹窗
+      this.setData({ loginTanChuang: true })
+    }
+  },
+
+
+
+  // // 回复事件
+  huifu_(e) {
+    //   <!--data - name用来显示弹窗title-- >
+    //   <!--data - liuyan_id用来记录留言ID写入回复表-- >
+    // <!--data - index用来刷新-- >
+    //   <!--data - user_id记录留言人-- >
+    //   <!--data - xinxi_zhuren用来对比是不是信息主人-- >
+    console.log('回复事件', e.currentTarget.dataset.xinxi_zhuren)
+    if (app.data.LoginState) {
+      // 只有主人可以回复
+      if (app.data.uid === e.currentTarget.dataset.xinxi_zhuren) {
+        // 不要自己回复自己
+        if (app.data.uid === e.currentTarget.dataset.user_id) {
+          wx.showModal({ title: '不要自己回复自己', showCancel: false })
+        } else {
+          // 打开弹窗
+          this.tanchuang_()
+          // 设置DATA
+          this.setData({
+            title: '回复' + e.currentTarget.dataset.name,
+            liuyan_id: e.currentTarget.dataset.liuyan_id,
+            bianmin_index: e.currentTarget.dataset.index,
+            huifu_user_id: e.currentTarget.dataset.user_id,
+          })
+        }
+      } else {
+        wx.showModal({ title: '请使用留言', content: '只有信息的主人才可以回复', showCancel: false })
+      }
+    } else {
+      // 登陆弹窗
+      this.setData({ loginTanChuang: true })
+    }
+  },
+
+
+  // 留言、回复确定事件
+  liuyan_huifu_queding_() {
+    let input = this.data.input
+
+    // * 验证input内容
+    if (!input || input.length > 50) {
+      wx.showModal({ content: '长度请控制在1-50个字之间', showCancel: false })
+      return
+    }
+
+    // 判断是留言还是回复
+    if (this.data.title === '留言') {
+      api.createBianminLiuyan({
+        bmxx_id: this.data.bianmin_id,
+        neirong: input
+      }, (back) => {
+        console.log('新增留言OK', back)
+        // 刷新
+        this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
+      })
+    } else {
+      // 回复
+      api.createBianminLiuyanHuifu({
+        liuyan_id: this.data.liuyan_id,
+        huifu_user_id: this.data.huifu_user_id,
+        neirong: input,
+        bmxx_id: this.data.Res[this.data.bianmin_index].id
+      }, (back) => {
+        console.log('新增回复OK', back)
+        // 刷新
+        this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
+      })
+    }
+    // 关闭弹窗
+    this.tanchuang_()
+  },
+
+  // -------------------------------------------- onLoad --------------------------------------
 
   onLoad: function (op) {
     this._load()
     this._getShangjiaList()
   },
 
-  onReady: function () {
-
-  },
 
   // 获取商家列表
   _getShangjiaList() {
@@ -47,9 +168,7 @@ Page({
   },
 
   // 去商家列表页
-  go_shangjiaList_() {
-    wx.navigateTo({ url: '/pages/shangjia/list' })
-  },
+  go_shangjiaList_() { wx.navigateTo({ url: '/pages/shangjia/list' }) },
 
 
   // 请求数据
@@ -76,20 +195,9 @@ Page({
     }).exec()
   },
 
-  // 发布页
-  go_fabu() {
-    // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
-    app.appData.LoginState ? wx.navigateTo({ url: '/pages/fabu/fabu' }) : app.newGetToken(back => { this.go_fabu() })
-  },
 
-
-  // 点击+按钮显示蒙层
-  go_wode() {
-    console.log('go_wode')
-    // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
-    // wx.navigateTo({ url: '/pages/wode/list' })
-    wx.navigateTo({ url: '/pages/wode/index' })
-  },
+  // 去我的页
+  go_wode() { wx.navigateTo({ url: '/pages/wode/index' }) },
 
   // 预览
   yulan(e) {
@@ -97,9 +205,7 @@ Page({
     let img = e.currentTarget.dataset.img
     let index = e.currentTarget.dataset.index
     let arr = []
-    for (let i in img) {
-      arr.push(img[i].url)
-    }
+    for (let i in img) { arr.push(img[i].url) }
     console.log('arr', arr)
 
     wx.previewImage({
@@ -130,13 +236,10 @@ Page({
       // param[str] = !res[index].hid  // 展开折叠
       param[str] = true             // 只展开
       this.setData(param, () => {
-        // 增加展开时的流浪次数,如果当前点击的信息是折叠状态，就增加一次点击量
-        // if (res[index].hid == true) {
         // 调用API发送请求增加点击
         api.incLiulangcishu({ id: res[index].id }, back => {
           console.log('增加点击成功', back)
         })
-        // }
       })
     }
   },
@@ -148,6 +251,35 @@ Page({
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.id //仅为示例，并非真实的电话号码
     })
+  },
+
+
+
+  // ---------------------------- 登陆 -----------------------------
+  // 关闭登陆弹窗
+  loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
+
+  // 获得用户信息登陆成功后关闭弹窗
+  getUserInfo_(e) { this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) }) },
+
+
+  // --------------------------- 商家横向滚动视图 ----------------------------
+  scroll(e) {
+    console.log('scroll', e.currentTarget.id)
+    wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id })
+  },
+
+
+
+
+
+  // ------------------------------------------------- 下拉刷新、上拉加载、分享 -------------------------------------------------
+
+
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this._load(back => { wx.stopPullDownRefresh() })
+    this._getShangjiaList()
   },
 
   // 上拉触底
@@ -181,19 +313,6 @@ Page({
       }
     }
   },
-
-  // --------------------------- 滚动视图 ----------------------------
-  scroll(e) {
-    console.log('scroll', e.currentTarget.id)
-    wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id })
-  },
-
-  // 下拉刷新
-  onPullDownRefresh: function () {
-    this._load(back => { wx.stopPullDownRefresh() })
-    this._getShangjiaList()
-  },
-
 
   // 分享
   onShareAppMessage: function () {

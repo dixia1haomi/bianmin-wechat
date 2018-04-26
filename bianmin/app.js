@@ -13,11 +13,11 @@ const api = new Api()
 // 4/20
 // * 商家列表分页，显示没有更多
 // * base基类异常处理，服务器异常记录
-
+// * 用token_key取缓存中的token失败，来自get_Token_Value_Vars，出现提示重新登陆
 
 App({
 
-  appData: {
+  data: {
     LoginState: false,   // 登陆状态
   },
 
@@ -28,7 +28,7 @@ App({
     // if (op.path == "pages/canting/detail") { this.appData.path = true }
 
     // 小程序初始化检查token
-    // this.checkToken()
+    this.checkToken()
 
     // 获取地理位置
     // this._check_userLocation()
@@ -41,6 +41,188 @@ App({
 
 
 
+  // ---------------------------------------------------Token-----------------------------------------------------
+
+  // 小程序初始化检查token
+  checkToken(callback) {
+    let token_key = wx.getStorageSync('token_key')
+    //用户可能第一次来，缓存中没有token
+    if (!token_key) {
+      console.log('第一次来,我要去获取token')
+      this._getToken()
+    } else {
+      console.log('我要去服务器检查token是否有效')
+      this._service_CheckToken(token_key)
+    }
+  },
+
+
+  // 获得token
+  _getToken(callback) {
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          api.getToken({ code: res.code }, (back) => {
+            wx.setStorageSync('token_key', back.token_key)
+            console.log('获得token', back.token_key)
+            callback && callback(back.token_key)
+          })
+        }
+      }
+    })
+  },
+
+  // 去服务器检查token,如果失效,调用获取token
+  _service_CheckToken(token_key) {
+    api.checkToken({ token: token_key }, back => {
+      console.log('service_CheckToken', back)
+      if (back) {
+        console.log('服务器token还有效')
+      } else {
+        console.log('服务器token已失效')
+        this._getToken()
+      }
+    })
+  },
+
+
+  // ----------------------------------------------- 登陆 ---------------------------------------------------
+
+  // 保存用户信息
+  saveUserInfo(info, callback) {
+    wx.showLoading({ title: '登陆中', mask: true })
+    api.saveUserInfo({ info: info.userInfo }, (back) => {
+      console.log('保存用户信息', back)
+      wx.setStorageSync('userinfo', info.userInfo)
+      wx.hideLoading()
+      wx.showToast({ title: '登陆成功' })
+      this.data.LoginState = true
+      this.data.uid = back
+      callback && callback()
+    })
+  },
+
+  // 初始化检查token
+  // checkToken() {
+  //   let token_key = wx.getStorageSync('token_key')
+  //   //用户可能第一次来，缓存中没有token
+  //   if (token_key) {
+  //     console.log('去服务器检查token是否有效')
+  //     this.service_CheckToken(token_key)
+  //   }
+  // },
+
+
+
+
+  // // 去服务器检查token,如果失效,调用获取token
+  // service_CheckToken(token_key, callback) {
+  //   api.checkToken({ token: token_key }, back => {
+  //     console.log('service_CheckToken', back)
+  //     if (back) {
+  //       console.log('服务器token还有效,设置登录态')
+  //       // 登录态
+  //       this.appData.LoginState = true
+  //       callback && callback()
+  //     } else {
+  //       console.log('服务器token已失效,重新登陆')
+  //       this.newGetToken(() => {
+  //         callback && callback()
+  //       })
+  //     }
+  //   })
+  // },
+
+
+
+  // 新的按钮登陆,接受userinfo信息
+  // newLogin(userinfo, callback) {
+  //   console.log('newLogin', userinfo)
+
+  //   if (userinfo.errMsg == "getUserInfo:ok") {
+  //     wx.showLoading({ title: '登陆中..', mask: true })
+  //     wx.login({
+  //       success: (res) => {
+  //         if (res.code) {
+  //           // 加入code
+  //           userinfo.code = res.code
+  //           console.log('userinfo1', userinfo)
+  //           // 请求服务器
+  //           api.newLogin(userinfo, (back) => {
+  //             console.log('backinfo', back)
+  //             // 登录态
+  //             this.appData.LoginState = true
+  //             // 缓存token
+  //             wx.setStorageSync('token_key', back.token)
+  //             // 缓存返回的info
+  //             wx.setStorageSync('userinfo', back.userinfo)
+  //             // callback
+  //             callback && callback()
+  //             // 隐藏loding
+  //             wx.hideLoading()
+  //             // 提示成功
+  //             wx.showToast({ title: '登陆成功', icon: 'success' })
+  //           })
+  //         } else {
+  //           // 隐藏loding
+  //           wx.hideLoading()
+  //           // 提示失败
+  //           wx.showToast({ title: '登陆失败' })
+  //         }
+  //       }
+  //     });
+  //   }
+  // },
+
+
+  // 修改后的登陆
+  // newGetToken(callback) {
+  //   // 调用授权
+  //   base.authorize_userinfo(back => {
+  //     // 正在登陆
+  //     wx.showLoading({ title: '登陆中..', mask: true })
+
+  //     wx.login({
+  //       success: (res) => {
+  //         console.log('code', res)
+  //         if (res.code) {
+  //           // 获取用户信息
+  //           wx.getUserInfo({
+  //             // lang: "zh_CN",
+  //             success: (info) => {
+  //               // 登陆
+  //               console.log('info', info)
+  //               info.code = res.code
+  //               // 请求服务器
+  //               api.newLogin(info, (back) => {
+  //                 console.log('backinfo', back)
+  //                 // 登录态
+  //                 this.appData.LoginState = true
+  //                 // 缓存token
+  //                 wx.setStorageSync('token_key', back.token)
+  //                 // 缓存返回的info
+  //                 wx.setStorageSync('userinfo', back.userinfo)
+  //                 // callback
+  //                 callback && callback()
+  //                 // 隐藏loding
+  //                 wx.hideLoading()
+  //                 // 提示成功
+  //                 wx.showToast({ title: '登陆成功', icon: 'success' })
+  //               })
+  //             },
+  //             fail: (err) => {
+  //               console.log('获取用户信息进入fail', err)
+  //               // *跳转错误页并提示重新登陆
+  //             }
+  //           })
+  //         } else {
+  //           console.log('获取用户登录态失败！' + res.errMsg)
+  //           // *跳转错误页并提示重新登陆
+  //         }
+  //       }
+  //     });
+  //   })
+  // }
 
   // --------------------------------------------------获取设备信息--------------------------------------------
   // 获取设备信息
@@ -80,93 +262,4 @@ App({
   //     }
   //   })
   // },
-
-  // ---------------------------------------------------Token-----------------------------------------------------
-  // 小程序初始化检查token
-  checkToken(callback) {
-    let token_key = wx.getStorageSync('token_key')
-    //用户可能第一次来，缓存中没有token
-    if (!token_key) {
-      console.log('第一次来,我要去获取token')
-
-      this.newGetToken(() => {
-        callback && callback()
-      })
-    } else {
-      console.log('我要去服务器检查token是否有效')
-      this.service_CheckToken(token_key, () => {
-        callback && callback()
-      })
-    }
-  },
-
-
-  // 去服务器检查token,如果失效,调用获取token
-  service_CheckToken(token_key, callback) {
-    api.checkToken({ token: token_key }, back => {
-      console.log('service_CheckToken', back)
-      if (back) {
-        console.log('服务器token还有效,设置登录态')
-        // 登录态
-        this.appData.LoginState = true
-        callback && callback()
-      } else {
-        console.log('服务器token已失效,重新登陆')
-        this.newGetToken(() => {
-          callback && callback()
-        })
-      }
-    })
-  },
-
-
-
-  // 修改后的登陆
-  newGetToken(callback) {
-    // 调用授权
-    base.authorize_userinfo(back => {
-      // 正在登陆
-      wx.showLoading({ title: '登陆中..', mask: true })
-
-      wx.login({
-        success: (res) => {
-          console.log('code', res)
-          if (res.code) {
-            // 获取用户信息
-            wx.getUserInfo({
-              // lang: "zh_CN",
-              success: (info) => {
-                // 登陆
-                console.log('info', info)
-                info.code = res.code
-                // 请求服务器
-                api.newLogin(info, (back) => {
-                  console.log('backinfo', back)
-                  // 登录态
-                  this.appData.LoginState = true
-                  // 缓存token
-                  wx.setStorageSync('token_key', back.token)
-                  // 缓存返回的info
-                  wx.setStorageSync('userinfo', back.userinfo)
-                  // callback
-                  callback && callback()
-                  // 隐藏loding
-                  wx.hideLoading()
-                  // 提示成功
-                  wx.showToast({ title: '登陆成功', icon: 'success' })
-                })
-              },
-              fail: (err) => {
-                console.log('获取用户信息进入fail,出现了讲道理不应该出现的错误！', err)
-                // *跳转错误页并提示重新登陆
-              }
-            })
-          } else {
-            console.log('获取用户登录态失败！' + res.errMsg)
-            // *跳转错误页并提示重新登陆
-          }
-        }
-      });
-    })
-  }
 })

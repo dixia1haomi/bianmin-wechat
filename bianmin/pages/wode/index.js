@@ -1,58 +1,47 @@
-// import { Base } from '../../utils/Base.js'
 import { Api } from '../../utils/Api.js'
 import { Config } from '../../utils/Config.js'
 
 const api = new Api()
-// const base = new Base()
-
 const app = getApp()
 
 Page({
 
   data: {
-    // 登陆按钮状态
-    loginButton: false,
-    // 用户信息
-    // userinfo: null,
     Res: [],
-
+    // 登陆按钮状态
+    loginButton: true,
+    // 昵称头像
+    userinfo: null,
     // 类目
     leimuObj: Config.moban
   },
 
 
   onLoad: function (op) {
-    // 进入时判断用户是否有info缓存，没有则显示登陆按钮
-    // let info = wx.getStorageSync('userinfo')
-    // if (info) { this.setData({ userinfo: info, loginState: true }) }
+    this._set_UserInfo()      // 设置头像
+  },
 
-    if (app.appData.LoginState) {
+
+  // 设置头像
+  _set_UserInfo() { if (app.data.LoginState) { this.setData({ userinfo: wx.getStorageSync('userinfo') }) } },
+
+
+  // ---------------------------------------- 登陆 ---------------------------------------------
+  getUserInfo_(e) {
+    app.saveUserInfo(e.detail, () => {
+      console.log('asd')
       this._set_UserInfo()
-    } else {
-      app.checkToken(() => {
-        this._set_UserInfo()
-      })
-    }
-  },
-
-  // 登陆
-  _set_UserInfo() {
-    this.setData({ userinfo: wx.getStorageSync('userinfo'), loginButton: true })
-  },
-
-  // 登陆按钮
-  _login() {
-    this.onLoad()
+    })
   },
 
 
   // 发布信息
-  go_fabu(e) {
+  go_fabu_(e) {
     // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
-    if (app.appData.LoginState) {
+    if (app.data.LoginState) {
       // 检查发布限制,调用myFabu接口检查
       wx.showLoading({ title: '请稍候' })
-      api.myFabu({}, back => {
+      api.myFabu({}, (back) => {
         wx.hideLoading()
         console.log('myFabu', back)
         if (back.data.length < 2) {
@@ -71,29 +60,34 @@ Page({
         }
       })
     } else {
-      app.checkToken(() => {
-        this.go_fabu()
-        this._set_UserInfo()
-      })
+      // 显示登录按钮，提示登陆
+      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
     }
-
-
-    // app.appData.LoginState ? wx.navigateTo({ url: '/pages/fabu/fabu' }) : app.newGetToken(back => { this.go_fabu() })
   },
 
   // 我的发布
-  my_fabu() {
-    // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
-    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/myfabu' }) : app.checkToken(() => {
-      this.my_fabu()
-      this._set_UserInfo()
-    })
+  my_fabu_() {
+    if (app.data.LoginState) {
+      wx.navigateTo({ url: '/pages/wode/myfabu' })
+    } else {
+      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+    }
+  },
+
+
+  // 我的留言
+  my_liuyan_() {
+    if (app.data.LoginState) {
+      wx.navigateTo({ url: '/pages/wode/bianmin/huifuwode' })
+    } else {
+      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+    }
   },
 
   // 商家入驻
   create_shangjia() {
     // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
-    if (app.appData.LoginState) {
+    if (app.data.LoginState) {
       wx.showLoading({ title: '请稍候' })
       api.getMyShangjia({}, (res) => {
         console.log('我的店铺', res)
@@ -105,22 +99,24 @@ Page({
         }
       })
     } else {
-      app.checkToken(() => {
-        this.create_shangjia()
-        this._set_UserInfo()
-      })
+      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
     }
 
 
   },
 
+  asd() {
+    console.log()
+  },
+
   // 我的店铺
-  my_shangjia() {
+  my_shangjia_() {
     // 是否登陆过 ？
-    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/my-shangjia' }) : app.checkToken(() => {
-      this.my_shangjia()
-      this._set_UserInfo()
-    })
+    if (app.data.LoginState) {
+      wx.navigateTo({ url: '/pages/wode/my-shangjia' })
+    } else {
+      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+    }
   },
 
   // 关于我

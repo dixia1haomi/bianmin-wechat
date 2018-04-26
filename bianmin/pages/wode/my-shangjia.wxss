@@ -4,13 +4,105 @@
   /* margin-bottom: 20rpx; */
 }
 
+/* 头图 */
+
+.toutu {
+  height: 562.5rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  margin-bottom: 20rpx;
+}
+
+.toutu-img {
+  /* 16:9 */
+  width: 100%;
+  height: 562.5rpx;
+}
+
+/* 名称 */
+
+.name-input {
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+.name-button {
+  border-top: 1rpx solid #e5e5e5;
+  background-color: #fff;
+  padding: 20rpx;
+  text-align: center;
+}
+
+/* 地址 */
+
+.dizhi {
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+/* 电话 */
+
+.phone {
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+/* 描述 */
+
+.miaoshu-textarea {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.miaoshu-textarea-1 {
+  width: 100%;
+}
+
+.miaoshu-button {
+  border-top: 1rpx solid #e5e5e5;
+  background-color: #fff;
+  padding: 20rpx;
+  text-align: center;
+}
+
+/* 详情图 */
+
+.xiangqingtu {
+  display: flex;
+  padding: 20rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item-img {
+  width: 30%;
+  box-sizing: border-box;
+  height: 213rpx;
+  margin-top: 20rpx;
+}
+
+.tianjiatupian {
+  width: 213rpx;
+  height: 213rpx;
+  background-color: aliceblue;
+  border: 1rpx dashed #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  color: #808080;
+   margin-top: 20rpx; 
+}
+
 .shangjia-item {
   display: flex;
-  /* padding: 0 20rpx 0 20rpx; */
-  /* margin-bottom: 10rpx; */
   background-color: #fff;
-   border-bottom: 1rpx solid #e5e5e5; 
-   border-top: 1rpx solid #e5e5e5; 
+  border-bottom: 1rpx solid #e5e5e5;
+  border-top: 1rpx solid #e5e5e5;
 }
 
 .item-toutu {
@@ -27,6 +119,7 @@
 }
 
 .delete {
+  margin-top: 20rpx;
   padding: 20rpx;
   background-color: #fff;
   text-align: center;

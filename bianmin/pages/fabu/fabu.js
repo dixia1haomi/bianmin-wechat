@@ -232,11 +232,9 @@ Page({
   },
 
   // button事件 获取电话
-  getPhoneNumber(e) {
+  getPhoneNumber_(e) {
     // 如果用户允许获取电话
-    if (e.detail.iv && e.detail.encryptedData) {
-      app.checkToken(() => { this._getPhone(e) })
-    }
+    if (e.detail.iv && e.detail.encryptedData) { this._getPhone(e) }
   },
 
   // API获取电话号码

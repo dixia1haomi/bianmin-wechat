@@ -68,7 +68,7 @@ Page({
     this.setData({ name: e.detail.value })
   },
 
-  // 头图
+  // ----------------------------------------- 选择头图 -----------------------------------------
   toutu_() {
     // console.log('头图', e)
     wx.chooseImage({
@@ -83,7 +83,7 @@ Page({
     })
   },
 
-  // 地址
+  // ----------------------------------------- 地址 -----------------------------------------
   dizhi_() {
     console.log('地址')
     // 授权地理位置
@@ -104,8 +104,8 @@ Page({
     })
   },
 
-  // 电话
-  phone_(e) {
+  //  ----------------------------------------- 电话 -----------------------------------------
+  _phone(e) {
     console.log('电话')
     wx.showLoading({ title: '请稍候' })
     api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
@@ -117,19 +117,19 @@ Page({
   },
 
   // button事件 获取电话
-  getPhoneNumber(e) {
+  getPhoneNumber_(e) {
     console.log('电话', e)
     // 如果用户允许获取电话
-    if (e.detail.iv && e.detail.encryptedData) { app.checkToken(() => { this.phone_(e) }) }
+    if (e.detail.iv && e.detail.encryptedData) {  this._phone(e)  }
   },
 
-  // 描述
+  // ----------------------------------------- 描述 -----------------------------------------
   miaoshu_(e) {
     console.log('描述', e.detail.value)
     this.setData({ miaoshu: e.detail.value, miaoshuCursor: e.detail.cursor })
   },
 
-  // 详情图
+  // ----------------------------------------- 详情图 -----------------------------------------
   xiangqingtu_() {
     let xiangqingtu_ImgArray = this.data.xiangqingtu
     wx.chooseImage({
@@ -147,7 +147,7 @@ Page({
   },
 
 
-  // 删除头图
+  // ----------------------------------------- 删除头图 -----------------------------------------
   shanchu_toutu_(e) {
     wx.showModal({
       title: '删除这张图片？', success: (res) => {
@@ -161,7 +161,7 @@ Page({
     })
   },
 
-  // 删除详情图
+  // ----------------------------------------- 删除详情图 -----------------------------------------
   shanchu_xiangqingtu_(e) {
     wx.showModal({
       title: '删除这张图片？', success: (res) => {
@@ -175,7 +175,7 @@ Page({
     })
   },
 
-  // 提交
+  // ----------------------------------------- 提交 -----------------------------------------
   tijiao_() {
     console.log('提交')
     let params = {
@@ -240,7 +240,7 @@ Page({
     })
   },
 
-  // 上传图片
+  // ----------------------------------------- 上传图片 -----------------------------------------
   updateImg(cospath, img, length, callback, callbackupdateOk) {
     var successUp = 0; //成功个数
     var failUp = 0; //失败个数

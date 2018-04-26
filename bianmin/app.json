@@ -5,9 +5,12 @@
     "pages/fabu/fabu",
     "pages/wode/index",
     "pages/wode/myfabu",
+    "pages/wode/xiugaifabu",
     "pages/wode/guanyuwo",
     "pages/wode/create-shangjia",
     "pages/wode/my-shangjia",
+    "pages/wode/bianmin/huifuwode",
+    "pages/wode/bianmin/huifuwode-detail",
     "pages/shangjia/detail",
     "pages/shangjia/list"
   ],

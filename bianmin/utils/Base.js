@@ -17,14 +17,23 @@ class Base {
       },
       success(res) {
         console.log('base', res)
+
+        // * 解密userinfo失败
+        // * token超时（跳转指定页重新登陆）
+
+
         // if (res.statusCode == 200) {
         //   // 成功
-        // if (res.data.errorCode == 0) {
-        params.sCallback && params.sCallback(res.data)
-        // }else{
+        if (res.data.errorCode == 0) {
+          params.sCallback && params.sCallback(res.data)
+        }
+        // Token类错误(缓存过期引起的)，40000
+        else if (res.data.errorCode == 40000 && !noRefetch) {
+          that._refetch(params)
+        }
+        // else{
         //   console.log('base-errorCode不等于0')
         // }
-        //   // Token类错误，40000
         //   else if (res.data.errorCode == 40000 && !noRefetch) {
         //     that._refetch(params)
         //   }
@@ -49,7 +58,8 @@ class Base {
 
   // 请求接口失败重试
   _refetch(params) {
-    getApp().newGetToken((back) => {
+    console.log('_refetch,Token错误重试')
+    getApp().getToken((back) => {
       this.request(params, true);
     });
   }

@@ -17,6 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+
+  onShow: function () {
+
     this._load()
   },
 
@@ -25,35 +29,17 @@ Page({
     api.myFabu({}, back => {
       wx.hideLoading()
       console.log('我的发布', back)
-      this.setData({ Res: back.data }, () => {
-        // 获取并设置内容高度，用于超出显示范围就提示展开
-        this._getHeight(back.data)
-      })
+      this.setData({ Res: back.data })
     })
   },
 
-  _getHeight(res) {
-    //创建节点选择器
-    var query = wx.createSelectorQuery();
-    query.selectAll('#neirong').boundingClientRect((rects) => {
-      rects.forEach(function (rect, index) { res[index].height = rect.height })
-      this.setData({ Res: res })
-    }).exec()
+
+
+  // 修改内容
+  go_xiugai_(e) {
+    wx.navigateTo({ url: '/pages/wode/xiugaifabu?index=' + e.currentTarget.dataset.index })
   },
 
-  // 展开，折叠
-  flodFn: function (e) {
-    let index = e.currentTarget.dataset.index, res = this.data.Res
-
-    // 如果hid是初始的false,允许改成true
-    // if (res[index].hid == false) {
-    var param = {};
-    var str = "Res[" + index + "].hid"
-    param[str] = !res[index].hid  // 展开折叠
-    // param[str] = true             // 只展开
-    this.setData(param)
-    // }
-  },
 
   // 删除我的信息
   myDelete(e) {
@@ -87,52 +73,4 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

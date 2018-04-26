@@ -70,7 +70,6 @@
 }
 
 .extend {
-
 }
 
 .tishi {
@@ -156,6 +155,61 @@
   justify-content: space-around;
 }
 
+/* 留言 */
+
+.liuyan-base {
+  margin: 0 20rpx 20rpx 20rpx;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+
+.liuyan {
+  background-color: #e5e5e5;
+  padding: 10rpx;
+}
+
+.liuyan-huifu {
+  margin-left: 40rpx;
+  /* margin-top: 10rpx; */
+}
+
+/* 留言，回复弹窗 */
+
+.liuyan-huifu-tanchuang {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-start;  */
+}
+
+.tanchuang-input {
+  width: 700rpx;
+  height: 300rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  margin-top: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.tanchuang-input-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.tanchuang-input-fool {
+  display: flex;
+  justify-content: space-around;
+  font-size: 36rpx;
+  color: #007aff;
+}
+
 /* 没有更多 */
 
 .nodata {
@@ -230,3 +284,18 @@
 /* button::after {
   display: none;
 } */
+
+.mutli {
+  /* 对象作为伸缩盒子模型显示 */
+  display: -webkit-box;
+  /* 允许任意非CJK(Chinese/Japanese/Korean)文本间的单词断行 */
+  word-break: break-all;
+  /* 设置或检索伸缩盒对象的子元素的排列方式 */
+  -webkit-box-orient: vertical;
+  /* 可显示的最多行数 */
+  -webkit-line-clamp: 3;
+  /* 超出的文本内容隐藏 */
+  overflow: hidden;
+  /* 超出显示省略号 */
+  text-overflow: ellipsis;
+}

@@ -3,22 +3,29 @@
 <view class='page'>
   <view class='base1'>
     <view style='text-align: center;'>
-      <image class='avatarImg' src='{{userinfo.avatar_url}}'></image>
+      <image class='avatarImg' src='{{userinfo.avatarUrl}}'></image>
     </view>
-    <view style='text-align: center;'>{{userinfo.nick_name}}</view>
-    <view wx:if="{{loginButton == false}}" catchtap='_login' style='text-align: center;'>登陆</view>
-
+    <view style='text-align: center;'>{{userinfo.nickName}}</view>
+    <view wx:if="{{!userinfo}}" style='text-align: center;'>
+      <button open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>登陆</button>
+    </view>
   </view>
+
 
   <view class='base2'>
 
-    <view class='danhang-list' catchtap='go_fabu'>
+    <view class='danhang-list' catchtap='go_fabu_'>
       <view>发布信息</view>
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='danhang-list' catchtap='my_fabu'>
+    <view class='danhang-list' catchtap='my_fabu_'>
       <view>我的发布</view>
+      <view class='youjiantou7'></view>
+    </view>
+
+    <view class='danhang-list' catchtap='my_liuyan_'>
+      <view>回复我的</view>
       <view class='youjiantou7'></view>
     </view>
 
@@ -27,7 +34,7 @@
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='danhang-list' catchtap='my_shangjia'>
+    <view class='danhang-list' catchtap='my_shangjia_'>
       <view>我的店铺</view>
       <view class='youjiantou7'></view>
     </view>

@@ -1,0 +1,33 @@
+page {
+  background-color: #fff;
+}
+
+.title {
+  text-align: center;
+  padding: 100rpx 0 60rpx 0;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.textarea {
+  background-color: aliceblue;
+  width: 100%;
+  min-height: 600rpx;
+  position: relative;
+}
+
+.neirong-cursor {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 28rpx;
+  color: #808080;
+}
+
+.tijiao {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-top: 60rpx;
+  color: #007aff;
+}

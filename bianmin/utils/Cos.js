@@ -6,6 +6,24 @@ class Cos {
 
   constructor() { }
 
+
+  // * 还有上传图的页都要使用这个
+  // 上传图片 -- 新修改的用在my-shangjia.js
+  update_img_cos(cospath, imgArr, callback, callbackupdateOk) {
+    var successUp = 0; //成功个数
+    var failUp = 0; //失败个数
+    var length = imgArr.length; //总共个数
+    var i = 0; //第几个
+    this.uploadDIY(cospath, imgArr, successUp, failUp, i, length, back => {
+      console.log('back--------------', JSON.parse(back))
+      callback && callback(JSON.parse(back))
+    }, updateOk => {
+      console.log('updateOk--上传完成')
+      callbackupdateOk && callbackupdateOk(updateOk)
+    });
+  }
+
+
   // 服务器单次签名
   qianmin(cospath, callback) {
     api.cosQianming({ cospath: cospath }, res => {
@@ -13,7 +31,6 @@ class Cos {
       callback(res.data);
     })
   }
-
 
   // 上传基本方法
   uploadDIY(cospath, filePaths, successUp, failUp, i, length, callback, callbackSucc) {

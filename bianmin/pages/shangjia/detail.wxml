@@ -31,7 +31,7 @@
         <text class='iconfont icon-yueduliang' /> {{shangjiaRes.liulangcishu}}
       </view>
     </view>
-    <view class='miaoshu-text'>{{shangjiaRes.miaoshu}}</view>
+    <text class='miaoshu-text'>{{shangjiaRes.miaoshu}}</text>
   </view>
 
   <!-- 详情图 -->
