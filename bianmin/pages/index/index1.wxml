@@ -8,16 +8,8 @@
 </view>
 
 
-<!-- <text class="mutli">1111\n2222\n3333\n4444\n5555\n6666</text> -->
+<!-- <button catchtap='sendXiaoxi_'>发送模板消息</button> -->
 
-<!-- 轮播图 -->
-<!-- <swiper class='swiper'>
-  <block wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image src="{{item}}" class="swiper" />
-    </swiper-item>
-  </block>
-</swiper> -->
 
 <!-- 本地商家 -->
 <view class='scroll'>
@@ -34,10 +26,11 @@
   </scroll-view>
 </view>
 
-
+<!-- 信息列表 -->
 <block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
   <view class='base'>
 
+    <!-- 头像 -->
     <view class='user'>
       <text class='leibie'>{{item.leibie}}</text>
       <image class='avatar' src='{{item.avatar_url}}'></image>
@@ -79,10 +72,10 @@
         <text class='iconfont icon-phone' />
         <text> 拨打电话</text>
       </view>
+
       <!-- 留言弹窗事件携带信息ID -->
-      <view catchtap='liuyan_' data-bianmin_id='{{item.id}}' data-index='{{resindex}}'>
-        留言
-      </view>
+      <view catchtap='liuyan_' data-bianmin_id='{{item.id}}' data-index='{{resindex}}'>留言</view>
+
     </view>
 
     <!-- 留言回复块 -->
@@ -122,14 +115,17 @@
   </view>
 </block>
 
-<!-- 留言，回复弹窗 -->
+<!-- 留言弹窗 -->
 <view wx:if="{{tanChuang}}" class="{{tanchuang?'':'liuyan-huifu-tanchuang'}}">
   <view class='tanchuang-input'>
     <view class='tanchuang-input-title'>{{title}}</view>
     <input placeholder='请输入内容..' bindinput='liuyan_huifu_input_' maxlength="50" focus></input>
     <view class='tanchuang-input-fool'>
       <text catchtap='tanchuang_'>取消</text>
-      <text catchtap='liuyan_huifu_queding_'>确定</text>
+      <form report-submit bindsubmit='liuyan_huifu_queding_'>
+        <button form-type="submit">确定</button>
+      </form>
+      <!-- <text catchtap='liuyan_huifu_queding_'>确定</text> -->
     </view>
   </view>
 </view>
@@ -153,7 +149,9 @@
       <text class='loginTanChuang-title'>登陆授权</text>
       <view class='loginTanChuang-XuanXiang'>
         <button catchtap='loginTanChuangQuXiao_' size='mini' type='primary'>取消</button>
-        <button open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>确定</button>
+        <form report-submit bindsubmit='getFormId_'>
+          <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>确定</button>
+        </form>
       </view>
     </view>
   </view>

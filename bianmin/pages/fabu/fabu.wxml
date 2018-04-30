@@ -46,9 +46,13 @@
 
 </view>
 
-<view class='tijiao' catchtap='tijiao'>
+
+<form report-submit='true' bindsubmit='tijiao'>
+  <button form-type="submit" type="default" size="mini">确认发布</button>
+</form>
+<!-- <view class='tijiao' catchtap='tijiao'>
   <text class='tijiao-item'>确认发布</text>
-</view>
+</view> -->
 
 
 <!-- -------------------- 验证参数 ------------------------- -->

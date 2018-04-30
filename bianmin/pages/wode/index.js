@@ -27,7 +27,15 @@ Page({
 
 
   // ---------------------------------------- 登陆 ---------------------------------------------
+
+  // formid
+  getFormId_(e) {
+    this.setData({ form_id: e.detail.formId })
+  },
+
+  // 用户信息
   getUserInfo_(e) {
+    e.detail.userInfo.form_id = this.data.form_id
     app.saveUserInfo(e.detail, () => {
       console.log('asd')
       this._set_UserInfo()
@@ -44,7 +52,7 @@ Page({
       api.myFabu({}, (back) => {
         wx.hideLoading()
         console.log('myFabu', back)
-        if (back.data.length < 2) {
+        if (back.data.length == 0) {
           // 取Config数组
           let leimuArray = []
           let leimuObj = this.data.leimuObj
@@ -56,7 +64,7 @@ Page({
             success: (res) => { wx.navigateTo({ url: '/pages/fabu/fabu?leimu=' + res.tapIndex }) }  // 去发布页
           })
         } else {
-          wx.showModal({ content: '最多发布2条,可以先去「我的发布」删除旧信息再回来发新信息' })
+          wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息' })
         }
       })
     } else {

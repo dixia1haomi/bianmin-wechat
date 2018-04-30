@@ -64,7 +64,8 @@ App({
         if (res.code) {
           api.getToken({ code: res.code }, (back) => {
             wx.setStorageSync('token_key', back.token_key)
-            console.log('获得token', back.token_key)
+            console.log('已获得token', back.token_key, '设置登陆态', back.loginstate)
+            this.data.LoginState = back.loginstate
             callback && callback(back.token_key)
           })
         }
@@ -76,8 +77,9 @@ App({
   _service_CheckToken(token_key) {
     api.checkToken({ token: token_key }, back => {
       console.log('service_CheckToken', back)
-      if (back) {
-        console.log('服务器token还有效')
+      if (back.token) {
+        console.log('服务器token还有效,登陆态',back.loginstate)
+        this.data.LoginState = back.loginstate
       } else {
         console.log('服务器token已失效')
         this._getToken()
@@ -90,9 +92,10 @@ App({
 
   // 保存用户信息
   saveUserInfo(info, callback) {
+    console.log('保存用户信息', info)
     wx.showLoading({ title: '登陆中', mask: true })
     api.saveUserInfo({ info: info.userInfo }, (back) => {
-      console.log('保存用户信息', back)
+      console.log('保存用户信息OK', back)
       wx.setStorageSync('userinfo', info.userInfo)
       wx.hideLoading()
       wx.showToast({ title: '登陆成功' })

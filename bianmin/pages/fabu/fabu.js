@@ -68,6 +68,11 @@ Page({
     this.setData({ index: op.leimu })
   },
 
+  // 
+  form_(e) {
+    console.log('form', e.detail)
+  },
+
 
   // 填充模板
   tianchong() {
@@ -152,7 +157,8 @@ Page({
   },
 
   // tijiao
-  tijiao() {
+  tijiao(e) {
+    console.log('tijiao', e.detail.formId)
     // 给服务器的参数，user_id服务器获取
     let params = {
       leibie: this.data.leimuObj[this.data.index].leimu,
@@ -160,7 +166,8 @@ Page({
       phone: this.data.phone,
       address: this.data.address,
       longitude: this.data.longitude,
-      latitude: this.data.latitude
+      latitude: this.data.latitude,
+      form_id: e.detail.formId
     }
     console.log('params', params)
 

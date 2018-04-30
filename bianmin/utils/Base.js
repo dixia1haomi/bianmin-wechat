@@ -24,11 +24,11 @@ class Base {
 
         // if (res.statusCode == 200) {
         //   // 成功
-        if (res.data.errorCode == 0) {
+        // if (res.data.errorCode == 0) {
           params.sCallback && params.sCallback(res.data)
-        }
+        // }
         // Token类错误(缓存过期引起的)，40000
-        else if (res.data.errorCode == 40000 && !noRefetch) {
+        if (res.data.errorCode == 40000 && !noRefetch) {
           that._refetch(params)
         }
         // else{

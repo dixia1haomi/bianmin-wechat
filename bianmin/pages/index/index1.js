@@ -20,7 +20,8 @@ Page({
     noData: false,
     // 登陆弹窗
     loginTanChuang: false,
-    // tanchuang: true,
+    // form_id
+    form_id: null,
 
     // ---- 留言回复 ----
     tanChuang: false,
@@ -34,24 +35,17 @@ Page({
     // ---- 回复 ----
     liuyan_id: null,
     huifu_user_id: null,
+  },
 
+  // -----
 
-    // LiuYanHuiFu: {
-    //   // 留言回复弹窗
-    //   TanChuang: true,
-    //   // Input
-    //   Input: null,
-    //   // Title
-    //   Title: '留言',
-    //   // 信息ID
-    //   BianMin_ID: null,
-    //   // 信息index
-    //   BianMin_Index: null,
-    //   // 留言ID
-    //   LiuYan_ID: null,
-    //   // 回复用户ID
-    //   HuiFu_User_ID: null,
-    // }
+  form_(e) {
+    console.log('form', e.detail)
+  },
+  sendXiaoxi_() {
+    api.mobanXiaoxi({ bmxx_id: 86 }, res => {
+      console.log('sendXiaoxi', res)
+    })
   },
 
   // ------------------------------------------------- 留言回复 -------------------------------------------------
@@ -114,39 +108,41 @@ Page({
   },
 
 
-  // 留言、回复确定事件
-  liuyan_huifu_queding_() {
-    let input = this.data.input
+  // 留言确定
+  liuyan_huifu_queding_(e) {
 
+    let input = this.data.input
     // * 验证input内容
     if (!input || input.length > 50) {
       wx.showModal({ content: '长度请控制在1-50个字之间', showCancel: false })
       return
     }
 
-    // 判断是留言还是回复
-    if (this.data.title === '留言') {
-      api.createBianminLiuyan({
-        bmxx_id: this.data.bianmin_id,
-        neirong: input
-      }, (back) => {
-        console.log('新增留言OK', back)
-        // 刷新
-        this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
-      })
-    } else {
-      // 回复
-      api.createBianminLiuyanHuifu({
-        liuyan_id: this.data.liuyan_id,
-        huifu_user_id: this.data.huifu_user_id,
-        neirong: input,
-        bmxx_id: this.data.Res[this.data.bianmin_index].id
-      }, (back) => {
-        console.log('新增回复OK', back)
-        // 刷新
-        this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
-      })
-    }
+    console.log('formId', e.detail.formId)
+    // // 判断是留言还是回复
+    // if (this.data.title === '留言') {
+    api.createBianminLiuyan({
+      bmxx_id: this.data.bianmin_id,
+      neirong: input,
+      form_id: e.detail.formId
+    }, (back) => {
+      console.log('新增留言OK', back)
+      // 刷新
+      this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
+    })
+    // } else {
+    //   // 回复
+    //   api.createBianminLiuyanHuifu({
+    //     liuyan_id: this.data.liuyan_id,
+    //     huifu_user_id: this.data.huifu_user_id,
+    //     neirong: input,
+    //     bmxx_id: this.data.Res[this.data.bianmin_index].id
+    //   }, (back) => {
+    //     console.log('新增回复OK', back)
+    //     // 刷新
+    //     this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
+    //   })
+    // }
     // 关闭弹窗
     this.tanchuang_()
   },
@@ -259,8 +255,21 @@ Page({
   // 关闭登陆弹窗
   loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
 
+  // formid
+  getFormId_(e) {
+    this.setData({ form_id: e.detail.formId })
+  },
+
   // 获得用户信息登陆成功后关闭弹窗
-  getUserInfo_(e) { this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) }) },
+  getUserInfo_(e) {
+    // 如果有form_id
+    if (this.data.form_id) {
+      e.detail.userInfo.form_id = this.data.form_id
+    } else {
+      e.detail.userInfo.form_id = ''
+    }
+    this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
+  },
 
 
   // --------------------------- 商家横向滚动视图 ----------------------------

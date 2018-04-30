@@ -166,6 +166,11 @@ class Api extends Base {
     this.request({ url: 'liuyan/huifuWode', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
+  // ----- 测试模板消息 -------
+  mobanXiaoxi(data, callback) {
+    this.request({ url: 'liuyan/xiaoxiapi', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
 
 }
 
