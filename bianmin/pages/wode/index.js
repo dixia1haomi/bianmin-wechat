@@ -52,7 +52,10 @@ Page({
       api.myFabu({}, (back) => {
         wx.hideLoading()
         console.log('myFabu', back)
-        if (back.data.length == 0) {
+        // 如果已经有信息不能在发布,没有信息back.data == null
+        if (back.data) {
+          wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息' })
+        } else {
           // 取Config数组
           let leimuArray = []
           let leimuObj = this.data.leimuObj
@@ -61,10 +64,8 @@ Page({
           wx.showActionSheet({
             // ['招聘', '求职', '生活', '出租', '出售', '转让']
             itemList: leimuArray,
-            success: (res) => { wx.navigateTo({ url: '/pages/fabu/fabu?leimu=' + res.tapIndex }) }  // 去发布页
+            success: (res) => { wx.navigateTo({ url: '/pages/bmxx/fabu?leimu=' + res.tapIndex }) }  // 去发布页
           })
-        } else {
-          wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息' })
         }
       })
     } else {
@@ -84,13 +85,13 @@ Page({
 
 
   // 我的留言
-  my_liuyan_() {
-    if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/wode/bianmin/huifuwode' })
-    } else {
-      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
-    }
-  },
+  // my_liuyan_() {
+  //   if (app.data.LoginState) {
+  //     wx.navigateTo({ url: '/pages/wode/bianmin/huifuwode' })
+  //   } else {
+  //     this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+  //   }
+  // },
 
   // 商家入驻
   create_shangjia() {

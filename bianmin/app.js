@@ -23,12 +23,13 @@ App({
 
 
   onLaunch: function (op) {
-    // console.log('app op', op.path)
-    // 检查来源（可能分享自餐厅详情，要显示一个返回主页按钮）
-    // if (op.path == "pages/canting/detail") { this.appData.path = true }
+    console.log('app op', op)
+    // 检查来源（直接从需要携带token的页面进来时可能token还未生成，需要主动调用checkToken）
+    if (op.path != "pages/wode/myfabu") {
+      // 小程序初始化检查token
+      this.checkToken()
+    }
 
-    // 小程序初始化检查token
-    this.checkToken()
 
     // 获取地理位置
     // this._check_userLocation()
@@ -49,10 +50,10 @@ App({
     //用户可能第一次来，缓存中没有token
     if (!token_key) {
       console.log('第一次来,我要去获取token')
-      this._getToken()
+      this._getToken(() => { callback && callback() })
     } else {
       console.log('我要去服务器检查token是否有效')
-      this._service_CheckToken(token_key)
+      this._service_CheckToken(token_key, () => { callback && callback() })
     }
   },
 
@@ -66,7 +67,7 @@ App({
             wx.setStorageSync('token_key', back.token_key)
             console.log('已获得token', back.token_key, '设置登陆态', back.loginstate)
             this.data.LoginState = back.loginstate
-            callback && callback(back.token_key)
+            callback && callback()
           })
         }
       }
@@ -74,15 +75,16 @@ App({
   },
 
   // 去服务器检查token,如果失效,调用获取token
-  _service_CheckToken(token_key) {
+  _service_CheckToken(token_key, callback) {
     api.checkToken({ token: token_key }, back => {
       console.log('service_CheckToken', back)
       if (back.token) {
-        console.log('服务器token还有效,登陆态',back.loginstate)
+        console.log('服务器token还有效,登陆态', back.loginstate)
         this.data.LoginState = back.loginstate
+        callback && callback()
       } else {
         console.log('服务器token已失效')
-        this._getToken()
+        this._getToken(() => { callback && callback() })
       }
     })
   },

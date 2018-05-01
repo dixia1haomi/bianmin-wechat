@@ -10,15 +10,15 @@ Page({
 
   onLoad: function (op) {
     // op.index = 上一页for-index
-    this._load(op.index)
+    this._load()
   },
 
   _load(index) {
     //上一个页面实例对象
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 2];
-    console.log('上一个页面实例对象', prePage.data.Res[index])
-    this.setData({ Res: prePage.data.Res[index] })
+    console.log('上一个页面实例对象', prePage.data.Res)
+    this.setData({ Res: prePage.data.Res })
   },
 
   // textarea_事件

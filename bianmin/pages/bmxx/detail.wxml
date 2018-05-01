@@ -1,0 +1,92 @@
+<view class='title'>留言/回复详情</view>
+
+<block wx:if="{{Res !== false}}">
+  <block wx:if="{{Res !== null}}">
+    <view class='base'>
+
+      <view class='user'>
+        <text class='leibie'>{{Res.leibie}}</text>
+        <image class='avatar' src='{{Res.avatar_url}}'></image>
+        <view class='name-time'>
+          <view class='nick-name'>{{Res.nick_name}}</view>
+          <view class='time'>{{Res.time}}</view>
+        </view>
+      </view>
+
+      <view class='xinxi'>
+
+        <view class="" style='margin: 0 20rpx 0 20rpx;'>
+          <text>{{Res.neirong}}</text>
+        </view>
+
+        <view class='img-view'>
+          <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
+            <image class='img' src="{{img.url}}" mode='aspectFill' />
+          </block>
+        </view>
+      </view>
+
+      <!-- 留言回复块 -->
+      <view class='liuyan-base'>
+        <block wx:for="{{Res.with_liuyan}}" wx:for-item="liuyan" wx:key="">
+          <view class='liuyan'>
+
+            <!-- 一级回复 -->
+            <view>
+              <text>{{liuyan.nick_name}} : {{liuyan.neirong}}</text>
+            </view>
+
+            <!-- 二级回复 -->
+            <view class='liuyan-huifu'>
+              <block wx:for="{{liuyan.liuyanwith_huifu}}" wx:for-item="huifu" wx:key="">
+                <view>
+                  <text>{{huifu.user}} 回复 {{huifu.hf_user}} ： {{huifu.neirong}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+
+
+
+      <!-- 留言弹窗事件携带信息ID -->
+      <view catchtap='liuyan_' data-bianmin_id='{{Res.id}}'>留言</view>
+
+      <!-- 留言弹窗 -->
+      <view wx:if="{{tanChuang}}" class="{{tanchuang?'':'liuyan-huifu-tanchuang'}}">
+        <view class='tanchuang-input'>
+          <view class='tanchuang-input-title'>留言</view>
+          <input placeholder='请输入内容..' bindinput='liuyan_input_' maxlength="50" focus></input>
+          <view class='tanchuang-input-fool'>
+            <text catchtap='tanchuang_'>取消</text>
+            <form report-submit bindsubmit='liuyan_queding_'>
+              <button form-type="submit">确定</button>
+            </form>
+          </view>
+        </view>
+      </view>
+
+
+      <!-- 登陆弹窗 -->
+      <block wx:if="{{loginTanChuang}}">
+        <view class="loginTanChuang-mask">
+          <view class='loginTanChuang'>
+            <text class='loginTanChuang-title'>登陆授权</text>
+            <view class='loginTanChuang-XuanXiang'>
+              <button catchtap='loginTanChuangQuXiao_' size='mini' type='primary'>取消</button>
+              <form report-submit bindsubmit='getFormId_'>
+                <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>确定</button>
+              </form>
+            </view>
+          </view>
+        </view>
+      </block>
+
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class='noxinxi'>没有信息。</view>
+  </block>
+</block>

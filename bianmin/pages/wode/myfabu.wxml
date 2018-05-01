@@ -1,28 +1,27 @@
+<block wx:if="{{Res !== false}}">
+  <block wx:if="{{Res !== null}}">
+    <view class='title'>我的发布</view>
 
-<view wx:if="{{Res.length > 0}}">
-
-  <view class='title'>我的发布</view>
-
-  <block wx:for="{{Res}}" wx:key="id">
+    <!-- <block wx:for="{{Res}}" wx:key="id"> -->
     <view class='base'>
 
       <view class='user'>
-        <text class='leibie'>{{item.leibie}}</text>
+        <text class='leibie'>{{Res.leibie}}</text>
         <image class='avatar' src='{{item.avatar_url}}'></image>
         <view class='name-time'>
-          <view class='nick-name'>{{item.nick_name}}</view>
-          <view class='time'>{{item.time}}</view>
+          <view class='nick-name'>{{Res.nick_name}}</view>
+          <view class='time'>{{Res.time}}</view>
         </view>
       </view>
 
       <view class='xinxi'>
 
         <view class="" style='margin: 0 20rpx 0 20rpx;'>
-          <text>{{item.neirong}}</text>
+          <text>{{Res.neirong}}</text>
         </view>
 
         <view class='img-view'>
-          <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
+          <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
             <image class='img' src="{{img.url}}" mode='aspectFill' />
           </block>
         </view>
@@ -30,17 +29,18 @@
       </view>
 
       <view class='info'>
-        <text catchtap='go_xiugai_' data-index='{{index}}'>修改</text>
-        <text catchtap='myDelete' id='{{item.id}}'>删除</text>
-        <text catchtap='updateTime' id='{{item.id}}'>刷新</text>
+        <text catchtap='go_xiugai_'>修改</text>
+        <text catchtap='myDelete' id='{{Res.id}}'>删除</text>
+        <text catchtap='updateTime' id='{{Res.id}}'>刷新</text>
       </view>
 
       <!-- 留言回复块 -->
       <view class='liuyan-base'>
-        <block wx:for="{{item.with_liuyan}}" wx:for-item="liuyan" wx:key="">
+        <view>点击留言回复</view>
+        <block wx:for="{{Res.with_liuyan}}" wx:for-item="liuyan" wx:key="">
           <view class='liuyan'>
             <!-- 一级回复 -->
-            <view>
+            <view catchtap='huifu_' data-liuyan_id='{{liuyan.id}}' data-huifu_user_id='{{liuyan.user_id}}' id='{{Res.id}}'>
               <text>{{liuyan.nick_name}} : {{liuyan.neirong}}</text>
             </view>
             <!-- 二级回复 -->
@@ -56,12 +56,48 @@
       </view>
 
     </view>
+    <!-- </block> -->
+
+    <!-- 留言弹窗 -->
+    <view wx:if="{{tanChuang}}" class="{{tanchuang?'':'liuyan-huifu-tanchuang'}}">
+      <view class='tanchuang-input'>
+        <view class='tanchuang-input-title'>回复</view>
+        <input placeholder='请输入内容..' bindinput='huifu_input_' maxlength="50" focus></input>
+        <view class='tanchuang-input-fool'>
+          <text catchtap='tanchuang_'>取消</text>
+          <form report-submit bindsubmit='huifu_queding_'>
+            <button form-type="submit">确定</button>
+          </form>
+        </view>
+      </view>
+    </view>
+
+    <!-- 登陆弹窗 -->
+    <block wx:if="{{loginTanChuang}}">
+      <view class="loginTanChuang-mask">
+        <view class='loginTanChuang'>
+          <text class='loginTanChuang-title'>登陆授权</text>
+          <view class='loginTanChuang-XuanXiang'>
+            <button catchtap='loginTanChuangQuXiao_' size='mini' type='primary'>取消</button>
+            <form report-submit bindsubmit='getFormId_'>
+              <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>确定</button>
+            </form>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 新留言提醒我 -->
+    <block wx:if="{{Res.form_state == false}}">
+      <view>下次有新留言再提醒我</view>
+      <form report-submit bindsubmit='liuyanTishi_' id='{{Res.id}}'>
+        <button form-type="submit">确定</button>
+      </form>
+    </block>
+
   </block>
 
-</view>
-
-<view wx:else>
-  <navigator open-type='navigateBack' delta="1">
+  <block wx:else>
     <view class='noxinxi'>没有信息，快去发布。</view>
-  </navigator>
-</view>
+  </block>
+</block>

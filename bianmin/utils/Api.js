@@ -151,9 +151,14 @@ class Api extends Base {
     this.request({ url: 'liuyan/createbianminliuyan', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
-  // 新增便民留言回复
-  createBianminLiuyanHuifu(data, callback) {
-    this.request({ url: 'liuyan/createbianminliuyanhuifu', data: data, sCallback: (res) => { callback && callback(res) } })
+  // 新增便民回复
+  createBianminHuifu(data, callback) {
+    this.request({ url: 'liuyan/createbianminhuifu', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 新留言提醒，更新formId
+  updateFormId(data, callback) {
+    this.request({ url: 'liuyan/updateformid', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
   // 查询我的留言
@@ -162,14 +167,14 @@ class Api extends Base {
   // }
 
   // 回复我的
-  huifuWode(data, callback) {
-    this.request({ url: 'liuyan/huifuWode', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
+  // huifuWode(data, callback) {
+  //   this.request({ url: 'liuyan/huifuWode', data: data, sCallback: (res) => { callback && callback(res) } })
+  // }
 
   // ----- 测试模板消息 -------
-  mobanXiaoxi(data, callback) {
-    this.request({ url: 'liuyan/xiaoxiapi', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
+  // mobanXiaoxi(data, callback) {
+  //   this.request({ url: 'liuyan/xiaoxiapi', data: data, sCallback: (res) => { callback && callback(res) } })
+  // }
 
 
 }

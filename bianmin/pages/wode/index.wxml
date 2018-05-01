@@ -26,10 +26,10 @@
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='danhang-list' catchtap='my_liuyan_'>
+    <!-- <view class='danhang-list' catchtap='my_liuyan_'>
       <view>回复我的</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
     <view class='danhang-list' style='margin-top: 20rpx;' catchtap='create_shangjia'>
       <view>商家入驻</view>

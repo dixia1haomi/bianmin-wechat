@@ -25,7 +25,6 @@ Page({
 
     // ---- 留言回复 ----
     tanChuang: false,
-    title: '留言',
     input: null,
 
     // ---- 留言 ----
@@ -33,28 +32,22 @@ Page({
     bianmin_index: null,
 
     // ---- 回复 ----
-    liuyan_id: null,
-    huifu_user_id: null,
+    // liuyan_id: null,
+    // huifu_user_id: null,
   },
 
   // -----
 
-  form_(e) {
-    console.log('form', e.detail)
-  },
-  sendXiaoxi_() {
-    api.mobanXiaoxi({ bmxx_id: 86 }, res => {
-      console.log('sendXiaoxi', res)
-    })
-  },
 
-  // ------------------------------------------------- 留言回复 -------------------------------------------------
+
+
+  // ------------------------------------------------- 留言 -------------------------------------------------
 
   // 弹窗开关事件(清空input、bmxx_id)
   tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
 
   // 留言、回复输入事件
-  liuyan_huifu_input_(e) { this.setData({ input: e.detail.value }) },
+  liuyan_input_(e) { this.setData({ input: e.detail.value }) },
 
   // ---- 留言事件 ----
   liuyan_(e) {
@@ -63,7 +56,6 @@ Page({
       this.setData({
         bianmin_id: e.currentTarget.dataset.bianmin_id,
         bianmin_index: e.currentTarget.dataset.index,
-        title: '留言'
       })
     } else {
       // 登陆弹窗
@@ -71,56 +63,18 @@ Page({
     }
   },
 
-
-
-  // // 回复事件
-  huifu_(e) {
-    //   <!--data - name用来显示弹窗title-- >
-    //   <!--data - liuyan_id用来记录留言ID写入回复表-- >
-    // <!--data - index用来刷新-- >
-    //   <!--data - user_id记录留言人-- >
-    //   <!--data - xinxi_zhuren用来对比是不是信息主人-- >
-    console.log('回复事件', e.currentTarget.dataset.xinxi_zhuren)
-    if (app.data.LoginState) {
-      // 只有主人可以回复
-      if (app.data.uid === e.currentTarget.dataset.xinxi_zhuren) {
-        // 不要自己回复自己
-        if (app.data.uid === e.currentTarget.dataset.user_id) {
-          wx.showModal({ title: '不要自己回复自己', showCancel: false })
-        } else {
-          // 打开弹窗
-          this.tanchuang_()
-          // 设置DATA
-          this.setData({
-            title: '回复' + e.currentTarget.dataset.name,
-            liuyan_id: e.currentTarget.dataset.liuyan_id,
-            bianmin_index: e.currentTarget.dataset.index,
-            huifu_user_id: e.currentTarget.dataset.user_id,
-          })
-        }
-      } else {
-        wx.showModal({ title: '请使用留言', content: '只有信息的主人才可以回复', showCancel: false })
-      }
-    } else {
-      // 登陆弹窗
-      this.setData({ loginTanChuang: true })
-    }
-  },
-
-
   // 留言确定
-  liuyan_huifu_queding_(e) {
+  liuyan_queding_(e) {
 
-    let input = this.data.input
     // * 验证input内容
+    let input = this.data.input
     if (!input || input.length > 50) {
       wx.showModal({ content: '长度请控制在1-50个字之间', showCancel: false })
       return
     }
 
     console.log('formId', e.detail.formId)
-    // // 判断是留言还是回复
-    // if (this.data.title === '留言') {
+    // 新增留言
     api.createBianminLiuyan({
       bmxx_id: this.data.bianmin_id,
       neirong: input,
@@ -130,19 +84,7 @@ Page({
       // 刷新
       this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
     })
-    // } else {
-    //   // 回复
-    //   api.createBianminLiuyanHuifu({
-    //     liuyan_id: this.data.liuyan_id,
-    //     huifu_user_id: this.data.huifu_user_id,
-    //     neirong: input,
-    //     bmxx_id: this.data.Res[this.data.bianmin_index].id
-    //   }, (back) => {
-    //     console.log('新增回复OK', back)
-    //     // 刷新
-    //     this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
-    //   })
-    // }
+
     // 关闭弹窗
     this.tanchuang_()
   },
@@ -196,13 +138,15 @@ Page({
   go_wode() { wx.navigateTo({ url: '/pages/wode/index' }) },
 
   // 预览
-  yulan(e) {
+  yulan_(e) {
     console.log('预览', e.currentTarget.dataset)
     let img = e.currentTarget.dataset.img
     let index = e.currentTarget.dataset.index
     let arr = []
-    for (let i in img) { arr.push(img[i].url) }
-    console.log('arr', arr)
+    for (let i in img) {
+      arr.push(img[i].url)
+    }
+    console.log('arr', arr, arr[index])
 
     wx.previewImage({
       current: arr[index], // 当前显示图片的http链接
@@ -222,7 +166,7 @@ Page({
   },
 
   // 展开，折叠
-  flodFn: function (e) {
+  flodFn_: function (e) {
     let index = e.currentTarget.dataset.index, res = this.data.Res
 
     // 如果hid是初始的false,允许改成true
@@ -242,7 +186,7 @@ Page({
 
 
   // 拨打电话
-  call_phone(e) {
+  call_phone_(e) {
     console.log('拨打电话', e.currentTarget.id)
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.id //仅为示例，并非真实的电话号码

@@ -63,33 +63,67 @@
   width: 100%;
 }
 
+/* 折叠样式 */
+
 .flod {
-  /* //折叠样式 */
-  max-height: 130rpx;
-  overflow-y: hidden;
+  /* 对象作为伸缩盒子模型显示 */
+  display: -webkit-box;
+  /* 允许任意非CJK(Chinese/Japanese/Korean)文本间的单词断行 */
+  word-break: break-all;
+  /* 设置或检索伸缩盒对象的子元素的排列方式 */
+  -webkit-box-orient: vertical;
+  /* 可显示的最多行数 */
+  -webkit-line-clamp: 3;
+  /* 超出的文本内容隐藏 */
+  overflow: hidden;
+  /* 超出显示省略号 */
+  text-overflow: ellipsis;
 }
 
-.extend {
+/* 信息 */
+
+.xinxi {
+  flex: 1;
+  position: relative;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
-.tishi {
-  position: absolute;
-  top: 126rpx;
-  width: 100%;
+.xinxi-tishi {
+  /* position: absolute; *//* top: 126rpx; *//* width: 100%; */
   text-align: center;
   padding: 10rpx 0 10rpx 0;
 }
 
+.xinxi-dianhua-liuyan {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.xinxi-dianhua {
+  background-color: tomato;
+  padding: 10rpx 20rpx 10rpx 20rpx;
+}
+
+.xinxi-liuyan {
+  background-color: tomato;
+  padding: 10rpx 20rpx 10rpx 20rpx;
+}
+
+/* 配图 */
+
 .img-view {
   width: 100%;
-  margin-top: 60rpx;
+  margin-top: 20rpx;
   overflow: hidden;
 }
 
 .img {
   width: 160rpx;
   height: 160rpx;
-  margin-left: 20rpx;
+  margin-right: 20rpx;
   border-radius: 4rpx;
 }
 
@@ -99,12 +133,13 @@
   flex-direction: column;
   border-radius: 1px;
   margin: 20rpx 0 20rpx 0;
+  padding: 20rpx;
 }
 
 .user {
   display: flex;
   align-items: center;
-  margin: 20rpx;
+  /* margin: 20rpx; */
 }
 
 .avatar {
@@ -134,21 +169,18 @@
   font-size: 24rpx;
 }
 
-.xinxi {
-  flex: 1;
-  position: relative;
-}
+/* 地址 */
 
 .dizhi {
-  margin: 0 20rpx 10rpx 20rpx;
+  /* margin: 0 20rpx 0 20rpx; */
   font-size: 28rpx;
   color: #007aff;
 }
 
 .info {
   color: #808080;
-  padding: 20rpx 0 20rpx 0;
-  margin: 0 20rpx 0 20rpx;
+  padding-top: 20rpx;
+  margin-top: 10rpx;
   border-top: 1rpx dashed #e5e5e5;
   font-size: 28rpx;
   display: flex;
@@ -158,18 +190,22 @@
 /* 留言 */
 
 .liuyan-base {
-  margin: 0 20rpx 20rpx 20rpx;
+  padding: 0 10rpx 0 10rpx;
+  margin-top: 20rpx;
   border-radius: 4rpx;
   font-size: 28rpx;
+  color: #808080;
+  background-color: #e5e5e5;
 }
 
 .liuyan {
-  background-color: #e5e5e5;
-  padding: 10rpx;
+  /* padding: 10rpx; */
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
 }
 
 .liuyan-huifu {
-  margin-left: 40rpx;
+  margin-left: 20rpx;
   /* margin-top: 10rpx; */
 }
 
@@ -180,7 +216,7 @@
   width: 100%;
   height: 100%;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   /* align-items: flex-start;  */
@@ -285,7 +321,7 @@
   display: none;
 } */
 
-.mutli {
+.duohangyincang {
   /* 对象作为伸缩盒子模型显示 */
   display: -webkit-box;
   /* 允许任意非CJK(Chinese/Japanese/Korean)文本间的单词断行 */
