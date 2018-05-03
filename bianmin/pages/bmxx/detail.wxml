@@ -2,62 +2,109 @@
 
 <block wx:if="{{Res !== false}}">
   <block wx:if="{{Res !== null}}">
+
+
     <view class='base'>
 
+      <!-- 头像 -->
       <view class='user'>
         <text class='leibie'>{{Res.leibie}}</text>
-        <image class='avatar' src='{{Res.avatar_url}}'></image>
-        <view class='name-time'>
-          <view class='nick-name'>{{Res.nick_name}}</view>
-          <view class='time'>{{Res.time}}</view>
+
+        <view class='user-1'>
+          <image class='avatar' src='{{Res.avatar_url}}'></image>
+          <view class='name-time'>
+            <view class='nick-name'>{{Res.nick_name}}</view>
+            <view class='time'>{{Res.time}}</view>
+          </view>
         </view>
       </view>
 
+      <!-- 信息 -->
       <view class='xinxi'>
 
-        <view class="" style='margin: 0 20rpx 0 20rpx;'>
-          <text>{{Res.neirong}}</text>
+        <!-- 内容 -->
+        <view>
+          <text style='color: #2c2c2c;'>{{Res.neirong}}</text>
         </view>
 
-        <view class='img-view'>
-          <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
-            <image class='img' src="{{img.url}}" mode='aspectFill' />
-          </block>
+        <!-- 开展提示 -->
+        <view class='xinxi-tishi'>
+          <text class="iconfont icon-zhankai .touming"></text>
         </view>
+
       </view>
 
-      <!-- 留言回复块 -->
-      <view class='liuyan-base'>
-        <block wx:for="{{Res.with_liuyan}}" wx:for-item="liuyan" wx:key="">
-          <view class='liuyan'>
 
-            <!-- 一级回复 -->
-            <view>
-              <text>{{liuyan.nick_name}} : {{liuyan.neirong}}</text>
-            </view>
-
-            <!-- 二级回复 -->
-            <view class='liuyan-huifu'>
-              <block wx:for="{{liuyan.liuyanwith_huifu}}" wx:for-item="huifu" wx:key="">
-                <view>
-                  <text>{{huifu.user}} 回复 {{huifu.hf_user}} ： {{huifu.neirong}}</text>
-                </view>
-              </block>
-            </view>
-          </view>
+      <!-- 配图 -->
+      <view class='img-view'>
+        <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
+          <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
         </block>
       </view>
 
+      <!-- 地址 -->
+      <view class='dizhi'>
+        <text class='iconfont icon-dizhi' />
+        <text catchtap='dizhi_' data-longitude='{{Res.longitude}}' data-latitude='{{Res.latitude}}' data-address='{{Res.address}}'>地址：{{Res.address}}</text>
+      </view>
+
+      <!-- 脚部按钮栏 -->
+      <view class='info'>
+        <view style='color: #808080;'>
+          <text class='iconfont icon-yueduliang' />
+          <text> {{Res.liulangcishu}}</text>
+        </view>
+
+        <view id='{{Res.phone}}' catchtap='call_phone_'>
+          <text class='iconfont icon-phone' />
+          <text> 拨打电话</text>
+        </view>
+
+        <!-- 留言弹窗事件携带信息ID -->
+        <view catchtap='liuyan_' data-bianmin_id='{{Res.id}}'>留言</view>
+      </view>
 
 
-      <!-- 留言弹窗事件携带信息ID -->
-      <view catchtap='liuyan_' data-bianmin_id='{{Res.id}}'>留言</view>
+      <!-- 留言回复块 -->
+      <block wx:if="{{Res.with_liuyan.length > 0}}">
+        <view class='liuyan-base'>
+          <block wx:for="{{Res.with_liuyan}}" wx:for-item="liuyan" wx:key="">
 
-      <!-- 留言弹窗 -->
-      <view wx:if="{{tanChuang}}" class="{{tanchuang?'':'liuyan-huifu-tanchuang'}}">
+            <view class='liuyan'>
+              <view>
+                <text style='color: #007aff;'>{{liuyan.nick_name}}</text>
+                <text>：{{liuyan.neirong}}</text>
+              </view>
+
+              <!-- 二级回复 -->
+              <view class='liuyan-huifu'>
+                <block wx:for="{{liuyan.liuyanwith_huifu}}" wx:for-item="huifu" wx:key="">
+                  <view>
+                    <text style='color: #007aff;'>{{huifu.user}}</text>
+                    <text style='color: #808080;'> 回复 </text>
+                    <text style='color: #007aff;'>{{huifu.hf_user}}</text>
+                    <text>：{{huifu.neirong}}</text>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+        </view>
+      </block>
+
+    </view>
+
+
+    <!-- 留言弹窗 -->
+    <block wx:if="{{tanChuang}}">
+      <view class="liuyan-huifu-tanchuang">
         <view class='tanchuang-input'>
           <view class='tanchuang-input-title'>留言</view>
-          <input placeholder='请输入内容..' bindinput='liuyan_input_' maxlength="50" focus></input>
+          <view class='tanchuang-textarea'>
+            <textarea placeholder='请输入内容..' bindinput='liuyan_input_' maxlength="50" focus>
+              <text>{{input_cursor}}/50</text>
+            </textarea>
+          </view>
           <view class='tanchuang-input-fool'>
             <text catchtap='tanchuang_'>取消</text>
             <form report-submit bindsubmit='liuyan_queding_'>
@@ -66,24 +113,24 @@
           </view>
         </view>
       </view>
+    </block>
 
 
-      <!-- 登陆弹窗 -->
-      <block wx:if="{{loginTanChuang}}">
-        <view class="loginTanChuang-mask">
-          <view class='loginTanChuang'>
-            <text class='loginTanChuang-title'>登陆授权</text>
-            <view class='loginTanChuang-XuanXiang'>
-              <button catchtap='loginTanChuangQuXiao_' size='mini' type='primary'>取消</button>
-              <form report-submit bindsubmit='getFormId_'>
-                <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>确定</button>
-              </form>
-            </view>
+    <!-- 登陆弹窗 -->
+    <block wx:if="{{loginTanChuang}}">
+      <view class="loginTanChuang-mask">
+        <view class='loginTanChuang'>
+          <text class='loginTanChuang-title'>请先登陆</text>
+          <view class='loginTanChuang-XuanXiang'>
+            <button catchtap='loginTanChuangQuXiao_'>取消</button>
+            <form report-submit bindsubmit='getFormId_'>
+              <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN'>确定</button>
+            </form>
           </view>
         </view>
-      </block>
+      </view>
+    </block>
 
-    </view>
   </block>
 
   <block wx:else>

@@ -28,10 +28,8 @@ Page({
 
   // 提交
   tijiao_() {
-    wx.showLoading({ title: '提交中', mask: true })
     api.xiugaiNeirong({ id: this.data.Res.id, neirong: this.data.neirong }, res => {
       console.log('xiugaiNeirong', res)
-      wx.hideLoading()
       wx.navigateBack({ delta: 1 })
     })
   },

@@ -8,8 +8,10 @@ Page({
 
   data: {
     Res: [],
-    // 登陆按钮状态
-    loginButton: true,
+    // 登陆弹窗
+    loginTanChuang: false,
+    // form_id
+    form_id: null,
     // 昵称头像
     userinfo: null,
     // 类目
@@ -22,35 +24,50 @@ Page({
   },
 
 
-  // 设置头像
-  _set_UserInfo() { if (app.data.LoginState) { this.setData({ userinfo: wx.getStorageSync('userinfo') }) } },
+  // -------------------------------------- 设置头像 --------------------------------------
+
+  _set_UserInfo() {
+    let userinfo = wx.getStorageSync('userinfo')
+    if (userinfo) {
+      if (app.data.LoginState) { this.setData({ userinfo: wx.getStorageSync('userinfo') }) }
+    } else {
+      app.data.LoginState = false
+    }
+  },
 
 
-  // ---------------------------------------- 登陆 ---------------------------------------------
+  // -------------------------------------- 登陆 --------------------------------------
+
+  // 关闭登陆弹窗
+  loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
 
   // formid
   getFormId_(e) {
     this.setData({ form_id: e.detail.formId })
   },
 
-  // 用户信息
+  // 获得用户信息登陆成功后关闭弹窗
   getUserInfo_(e) {
-    e.detail.userInfo.form_id = this.data.form_id
-    app.saveUserInfo(e.detail, () => {
-      console.log('asd')
-      this._set_UserInfo()
-    })
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      // 如果有form_id
+      if (this.data.form_id) {
+        e.detail.userInfo.form_id = this.data.form_id
+      } else {
+        e.detail.userInfo.form_id = ''
+      }
+      // // 登陆成功后设置头像
+      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail, () => { this._set_UserInfo() }) })
+    }
   },
 
 
-  // 发布信息
+  // -------------------------------------- 发布信息 --------------------------------------
+
   go_fabu_(e) {
     // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
     if (app.data.LoginState) {
       // 检查发布限制,调用myFabu接口检查
-      wx.showLoading({ title: '请稍候' })
       api.myFabu({}, (back) => {
-        wx.hideLoading()
         console.log('myFabu', back)
         // 如果已经有信息不能在发布,没有信息back.data == null
         if (back.data) {
@@ -69,38 +86,28 @@ Page({
         }
       })
     } else {
-      // 显示登录按钮，提示登陆
-      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+      // 提示登陆
+      this.setData({ loginTanChuang: true })
     }
   },
 
-  // 我的发布
+  // -------------------------------------- 我的发布 --------------------------------------
+
   my_fabu_() {
     if (app.data.LoginState) {
       wx.navigateTo({ url: '/pages/wode/myfabu' })
     } else {
-      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+      this.setData({ loginTanChuang: true })
     }
   },
 
 
-  // 我的留言
-  // my_liuyan_() {
-  //   if (app.data.LoginState) {
-  //     wx.navigateTo({ url: '/pages/wode/bianmin/huifuwode' })
-  //   } else {
-  //     this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
-  //   }
-  // },
-
-  // 商家入驻
+  // -------------------------------------- 商家入驻 --------------------------------------
   create_shangjia() {
     // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
     if (app.data.LoginState) {
-      wx.showLoading({ title: '请稍候' })
       api.getMyShangjia({}, (res) => {
         console.log('我的店铺', res)
-        wx.hideLoading()
         if (res.data == null) {
           wx.navigateTo({ url: '/pages/wode/create-shangjia' })
         } else {
@@ -108,26 +115,21 @@ Page({
         }
       })
     } else {
-      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+      this.setData({ loginTanChuang: true })
     }
-
-
   },
 
-  asd() {
-    console.log()
-  },
 
-  // 我的店铺
+  // -------------------------------------- 我的店铺 --------------------------------------
   my_shangjia_() {
     // 是否登陆过 ？
     if (app.data.LoginState) {
       wx.navigateTo({ url: '/pages/wode/my-shangjia' })
     } else {
-      this.setData({ loginButton: false }, () => { wx.showToast({ title: '请先登录' }) })
+      this.setData({ loginTanChuang: true })
     }
   },
 
-  // 关于我
+  // -------------------------------------- 关于我 --------------------------------------
   go_guanyuwo() { wx.navigateTo({ url: '/pages/wode/guanyuwo' }) }
 })

@@ -15,6 +15,7 @@ Page({
     // ---- 留言回复 ----
     tanChuang: false,
     input: null,
+    input_cursor: 0,
 
     // ---- 留言 ----
     bianmin_id: null
@@ -31,13 +32,15 @@ Page({
 
   // 获得用户信息登陆成功后关闭弹窗
   getUserInfo_(e) {
-    // 如果有form_id
-    if (this.data.form_id) {
-      e.detail.userInfo.form_id = this.data.form_id
-    } else {
-      e.detail.userInfo.form_id = ''
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      // 如果有form_id
+      if (this.data.form_id) {
+        e.detail.userInfo.form_id = this.data.form_id
+      } else {
+        e.detail.userInfo.form_id = ''
+      }
+      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
     }
-    this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
   },
 
 
@@ -48,7 +51,6 @@ Page({
   },
 
   _load(id) {
-    console.log('w', id)
     // 查询单个便民信息
     api.findBianmin({ id: id }, (back) => {
       console.log('查询单个便民信息', back)
@@ -63,7 +65,7 @@ Page({
   tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
 
   // 留言、回复输入事件
-  liuyan_input_(e) { this.setData({ input: e.detail.value }) },
+  liuyan_input_(e) { this.setData({ input: e.detail.value, input_cursor: e.detail.cursor }) },
 
   // ---- 留言事件 ----
   liuyan_(e) {
@@ -71,7 +73,6 @@ Page({
       this.tanchuang_()
       this.setData({
         bianmin_id: e.currentTarget.dataset.bianmin_id
-        // bianmin_index: e.currentTarget.dataset.index,
       })
     } else {
       // 登陆弹窗
@@ -103,6 +104,26 @@ Page({
 
     // 关闭弹窗
     this.tanchuang_()
+  },
+
+
+  // 打开地图
+  dizhi_(e) {
+    console.log('地址', e.currentTarget.dataset)
+    wx.openLocation({
+      latitude: parseFloat(e.currentTarget.dataset.latitude),
+      longitude: parseFloat(e.currentTarget.dataset.longitude),
+      name: e.currentTarget.dataset.address,
+      scale: 28
+    })
+  },
+
+  // 拨打电话
+  call_phone_(e) {
+    console.log('拨打电话', e.currentTarget.id)
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.id //仅为示例，并非真实的电话号码
+    })
   },
 
 })

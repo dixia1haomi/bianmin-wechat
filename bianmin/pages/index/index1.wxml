@@ -29,15 +29,18 @@
 
 <!-- 信息列表 -->
 <block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
-  <view class='base'>
+  <view class='base' data-index='{{resindex}}' catchtap="flodFn_">
 
     <!-- 头像 -->
     <view class='user'>
       <text class='leibie'>{{item.leibie}}</text>
-      <image class='avatar' src='{{item.avatar_url}}'></image>
-      <view class='name-time'>
-        <view class='nick-name'>{{item.nick_name}}</view>
-        <view class='time'>{{item.time}}</view>
+
+      <view class='user-1' catchtap='asd_'>
+        <image class='avatar' src='{{item.avatar_url}}'></image>
+        <view class='name-time'>
+          <view class='nick-name'>{{item.nick_name}}</view>
+          <view class='time'>{{item.time}}</view>
+        </view>
       </view>
     </view>
 
@@ -45,50 +48,49 @@
     <view class='xinxi'>
 
       <!-- 内容 -->
-      <view class="{{item.hid ?'':'flod' }}" data-index='{{resindex}}' catchtap="flodFn_">
+      <view class="{{item.hid ?'':'flod' }}">
         <!-- id用于获取内容实际高度 -->
-        <text>{{item.neirong}}</text>
+        <text style='color: #2c2c2c;'>{{item.neirong}}</text>
       </view>
 
       <!-- 开展提示 -->
-      <view wx:if="{{item.hid == false}}" class='xinxi-tishi' data-index='{{resindex}}' catchtap='flodFn_'>
-        <text class='iconfont icon-zhankai'></text>
+      <view class='xinxi-tishi'>
+        <text wx:if="{{item.hid == false}}" class="iconfont icon-zhankai"></text>
+        <text wx:else class="iconfont icon-zhankai .touming"></text>
       </view>
-      <!-- <view wx:else class='xinxi-dianhua-liuyan'>
-        <view class='xinxi-dianhua' id='{{item.phone}}' catchtap='call_phone_'>电话</view>
-        <view class='xinxi-liuyan' catchtap='liuyan_' data-bianmin_id='{{item.id}}' data-index='{{resindex}}'>留言</view>
-      </view> -->
 
+    </view>
+
+    <block wx:if="{{item.hid == true}}">
       <!-- 配图 -->
-      <block wx:if="{{item.with_img.length > 0}}">
-        <view class='img-view'>
-          <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
-            <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{item.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
-          </block>
+      <view class='img-view'>
+        <block wx:for="{{item.with_img}}" wx:for-item="img" wx:key="">
+          <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{item.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
+        </block>
+      </view>
+
+      <!-- 地址 -->
+      <view class='dizhi'>
+        <text class='iconfont icon-dizhi' />
+        <text catchtap='dizhi_' data-longitude='{{item.longitude}}' data-latitude='{{item.latitude}}' data-address='{{item.address}}'>地址：{{item.address}}</text>
+      </view>
+
+      <!-- 脚部按钮栏 -->
+      <view class='info'>
+        <view style='color: #808080;'>
+          <text class='iconfont icon-yueduliang' />
+          <text> {{item.liulangcishu}}</text>
         </view>
-      </block>
-    </view>
 
-    <!-- 地址 -->
-    <view class='dizhi'>
-      <text class='iconfont icon-dizhi' />
-      <text catchtap='dizhi_' data-longitude='{{item.longitude}}' data-latitude='{{item.latitude}}' data-address='{{item.address}}'>地址：{{item.address}}</text>
-    </view>
+        <view id='{{item.phone}}' catchtap='call_phone_'>
+          <text class='iconfont icon-phone' />
+          <text> 拨打电话</text>
+        </view>
 
-
-    <view class='info'>
-      <view>
-        <text class='iconfont icon-yueduliang' />
-        <text> {{item.liulangcishu}}</text>
+        <!-- 留言弹窗事件携带信息ID -->
+        <view catchtap='liuyan_' data-bianmin_id='{{item.id}}' data-index='{{resindex}}'>留言</view>
       </view>
-      <view id='{{item.phone}}' catchtap='call_phone_'>
-        <text class='iconfont icon-phone' />
-        <text> 拨打电话</text>
-      </view>
-
-      <!-- 留言弹窗事件携带信息ID -->
-      <view catchtap='liuyan_' data-bianmin_id='{{item.id}}' data-index='{{resindex}}'>留言</view>
-    </view>
+    </block>
 
     <!-- 留言回复块 -->
     <block wx:if="{{item.with_liuyan.length > 0}}">
@@ -105,7 +107,7 @@
             <!-- data-xinxi_zhuren用来对比是不是信息主人 -->
             <view>
               <text style='color: #007aff;'>{{liuyan.nick_name}}</text>
-              <text> : {{liuyan.neirong}}</text>
+              <text>：{{liuyan.neirong}}</text>
             </view>
 
             <!-- 二级回复 -->
@@ -113,9 +115,9 @@
               <block wx:for="{{liuyan.liuyanwith_huifu}}" wx:for-item="huifu" wx:key="">
                 <view>
                   <text style='color: #007aff;'>{{huifu.user}}</text>
-                  <text> 回复 </text>
+                  <text style='color: #808080;'> 回复 </text>
                   <text style='color: #007aff;'>{{huifu.hf_user}}</text>
-                  <text> ： {{huifu.neirong}}</text>
+                  <text>：{{huifu.neirong}}</text>
                 </view>
               </block>
             </view>
@@ -128,18 +130,24 @@
 </block>
 
 <!-- 留言弹窗 -->
-<view wx:if="{{tanChuang}}" class="{{tanchuang?'':'liuyan-huifu-tanchuang'}}">
-  <view class='tanchuang-input'>
-    <view class='tanchuang-input-title'>留言</view>
-    <input placeholder='请输入内容..' bindinput='liuyan_input_' maxlength="50" focus></input>
-    <view class='tanchuang-input-fool'>
-      <text catchtap='tanchuang_'>取消</text>
-      <form report-submit bindsubmit='liuyan_queding_'>
-        <button form-type="submit">确定</button>
-      </form>
+<block wx:if="{{tanChuang}}">
+  <view class="liuyan-huifu-tanchuang">
+    <view class='tanchuang-input'>
+      <view class='tanchuang-input-title'>留言</view>
+      <view class='tanchuang-textarea'>
+        <textarea placeholder='请输入内容..' bindinput='liuyan_input_' maxlength="50" focus>
+          <text>{{input_cursor}}/50</text>
+        </textarea>
+      </view>
+      <view class='tanchuang-input-fool'>
+        <text catchtap='tanchuang_'>取消</text>
+        <form report-submit bindsubmit='liuyan_queding_'>
+          <button form-type="submit">确定</button>
+        </form>
+      </view>
     </view>
   </view>
-</view>
+</block>
 
 
 
@@ -159,11 +167,11 @@
 <block wx:if="{{loginTanChuang}}">
   <view class="loginTanChuang-mask">
     <view class='loginTanChuang'>
-      <text class='loginTanChuang-title'>登陆授权</text>
+      <text class='loginTanChuang-title'>请先登陆</text>
       <view class='loginTanChuang-XuanXiang'>
-        <button catchtap='loginTanChuangQuXiao_' size='mini' type='primary'>取消</button>
+        <button catchtap='loginTanChuangQuXiao_'>取消</button>
         <form report-submit bindsubmit='getFormId_'>
-          <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>确定</button>
+          <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN'>确定</button>
         </form>
       </view>
     </view>

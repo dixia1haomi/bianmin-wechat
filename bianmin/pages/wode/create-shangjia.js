@@ -107,9 +107,7 @@ Page({
   //  ----------------------------------------- 电话 -----------------------------------------
   _phone(e) {
     console.log('电话')
-    wx.showLoading({ title: '请稍候' })
     api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
-      wx.hideLoading()
       console.log('phone', res.data)
       // 返回了电话号码
       this.setData({ phone: res.data })
@@ -120,7 +118,7 @@ Page({
   getPhoneNumber_(e) {
     console.log('电话', e)
     // 如果用户允许获取电话
-    if (e.detail.iv && e.detail.encryptedData) {  this._phone(e)  }
+    if (e.detail.iv && e.detail.encryptedData) { this._phone(e) }
   },
 
   // ----------------------------------------- 描述 -----------------------------------------
@@ -203,8 +201,7 @@ Page({
       return false
     }
 
-    // 禁止穿透
-    wx.showLoading({ title: '发布中..', mask: true })
+
 
     // 先传头图，返回后再一起新增数据
     let img = this.data.toutu              // 图片array
@@ -229,8 +226,6 @@ Page({
           })
         }, (xiangqingtuOk) => {
           console.log('传详情图OK', xiangqingtuOk)
-          // 隐藏loading
-          wx.hideLoading()
           // 返回主页
           wx.reLaunch({ url: '/pages/index/index1' })
         })

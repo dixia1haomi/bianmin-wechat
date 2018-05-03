@@ -7,7 +7,7 @@ class Api extends Base {
 
   // 获取便民信息列表
   getList(data, callback) {
-    wx.showLoading({ title: '加载中' })
+    wx.showLoading({ title: '加载中', mask: true })
     this.request({
       url: 'index/getlist', data: data, sCallback: (res) => {
         wx.hideLoading()
@@ -18,17 +18,35 @@ class Api extends Base {
 
   // 查询单条便民信息
   findBianmin(data, callback) {
-    this.request({ url: 'index/findbianmin', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '加载中', mask: true })
+    this.request({
+      url: 'index/findbianmin', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 创建便民信息
   createList(data, callback) {
-    this.request({ url: 'index/create', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '发布中', mask: true })
+    this.request({
+      url: 'index/create', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 创建img
   createImg(data, callback) {
-    this.request({ url: 'index/createimg', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '上传中', mask: true })
+    this.request({
+      url: 'index/createimg', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 增加点击量
@@ -39,27 +57,57 @@ class Api extends Base {
   // ------------------------------------------------- 我的 ---------------------------------------------------
   // 我的发布
   myFabu(data, callback) {
-    this.request({ url: 'index/myfabu', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/myfabu', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 修改便民信息内容
   xiugaiNeirong(data, callback) {
-    this.request({ url: 'index/xiugaineirong', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/xiugaineirong', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 删除我的发布(接受list_id)
   deleteMyFabu(data, callback) {
-    this.request({ url: 'index/deletemyfabu', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '删除中', mask: true })
+    this.request({
+      url: 'index/deletemyfabu', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 刷新(接受id)
   updateTime(data, callback) {
-    this.request({ url: 'index/updatetime', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/updatetime', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 获取电话
   getPhone(data, callback) {
-    this.request({ url: 'index/getphone', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/getphone', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // ------------------------------------------------- COS ---------------------------------------------------
@@ -85,38 +133,80 @@ class Api extends Base {
 
   // 保存用户信息
   saveUserInfo(data, callback) {
-    this.request({ url: 'user/saveuserinfo', data: data, sCallback: (res) => { callback && callback(res.data) } })
+    wx.showLoading({ title: '登陆中', mask: true })
+    this.request({
+      url: 'user/saveuserinfo', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res.data)
+      }
+    })
   }
 
   // ------------------------------------------------- 商家 ---------------------------------------------------
   // 新增商家
   createShangjia(data, callback) {
-    this.request({ url: 'index/createshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/createshangjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 新增商家图片
   createShangjiaImg(data, callback) {
-    this.request({ url: 'index/createshangjiaimg', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '上传中', mask: true })
+    this.request({
+      url: 'index/createshangjiaimg', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 查询商家详情(接受商家ID)
   findShangjia(data, callback) {
-    this.request({ url: 'index/findshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/findshangjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 查询商家列表
   selectShangjia(data, callback) {
-    this.request({ url: 'index/selectshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '加载中', mask: true })
+    this.request({
+      url: 'index/selectshangjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 查询我的店铺
   getMyShangjia(data, callback) {
-    this.request({ url: 'index/myshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'index/myshangjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 删除店铺
   deleteShangjia(data, callback) {
-    this.request({ url: 'index/deleteshangjia', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '删除中', mask: true })
+    this.request({
+      url: 'index/deleteshangjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 删除店铺详情图1张
@@ -148,17 +238,35 @@ class Api extends Base {
 
   // 新增便民留言
   createBianminLiuyan(data, callback) {
-    this.request({ url: 'liuyan/createbianminliuyan', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'liuyan/createbianminliuyan', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 新增便民回复
   createBianminHuifu(data, callback) {
-    this.request({ url: 'liuyan/createbianminhuifu', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'liuyan/createbianminhuifu', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 新留言提醒，更新formId
   updateFormId(data, callback) {
-    this.request({ url: 'liuyan/updateformid', data: data, sCallback: (res) => { callback && callback(res) } })
+    wx.showLoading({ title: '记录中', mask: true })
+    this.request({
+      url: 'liuyan/updateformid', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
   }
 
   // 查询我的留言
@@ -171,10 +279,7 @@ class Api extends Base {
   //   this.request({ url: 'liuyan/huifuWode', data: data, sCallback: (res) => { callback && callback(res) } })
   // }
 
-  // ----- 测试模板消息 -------
-  // mobanXiaoxi(data, callback) {
-  //   this.request({ url: 'liuyan/xiaoxiapi', data: data, sCallback: (res) => { callback && callback(res) } })
-  // }
+
 
 
 }

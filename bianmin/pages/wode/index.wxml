@@ -2,15 +2,18 @@
 
 <view class='page'>
   <view class='base1'>
-    <view style='text-align: center;'>
+    <block wx:if="{{userinfo}}">
       <image class='avatarImg' src='{{userinfo.avatarUrl}}'></image>
-    </view>
-    <view style='text-align: center;'>{{userinfo.nickName}}</view>
-    <view wx:if="{{!userinfo}}" style='text-align: center;'>
-      <form report-submit bindsubmit='getFormId_'>
-        <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN' size='mini' type='primary'>登陆</button>
-      </form>
-    </view>
+      <view>{{userinfo.nickName}}</view>
+    </block>
+    <block wx:else>
+      <view>
+        <image class='avatarImg' src='/img/150.jpg'></image>
+        <!-- <form report-submit bindsubmit='getFormId_'>
+          <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN'>登陆</button>
+        </form>  -->
+      </view>
+    </block>
   </view>
 
 
@@ -53,5 +56,20 @@
     <!-- <view>所有信息都是免费发布</view> -->
     <view class='base3-1'>————— 袋鼠优生活 —————</view>
   </view>
+
+  <!-- 登陆弹窗 -->
+  <block wx:if="{{loginTanChuang}}">
+    <view class="loginTanChuang-mask">
+      <view class='loginTanChuang'>
+        <text class='loginTanChuang-title'>请先登陆</text>
+        <view class='loginTanChuang-XuanXiang'>
+          <button catchtap='loginTanChuangQuXiao_'>取消</button>
+          <form report-submit bindsubmit='getFormId_'>
+            <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN'>确定</button>
+          </form>
+        </view>
+      </view>
+    </view>
+  </block>
 
 </view>

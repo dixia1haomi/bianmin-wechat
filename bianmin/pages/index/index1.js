@@ -26,19 +26,19 @@ Page({
     // ---- 留言回复 ----
     tanChuang: false,
     input: null,
+    input_cursor: 0,
 
     // ---- 留言 ----
     bianmin_id: null,
     bianmin_index: null,
 
-    // ---- 回复 ----
-    // liuyan_id: null,
-    // huifu_user_id: null,
   },
 
   // -----
 
-
+  // asd_() {
+  //   console.log('')
+  // },
 
 
   // ------------------------------------------------- 留言 -------------------------------------------------
@@ -47,7 +47,9 @@ Page({
   tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
 
   // 留言、回复输入事件
-  liuyan_input_(e) { this.setData({ input: e.detail.value }) },
+  liuyan_input_(e) {
+    this.setData({ input: e.detail.value, input_cursor: e.detail.cursor })
+  },
 
   // ---- 留言事件 ----
   liuyan_(e) {
@@ -56,6 +58,7 @@ Page({
       this.setData({
         bianmin_id: e.currentTarget.dataset.bianmin_id,
         bianmin_index: e.currentTarget.dataset.index,
+        // liuyan_title: this.data.Res[e.currentTarget.dataset.index].nick_name  // 弹窗title显示留言给谁
       })
     } else {
       // 登陆弹窗
@@ -115,22 +118,10 @@ Page({
     page = 1
     api.getList({ page: page }, res => {
       console.log('aa', res.data)
-      this.setData({ Res: res.data }, () => {
-        // 获取并设置内容高度，用于超出显示范围就提示展开
-        this._getHeight(res.data)
-      })
+      this.setData({ Res: res.data })
       // 回调给下拉刷新用
       callback && callback()
     })
-  },
-
-  _getHeight(res) {
-    //创建节点选择器
-    var query = wx.createSelectorQuery();
-    query.selectAll('#neirong').boundingClientRect((rects) => {
-      rects.forEach(function (rect, index) { res[index].height = rect.height })
-      this.setData({ Res: res })
-    }).exec()
   },
 
 
@@ -206,13 +197,15 @@ Page({
 
   // 获得用户信息登陆成功后关闭弹窗
   getUserInfo_(e) {
-    // 如果有form_id
-    if (this.data.form_id) {
-      e.detail.userInfo.form_id = this.data.form_id
-    } else {
-      e.detail.userInfo.form_id = ''
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      // 如果有form_id
+      if (this.data.form_id) {
+        e.detail.userInfo.form_id = this.data.form_id
+      } else {
+        e.detail.userInfo.form_id = ''
+      }
+      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
     }
-    this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
   },
 
 
@@ -221,9 +214,6 @@ Page({
     console.log('scroll', e.currentTarget.id)
     wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id })
   },
-
-
-
 
 
   // ------------------------------------------------- 下拉刷新、上拉加载、分享 -------------------------------------------------
@@ -250,16 +240,10 @@ Page({
           } else {
             if (res.data.length < 20) {
               let newRes = this.data.Res.concat(res.data)
-              this.setData({ Res: newRes, noData: true }, () => {
-                // 获取并设置内容高度，用于超出显示范围就提示展开
-                this._getHeight(newRes)
-              })
+              this.setData({ Res: newRes, noData: true })
             } else {
               let newRes = this.data.Res.concat(res.data)
-              this.setData({ Res: newRes }, () => {
-                // 获取并设置内容高度，用于超出显示范围就提示展开
-                this._getHeight(newRes)
-              })
+              this.setData({ Res: newRes })
             }
           }
         })

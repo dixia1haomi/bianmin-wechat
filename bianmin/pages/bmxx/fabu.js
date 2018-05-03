@@ -179,9 +179,6 @@ Page({
       return false
     }
 
-    // 禁止穿透
-    wx.showLoading({ title: '发布中..', mask: true })
-
     // 检查是否有图片准备上传
     if (this.data.img.length != 0) {
       api.createList(params, res => {
@@ -197,8 +194,6 @@ Page({
           })
         }, ok => {
           console.log('ok', ok)
-          // 隐藏Loading
-          wx.hideLoading()
           // 返回主页
           wx.reLaunch({ url: '/pages/index/index1' })
         })
@@ -207,8 +202,6 @@ Page({
       // 没图片
       api.createList(params, res => {
         console.log('没图片create', res)
-        // 隐藏Loading
-        wx.hideLoading()
         // 返回主页
         wx.reLaunch({ url: '/pages/index/index1' })
       })

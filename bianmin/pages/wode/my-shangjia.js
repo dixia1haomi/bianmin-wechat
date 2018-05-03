@@ -37,10 +37,8 @@ Page({
     wx.showModal({
       title: '删除这张图片？', success: (res) => {
         if (res.confirm) {
-          wx.showLoading({ title: '删除中', mask: true })
           api.deleteShangjiaImg({ id: id, url: url }, (back) => {
             console.log('删除详情图', back)
-            wx.hideLoading()
             this._load()
           })
         }
@@ -217,10 +215,8 @@ Page({
     wx.showModal({
       title: '删除店铺？', success: (res) => {
         if (res.confirm) {
-          wx.showLoading({ title: '删除中..', mask: true })
           api.deleteShangjia({ id: e.currentTarget.id }, (res) => {
             console.log('删除店铺', res)
-            wx.hideLoading()
             wx.showToast({ title: '删除成功' })
             this._load()
           })

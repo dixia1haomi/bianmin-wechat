@@ -6,18 +6,21 @@
 
 .base1 {
   position: relative;
-  /* z-index: 10; */
   background-color: #fff;
-  padding: 80rpx 0 40rpx 0;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .avatarImg {
   height: 160rpx;
   width: 160rpx;
   border-radius: 50%;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
 }
-
-
 
 .beijingtu {
   position: absolute;
@@ -34,10 +37,7 @@
 }
 
 .base3 {
-  /* flex: 1; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  /* flex: 1; *//* display: flex; *//* justify-content: center; *//* align-items: center; */
 }
 
 .base3-1 {

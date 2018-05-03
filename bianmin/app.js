@@ -95,11 +95,9 @@ App({
   // 保存用户信息
   saveUserInfo(info, callback) {
     console.log('保存用户信息', info)
-    wx.showLoading({ title: '登陆中', mask: true })
     api.saveUserInfo({ info: info.userInfo }, (back) => {
       console.log('保存用户信息OK', back)
       wx.setStorageSync('userinfo', info.userInfo)
-      wx.hideLoading()
       wx.showToast({ title: '登陆成功' })
       this.data.LoginState = true
       this.data.uid = back

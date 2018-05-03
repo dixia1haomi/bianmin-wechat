@@ -10,7 +10,15 @@ Page({
    */
   data: {
     Res: false,
+    // 登陆弹窗
     loginTanChuang: false,
+    // form_id
+    form_id: null,
+
+    // ---- 回复 ----
+    tanChuang: false,
+    input: null,
+    input_cursor: 0,
   },
 
   /**
@@ -34,7 +42,7 @@ Page({
   tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
 
   // 回复输入事件
-  huifu_input_(e) { this.setData({ input: e.detail.value }) },
+  huifu_input_(e) { this.setData({ input: e.detail.value, input_cursor: e.detail.cursor }) },
 
   // ---- 回复事件 ----
   huifu_(e) {
@@ -79,7 +87,7 @@ Page({
     this.tanchuang_()
   },
 
-  // ------------------------------------------------- 登陆 -------------------------------------------------
+  // ---------------------------- 登陆 -----------------------------
   // 关闭登陆弹窗
   loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
 
@@ -90,21 +98,21 @@ Page({
 
   // 获得用户信息登陆成功后关闭弹窗
   getUserInfo_(e) {
-    // 如果有form_id
-    if (this.data.form_id) {
-      e.detail.userInfo.form_id = this.data.form_id
-    } else {
-      e.detail.userInfo.form_id = ''
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      // 如果有form_id
+      if (this.data.form_id) {
+        e.detail.userInfo.form_id = this.data.form_id
+      } else {
+        e.detail.userInfo.form_id = ''
+      }
+      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
     }
-    this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
   },
 
   // ------------------------------------------------- load -------------------------------------------------
 
   _load() {
-    wx.showLoading({ title: '加载中' })
     api.myFabu({}, back => {
-      wx.hideLoading()
       console.log('我的发布', back)
       this.setData({ Res: back.data })
     })
@@ -112,42 +120,49 @@ Page({
 
 
 
-  // 修改内容
+  // ------------------------------------------------- 修改 -------------------------------------------------
   go_xiugai_() {
-    wx.navigateTo({ url: '/pages/wode/xiugaifabu' })
+    if (app.data.LoginState) {
+      wx.navigateTo({ url: '/pages/wode/xiugaifabu' })
+    } else {
+      this.setData({ loginTanChuang: true })
+    }
   },
 
 
-  // 删除我的信息
+  // ------------------------------------------------- 删除 -------------------------------------------------
   myDelete(e) {
-    wx.showModal({
-      title: '删除这条信息？',
-      success: (res) => {
-        if (res.confirm) {
-          console.log('用户点击确定')
-          // 禁止操作
-          wx.showLoading({ title: '删除中..', mask: true })
-          api.deleteMyFabu({ list_id: e.currentTarget.id }, res => {
-            // 删除成功
-            console.log('删除成功', res)
-            wx.hideLoading()
-            // 刷新
-            this._load()
-          })
+    if (app.data.LoginState) {
+      wx.showModal({
+        title: '删除这条信息？',
+        success: (res) => {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            api.deleteMyFabu({ list_id: e.currentTarget.id }, res => {
+              // 删除成功
+              console.log('删除成功', res)
+              // 刷新
+              this._load()
+            })
+          }
         }
-      }
-    })
+      })
+    } else {
+      this.setData({ loginTanChuang: true })
+    }
   },
 
-  // 刷新 ， 更新update_time
+  // ------------------------------------------------- 刷新 -------------------------------------------------
   updateTime(e) {
-    wx.showLoading({ title: '刷新中..', mask: true })
-    api.updateTime({ id: e.currentTarget.id }, back => {
-      wx.hideLoading()
-      console.log('刷新', back)
-      wx.showModal({ content: back.data })
-      this._load()
-    })
+    if (app.data.LoginState) {
+      api.updateTime({ id: e.currentTarget.id }, back => {
+        console.log('刷新', back)
+        wx.showModal({ content: back.data })
+        this._load()
+      })
+    } else {
+      this.setData({ loginTanChuang: true })
+    }
   },
 
   // ------------------------------------------------- 留言提示 -------------------------------------------------
@@ -155,10 +170,7 @@ Page({
   // 更新便民信息formId
   liuyanTishi_(e) {
     console.log('留言提示', e.detail.formId, e.currentTarget.id)
-    wx.showLoading({ title: '记录中..', mask: true })
     api.updateFormId({ id: e.currentTarget.id, form_id: e.detail.formId }, back => {
-      // 隐藏按钮
-      wx.hideLoading()
       this.setData({ 'Res.form_state': true })
       wx.showToast({ title: 'OK' })
     })

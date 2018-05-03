@@ -9,7 +9,7 @@ page {
   color: #3e3e3e;
 }
 
-/* 登陆弹窗 */
+/* ------------------------------ 登陆弹窗 -------------------------------- */
 
 .loginTanChuang-mask {
   position: fixed;
@@ -22,11 +22,11 @@ page {
 }
 
 .loginTanChuang {
-  width: 500rpx;
-  height: 300rpx;
-  border-radius: 4rpx;
+  width: 700rpx;
+  height: 400rpx;
   background-color: #fff;
-  margin-top: 300rpx;
+  border-radius: 4rpx;
+  margin-top: 200rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -34,13 +34,93 @@ page {
 
 .loginTanChuang-title {
   text-align: center;
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-weight: 700;
 }
 
-.loginTanChuang-XuanXiang{
-display: flex;
-justify-content: space-around;
+.loginTanChuang-XuanXiang {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 60rpx 60rpx 60rpx;
+}
+
+.loginTanChuang-XuanXiang button {
+  margin: 0;
+  background-color: #fff;
+  color: #007aff;
+}
+
+.loginTanChuang-XuanXiang button::after {
+  border-radius: 0;
+}
+
+/* ------------------------------ 留言弹窗-------------------------------- */
+
+.liuyan-huifu-tanchuang {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+}
+
+.tanchuang-input {
+  width: 700rpx;
+  height: 400rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  margin-top: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.tanchuang-input-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 10rpx 0 10rpx 0;
+}
+
+.tanchuang-textarea {
+  display: flex;
+  justify-content: center;
+}
+
+.tanchuang-textarea textarea {
+  background-color: aliceblue;
+  height: 200rpx;
+  position: relative;
+}
+
+.tanchuang-textarea text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
+}
+
+.tanchuang-input-fool {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 36rpx;
+  color: #007aff;
+}
+
+.tanchuang-input-fool button {
+  margin: 0;
+  padding: 0;
+  font-size: 36rpx;
+  background-color: #fff;
+  color: #007aff;
+}
+
+.tanchuang-input-fool button::after {
+   border: none; 
 }
 
 /* 原来是打开的 */
