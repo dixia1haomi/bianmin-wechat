@@ -279,8 +279,10 @@ class Api extends Base {
   //   this.request({ url: 'liuyan/huifuWode', data: data, sCallback: (res) => { callback && callback(res) } })
   // }
 
-
-
+  // ------------------------------------------------- onError ---------------------------------------------------
+  onError(data, callback) {
+    this.request({ url: 'index/onerror', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
 
 }
 

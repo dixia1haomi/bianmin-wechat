@@ -1,6 +1,8 @@
 import { Api } from '../../utils/Api.js'
+import { Utils } from '../../utils/utils.js'
 
 const api = new Api()
+const utils = new Utils()
 const app = getApp()
 
 Page({
@@ -83,8 +85,10 @@ Page({
   // 留言确定
   liuyan_queding_(e) {
 
-    // * 验证input内容
+    // 检查换行符
     let input = this.data.input
+    input = utils.checkHuanHangFu(input)
+    // 验证input内容
     if (!input || input.length > 50) {
       wx.showModal({ content: '长度请控制在1-50个字之间', showCancel: false })
       return
@@ -94,7 +98,7 @@ Page({
     // 新增留言
     api.createBianminLiuyan({
       bmxx_id: this.data.bianmin_id,
-      neirong: input,
+      neirong: new_input,
       form_id: e.detail.formId
     }, (back) => {
       console.log('新增留言OK', back)
@@ -105,6 +109,7 @@ Page({
     // 关闭弹窗
     this.tanchuang_()
   },
+
 
 
   // 打开地图

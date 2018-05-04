@@ -1,7 +1,7 @@
 import { Api } from '../../utils/Api.js'
-// import { Base } from '../../utils/Base.js'
+import { Utils } from '../../utils/utils.js'
 
-// const base = new Base()
+const utils = new Utils()
 const api = new Api()
 const app = getApp()
 
@@ -11,17 +11,11 @@ Page({
 
   data: {
     Res: [],
-
-    // 文章列表
-    shangjiaList: [],
-    // 展开折叠
-    isFold: true,
-    // 上拉更多
-    noData: false,
-    // 登陆弹窗
-    loginTanChuang: false,
-    // form_id
-    form_id: null,
+    shangjiaList: [],           // 商家列表
+    isFold: true,               // 展开折叠
+    noData: false,              // 上拉更多
+    loginTanChuang: false,      // 登陆弹窗
+    form_id: null,              // form_id
 
     // ---- 留言回复 ----
     tanChuang: false,
@@ -31,25 +25,24 @@ Page({
     // ---- 留言 ----
     bianmin_id: null,
     bianmin_index: null,
+  },
+
+
+  // 检查换行符
+  qwe() {
 
   },
 
-  // -----
 
-  // asd_() {
-  //   console.log('')
-  // },
 
 
   // ------------------------------------------------- 留言 -------------------------------------------------
 
-  // 弹窗开关事件(清空input、bmxx_id)
+  // 弹窗开关事件(清空input)
   tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
 
   // 留言、回复输入事件
-  liuyan_input_(e) {
-    this.setData({ input: e.detail.value, input_cursor: e.detail.cursor })
-  },
+  liuyan_input_(e) { this.setData({ input: e.detail.value, input_cursor: e.detail.cursor }) },
 
   // ---- 留言事件 ----
   liuyan_(e) {
@@ -58,7 +51,6 @@ Page({
       this.setData({
         bianmin_id: e.currentTarget.dataset.bianmin_id,
         bianmin_index: e.currentTarget.dataset.index,
-        // liuyan_title: this.data.Res[e.currentTarget.dataset.index].nick_name  // 弹窗title显示留言给谁
       })
     } else {
       // 登陆弹窗
@@ -66,51 +58,38 @@ Page({
     }
   },
 
-  // 留言确定
+  // ---- 留言确定 ----
   liuyan_queding_(e) {
-
-    // * 验证input内容
+    console.log('formId', e.detail.formId)
+    // 检查换行符
     let input = this.data.input
+    input = utils.checkHuanHangFu(input)
+    // 验证input内容
     if (!input || input.length > 50) {
       wx.showModal({ content: '长度请控制在1-50个字之间', showCancel: false })
       return
     }
-
-    console.log('formId', e.detail.formId)
     // 新增留言
     api.createBianminLiuyan({
       bmxx_id: this.data.bianmin_id,
-      neirong: input,
+      neirong: new_input,
       form_id: e.detail.formId
     }, (back) => {
       console.log('新增留言OK', back)
       // 刷新
       this.setData({ ['Res[' + this.data.bianmin_index + ']']: back.data })
     })
-
     // 关闭弹窗
     this.tanchuang_()
   },
+
 
   // -------------------------------------------- onLoad --------------------------------------
 
   onLoad: function (op) {
     this._load()
-    this._getShangjiaList()
+    // this._getShangjiaList()
   },
-
-
-  // 获取商家列表
-  _getShangjiaList() {
-    api.selectShangjia({}, res => {
-      console.log('商家列表', res)
-      this.setData({ shangjiaList: res.data })
-    })
-  },
-
-  // 去商家列表页
-  go_shangjiaList_() { wx.navigateTo({ url: '/pages/shangjia/list' }) },
-
 
   // 请求数据
   _load(callback) {
@@ -124,6 +103,19 @@ Page({
     })
   },
 
+  // 获取商家列表
+  _getShangjiaList() {
+    api.selectShangjia({}, res => {
+      console.log('商家列表', res)
+      this.setData({ shangjiaList: res.data })
+    })
+  },
+
+  // 去商家列表页
+  go_shangjiaList_() { wx.navigateTo({ url: '/pages/shangjia/list' }) },
+
+  // 商家横向滚动视图 
+  scroll(e) { wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id }) },
 
   // 去我的页
   go_wode() { wx.navigateTo({ url: '/pages/wode/index' }) },
@@ -131,13 +123,8 @@ Page({
   // 预览
   yulan_(e) {
     console.log('预览', e.currentTarget.dataset)
-    let img = e.currentTarget.dataset.img
-    let index = e.currentTarget.dataset.index
-    let arr = []
-    for (let i in img) {
-      arr.push(img[i].url)
-    }
-    console.log('arr', arr, arr[index])
+    let img = e.currentTarget.dataset.img, index = e.currentTarget.dataset.index, arr = []
+    for (let i in img) { arr.push(img[i].url) }
 
     wx.previewImage({
       current: arr[index], // 当前显示图片的http链接
@@ -147,7 +134,6 @@ Page({
 
   // 打开地图
   dizhi_(e) {
-    console.log('地址', e.currentTarget.dataset)
     wx.openLocation({
       latitude: parseFloat(e.currentTarget.dataset.latitude),
       longitude: parseFloat(e.currentTarget.dataset.longitude),
@@ -159,7 +145,6 @@ Page({
   // 展开，折叠
   flodFn_: function (e) {
     let index = e.currentTarget.dataset.index, res = this.data.Res
-
     // 如果hid是初始的false,允许改成true
     if (res[index].hid == false) {
       var param = {};
@@ -177,23 +162,15 @@ Page({
 
 
   // 拨打电话
-  call_phone_(e) {
-    console.log('拨打电话', e.currentTarget.id)
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.id //仅为示例，并非真实的电话号码
-    })
-  },
+  call_phone_(e) { wx.makePhoneCall({ phoneNumber: e.currentTarget.id }) },
 
 
-
-  // ---------------------------- 登陆 -----------------------------
+  // -------------------------------------------------------- 登陆 ---------------------------------------------------------
   // 关闭登陆弹窗
   loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
 
   // formid
-  getFormId_(e) {
-    this.setData({ form_id: e.detail.formId })
-  },
+  getFormId_(e) { this.setData({ form_id: e.detail.formId }) },
 
   // 获得用户信息登陆成功后关闭弹窗
   getUserInfo_(e) {
@@ -206,13 +183,6 @@ Page({
       }
       this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
     }
-  },
-
-
-  // --------------------------- 商家横向滚动视图 ----------------------------
-  scroll(e) {
-    console.log('scroll', e.currentTarget.id)
-    wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id })
   },
 
 
@@ -252,11 +222,5 @@ Page({
   },
 
   // 分享
-  onShareAppMessage: function () {
-    return {
-      title: '',
-      path: '/pages/index/index1'
-    }
-  }
-
+  onShareAppMessage: function () { return { title: '', path: '/pages/index/index1' } }
 })

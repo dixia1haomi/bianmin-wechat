@@ -1,6 +1,8 @@
 import { Api } from '../../utils/Api.js'
+import { Utils } from '../../utils/utils.js'
 
 const api = new Api()
+const utils = new Utils()
 const app = getApp()
 
 Page({
@@ -62,8 +64,10 @@ Page({
   // 回复确定
   huifu_queding_(e) {
 
-    // * 验证input内容
+    // 检查换行符
     let input = this.data.input
+    input = utils.checkHuanHangFu(input)
+    // 验证input内容
     if (!input || input.length > 50) {
       wx.showModal({ content: '长度请控制在1-50个字之间', showCancel: false })
       return
@@ -74,7 +78,7 @@ Page({
     api.createBianminHuifu({
       liuyan_id: this.data.liuyan_id,             // 这个回复属于那条留言，写入回复表
       huifu_user_id: this.data.huifu_user_id,     // 被回复人，写入回复表
-      neirong: input,                             // 回复内容，写入回复表
+      neirong: new_input,                             // 回复内容，写入回复表
       form_id: e.detail.formId,                   // 写入便民信息表，有留言再次提醒
       bmxx_id: this.data.bmxx_id                  // 省得服务器多查一次留言表
     }, (back) => {
@@ -86,6 +90,7 @@ Page({
     // 关闭弹窗
     this.tanchuang_()
   },
+
 
   // ---------------------------- 登陆 -----------------------------
   // 关闭登陆弹窗

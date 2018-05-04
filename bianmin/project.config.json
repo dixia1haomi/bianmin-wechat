@@ -34,8 +34,8 @@
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/bmxx/detail",
-					"query": "id=95"
+					"pathName": "pages/exception/exception",
+					"query": ""
 				}
 			]
 		}

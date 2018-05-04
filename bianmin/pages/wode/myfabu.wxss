@@ -99,6 +99,7 @@
 }
 
 .liuyan {
+  font-size: 32rpx;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
 }

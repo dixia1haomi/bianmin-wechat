@@ -16,42 +16,16 @@ class Base {
         'token_key': wx.getStorageSync('token_key')
       },
       success(res) {
-        console.log('base', res)
-
-        // * 解密userinfo失败
-        // * token超时（跳转指定页重新登陆）
-
-
-        // if (res.statusCode == 200) {
-        //   // 成功
-        // if (res.data.errorCode == 0) {
-          params.sCallback && params.sCallback(res.data)
-        // }
+        params.sCallback && params.sCallback(res.data)
         // Token类错误(缓存过期引起的)，40000
         if (res.data.errorCode == 40000 && !noRefetch) {
           that._refetch(params)
         }
-        // else{
-        //   console.log('base-errorCode不等于0')
-        // }
-        //   else if (res.data.errorCode == 40000 && !noRefetch) {
-        //     that._refetch(params)
-        //   }
-        //   // errorCode不等于0，* 错误页并记录日志
-        //   else {
-        //     // wx.navigateTo({ url: '/pages/exception/exception?code=' + 'errorCode不等于0' })
-        //   }
-        // } else {
-        //   console.log('Base基类请求失败，statusCode不等于200', res)
-        //   // statusCode不等于200,可能是请求成功，但是出现了错误
-        //   // wx.navigateTo({ url: '/pages/exception/exception?code=' + 'statusCode不等于200' })
-        // }
-
       },
       fail(err) {
         // 提示-请检查网络状态-重试(*)
         console.log('Base基类请求失败,进入fail')
-        // wx.navigateTo({ url: '/pages/exception/exception?code=' + 'basefail' })
+        wx.navigateTo({ url: '/pages/exception/exception' })
       }
     })
   }
@@ -75,32 +49,32 @@ class Base {
 
 
   // --------授权用户信息-userinfo------
-  authorize_userinfo(callBack) {
-    wx.getSetting({
-      success: (res) => {
-        if (!res.authSetting['scope.userInfo']) {
-          console.log('base-没有授权用户信息')
-          // 提前授权
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success() {
-              // 用户已经同意
-              callBack && callBack(true)
-            },
-            fail() {
-              wx.openSetting({ success: (res) => { if (res.authSetting['scope.userInfo']) { callBack && callBack(true) } } })
-            }
-          })
-        } else {
-          callBack && callBack(true)
-        }
-      },
-      fail: (err) => {
-        console.log('base-授权用户信息进入fail', err)
-        wx.showToast({ title: '微信授权失败' })
-      }
-    })
-  }
+  // authorize_userinfo(callBack) {
+  //   wx.getSetting({
+  //     success: (res) => {
+  //       if (!res.authSetting['scope.userInfo']) {
+  //         console.log('base-没有授权用户信息')
+  //         // 提前授权
+  //         wx.authorize({
+  //           scope: 'scope.userInfo',
+  //           success() {
+  //             // 用户已经同意
+  //             callBack && callBack(true)
+  //           },
+  //           fail() {
+  //             wx.openSetting({ success: (res) => { if (res.authSetting['scope.userInfo']) { callBack && callBack(true) } } })
+  //           }
+  //         })
+  //       } else {
+  //         callBack && callBack(true)
+  //       }
+  //     },
+  //     fail: (err) => {
+  //       console.log('base-授权用户信息进入fail', err)
+  //       wx.showToast({ title: '微信授权失败' })
+  //     }
+  //   })
+  // }
 
   // -------- 授权地理位置 ---------
   authorize_userLocation(callBack) {

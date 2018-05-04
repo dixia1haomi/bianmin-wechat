@@ -1,4 +1,7 @@
 import { Api } from '../../utils/Api.js'
+import { Utils } from '../../utils/utils.js'
+
+const utils = new Utils()
 const api = new Api()
 
 Page({
@@ -28,7 +31,10 @@ Page({
 
   // 提交
   tijiao_() {
-    api.xiugaiNeirong({ id: this.data.Res.id, neirong: this.data.neirong }, res => {
+    // 处理换行符
+    let neirong = utils.checkHuanHangFu2_1(this.data.neirong)
+    // 请求
+    api.xiugaiNeirong({ id: this.data.Res.id, neirong: neirong }, res => {
       console.log('xiugaiNeirong', res)
       wx.navigateBack({ delta: 1 })
     })

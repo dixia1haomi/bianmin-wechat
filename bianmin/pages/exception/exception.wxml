@@ -1,2 +1,2 @@
-<!--pages/exception/exception.wxml-->
-<text>pages/exception/exception.wxml</text>
+
+<view class="title">网络状态不佳.</view>

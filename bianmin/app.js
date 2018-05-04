@@ -21,6 +21,12 @@ App({
     LoginState: false,   // 登陆状态
   },
 
+  onError: function (msg) {
+    console.log('app.onError', msg)
+    // 错误请求到服务器
+    api.onError({ msg: msg })
+  },
+
 
   onLaunch: function (op) {
     console.log('app op', op)

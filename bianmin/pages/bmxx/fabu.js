@@ -3,11 +3,13 @@ import { Api } from '../../utils/Api.js'
 import { Base } from '../../utils/Base.js'
 import { Cos } from '../../utils/Cos.js'
 import { Config } from '../../utils/Config.js'
+import { Utils } from '../../utils/utils.js'
 
 import WxValidate from '../../validate/WxValidate.js'
 
 const cos = new Cos()
 const api = new Api()
+const utils = new Utils()
 const app = getApp()
 
 //---------------------------------------------- 验证 ----------------------------------------------------
@@ -159,6 +161,8 @@ Page({
   // tijiao
   tijiao(e) {
     console.log('tijiao', e.detail.formId)
+
+
     // 给服务器的参数，user_id服务器获取
     let params = {
       leibie: this.data.leimuObj[this.data.index].leimu,
@@ -169,6 +173,8 @@ Page({
       latitude: this.data.latitude,
       form_id: e.detail.formId
     }
+    // 处理换行符
+    params.neirong = utils.checkHuanHangFu2_1(params.neirong)
     console.log('params', params)
 
     // 传入表单数据，调用验证方法
@@ -207,6 +213,7 @@ Page({
       })
     }
   },
+
 
 
 
