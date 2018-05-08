@@ -1,0 +1,132 @@
+<view class='base' data-index='{{resindex}}'>
+
+  <!-- 头像 -->
+  <view class='user'>
+    <text class='leibie'>{{Res.leibie}}</text>
+
+    <view class='user-1' catchtap=''>
+      <image class='avatar' src='{{Res.avatar_url}}'></image>
+      <view class='name-time'>
+        <view class='nick-name'>{{Res.nick_name}}</view>
+        <view class='time'>{{Res.time}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 信息 -->
+  <view class='xinxi'>
+
+    <!-- 内容 -->
+    <view class="{{Res.hid ?'':'flod' }}">
+      <!-- id用于获取内容实际高度 -->
+      <text style='color: #2c2c2c;'>{{Res.neirong}}</text>
+    </view>
+
+    <!-- 开展提示 -->
+    <view class='xinxi-tishi'>
+      <text class="iconfont icon-zhankai .touming"></text>
+    </view>
+
+    <!-- 配图 -->
+    <view class='img-view'>
+      <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
+        <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
+      </block>
+    </view>
+
+
+    <!-- 地址 -->
+    <view class='dizhi'>
+      <!-- <text class='iconfont icon-dizhi' /> -->
+      <text catchtap='dizhi_' data-longitude='{{Res.longitude}}' data-latitude='{{Res.latitude}}' data-address='{{Res.address}}'>{{Res.address}}</text>
+    </view>
+
+  </view>
+
+
+  <block wx:if="{{Res.hid == true}}">
+    <!-- 脚部按钮栏 -->
+    <view class='info'>
+      <!-- 浏览量 -->
+      <view class='liulangcishu'>
+        <text class='iconfont icon-yueduliang' />
+        <text> {{Res.liulangcishu}}</text>
+      </view>
+
+      <!-- 电话 -->
+      <view class='dianhua' id='{{Res.phone}}' catchtap='call_phone_'>
+        <text class='iconfont icon-phone' />
+        <text> 电话</text>
+      </view>
+
+      <!-- 留言弹窗事件携带信息ID -->
+      <view class='liuyananniu' catchtap='liuyan_' data-bianmin_id='{{Res.id}}' data-index='{{resindex}}'>
+        <text class='iconfont icon-liuyan' />
+        <text> 留言</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 留言回复块 -->
+  <block wx:if="{{Res.with_liuyan.length > 0}}">
+    <view class='liuyan-base'>
+      <block wx:for="{{Res.with_liuyan}}" wx:for-item="liuyan" wx:key="">
+
+        <view class='liuyan'>
+
+          <view>
+            <text style='color: #007aff;'>{{liuyan.nick_name}}</text>
+            <text>：{{liuyan.neirong}}</text>
+          </view>
+
+          <!-- 二级回复 -->
+          <view class='liuyan-huifu'>
+            <block wx:for="{{liuyan.liuyanwith_huifu}}" wx:for-item="huifu" wx:key="">
+              <view>
+                <text style='color: #007aff;'>{{huifu.user}}</text>
+                <text style='color: #808080;'> 回复 </text>
+                <text style='color: #007aff;'>{{huifu.hf_user}}</text>
+                <text>：{{huifu.neirong}}</text>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+
+</view>
+
+<!-- 帮顶 -->
+<view class='dingzhi'>
+  <block wx:if="{{dingzhijilu == false}}">
+    <button catchtap='createBmxxDingZhi_' id='{{Res.id}}'>帮他增加顶置时间</button>
+  </block>
+  <block wx:else>
+    <navigator url='/pages/index/index1' open-type='reLaunch'>
+      <button catchtap=''>去首页逛逛</button>
+    </navigator>
+  </block>
+  <view class='liebiao'>
+    <view class='title'>—— 好友帮顶榜 ——</view>
+    <block wx:for="{{Res.with_bangdinguser}}" wx:key="">
+      <view class='name'>{{item.nick_name}}</view>
+    </block>
+  </view>
+</view>
+
+
+<!-- 登陆弹窗 -->
+<block wx:if="{{loginTanChuang}}">
+  <view class="loginTanChuang-mask">
+    <view class='loginTanChuang'>
+      <text class='loginTanChuang-title'>请先登陆</text>
+      <view class='loginTanChuang-XuanXiang'>
+        <button catchtap='loginTanChuangQuXiao_'>取消</button>
+        <form report-submit bindsubmit='getFormId_'>
+          <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN'>确定</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</block>

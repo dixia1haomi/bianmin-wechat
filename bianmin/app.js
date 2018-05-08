@@ -7,13 +7,10 @@ const api = new Api()
 // 全屏模式
 // "navigationStyle": "custom"
 
-// 未完成事项
-// * 分页 / 初步完成，找找内容提示展开的其他实现办法
-
-// 4/20
-// * 商家列表分页，显示没有更多
-// * base基类异常处理，服务器异常记录
-// * 用token_key取缓存中的token失败，来自get_Token_Value_Vars，出现提示重新登陆
+// * erweimafenxiangye
+// * 留言
+// * 电话
+// * 服务器删除信息一起删除帮顶记录
 
 App({
 

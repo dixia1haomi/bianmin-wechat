@@ -5,6 +5,35 @@ class Api extends Base {
     super()
   }
 
+  // ---------------------- 二维码 ------------------------
+  shengChengErWeiMa(data, callback) {
+    wx.showLoading({ title: '生成中', mask: true })
+    this.request({
+      url: 'index/erweima', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        if (res.msg == 'ok') {
+          wx.showModal({
+            title: '制作完成',
+            content: '点击海报放大后长按保存到相册，即可分享给好友，每个好友能帮你增加一天顶置时间',
+            showCancel: false
+          })
+          callback && callback(res.data)
+        } else {
+          wx.showModal({
+            title: '制作失败',
+            content: '已上传至服务器尽快修复',
+            showCancel: false
+          })
+        }
+      }
+    })
+  }
+
+  // 增加便民信息顶置
+  createBmxxDingZhi(data, callback) {
+    this.request({ url: 'index/createbmxxdingzhi', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
   // 获取便民信息列表
   getList(data, callback) {
     wx.showLoading({ title: '加载中', mask: true })

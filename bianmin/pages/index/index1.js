@@ -28,10 +28,7 @@ Page({
   },
 
 
-  // 检查换行符
-  qwe() {
 
-  },
 
 
 
@@ -72,7 +69,7 @@ Page({
     // 新增留言
     api.createBianminLiuyan({
       bmxx_id: this.data.bianmin_id,
-      neirong: new_input,
+      neirong: input,
       form_id: e.detail.formId
     }, (back) => {
       console.log('新增留言OK', back)
@@ -87,8 +84,46 @@ Page({
   // -------------------------------------------- onLoad --------------------------------------
 
   onLoad: function (op) {
+    console.log('q', op)
+    var scene = decodeURIComponent(op.scene)
+    console.log('index1-scene', scene)
     this._load()
     // this._getShangjiaList()
+    // this.erweima()
+  },
+
+
+
+
+  // 保存到相册
+  save_() {
+    wx.getImageInfo({
+      src: this.data.img,
+      success: function (res) {
+        console.log('getImageInfo', res.path)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success: (save) => {
+            console.log('save_', save)
+            wx.showModal({
+              title: '存图成功',
+              content: '图片成功保存到相册了，去发圈噻~',
+              showCancel: false,
+              confirmText: '好哒',
+              confirmColor: '#72B9C3',
+              success: function (res1) {
+                if (res1.confirm) {
+                  console.log('用户点击确定');
+                }
+              }
+            })
+          },
+          fail: (err) => {
+            console.log('save_', err)
+          }
+        })
+      }
+    })
   },
 
   // 请求数据

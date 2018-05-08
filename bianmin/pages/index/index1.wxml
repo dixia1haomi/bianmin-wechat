@@ -7,6 +7,8 @@
   <!-- <contact-button type="default-dark" size="25"></contact-button> -->
 </view>
 
+<!-- <image src='{{img}}'></image> -->
+ <!-- <button catchtap='save_'>保存到相册</button>  -->
 
 <!-- 本地商家 -->
 <!-- <view class='scroll'>
@@ -32,10 +34,13 @@
     <view class='user'>
       <text class='leibie'>{{item.leibie}}</text>
 
-      <view class='user-1' catchtap='qwe'>
+      <view class='user-1' catchtap=''>
         <image class='avatar' src='{{item.avatar_url}}'></image>
         <view class='name-time'>
-          <view class='nick-name'>{{item.nick_name}}</view>
+          <view class='nick-name'>
+            <text>{{item.nick_name}}</text>
+            <text wx:if="{{item.dingzhi_state == 1}}" class='dingzhi'>顶置</text>
+          </view>
           <view class='time'>{{item.time}}</view>
         </view>
       </view>

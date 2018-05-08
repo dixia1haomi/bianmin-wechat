@@ -21,24 +21,70 @@ Page({
     tanChuang: false,
     input: null,
     input_cursor: 0,
+
+    fenxiangTanChuang: false,  // 分享弹窗
+    haibaoImg: '',             // 海报图片
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  },
-
-
-  onShow: function (qq) {
     // 如果是跳过首页直接进入这个页面app.onLaunch不会请求token，主动请求回调后再_load(需要携带token)
     app.checkToken(() => {
       this._load()
     })
   },
 
-  // ------------------------------------------------- 回复 -------------------------------------------------
 
+  onShow: function (qq) {
+  },
+
+  // --------------------------------------- 转发、分享 ---------------------------------------
+  // --- 分享弹窗 ---
+  fenxiangTanChuang_Kai_() { this.setData({ fenxiangTanChuang: true }) },
+  fenxiangTanChuang_Guan_() { this.setData({ fenxiangTanChuang: false }) },
+
+  // ----- 海报 ----- 
+  shengChengHaiBao_(e) {
+    api.shengChengErWeiMa({ scene: 'bmxx=' + e.currentTarget.id }, back => {
+      console.log('erweima', back)
+      // 显示图片
+      this.setData({ haibaoImg: 'https://bianmin.qujingdaishuyanxuan.org' + back })
+      // 关闭分享弹窗
+      this.fenxiangTanChuang_Guan_()
+    })
+  },
+
+  // 预览海报
+  yulanghaibao_() {
+    let arr = [this.data.haibaoImg]
+    wx.previewImage({
+      current: arr[0], // 当前显示图片的http链接
+      // urls: [this.data.haibaoImg] // 需要预览的图片http链接列表
+      urls: arr // 需要预览的图片http链接列表
+    })
+  },
+
+  // 分享
+  onShareAppMessage: function () {
+    console.log('onShareAppMessage', this.data.Res.id)
+    return {
+      title: '帮我加油',
+      path: '/page/user?id=' + this.data.Res.id,
+      imageUrl: '/img/150.jpg',
+      success: (res) => {
+        // 转发成功,关闭分享弹窗
+        this.fenxiangTanChuang_Guan_()
+      },
+      fail: (res1) => {
+        // 转发失败,关闭分享弹窗
+        this.fenxiangTanChuang_Guan_()
+      }
+    }
+  },
+
+  // ------------------------------------------------- 回复 -------------------------------------------------
 
   // 弹窗开关事件(清空input、bmxx_id)
   tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
@@ -78,7 +124,7 @@ Page({
     api.createBianminHuifu({
       liuyan_id: this.data.liuyan_id,             // 这个回复属于那条留言，写入回复表
       huifu_user_id: this.data.huifu_user_id,     // 被回复人，写入回复表
-      neirong: new_input,                             // 回复内容，写入回复表
+      neirong: input,                             // 回复内容，写入回复表
       form_id: e.detail.formId,                   // 写入便民信息表，有留言再次提醒
       bmxx_id: this.data.bmxx_id                  // 省得服务器多查一次留言表
     }, (back) => {
@@ -123,7 +169,17 @@ Page({
     })
   },
 
+  // ------------------------------------------------- 预览图片 -------------------------------------------------
+  yulan_(e) {
+    console.log('预览', e.currentTarget.dataset)
+    let img = e.currentTarget.dataset.img, index = e.currentTarget.dataset.index, arr = []
+    for (let i in img) { arr.push(img[i].url) }
 
+    wx.previewImage({
+      current: arr[index], // 当前显示图片的http链接
+      urls: arr // 需要预览的图片http链接列表
+    })
+  },
 
   // ------------------------------------------------- 修改 -------------------------------------------------
   go_xiugai_() {

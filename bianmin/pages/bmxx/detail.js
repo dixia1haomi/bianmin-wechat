@@ -49,6 +49,8 @@ Page({
   // ---------------------------- onLoad -----------------------------
   onLoad: function (op) {
     console.log('q', op)
+    var scene = decodeURIComponent(op.scene)
+    console.log('index1-scene', scene)
     this._load(op.id)
   },
 
@@ -98,7 +100,7 @@ Page({
     // 新增留言
     api.createBianminLiuyan({
       bmxx_id: this.data.bianmin_id,
-      neirong: new_input,
+      neirong: input,
       form_id: e.detail.formId
     }, (back) => {
       console.log('新增留言OK', back)

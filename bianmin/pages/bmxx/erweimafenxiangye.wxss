@@ -1,0 +1,133 @@
+.base {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1px;
+  margin: 0 0 20rpx 0;
+  padding: 20rpx;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user-1 {
+  display: flex;
+}
+
+.avatar {
+  height: 66rpx;
+  width: 66rpx;
+  border-radius: 50%;
+}
+
+.leibie {
+  padding: 8rpx 20rpx 8rpx 20rpx;
+  border: 4rpx solid tomato;
+  font-weight: 600;
+  margin-right: 20rpx;
+}
+
+.name-time {
+  margin-left: 20rpx;
+}
+
+.nick-name {
+  font-size: 28rpx;
+  color: #007aff;
+}
+
+.time {
+  color: #808080;
+  font-size: 24rpx;
+}
+
+/* 信息 */
+
+.xinxi {
+  flex: 1;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.xinxi-tishi {
+  text-align: center;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.touming {
+  opacity: 0;
+}
+
+/* 配图 */
+
+.img-view {
+  width: 100%;
+  overflow: hidden;
+}
+
+.img {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+/* 地址 */
+
+.dizhi {
+  margin: 10rpx 0 10rpx 0;
+  font-size: 28rpx;
+  color: #007aff;
+}
+
+.info {
+  color: #007aff;
+  border-top: 1rpx dashed #e5e5e5;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.liulangcishu {
+  color: #808080;
+  flex: 1;
+  padding-top: 20rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+.dianhua {
+  flex: 1;
+  padding-top: 20rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+.liuyananniu {
+  flex: 1;
+  padding-top: 20rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+/* 留言 */
+
+.liuyan-base {
+  padding: 0 10rpx 0 10rpx;
+  margin-top: 20rpx;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+  background-color: #e5e5e5;
+}
+
+.liuyan {
+  /* padding: 10rpx; */
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.liuyan-huifu {
+  margin-left: 30rpx;
+}
+
