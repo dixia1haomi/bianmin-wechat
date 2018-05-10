@@ -6,70 +6,11 @@
   background-color: #fff;
 }
 
-.base {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  border-radius: 1px;
-  margin: 20rpx 0 20rpx 0;
-}
-
-.user {
-  display: flex;
-  align-items: center;
-  padding: 20rpx;
-}
-
-.avatar {
-  height: 66rpx;
-  width: 66rpx;
-  border-radius: 50%;
-  margin-left: 20rpx;
-}
-
-.leibie {
-  color: #808080;
-  padding: 8rpx 20rpx 8rpx 20rpx;
-  border: 1rpx solid tomato;
-}
-
-.name-time {
-  margin-left: 20rpx;
-}
-
-.nick-name {
-  font-size: 28rpx;
-  color: #007aff;
-}
-
-.time {
-  color: #808080;
-  font-size: 24rpx;
-}
-
-.xinxi {
-  flex: 1;
-  position: relative;
-}
-
-.img-view {
-  width: 100%;
-  margin-top: 60rpx;
-  overflow: hidden;
-}
-
-.img {
-  width: 160rpx;
-  height: 160rpx;
-  margin-left: 20rpx;
-  border-radius: 4rpx;
-}
-
 .info {
   color: #007aff;
-  padding-top: 20rpx;
+  padding-top: 40rpx;
   padding-bottom: 20rpx;
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
   border-top: 1rpx dashed #e5e5e5;
   font-size: 30rpx;
   display: flex;
@@ -86,7 +27,6 @@
 
 .liuyan-base {
   padding: 20rpx;
-  /* margin-top: 20rpx; */
   border-radius: 4rpx;
   font-size: 28rpx;
   background-color: #e5e5e5;
@@ -120,4 +60,139 @@
   text-align: center;
   color: #fff;
   font-weight: 700;
+}
+
+
+/* ------------------------------ 帮顶置 ------------------------------ */
+
+.dingzhi {
+   text-align: center; 
+  background-color: #fff;
+  padding: 40rpx;
+}
+
+.dingzhi .shuoming{
+  font-size: 26rpx;
+  color: #808080;
+  padding: 20rpx 50rpx 20rpx 50rpx;
+}
+
+.dingzhi .haibaoimg {
+  width: 670rpx;
+  height: 820rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.dingzhi .liebiao {
+  margin-top: 40rpx;
+  padding: 20rpx 0 20rpx 0;
+  border: 1rpx dashed #808080;
+}
+
+.dingzhi .dingzhi-title {
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.dingzhi .user{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    margin-bottom: 10rpx;
+}
+
+.dingzhi .dingzhi-img{
+  height: 40rpx;
+  width: 40rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.dingzhi .name {
+  font-size: 30rpx;
+  padding-bottom: 4rpx;
+}
+
+.dingzhi button {
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.dingzhi button::after {
+  border: none;
+}
+
+
+/* ------------------------------ 回复弹窗-------------------------------- */
+
+.liuyan-huifu-tanchuang {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.tanchuang-block {
+  width: 700rpx;
+  height: 660rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-top: 200rpx;
+}
+
+.tanchuang-block .tanchuang-block-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  padding: 20rpx 0 20rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.tanchuang-block .tips {
+  text-align: center;
+  font-size: 26rpx;
+  color: #808080;
+  margin-top: 20rpx;
+}
+
+.tanchuang-block .tanchuang-textarea {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.tanchuang-textarea textarea {
+  background-color: aliceblue;
+  height: 200rpx;
+  position: relative;
+}
+
+.tanchuang-textarea text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
+}
+
+.tanchuang-input-fool {
+  margin-top: 40rpx;
+}
+
+.tanchuang-input-fool button {
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.tanchuang-input-fool button::after {
+  border: none;
 }

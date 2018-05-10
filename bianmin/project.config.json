@@ -29,13 +29,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/bmxx/erweimafenxiangye",
-					"query": "scene=115&id=115"
+					"pathName": "pages/index/index2",
+					"query": "",
+					"scene": "1048"
 				}
 			]
 		}

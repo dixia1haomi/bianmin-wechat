@@ -12,10 +12,6 @@ Page({
    */
   data: {
     Res: false,
-    // 登陆弹窗
-    loginTanChuang: false,
-    // form_id
-    form_id: null,
 
     // ---- 回复 ----
     tanChuang: false,
@@ -37,8 +33,6 @@ Page({
   },
 
 
-  onShow: function (qq) {
-  },
 
   // --------------------------------------- 转发、分享 ---------------------------------------
   // --- 分享弹窗 ---
@@ -47,10 +41,27 @@ Page({
 
   // ----- 海报 ----- 
   shengChengHaiBao_(e) {
-    api.shengChengErWeiMa({ scene: 'bmxx=' + e.currentTarget.id }, back => {
+    api.shengChengErWeiMa({ scene: e.currentTarget.id }, back => {
       console.log('erweima', back)
-      // 显示图片
-      this.setData({ haibaoImg: 'https://bianmin.qujingdaishuyanxuan.org' + back })
+      if (back.msg == 'ok') {
+        // 显示图片
+        this.setData({ haibaoImg: 'https://bianmin.qujingdaishuyanxuan.org' + back.data })
+        // 提示
+        wx.showModal({
+          title: '制作完成',
+          content: '长按保存到相册，即可分享给好友，每个好友能帮你增加一天顶置时间',
+          showCancel: false,
+          success: () => {
+            this.yulanghaibao_()
+          },
+        })
+      } else {
+        wx.showModal({
+          title: '制作失败',
+          content: '请使用直接分享给好友或群',
+          showCancel: false
+        })
+      }
       // 关闭分享弹窗
       this.fenxiangTanChuang_Guan_()
     })
@@ -87,7 +98,7 @@ Page({
   // ------------------------------------------------- 回复 -------------------------------------------------
 
   // 弹窗开关事件(清空input、bmxx_id)
-  tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null }) },
+  tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null, input_cursor: 0 }) },
 
   // 回复输入事件
   huifu_input_(e) { this.setData({ input: e.detail.value, input_cursor: e.detail.cursor }) },
@@ -138,27 +149,6 @@ Page({
   },
 
 
-  // ---------------------------- 登陆 -----------------------------
-  // 关闭登陆弹窗
-  loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
-
-  // formid
-  getFormId_(e) {
-    this.setData({ form_id: e.detail.formId })
-  },
-
-  // 获得用户信息登陆成功后关闭弹窗
-  getUserInfo_(e) {
-    if (e.detail.errMsg == "getUserInfo:ok") {
-      // 如果有form_id
-      if (this.data.form_id) {
-        e.detail.userInfo.form_id = this.data.form_id
-      } else {
-        e.detail.userInfo.form_id = ''
-      }
-      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
-    }
-  },
 
   // ------------------------------------------------- load -------------------------------------------------
 
@@ -169,17 +159,6 @@ Page({
     })
   },
 
-  // ------------------------------------------------- 预览图片 -------------------------------------------------
-  yulan_(e) {
-    console.log('预览', e.currentTarget.dataset)
-    let img = e.currentTarget.dataset.img, index = e.currentTarget.dataset.index, arr = []
-    for (let i in img) { arr.push(img[i].url) }
-
-    wx.previewImage({
-      current: arr[index], // 当前显示图片的http链接
-      urls: arr // 需要预览的图片http链接列表
-    })
-  },
 
   // ------------------------------------------------- 修改 -------------------------------------------------
   go_xiugai_() {

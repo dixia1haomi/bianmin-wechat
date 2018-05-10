@@ -11,20 +11,7 @@ class Api extends Base {
     this.request({
       url: 'index/erweima', data: data, sCallback: (res) => {
         wx.hideLoading()
-        if (res.msg == 'ok') {
-          wx.showModal({
-            title: '制作完成',
-            content: '点击海报放大后长按保存到相册，即可分享给好友，每个好友能帮你增加一天顶置时间',
-            showCancel: false
-          })
-          callback && callback(res.data)
-        } else {
-          wx.showModal({
-            title: '制作失败',
-            content: '已上传至服务器尽快修复',
-            showCancel: false
-          })
-        }
+        callback && callback(res)
       }
     })
   }

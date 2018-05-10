@@ -70,10 +70,6 @@ Page({
     this.setData({ index: op.leimu })
   },
 
-  // 
-  form_(e) {
-    console.log('form', e.detail)
-  },
 
 
   // 填充模板
@@ -200,16 +196,16 @@ Page({
           })
         }, ok => {
           console.log('ok', ok)
-          // 返回主页
-          wx.reLaunch({ url: '/pages/index/index1' })
+          // 关闭当前页面，跳转到wode/myfabu页
+          wx.redirectTo({ url: '/pages/wode/myfabu' })
         })
       })
     } else {
       // 没图片
       api.createList(params, res => {
         console.log('没图片create', res)
-        // 返回主页
-        wx.reLaunch({ url: '/pages/index/index1' })
+        // 关闭当前页面，跳转到wode/myfabu页
+        wx.redirectTo({ url: '/pages/wode/myfabu' })
       })
     }
   },

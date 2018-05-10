@@ -24,10 +24,18 @@ page {
   color: #808080;
 }
 
-.tijiao {
-  text-align: center;
-  font-size: 36rpx;
-  font-weight: 700;
-  margin-top: 60rpx;
-  color: #007aff;
+.anniu{
+  margin-top: 40rpx;
+}
+
+.anniu button{
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.anniu button::after {
+  border: none;
 }

@@ -11,15 +11,13 @@ Page({
   data: {
     Res: false,
     dingzhijilu: false,  // 顶置记录，顶过显示去首页逛逛
-    loginTanChuang: false,      // 登陆弹窗
-    form_id: null,              // form_id
   },
 
 
   onLoad: function (op) {
     console.log('op', op)
     var scene = decodeURIComponent(op.scene)
-    console.log('index1-scene', scene)
+    console.log('decodeURIComponent-scene', scene)
     this._load(scene)
   },
 
@@ -37,10 +35,20 @@ Page({
       api.createBmxxDingZhi({ id: e.currentTarget.id }, back => {
         console.log('增加顶置时间OK', back)
         if (back.msg === "ok") {
-          wx.showModal({ title: '帮顶成功', showCancel: false })
+          wx.showModal({
+            title: '帮顶成功',
+            content: '感谢使用沾益袋鼠同城+,再次点击按钮可以去首页逛逛。',
+            showCancel: false
+          })
         } else {
-          wx.showModal({ title: '你已经帮他顶过了', showCancel: false })
+          wx.showModal({
+            title: '你已经帮他顶过了',
+            content: '感谢使用沾益袋鼠同城+,再次点击按钮可以去首页逛逛。',
+            showCancel: false
+          })
         }
+        // 刷新(信息ID)
+        this._load(e.currentTarget.id)
         this.setData({ dingzhijilu: true })
       })
     } else {
@@ -49,28 +57,6 @@ Page({
     }
   },
 
-
-  // -------------------------------------------------------- 登陆 ---------------------------------------------------------
-  // 关闭登陆弹窗
-  loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
-
-  // formid
-  getFormId_(e) { this.setData({ form_id: e.detail.formId }) },
-
-  // 获得用户信息登陆成功后关闭弹窗
-  getUserInfo_(e) {
-    if (e.detail.errMsg == "getUserInfo:ok") {
-      // 如果有form_id
-      if (this.data.form_id) {
-        e.detail.userInfo.form_id = this.data.form_id
-      } else {
-        e.detail.userInfo.form_id = ''
-      }
-      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
-    }
-  },
 })
 
-// * 留言
-// * 电话
 // * 服务器删除信息一起删除帮顶记录

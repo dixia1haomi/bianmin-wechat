@@ -33,7 +33,7 @@ class Base {
   // 请求接口失败重试
   _refetch(params) {
     console.log('_refetch,Token错误重试')
-    getApp().getToken((back) => {
+    getApp()._getToken((back) => {
       this.request(params, true);
     });
   }

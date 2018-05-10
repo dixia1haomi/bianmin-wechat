@@ -1,17 +1,241 @@
-/**app.wxss**/
-
-page {
-  height: 100%;
-  background-color: #efefef;
-  /* background-color: tomato; */
-  font-size: 32rpx;
-  letter-spacing: 1rpx;
-  color: #3e3e3e;
+.base {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1px;
+  margin: 0 0 20rpx 0;
+  padding: 20rpx;
 }
 
-/* ------------------------------ 分享弹窗 ------------------------------ */
+/* 用户头像、昵称、顶置 */
 
-.fenxiangTanChuang-mask {
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user-1 {
+  display: flex;
+}
+
+/* 头像 */
+.avatar {
+  height: 66rpx;
+  width: 66rpx;
+  border-radius: 50%;
+}
+
+/* 顶置 */
+.user .dingzhi {
+  background-color: tomato;
+  margin-left: 10rpx;
+  padding: 4rpx;
+  font-size: 22rpx;
+  color: #fff;
+}
+
+/* 时间 */
+.name-time {
+  margin-left: 20rpx;
+}
+
+/* 昵称 */
+.nick-name {
+  font-size: 28rpx;
+  color: #007aff;
+}
+
+.time {
+  color: #808080;
+  font-size: 24rpx;
+}
+
+/* 信息 */
+
+.xinxi {
+  flex: 1;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.xinxileibie{
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.xinxi-tishi {
+  text-align: center;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.touming {
+  opacity: 0;
+}
+
+/* 折叠样式 */
+
+.flod {
+  /* 对象作为伸缩盒子模型显示 */
+  display: -webkit-box;
+  /* 允许任意非CJK(Chinese/Japanese/Korean)文本间的单词断行 */
+  word-break: break-all;
+  /* 设置或检索伸缩盒对象的子元素的排列方式 */
+  -webkit-box-orient: vertical;
+  /* 可显示的最多行数 */
+  -webkit-line-clamp: 3;
+  /* 超出的文本内容隐藏 */
+  overflow: hidden;
+  /* 超出显示省略号 */
+  text-overflow: ellipsis;
+}
+
+/* 配图 */
+
+.img-view {
+  width: 100%;
+  overflow: hidden;
+}
+
+.img {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+/* 地址 */
+
+.dizhi {
+  margin: 10rpx 0 10rpx 0;
+  font-size: 28rpx;
+  color: #007aff;
+}
+
+.info {
+  color: #007aff;
+  border-top: 1rpx dashed #e5e5e5;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.liulangcishu {
+  color: #808080;
+  flex: 1;
+  padding-top: 20rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+.dianhua {
+  flex: 1;
+  padding-top: 20rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+.liuyananniu {
+  flex: 1;
+  padding-top: 20rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+/* 留言 */
+
+.liuyan-base {
+  padding: 0 10rpx 0 10rpx;
+  margin-top: 20rpx;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+  background-color: #e5e5e5;
+}
+
+.liuyan {
+  /* padding: 10rpx; */
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.liuyan-huifu {
+  margin-left: 30rpx;
+}
+
+/* ------------------------------ 留言弹窗-------------------------------- */
+
+.liuyan-huifu-tanchuang {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.tanchuang-block {
+  width: 700rpx;
+  height: 660rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-top: 200rpx;
+}
+
+.tanchuang-block .tanchuang-block-title {
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: 700;
+  padding: 20rpx 0 20rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.tanchuang-block .tips {
+  text-align: center;
+  font-size: 26rpx;
+  color: #808080;
+  margin-top: 20rpx;
+}
+
+.tanchuang-block .tanchuang-textarea {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.tanchuang-textarea textarea {
+  background-color: aliceblue;
+  height: 200rpx;
+  position: relative;
+}
+
+.tanchuang-textarea text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
+}
+
+.tanchuang-input-fool {
+  margin-top: 40rpx;
+}
+
+.tanchuang-input-fool button {
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.tanchuang-input-fool button::after {
+  border: none;
+}
+
+
+/* ------------------------------ 登陆弹窗 -------------------------------- */
+
+.loginTanChuang-mask {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -19,43 +243,47 @@ page {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
+    z-index: 999;
 }
 
-.fenxiangTanChuang-mask .fenxiangTanChuang {
+.loginTanChuang {
   width: 700rpx;
-  height: 500rpx;
+  height: 400rpx;
   background-color: #fff;
   border-radius: 4rpx;
   margin-top: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.fenxiangTanChuang-mask .fenxiangTanChuang-title {
+.loginTanChuang-title {
   text-align: center;
   font-size: 40rpx;
   font-weight: 700;
-  margin-top: 40rpx;
-  margin-bottom: 40rpx;
 }
 
-.fenxiangTanChuang-mask button {
-  border-radius: 50rpx;
-  background-color: tomato;
-  color: #fff;
-  width: 80%;
-  margin-bottom: 20rpx;
+.loginTanChuang-XuanXiang {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 60rpx 60rpx 60rpx;
 }
 
-.fenxiangTanChuang-mask button::after {
-  border: none;
+.loginTanChuang-XuanXiang button {
+  margin: 0;
+  background-color: #fff;
+  color: #007aff;
 }
 
-/* 原来是打开的 */
+.loginTanChuang-XuanXiang button::after {
+  border-radius: 0;
+}
 
-/* @import "/wxParse/wxParse.wxss";  */
 
-/* ----------------------------------------------------------- */
 
-@font-face {
+ /* ----------------------------------------------------------------------------------- */
+
+ @font-face {
   font-family: "iconfont";
   src: url('//at.alicdn.com/t/font_628354_ffsv88tzoteuq5mi.eot?t=1525385430887'); /* IE9*/
   src: url('//at.alicdn.com/t/font_628354_ffsv88tzoteuq5mi.eot?t=1525385430887#iefix') format('embedded-opentype'),
@@ -103,61 +331,4 @@ page {
 
 .icon-zhankai-touming-copy:before {
   content: "\e672";
-}
-
-/* ----------------------------------------------------------- */
-
-/* 带箭头的单行列表 */
-
-.danhang-list {
-  padding: 20rpx;
-  background-color: #fff;
-  /* margin-top: 10rpx; */
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-  font-size: 34rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* flex */
-
-.flex {
-  display: flex;
-}
-
-/* 字体大小 */
-
-.font24 {
-  font-size: 24rpx;
-}
-
-.font28 {
-  font-size: 28rpx;
-}
-
-.font32 {
-  font-size: 32rpx;
-}
-
-.font36 {
-  font-size: 36rpx;
-}
-
-/* view点击态 */
-
-.hover {
-  /* background-color: #e5e5e5; */
-  color: #8a8a8a;
-}
-
-/* 右箭头 */
-
-.youjiantou7 {
-  width: 7px;
-  height: 7px;
-  border-top: 3rpx solid #8a8a8a;
-  border-right: 3rpx solid #8a8a8a;
-  transform: rotate(45deg);
 }

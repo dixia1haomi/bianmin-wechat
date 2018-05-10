@@ -1,0 +1,15 @@
+<!-- 登陆弹窗 -->
+<block wx:if="{{loginTanChuang}}">
+  <view class="loginTanChuang-mask">
+    <view class='loginTanChuang'>
+      <view class='loginTanChuang-title'>登陆</view>
+      <view class='loginTanChuang-tips'>登录态已过期，请重新登陆</view>
+      <view class='loginTanChuang-XuanXiang'>
+        <form report-submit bindsubmit='getFormId_'>
+          <button form-type="submit" open-type='getUserInfo' bindgetuserinfo='getUserInfo_' lang='zh_CN'>确定</button>
+        </form>
+        <button catchtap='loginTanChuangQuXiao_' style='background-color:skyblue;'>取消</button>
+      </view>
+    </view>
+  </view>
+</block>

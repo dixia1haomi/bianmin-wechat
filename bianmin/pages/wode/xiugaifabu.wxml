@@ -7,5 +7,11 @@
     </textarea>
   </view>
 
-  <view wx:if="{{neirong}}" class='tijiao' catchtap='tijiao_'>提交</view>
+  <!-- 确定、取消 -->
+  <view class='anniu'>
+    <button catchtap='tijiao_' disabled="{{neirong?'':'true'}}">提交</button>
+    <navigator open-type='navigateBack' delta="1">
+      <button style='background-color:skyblue;'>取消</button>
+    </navigator>
+  </view>
 </view>

@@ -8,14 +8,13 @@ Page({
 
   data: {
     Res: [],
-    // 登陆弹窗
-    loginTanChuang: false,
-    // form_id
-    form_id: null,
     // 昵称头像
     userinfo: null,
     // 类目
-    leimuObj: Config.moban
+    leimuObj: Config.moban,
+
+    // 登陆窗
+    loginTanChuang: false,
   },
 
 
@@ -23,6 +22,12 @@ Page({
     this._set_UserInfo()      // 设置头像
   },
 
+
+  // --------------------- 登陆组件传回来的事件(关闭登陆弹窗) ---------------------
+  _login(e) {
+    // e.detail.tanchuang == false
+    this.setData({ loginTanChuang: e.detail.tanchuang })
+  },
 
   // -------------------------------------- 设置头像 --------------------------------------
 
@@ -32,31 +37,6 @@ Page({
       if (app.data.LoginState) { this.setData({ userinfo: wx.getStorageSync('userinfo') }) }
     } else {
       app.data.LoginState = false
-    }
-  },
-
-
-  // -------------------------------------- 登陆 --------------------------------------
-
-  // 关闭登陆弹窗
-  loginTanChuangQuXiao_() { this.setData({ loginTanChuang: false }) },
-
-  // formid
-  getFormId_(e) {
-    this.setData({ form_id: e.detail.formId })
-  },
-
-  // 获得用户信息登陆成功后关闭弹窗
-  getUserInfo_(e) {
-    if (e.detail.errMsg == "getUserInfo:ok") {
-      // 如果有form_id
-      if (this.data.form_id) {
-        e.detail.userInfo.form_id = this.data.form_id
-      } else {
-        e.detail.userInfo.form_id = ''
-      }
-      // // 登陆成功后设置头像
-      this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail, () => { this._set_UserInfo() }) })
     }
   },
 
