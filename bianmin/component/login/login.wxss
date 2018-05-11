@@ -39,7 +39,6 @@
 }
 
 .loginTanChuang-XuanXiang button {
-
   margin-bottom: 20rpx;
   width: 80%;
   border-radius: 50rpx;

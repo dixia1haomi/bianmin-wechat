@@ -1,59 +1,57 @@
-<view>
+<view class='title'>发布信息</view>
+<!-- <block wx:if="{{!xuanzeleimu_kaiguan}}"> -->
+<view class='page'>
 
-  <view class='neirong'>
+  <!-- <view class='title'>{{leimuObj[index].leimu}}</view> -->
+  <!-- <view class='title' catchtap='leimu_kaiguan_'>类目选择</view> -->
+  <!-- 类目选择 -->
+  <view class='danhang-list leimu' style='margin-top:10rpx;margin-bottom:10rpx;' catchtap='leimu_kaiguan_'>
+    <view class=''>类目：{{leimuDate.name || '请选择类目'}}</view>
+    <view class='youjiantou7'></view>
+  </view>
 
-    <view class='title'>{{leimuObj[index].leimu}}</view>
-
-    <view class='textarea'>
-      <textarea class='textarea-1' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充一些基本信息，请自行删改.." value='{{textareaValue}}'>
+  <view class='text'>
+    <!-- 输入框 -->
+    <view class='textarea-base' hidden='{{xuanzeleimu_kaiguan}}'>
+      <textarea class='textarea' bindinput="text" maxlength='200' placeholder="点击下面的[填充模板]可以自动填充一些基本信息，请自行删改.." value='{{leimuDate.value2[leimuDateValue2_index].moban}}'>
         <text class='cursor'>{{textarea.cursor+'/200'}}</text>
       </textarea>
     </view>
-
+    <!-- 切换模板按钮 -->
+    <button class='moban-button' catchtap='qiehuanmoban_'>点我切换模板 {{leimuDateValue2_index+1}}/{{leimuDate.value2.length}}</button>
+    <!-- 选择图片 -->
     <view class='tianchong-img'>
-
-      <view class='img-block'>
-        <!-- 显示小图片 -->
-        <block wx:for="{{img}}" wx:key="">
-          <image class='img' src='{{item}}' mode='aspectFill' id='{{index}}' catchtap='shanchuImg'></image>
-        </block>
-        <view wx:if="{{img.length < 4}}" class='tianjiatupian' catchtap='updateimg'>+</view>
-      </view>
-
-      <text class='tianchongmoban' catchtap='tianchong'>填 充\n模 板</text>
+      <block wx:for="{{img}}" wx:key="">
+        <image class='img' src='{{item}}' mode='aspectFill' id='{{index}}' catchtap='shanchuImg'></image>
+      </block>
+      <view wx:if="{{img.length < 4}}" class='tianjiatupian' catchtap='updateimg'>+</view>
     </view>
-
+    <!-- 删除图片提示 -->
+    <view class='img-tips'>小提示：可添加4张图片、再次点击图片即可删除</view>
   </view>
 
-  <view class='dizhi-dianhua'>
-
-    <!-- 下次更新增加 -->
-    <view class='danhang-list' style='margin-top:10rpx;' catchtap='dizhi'>
-      <view class='dizhi'>地址：{{address}}</view>
-      <view class='youjiantou7'></view>
-    </view>
-
-    <view class='dianhua'>
-      <view style='flex: 3;'>电话：{{phone}}</view>
-      <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber_">获取电话</button>
-    </view>
-
+  <!-- 地址 -->
+  <view class='danhang-list' style='margin-top:10rpx;' catchtap='dizhi'>
+    <view class='dizhi'>地址：{{address}}</view>
+    <view class='youjiantou7'></view>
   </view>
 
+  <!-- 电话 -->
+  <view class='danhang-list dianhua'>
+    <view>电话：{{phone}}</view>
+    <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber_">获取电话</button>
+  </view>
 
-  <!-- <view>{{textarea.cursor}}</view> -->
-
+  <!-- 提交 -->
+  <form report-submit='true' bindsubmit='tijiao'>
+    <button class='tijiao' form-type="submit" type="" size="">确认发布</button>
+  </form>
 
 </view>
-
-
-<!-- <view class='tijiao' catchtap='tijiao'> -->
-<form report-submit='true' bindsubmit='tijiao'>
-  <button class='tijiao' form-type="submit" type="" size="">确认发布</button>
-</form>
-<!-- </view> -->
-
-<!-- <text class='tijiao-item'>确认发布</text> -->
+<!-- </block> -->
 
 <!-- -------------------- 验证参数 ------------------------- -->
 <my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>
+
+<!-- 选择类目组件 -->
+<xuanzeleimu bind:event="_xuanzeleimu" arr="{{arr}}" kaiguan="{{xuanzeleimu_kaiguan}}"></xuanzeleimu>

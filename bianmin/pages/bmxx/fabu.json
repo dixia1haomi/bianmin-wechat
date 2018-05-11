@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "my-toptips": "/component/toptips/toptips"
+    "my-toptips": "/component/toptips/toptips",
+    "xuanzeleimu": "/component/xuanzeleimu/xuanzeleimu"
   }
 }

@@ -15,6 +15,7 @@ Page({
 
     // 登陆窗
     loginTanChuang: false,
+
   },
 
 
@@ -24,9 +25,9 @@ Page({
 
 
   // --------------------- 登陆组件传回来的事件(关闭登陆弹窗) ---------------------
-  _login(e) {
-    // e.detail.tanchuang == false
-    this.setData({ loginTanChuang: e.detail.tanchuang })
+  _login() {
+    // 设置头像
+    this._set_UserInfo()
   },
 
   // -------------------------------------- 设置头像 --------------------------------------
@@ -53,21 +54,26 @@ Page({
         if (back.data) {
           wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息' })
         } else {
-          // 取Config数组
-          let leimuArray = []
-          let leimuObj = this.data.leimuObj
-          for (let i in leimuObj) { leimuArray.push(leimuObj[i].leimu) }
+          // this.setData({ xuanzeleimu_kaiguan: true })
 
-          wx.showActionSheet({
-            // ['招聘', '求职', '生活', '出租', '出售', '转让']
-            itemList: leimuArray,
-            success: (res) => { wx.navigateTo({ url: '/pages/bmxx/fabu?leimu=' + res.tapIndex }) }  // 去发布页
-          })
+
+          // // 取Config数组
+          // let leimuArray = []
+          // let leimuObj = this.data.leimuObj
+          // for (let i in leimuObj) { leimuArray.push(leimuObj[i].leimu) }
+
+          // wx.showActionSheet({
+          //   // ['招聘', '求职', '生活', '出租', '出售', '转让']
+          //   itemList: leimuArray,
+          //   success: (res) => { 
+          wx.navigateTo({ url: '/pages/bmxx/fabu?' })
+          //  }  // 去发布页
+          // })
         }
       })
     } else {
       // 提示登陆
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginTanChuang: !this.data.loginTanChuang })
     }
   },
 
@@ -77,7 +83,7 @@ Page({
     if (app.data.LoginState) {
       wx.navigateTo({ url: '/pages/wode/myfabu' })
     } else {
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginTanChuang: !this.data.loginTanChuang })
     }
   },
 
@@ -95,7 +101,7 @@ Page({
         }
       })
     } else {
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginTanChuang: !this.data.loginTanChuang })
     }
   },
 
@@ -106,7 +112,7 @@ Page({
     if (app.data.LoginState) {
       wx.navigateTo({ url: '/pages/wode/my-shangjia' })
     } else {
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginTanChuang: !this.data.loginTanChuang })
     }
   },
 

@@ -21,7 +21,8 @@ Component({
       type: Boolean,
       value: false,
       observer(newVal, oldVal) {
-        this.setData({ loginTanChuang: newVal })
+        console.log('loginState')
+        this.setData({ loginTanChuang: true })
       }
     },
 
@@ -40,7 +41,8 @@ Component({
 
     // 抛出关闭登陆弹窗
     loginTanChuangQuXiao_() {
-      this.triggerEvent('login', { tanchuang: false })
+      this.setData({ loginTanChuang: false })
+      // this.triggerEvent('login', { tanchuang: false })
     },
 
     // formid
@@ -56,7 +58,11 @@ Component({
         } else {
           e.detail.userInfo.form_id = ''
         }
-        this.setData({ loginTanChuang: false }, () => { app.saveUserInfo(e.detail) })
+        this.setData({ loginTanChuang: false }, () => {
+          app.saveUserInfo(e.detail, () => {
+            this.triggerEvent('login', {})
+          })
+        })
       }
     }
   },

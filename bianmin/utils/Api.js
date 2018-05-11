@@ -5,6 +5,11 @@ class Api extends Base {
     super()
   }
 
+  // 
+  leiMu(data, callback) {
+    this.request({ url: 'index/leimu', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
   // ---------------------- 二维码 ------------------------
   shengChengErWeiMa(data, callback) {
     wx.showLoading({ title: '生成中', mask: true })

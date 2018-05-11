@@ -4,8 +4,8 @@ class Config {
 }
 
 // 服务器接口请求地址
-Config.url = 'http://bianmin.com/api/'
-// Config.url = 'https://bianmin.qujingdaishuyanxuan.org/api/'
+// Config.url = 'http://bianmin.com/api/'
+Config.url = 'https://bianmin.qujingdaishuyanxuan.org/api/'
 
 // 类目
 // Config.leimu = ['招聘', '求职', '生活', '出租', '出售', '转让']

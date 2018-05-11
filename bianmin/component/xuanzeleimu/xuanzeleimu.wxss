@@ -1,28 +1,34 @@
+.xuanzeleimu {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
 .xuanzeleimu-title {
   text-align: center;
   padding: 100rpx 0 60rpx 0;
   font-size: 36rpx;
   font-weight: 700;
   background-color: #fff;
-  border-bottom: 1rpx solid #e5e5e5;
 }
 
 .base {
-  display: flex;
   flex: 1;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  top: 210rpx;
+  display: flex;
+  background-color: #fff;
 }
 
 .base1 {
-  
+  background-color: #efefef;
 }
 
 .base1-name {
-  padding: 20rpx;
-  border-bottom: 1rpx solid #e5e5e5;
+  padding: 30rpx 60rpx;
+  font-size: 36rpx;
   font-weight: 600;
 }
 
@@ -32,10 +38,11 @@
 
 .base2 {
   flex: 1;
-  background-color: #fff;
 }
 
 .base2-name {
   text-align: center;
-  padding: 20rpx;
+  padding: 30rpx;
+  font-size: 36rpx;
+  border-bottom: 1rpx solid #e5e5e5;
 }

@@ -44,7 +44,7 @@ Page({
     // 图片
     img: [],
     // 填充textarea
-    textareaValue: "",
+    // textareaValue: "",
     // 电话
     phone: "",
     // 地址
@@ -60,39 +60,77 @@ Page({
     toptips_kaiguan: '',
     // // 错误提示内容
     toptips_text: '',
+
+    // 分类列表
+    arr: [],
+
+    // xuanzeleimu_kaiguan
+    xuanzeleimu_kaiguan: true,
+    // 选择的类目数据
+    leimuDate: {},
+    // 已选择类目下模板的键
+    leimuDateValue2_index: 0,
+
+
+    // 同镇类目
+    // 招聘求职 -》 招聘、求职
+    // 房产交易 -》 房屋出售、房屋求购、房屋出租、房屋求租
+    // 车辆交易 -》 车辆出售、车辆求购、车辆出租、车辆求租
+    // 物品交易 -》 物品出售、物品求购
+    // 生意转让 -》 店铺转让
+    // 顺风车   -》 人找车、车找人
+    // 打听     -》 寻人、寻物、打听
+    // 打折优惠 -》 打折优惠
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // --------------------- 选择类目组件传回来的事件(选择的数据) ---------------------
+  _xuanzeleimu(e) {
+    // 接收选择的数据，关闭类目组件
+    this.setData({
+      leimuDate: e.detail.value,
+      leimuDateValue2_index: 0,
+      xuanzeleimu_kaiguan: false,
+      'textarea.value': '',
+      'textarea.cursor': 0
+    })
+  },
+
+  // 类目开关
+  leimu_kaiguan_() {
+    this.setData({ xuanzeleimu_kaiguan: true })
+  },
+
+
+  // --------------------- 填充模板 ---------------------
+  qiehuanmoban_() {
+    let index = this.data.leimuDateValue2_index
+    let len = this.data.leimuDate.value2.length;
+    // 键 = 长度 - 1
+    index = index >= len - 1 ? 0 : ++index
+    // 改变Value2的键、清空要提交的textarea数据
+    this.setData({
+      leimuDateValue2_index: index,
+      'textarea.value': '',
+      'textarea.cursor': 0
+    })
+  },
+
+
+  // ------------------------------------------ onLoad ------------------------------------------
   onLoad: function (op) {
     // op携带类目的key
-    this.setData({ index: op.leimu })
+    // this.setData({ index: op.leimu })
+    //上一个页面实例对象
+    // var pages = getCurrentPages();
+    // 赋给全局,刷新时要用
+    // var prePage = pages[pages.length - 2];
+    // console.log('上一个页面实例对象', prePage)
+    api.leiMu({}, back => {
+      console.log('leimu', back)
+      this.setData({ arr: back.data })
+    })
   },
 
-
-
-  // 填充模板
-  tianchong() {
-    // 根据index获得Config.moban对应的item
-    let item = this.data.leimuObj[this.data.index].item
-    console.log('item', item)
-    // 判断item的长度，大于1就用组件选择，否则直接填充
-    if (item.length > 1) {
-      // 有多中选择，提取出数组给选择组件
-      let itemArray = []
-      for (let i in item) { itemArray.push(item[i].name) }
-
-      // 打开选择组件填充
-      wx.showActionSheet({
-        itemList: itemArray,
-        success: (res) => { this.setData({ textareaValue: item[res.tapIndex].value }) }
-      })
-    } else {
-      // 直接填充
-      this.setData({ textareaValue: item[0].value })
-    }
-  },
 
   // textarea事件
   text: function (e) {
@@ -158,10 +196,9 @@ Page({
   tijiao(e) {
     console.log('tijiao', e.detail.formId)
 
-
     // 给服务器的参数，user_id服务器获取
     let params = {
-      leibie: this.data.leimuObj[this.data.index].leimu,
+      leibie: this.data.leimuDate.name,
       neirong: this.data.textarea.value,
       phone: this.data.phone,
       address: this.data.address,

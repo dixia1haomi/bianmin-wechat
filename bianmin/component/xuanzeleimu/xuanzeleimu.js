@@ -1,10 +1,51 @@
 
-Component({
+// 接受的arr结构
+// arr: [
+//   {
+//     id: 0,
+//     name: '房产交易',
+//     value: [
+//       {
+//         name: '房屋出售',
+//         value2: [{
+//           moban: '房屋出售模板1'
+//         }]
+//       },
+//       {
+//         name: '房屋求购',
+//         value2: [{
+//           moban: '房屋求购模板1'
+//         }]
+//       }
+//     ]
+//   },
+//   {
+//     id: 1,
+//     name: '招聘求职',
+//     value: [
+//       {
+//         name: '招聘',
+//         value2: [{
+//           moban: '招聘模板1'
+//         }, {
+//           moban: '招聘模板2'
+//         }]
+//       },
+//       {
+//         name: '求职',
+//         value2: [{
+//           moban: '求职模板1'
+//         }]
+//       }
+//     ]
+//   }
+// ],
 
+Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
-    // wx:for-item
+    // 类目数据
     arr: {
       type: Array,
       value: [],
@@ -13,15 +54,34 @@ Component({
       }
     },
 
+    // 显示开关
+    kaiguan: {
+      type: Boolean,
+      value: false,
+      observer(newVal, oldVal) {
+        this.setData({ kaiguan: newVal })
+      }
+    },
+
   },
 
 
   data: {
-
+    id: 0,
   },
 
   methods: {
+    // 一级选择
+    xuanze1_(e) {
+      this.setData({ id: e.currentTarget.id })
+    },
 
+    // 二级选择
+    xuanze2_(e) {
+      console.log('xuanze2', e.currentTarget.dataset.value)
+      // 抛出
+      this.triggerEvent('event', { value: e.currentTarget.dataset.value })
+    },
   },
 
 
