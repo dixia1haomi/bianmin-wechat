@@ -68,7 +68,7 @@ Component({
         this.setData({ bianmin_id: e.currentTarget.dataset.bianmin_id, })
       } else {
         // 登陆弹窗
-        this.setData({ loginTanChuang: true })
+        this.setData({ loginTanChuang: !this.data.loginTanChuang })
       }
     },
 
@@ -104,13 +104,6 @@ Component({
     },
 
 
-
-    // -------------------------------------------------------- 登陆 ---------------------------------------------------------
-
-    // 登陆组件传回来的事件(关闭登陆弹窗,e.detail.tanchuang == false)
-    _login(e){ this.setData({ loginTanChuang: e.detail.tanchuang }) },
-
-
     // -------------------------------------------------------- 拨打电话 --------------------------------------------------------
 
     call_phone_(e) { wx.makePhoneCall({ phoneNumber: e.currentTarget.id }) },
@@ -140,17 +133,12 @@ Component({
 
     // -------------------------------------------------------- 展开，折叠 --------------------------------------------------------
     flodFn_(e) {
-      console.log('flodFn_', e, this.data)
-      let res = this.data.Res
-      // 如果hid是初始的false,允许改成true
-      if (res.hid == false) {
-        this.setData({ 'Res.hid': true }, () => {
-          // 调用API发送请求增加点击
-          // api.incLiulangcishu({ id: res[index].id }, back => {
-          //   console.log('增加点击成功', back)
-          // })
+      this.setData({ 'Res.hid': !this.data.Res.hid }, () => {
+        // 调用API发送请求增加点击
+        api.incLiulangcishu({ id: this.data.Res.id }, back => {
+          console.log('增加点击成功', back)
         })
-      }
+      })
     },
   },
 

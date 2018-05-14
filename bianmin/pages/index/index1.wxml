@@ -9,8 +9,6 @@
   </view>
 </view>
 
-<!-- <image src='{{img}}'></image> -->
-<!-- <button catchtap='save_'>保存到相册</button>  -->
 
 <!-- 本地商家 -->
 <!-- <view class='scroll'>

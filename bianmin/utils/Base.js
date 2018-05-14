@@ -16,10 +16,32 @@ class Base {
         'token_key': wx.getStorageSync('token_key')
       },
       success(res) {
-        params.sCallback && params.sCallback(res.data)
-        // Token类错误(缓存过期引起的)，40000
-        if (res.data.errorCode == 40000 && !noRefetch) {
-          that._refetch(params)
+        console.log('base', res)
+        if (res.statusCode == 200) {
+
+          if (res.data.errorCode == 0) {
+            params.sCallback && params.sCallback(res.data)
+          }
+          else if (res.data.errorCode == 10000) {
+            // Token类错误(缓存过期引起的)
+            if (res.data.data == "noToken" && !noRefetch) {
+              that._refetch(params)
+            } else {
+              wx.showModal({ title: '错误', content: '未能正确获取Token、已上报服务器、抱歉。', success: () => { return } })
+            }
+          }
+          else if (res.data.errorCode == 20000) {
+            wx.showModal({ title: '错误', content: '微信内部异常、已上报服务器、抱歉。', success: () => { return } })
+          }
+          else if (res.data.errorCode == 30000) {
+            wx.showModal({ title: '错误', content: '数据库异常、已上报服务器、抱歉。', success: () => { return } })
+          }
+          else if (res.data.errorCode == 40000) {
+            wx.showModal({ title: '错误', content: 'errorCode==40000、已上报服务器、抱歉。', success: () => { return } })
+          }
+          else if (res.data.errorCode == 50000) {
+            wx.showModal({ title: '错误', content: '获取小程序码异常、已上报服务器、抱歉。', success: () => { return } })
+          }
         }
       },
       fail(err) {
@@ -45,36 +67,6 @@ class Base {
 
 
   // -------------------------------------------------------------------------------------------------------------------------
-
-
-
-  // --------授权用户信息-userinfo------
-  // authorize_userinfo(callBack) {
-  //   wx.getSetting({
-  //     success: (res) => {
-  //       if (!res.authSetting['scope.userInfo']) {
-  //         console.log('base-没有授权用户信息')
-  //         // 提前授权
-  //         wx.authorize({
-  //           scope: 'scope.userInfo',
-  //           success() {
-  //             // 用户已经同意
-  //             callBack && callBack(true)
-  //           },
-  //           fail() {
-  //             wx.openSetting({ success: (res) => { if (res.authSetting['scope.userInfo']) { callBack && callBack(true) } } })
-  //           }
-  //         })
-  //       } else {
-  //         callBack && callBack(true)
-  //       }
-  //     },
-  //     fail: (err) => {
-  //       console.log('base-授权用户信息进入fail', err)
-  //       wx.showToast({ title: '微信授权失败' })
-  //     }
-  //   })
-  // }
 
   // -------- 授权地理位置 ---------
   authorize_userLocation(callBack) {

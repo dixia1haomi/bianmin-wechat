@@ -1,4 +1,3 @@
-
 import { Api } from '../../utils/Api.js'
 import { Base } from '../../utils/Base.js'
 import { Cos } from '../../utils/Cos.js'
@@ -30,12 +29,7 @@ const wxValidate = new WxValidate(rules, messages)
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    // index
-    index: 0,
     // 内容
     textarea: {
       value: "",
@@ -43,8 +37,6 @@ Page({
     },
     // 图片
     img: [],
-    // 填充textarea
-    // textareaValue: "",
     // 电话
     phone: "",
     // 地址
@@ -53,8 +45,6 @@ Page({
     longitude: "",
     // 纬度
     latitude: "",
-    // leimu下的填充选项
-    leimuObj: Config.moban,
 
     // 错误提示开关
     toptips_kaiguan: '',
@@ -63,27 +53,15 @@ Page({
 
     // 分类列表
     arr: [],
-
     // xuanzeleimu_kaiguan
     xuanzeleimu_kaiguan: true,
     // 选择的类目数据
     leimuDate: {},
     // 已选择类目下模板的键
     leimuDateValue2_index: 0,
-
-
-    // 同镇类目
-    // 招聘求职 -》 招聘、求职
-    // 房产交易 -》 房屋出售、房屋求购、房屋出租、房屋求租
-    // 车辆交易 -》 车辆出售、车辆求购、车辆出租、车辆求租
-    // 物品交易 -》 物品出售、物品求购
-    // 生意转让 -》 店铺转让
-    // 顺风车   -》 人找车、车找人
-    // 打听     -》 寻人、寻物、打听
-    // 打折优惠 -》 打折优惠
   },
 
-  // --------------------- 选择类目组件传回来的事件(选择的数据) ---------------------
+  // --------------------- 类目组件回调 ---------------------
   _xuanzeleimu(e) {
     // 接收选择的数据，关闭类目组件
     this.setData({
@@ -101,7 +79,7 @@ Page({
   },
 
 
-  // --------------------- 填充模板 ---------------------
+  // --------------------- 切换模板 ---------------------
   qiehuanmoban_() {
     let index = this.data.leimuDateValue2_index
     let len = this.data.leimuDate.value2.length;
@@ -118,17 +96,8 @@ Page({
 
   // ------------------------------------------ onLoad ------------------------------------------
   onLoad: function (op) {
-    // op携带类目的key
-    // this.setData({ index: op.leimu })
-    //上一个页面实例对象
-    // var pages = getCurrentPages();
-    // 赋给全局,刷新时要用
-    // var prePage = pages[pages.length - 2];
-    // console.log('上一个页面实例对象', prePage)
-    api.leiMu({}, back => {
-      console.log('leimu', back)
-      this.setData({ arr: back.data })
-    })
+    // API获得类目数组
+    api.leiMu({}, back => { this.setData({ arr: back.data }) })
   },
 
 
@@ -141,18 +110,15 @@ Page({
     })
   },
 
-  updateimg: function () {
+  // 选择图片
+  xuanzeimg_: function () {
     let imgArray = this.data.img
-
     wx.chooseImage({
       count: 4 - imgArray.length, // 默认9
-      // sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: (res) => {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        // var tempFilePaths = res.tempFilePaths
-        console.log('chooseImage', res)
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片、tempFilePaths = res.tempFilePaths
         // 把选择的图片push进imgArray
         imgArray = imgArray.concat(res.tempFilePaths)
         console.log('imgArray', imgArray)
@@ -161,20 +127,6 @@ Page({
     })
   },
 
-  // 上传图片
-  updateImg(cospath, callback, callbackupdateOk) {
-    var successUp = 0; //成功个数
-    var failUp = 0; //失败个数
-    var length = this.data.img.length; //总共个数
-    var i = 0; //第几个
-    cos.uploadDIY(cospath, this.data.img, successUp, failUp, i, length, back => {
-      console.log('back--------------', JSON.parse(back))
-      callback && callback(JSON.parse(back))
-    }, updateOk => {
-      console.log('updateOk--上传完成')
-      callbackupdateOk && callbackupdateOk(updateOk)
-    });
-  },
 
   // 删除图片
   shanchuImg(e) {
@@ -185,17 +137,14 @@ Page({
           console.log('用户点击确定')
           let key = e.currentTarget.id, imgArray = this.data.img
           // splice删除数组中的元素
-          imgArray.splice(key, 1)
-          this.setData({ img: imgArray })
+          this.setData({ img: imgArray.splice(key, 1) })
         }
       }
     })
   },
 
-  // tijiao
+  // 提交
   tijiao(e) {
-    console.log('tijiao', e.detail.formId)
-
     // 给服务器的参数，user_id服务器获取
     let params = {
       leibie: this.data.leimuDate.name,
@@ -219,22 +168,25 @@ Page({
     }
 
     // 检查是否有图片准备上传
-    if (this.data.img.length != 0) {
-      api.createList(params, res => {
-        console.log('有图片create', res)
-        // 有图片,上传,获取ID
-        let list_id = res.data.id
-        let cospath = "/bianmin"
-        this.updateImg(cospath, back => {
-          console.log('update-img', back)
-          // 上传成功，写入数据库
+    if (this.data.img.length > 0) {
+      // 有图片、创建信息
+      api.createList(params, (res) => {
+        let list_id = res.data.id, cospath = "/bianmin", img = this.data.img
+        // cos上传
+        cos.update_img_cos(cospath, img, (back) => {
+          // 上传成功，写入图片数据库
           api.createImg({ list_id: list_id, url: back.data.source_url }, res => {
             console.log('写入图片到数据库OK', res)
           })
-        }, ok => {
+        }, (ok) => {
           console.log('ok', ok)
           // 关闭当前页面，跳转到wode/myfabu页
-          wx.redirectTo({ url: '/pages/wode/myfabu' })
+          wx.showModal({
+            title: '发布成功',
+            content: '信息随时可以修改、刷新或删除、还可以邀请好友帮你增加顶置时间',
+            showCancel: false,
+            success: () => { wx.redirectTo({ url: '/pages/wode/myfabu' }) }
+          })
         })
       })
     } else {
@@ -242,11 +194,15 @@ Page({
       api.createList(params, res => {
         console.log('没图片create', res)
         // 关闭当前页面，跳转到wode/myfabu页
-        wx.redirectTo({ url: '/pages/wode/myfabu' })
+        wx.showModal({
+          title: '发布成功',
+          content: '信息随时可以修改、刷新或删除、还可以邀请好友帮你增加顶置时间',
+          showCancel: false,
+          success: () => { wx.redirectTo({ url: '/pages/wode/myfabu' }) }
+        })
       })
     }
   },
-
 
 
 
@@ -273,20 +229,15 @@ Page({
 
   // button事件 获取电话
   getPhoneNumber_(e) {
-    // 如果用户允许获取电话
-    if (e.detail.iv && e.detail.encryptedData) { this._getPhone(e) }
+    // 如果用户允许了、API获取电话号码
+    if (e.detail.iv && e.detail.encryptedData) {
+      api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
+        this.setData({ phone: res.data })
+      })
+    }
   },
 
-  // API获取电话号码
-  _getPhone(e) {
-    wx.showLoading({ title: '请稍候' })
-    api.getPhone({ encryptedData: e.detail.encryptedData, iv: e.detail.iv }, res => {
-      wx.hideLoading()
-      console.log('phone', res.data)
-      // 返回了电话号码
-      this.setData({ phone: res.data })
-    })
-  },
+
 
 })
 

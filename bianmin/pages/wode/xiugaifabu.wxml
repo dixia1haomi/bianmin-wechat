@@ -1,11 +1,15 @@
 <view>
   <view class='title'>修改内容</view>
 
+  <!-- 输入框 -->
   <view style='margin: 0 20rpx 0 20rpx;'>
     <textarea class='textarea' bindinput='textarea_' value='{{Res.neirong}}' maxlength='200'>
       <text class='neirong-cursor'>{{cursor || Res.neirong.length}}/200</text>
     </textarea>
   </view>
+
+  <!-- 提示 -->
+  <view class='tips'>小提示：信息暂只支持修改文字内容、如需修改图片请删除重发、记得提前复制。</view>
 
   <!-- 确定、取消 -->
   <view class='anniu'>

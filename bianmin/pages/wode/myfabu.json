@@ -1,5 +1,6 @@
 {
-    "usingComponents": {
-      "component-demo": "/component/bm_block/bm_block"
-    }
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "component-demo": "/component/bm_block/bm_block"
+  }
 }

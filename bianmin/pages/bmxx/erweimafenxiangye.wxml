@@ -1,37 +1,53 @@
 <!-- 头 -->
 <view class='fenxiangye-title'>沾益袋鼠同城+</view>
 
-<!-- Res组件 -->
-<component-demo Res="{{Res}}" state="true" />
-
-
-<!-- 帮顶 -->
-<view class='dingzhi'>
-  <block wx:if="{{dingzhijilu == false}}">
-    <button catchtap='createBmxxDingZhi_' id='{{Res.id}}'>帮好友增加顶置时间</button>
+<!-- 刚进来数据还没请求完 -->
+<block wx:if="{{Res !== false}}">
+  <!-- 没有信息 -->
+  <block wx:if="{{Res == null}}">
+    <view class='noxinxi'>
+      <navigator open-type='navigate' url='/pages/index/index1' hover-class="none">
+        信息已被删除、去首页逛逛。
+      </navigator>
+    </view>
   </block>
+  <!-- 有信息 -->
   <block wx:else>
-    <navigator url='/pages/index/index1' open-type='reLaunch'>
-      <button catchtap=''>去首页逛逛</button>
-    </navigator>
-  </block>
-  <!-- 说明 -->
-  <view class='shuoming'>
-    <text>说明：点击按钮可以为好友增加24小时顶置时间</text>
-  </view>
-  <!-- 好友帮顶榜 -->
-  <view class='liebiao'>
-    <view class='dingzhi-title'>—— 好友帮顶榜 ——</view>
-    <block wx:if="{{Res.with_bangdinguser.length > 0}}">
-      <block wx:for="{{Res.with_bangdinguser}}" wx:key="">
-        <view class='user'>
-          <image class='dingzhi-img' src='{{item.avatar_url}}'></image>
-          <text class='name'>{{item.nick_name}}</text>
-        </view>
+
+    <!-- Res组件 -->
+    <component-demo Res="{{Res}}" state="true" />
+
+
+    <!-- 帮顶 -->
+    <view class='dingzhi'>
+      <block wx:if="{{dingzhijilu == false}}">
+        <button catchtap='createBmxxDingZhi_' id='{{Res.id}}'>帮好友增加顶置时间</button>
       </block>
-    </block>
-    <block wx:else>
-      <view class='name'>暂无好友帮顶</view>
-    </block>
-  </view>
-</view>
+      <block wx:else>
+        <navigator url='/pages/index/index1' open-type='reLaunch'>
+          <button catchtap=''>去首页逛逛</button>
+        </navigator>
+      </block>
+      <!-- 说明 -->
+      <view class='shuoming'>
+        <text>说明：点击按钮可以为好友增加24小时顶置时间</text>
+      </view>
+      <!-- 好友帮顶榜 -->
+      <view class='liebiao'>
+        <view class='dingzhi-title'>—— 好友帮顶榜 ——</view>
+        <block wx:if="{{Res.with_bangdinguser.length > 0}}">
+          <block wx:for="{{Res.with_bangdinguser}}" wx:key="">
+            <view class='user'>
+              <image class='dingzhi-img' src='{{item.avatar_url}}'></image>
+              <text class='name'>{{item.nick_name}}</text>
+            </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class='name'>暂无好友帮顶</view>
+        </block>
+      </view>
+    </view>
+
+  </block>
+</block>

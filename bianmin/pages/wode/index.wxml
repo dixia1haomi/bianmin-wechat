@@ -21,12 +21,12 @@
   <view class='base2'>
 
     <view class='danhang-list' catchtap='go_fabu_'>
-      <view>发布信息</view>
+      <view style='margin:30rpx;'>发布信息</view>
       <view class='youjiantou7'></view>
     </view>
 
     <view class='danhang-list' style='margin-top: 20rpx;' catchtap='my_fabu_'>
-      <view>我的发布</view>
+      <view style='margin:30rpx;'>我的发布</view>
       <view class='youjiantou7'></view>
     </view>
 
@@ -34,12 +34,12 @@
     <!-- <view class='danhang-list' style='margin-top: 20rpx;' catchtap='create_shangjia'>
       <view>商家入驻</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
-    <view class='danhang-list' catchtap='my_shangjia_'>
+    <!-- <view class='danhang-list' catchtap='my_shangjia_'>
       <view>我的店铺</view>
       <view class='youjiantou7'></view>
-    </view> -->
+    </view>  -->
 
 
     <!-- <view class='danhang-list' catchtap='my_liuyan_'>

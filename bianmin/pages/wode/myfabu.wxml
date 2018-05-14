@@ -5,7 +5,11 @@
 
   <!-- 没有信息 -->
   <block wx:if="{{Res == null}}">
-    <view class='noxinxi'>没有信息，快去发布。</view>
+    <view class='noxinxi'>
+      <navigator open-type='navigateBack' delta="1" hover-class="none">
+        没有信息，快去发布。
+      </navigator>
+    </view>
   </block>
   <!-- 有信息 -->
   <block wx:else>
@@ -24,13 +28,11 @@
     <component-demo Res="{{Res}}" state="true" myfabu="true">
       <!-- info位置myfabu页独有插槽 -->
       <view slot="myfabu-info">
-
         <view class='info'>
           <text catchtap='go_xiugai_'>修改</text>
           <text catchtap='myDelete' id='{{Res.id}}'>删除</text>
           <text catchtap='updateTime' id='{{Res.id}}'>刷新</text>
         </view>
-
       </view>
 
       <!-- 回复位置myfabu页独有插槽 -->
@@ -96,10 +98,13 @@
 
     <!-- 帮顶 -->
     <view class='dingzhi'>
+      <!-- 顶置时长 -->
+      <view wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi-time'>顶置状态将在 {{Res.dingzhi_time}} 到期</view>
       <!-- 帮顶按钮 -->
       <button catchtap='fenxiangTanChuang_Kai_'>邀请朋友帮我顶置</button>
+      <!-- 说明 -->
       <view class='shuoming'>
-        <text>说明：每个好友能为你增加24小时顶置时间、自己也可以给自己增加</text>
+        <text>小提示：每个好友能为你增加24小时顶置时间、自己也可以给自己增加</text>
       </view>
       <!-- 海报 -->
       <view wx:if="{{haibaoImg}}">
@@ -133,6 +138,7 @@
         </view>
       </view>
     </block>
+
 
   </block>
 </block>

@@ -1,7 +1,7 @@
 /* pages/fabu/fabu.wxss */
 
 .page {
-  margin-bottom: 200rpx;
+  padding-bottom: 200rpx;
 }
 
 .title {
@@ -17,6 +17,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 34rpx;
+}
+
+.leimu-text {
+  margin: 30rpx;
 }
 
 .text {
@@ -99,16 +103,18 @@
   color: #808080;
 }
 
-
 .dizhi {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 34rpx;
+  margin: 30rpx;
 }
 
 .dianhua {
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
+  position: relative;
+  margin: 30rpx;
 }
 
 .button-phone {
@@ -116,7 +122,10 @@
   right: 0;
   height: 100%;
   border-radius: 0;
-  padding: 0 50rpx;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 50rpx;
+  padding-right: 50rpx;
   display: flex;
   align-items: center;
   border-left: 1rpx solid #e5e5e5;

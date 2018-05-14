@@ -1,14 +1,26 @@
 <view class='title'>留言/回复详情</view>
 
-<component-demo Res="{{Res}}" state="true" />
-
+<!-- 刚进来数据还没请求完 -->
 <block wx:if="{{Res !== false}}">
-  <block wx:if="{{Res !== null}}">
-
-
+  <!-- 没有信息 -->
+  <block wx:if="{{Res == null}}">
+    <view class='noxinxi'>
+      <navigator open-type='navigate' url='/pages/index/index1' hover-class="none">
+        信息已被删除、去首页逛逛。
+      </navigator>
+    </view>
   </block>
-
+  <!-- 有信息 -->
   <block wx:else>
-    <view class='noxinxi'>没有信息。</view>
+
+    <!-- 组件 -->
+    <component-demo Res="{{Res}}" state="true" />
+    <!-- 回首页 -->
+    <view class='huishouye'>
+      <navigator open-type='reLaunch' url='/pages/index/index1' hover-class="none">
+        <button>回首页</button>
+      </navigator>
+    </view>
+    
   </block>
 </block>

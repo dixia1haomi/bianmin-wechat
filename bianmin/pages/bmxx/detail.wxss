@@ -6,4 +6,28 @@
   background-color: #fff;
 }
 
+/* 没有信息 */
 
+.noxinxi {
+  text-align: center;
+  padding-top: 400rpx;
+  color: #007aff;
+}
+
+/* 回首页 */
+
+.huishouye {
+  padding-top: 60rpx;
+  padding-bottom: 80rpx;
+}
+
+.huishouye button {
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.huishouye button::after {
+  border: none;
+}

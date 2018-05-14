@@ -10,12 +10,8 @@ Page({
     Res: [],
     // 昵称头像
     userinfo: null,
-    // 类目
-    leimuObj: Config.moban,
-
     // 登陆窗
     loginTanChuang: false,
-
   },
 
 
@@ -54,21 +50,7 @@ Page({
         if (back.data) {
           wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息' })
         } else {
-          // this.setData({ xuanzeleimu_kaiguan: true })
-
-
-          // // 取Config数组
-          // let leimuArray = []
-          // let leimuObj = this.data.leimuObj
-          // for (let i in leimuObj) { leimuArray.push(leimuObj[i].leimu) }
-
-          // wx.showActionSheet({
-          //   // ['招聘', '求职', '生活', '出租', '出售', '转让']
-          //   itemList: leimuArray,
-          //   success: (res) => { 
-          wx.navigateTo({ url: '/pages/bmxx/fabu?' })
-          //  }  // 去发布页
-          // })
+          wx.navigateTo({ url: '/pages/bmxx/fabu' })
         }
       })
     } else {

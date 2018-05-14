@@ -25,12 +25,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (op) {
+
     // 如果是跳过首页直接进入这个页面app.onLaunch不会请求token，主动请求回调后再_load(需要携带token)
     app.checkToken(() => {
       this._load()
     })
   },
+
 
 
 
@@ -72,7 +74,6 @@ Page({
     let arr = [this.data.haibaoImg]
     wx.previewImage({
       current: arr[0], // 当前显示图片的http链接
-      // urls: [this.data.haibaoImg] // 需要预览的图片http链接列表
       urls: arr // 需要预览的图片http链接列表
     })
   },
@@ -81,8 +82,8 @@ Page({
   onShareAppMessage: function () {
     console.log('onShareAppMessage', this.data.Res.id)
     return {
-      title: '帮我加油',
-      path: '/page/user?id=' + this.data.Res.id,
+      title: '帮我增加顶置时间',
+      path: '/pages/bmxx/erweimafenxiangye?id=' + this.data.Res.id,
       imageUrl: '/img/150.jpg',
       success: (res) => {
         // 转发成功,关闭分享弹窗
@@ -151,10 +152,12 @@ Page({
 
 
   // ------------------------------------------------- load -------------------------------------------------
-
-  _load() {
+  // callback给下拉刷新用
+  _load(callback) {
+    // 获取我的发布
     api.myFabu({}, back => {
       console.log('我的发布', back)
+      callback && callback(back)
       this.setData({ Res: back.data })
     })
   },
@@ -168,7 +171,6 @@ Page({
       this.setData({ loginTanChuang: true })
     }
   },
-
 
   // ------------------------------------------------- 删除 -------------------------------------------------
   myDelete(e) {
@@ -213,6 +215,16 @@ Page({
     api.updateFormId({ id: e.currentTarget.id, form_id: e.detail.formId }, back => {
       this.setData({ 'Res.form_state': true })
       wx.showToast({ title: 'OK' })
+    })
+  },
+
+  // ------------------------------------------------- 下拉刷新 -------------------------------------------------
+
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this._load(back => {
+      wx.stopPullDownRefresh()
+      this.setData({ Res: back.data })
     })
   },
 

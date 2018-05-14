@@ -12,14 +12,14 @@ Page({
     noData: false,              // 上拉更多
   },
 
-
+  // -------------------------------------------- 展开 --------------------------------------
+  zhankai_() {
+    this.setData({ zhankai: !this.data.zhankai })
+  },
 
   // -------------------------------------------- onLoad --------------------------------------
 
   onLoad: function (op) {
-    console.log('q', op)
-    var scene = decodeURIComponent(op.scene)
-    console.log('index1-scene', scene)
     this._load()
     // this._getShangjiaList()
   },

@@ -39,16 +39,15 @@ Component({
   methods: {
     // -------------------------------------------------------- 登陆 ---------------------------------------------------------
 
-    // 抛出关闭登陆弹窗
+    // 关闭登陆弹窗
     loginTanChuangQuXiao_() {
       this.setData({ loginTanChuang: false })
-      // this.triggerEvent('login', { tanchuang: false })
     },
 
     // formid
     getFormId_(e) { this.setData({ form_id: e.detail.formId }) },
 
-    // 获得用户信息登陆成功后关闭弹窗
+    // 获得用户信息登陆成功后关闭弹窗、抛出登录成功
     getUserInfo_(e) {
       console.log('getUserInfo_', e)
       if (e.detail.errMsg == "getUserInfo:ok") {

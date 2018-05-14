@@ -24,6 +24,14 @@ page {
   color: #808080;
 }
 
+/* 小提示 */
+.tips{
+  color: #808080;
+  font-size: 26rpx;
+  text-align: center;
+  padding:20rpx 40rpx 0 40rpx;
+}
+
 .anniu{
   margin-top: 40rpx;
 }

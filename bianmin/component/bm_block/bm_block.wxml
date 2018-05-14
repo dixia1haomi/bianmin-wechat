@@ -16,7 +16,7 @@
           <text>{{Res.nick_name}}</text>
           <text wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi'>顶置</text>
         </view>
-        <view class='time'>{{Res.time}}</view>
+        <view class='time'>{{Res.time || '刚刚'}}</view>
       </view>
     </view>
   </view>
@@ -28,11 +28,11 @@
     <view class='xinxi'>
 
       <!-- 标题 -->
-      <view class='xinxileibie'>/ 自定义标题 /</view>
+      <view class='xinxileibie'>/ {{Res.leibie}} /</view>
 
       <!-- 内容 -->
       <view>
-        <text style='color: #2c2c2c;'>{{Res.neirong}}</text>
+        <text>{{Res.neirong}}</text>
       </view>
 
       <!-- 箭头 -->
@@ -93,7 +93,7 @@
     <view class='xinxi'>
 
       <!-- 标题 -->
-      <view class='xinxileibie'>/ 自定义标题 /</view>
+      <view class='xinxileibie'>/ {{Res.leibie}} /</view>
 
       <!-- 内容 -->
       <view class="{{Res.hid ?'':'flod' }}">
@@ -103,17 +103,15 @@
       <!-- 箭头 -->
       <view class='xinxi-tishi'>
         <text wx:if="{{Res.hid == false}}" class="iconfont icon-zhankai"></text>
-        <text wx:else class="iconfont icon-zhankai .touming"></text>
+        <text wx:else class="iconfont icon-zhedie .touming"></text>
       </view>
 
       <!-- 配图 -->
-      <block wx:if="{{Res.hid == true}}">
-        <view class='img-view'>
+        <view hidden='{{Res.hid == false}}' class='img-view'>
           <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
             <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
           </block>
         </view>
-      </block>
 
     </view>
 

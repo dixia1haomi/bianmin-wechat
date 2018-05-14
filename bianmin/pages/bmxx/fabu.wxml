@@ -1,12 +1,10 @@
 <view class='title'>发布信息</view>
-<!-- <block wx:if="{{!xuanzeleimu_kaiguan}}"> -->
+
 <view class='page'>
 
-  <!-- <view class='title'>{{leimuObj[index].leimu}}</view> -->
-  <!-- <view class='title' catchtap='leimu_kaiguan_'>类目选择</view> -->
   <!-- 类目选择 -->
   <view class='danhang-list leimu' style='margin-top:10rpx;margin-bottom:10rpx;' catchtap='leimu_kaiguan_'>
-    <view class=''>类目：{{leimuDate.name || '请选择类目'}}</view>
+    <view class='leimu-text'>类目：{{leimuDate.name || '请选择类目'}}</view>
     <view class='youjiantou7'></view>
   </view>
 
@@ -24,21 +22,21 @@
       <block wx:for="{{img}}" wx:key="">
         <image class='img' src='{{item}}' mode='aspectFill' id='{{index}}' catchtap='shanchuImg'></image>
       </block>
-      <view wx:if="{{img.length < 4}}" class='tianjiatupian' catchtap='updateimg'>+</view>
+      <view wx:if="{{img.length < 4}}" class='tianjiatupian' catchtap='xuanzeimg_'>+</view>
     </view>
     <!-- 删除图片提示 -->
     <view class='img-tips'>小提示：可添加4张图片、再次点击图片即可删除</view>
   </view>
 
   <!-- 地址 -->
-  <view class='danhang-list' style='margin-top:10rpx;' catchtap='dizhi'>
+  <view class='danhang-list' style='margin-top:10rpx;margin-bottom:10rpx;' catchtap='dizhi'>
     <view class='dizhi'>地址：{{address}}</view>
     <view class='youjiantou7'></view>
   </view>
 
   <!-- 电话 -->
-  <view class='danhang-list dianhua'>
-    <view>电话：{{phone}}</view>
+  <view class='danhang-list'>
+    <view class='dianhua'>电话：{{phone}}</view>
     <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber_">获取电话</button>
   </view>
 
@@ -48,7 +46,6 @@
   </form>
 
 </view>
-<!-- </block> -->
 
 <!-- -------------------- 验证参数 ------------------------- -->
 <my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>

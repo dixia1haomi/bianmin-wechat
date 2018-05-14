@@ -15,15 +15,15 @@ Page({
 
 
   onLoad: function (op) {
+    // op.id是直接转发携带，op.scene是码携带
     console.log('op', op)
-    var scene = decodeURIComponent(op.scene)
-    console.log('decodeURIComponent-scene', scene)
-    this._load(scene)
+    op.id = op.id ? op.id : decodeURIComponent(op.scene)
+    this._load(op.id)
   },
 
-  _load(scene) {
+  _load(id) {
     // 查询单个便民信息
-    api.findBianmin({ id: scene }, (back) => {
+    api.findBianmin({ id: id }, (back) => {
       console.log('查询单个便民信息', back)
       this.setData({ Res: back.data })
     })

@@ -6,16 +6,15 @@
   background-color: #fff;
 }
 
-
 /* ------------------------------ 帮顶置 ------------------------------ */
 
 .dingzhi {
-   text-align: center; 
+  text-align: center;
   background-color: #fff;
   padding: 40rpx;
 }
 
-.dingzhi .shuoming{
+.dingzhi .shuoming {
   font-size: 26rpx;
   color: #808080;
   padding: 20rpx 50rpx 20rpx 50rpx;
@@ -39,14 +38,14 @@
   margin-bottom: 20rpx;
 }
 
-.dingzhi .user{
+.dingzhi .user {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10rpx;
 }
 
-.dingzhi .dingzhi-img{
+.dingzhi .dingzhi-img {
   height: 40rpx;
   width: 40rpx;
   border-radius: 50%;
@@ -66,4 +65,12 @@
 
 .dingzhi button::after {
   border: none;
+}
+
+/* 没有信息 */
+
+.noxinxi {
+  text-align: center;
+  padding-top: 400rpx;
+  color: #007aff;
 }
