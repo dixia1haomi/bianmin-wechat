@@ -27,7 +27,7 @@
 
 <!-- 测试组件 -->
 <block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
-  <component-demo Res="{{item}}" />
+  <component-demo Res="{{item}}" bind:call-login="com_login_"></component-demo>
 </block>
 
 
@@ -40,3 +40,6 @@
     <view class=''>+</view>
   </view>
 </view>
+
+<!-- 登录 -->
+<component-login login-state="{{loginState}}"></component-login>

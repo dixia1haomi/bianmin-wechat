@@ -1,0 +1,27 @@
+.xuanzeqi {
+  margin-bottom: 10rpx;
+  padding: 30rpx;
+}
+
+/* --------------------------------- 带箭头的单行列表--------------------------------- */
+
+.danhang-list {
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* 右箭头 */
+
+.youjiantou7 {
+  width: 7px;
+  height: 7px;
+  border-top: 3rpx solid #8a8a8a;
+  border-right: 3rpx solid #8a8a8a;
+  transform: rotate(45deg);
+}

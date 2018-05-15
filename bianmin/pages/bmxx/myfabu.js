@@ -20,6 +20,9 @@ Page({
 
     fenxiangTanChuang: false,  // 分享弹窗
     haibaoImg: '',             // 海报图片
+
+    // 登录弹窗
+    loginState: false
   },
 
   /**
@@ -83,7 +86,7 @@ Page({
     console.log('onShareAppMessage', this.data.Res.id)
     return {
       title: '帮我增加顶置时间',
-      path: '/pages/bmxx/erweimafenxiangye?id=' + this.data.Res.id,
+      path: '/pages/bmxx/erweimafenxiangye?scene=' + this.data.Res.id,
       imageUrl: '/img/150.jpg',
       success: (res) => {
         // 转发成功,关闭分享弹窗
@@ -98,12 +101,6 @@ Page({
 
   // ------------------------------------------------- 回复 -------------------------------------------------
 
-  // 弹窗开关事件(清空input、bmxx_id)
-  tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null, input_cursor: 0 }) },
-
-  // 回复输入事件
-  huifu_input_(e) { this.setData({ input: e.detail.value, input_cursor: e.detail.cursor }) },
-
   // ---- 回复事件 ----
   huifu_(e) {
     if (app.data.LoginState) {
@@ -115,9 +112,16 @@ Page({
       })
     } else {
       // 登陆弹窗
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginState: true })
     }
   },
+
+  // 弹窗开关事件(清空input、bmxx_id)
+  tanchuang_() { this.setData({ tanChuang: !this.data.tanChuang, input: null, input_cursor: 0 }) },
+
+  // 回复输入事件
+  huifu_input_(e) { this.setData({ input: e.detail.value, input_cursor: e.detail.cursor }) },
+
 
   // 回复确定
   huifu_queding_(e) {
@@ -166,9 +170,9 @@ Page({
   // ------------------------------------------------- 修改 -------------------------------------------------
   go_xiugai_() {
     if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/wode/xiugaifabu' })
+      wx.navigateTo({ url: '/pages/bmxx/xiugaifabu' })
     } else {
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginState: true })
     }
   },
 
@@ -190,7 +194,7 @@ Page({
         }
       })
     } else {
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginState: true })
     }
   },
 
@@ -199,11 +203,11 @@ Page({
     if (app.data.LoginState) {
       api.updateTime({ id: e.currentTarget.id }, back => {
         console.log('刷新', back)
-        wx.showModal({ content: back.data })
+        wx.showModal({ content: back.data, showCancel: false })
         this._load()
       })
     } else {
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginState: true })
     }
   },
 

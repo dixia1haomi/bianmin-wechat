@@ -15,7 +15,7 @@
   <block wx:else>
 
     <!-- Res组件 -->
-    <component-demo Res="{{Res}}" state="true" />
+    <component-demo Res="{{Res}}" state="true" bind:call-login="com_login_"></component-demo>
 
 
     <!-- 帮顶 -->
@@ -48,6 +48,9 @@
         </block>
       </view>
     </view>
+
+    <!-- 登陆弹窗 -->
+    <component-login login-state="{{loginState}}"></component-login>
 
   </block>
 </block>

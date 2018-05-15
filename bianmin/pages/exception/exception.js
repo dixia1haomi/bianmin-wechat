@@ -2,11 +2,13 @@
 Page({
 
   data: {
-  
+    exception: '',
   },
 
-  onLoad: function (options) {
-  
+  onLoad: function (op) {
+    if (op.exception) {
+      this.setData({ exception: op.exception })
+    }
   },
 
 })

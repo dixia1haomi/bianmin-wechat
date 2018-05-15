@@ -11,15 +11,18 @@ Page({
   data: {
     Res: false,
     dingzhijilu: false,  // 顶置记录，顶过显示去首页逛逛
+    // 登录弹窗
+    loginState: false,
   },
 
 
   onLoad: function (op) {
-    // op.id是直接转发携带，op.scene是码携带
-    console.log('op', op)
-    op.id = op.id ? op.id : decodeURIComponent(op.scene)
-    this._load(op.id)
+    // op.scene是携带的参数
+    console.log('op', op.scene)
+    op.scene = decodeURIComponent(op.scene)
+    this._load(op.scene)
   },
+
 
   _load(id) {
     // 查询单个便民信息
@@ -27,6 +30,12 @@ Page({
       console.log('查询单个便民信息', back)
       this.setData({ Res: back.data })
     })
+  },
+
+  // ----------------- 登录组件 -------------------
+  // 打开登录弹窗
+  com_login_() {
+    this.setData({ loginState: true })
   },
 
   // 增加顶置时间(携带信息ID)
@@ -53,10 +62,8 @@ Page({
       })
     } else {
       // 显示登录
-      this.setData({ loginTanChuang: true })
+      this.setData({ loginState: true })
     }
   },
 
 })
-
-// * 服务器删除信息一起删除帮顶记录

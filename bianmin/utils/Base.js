@@ -42,12 +42,15 @@ class Base {
           else if (res.data.errorCode == 50000) {
             wx.showModal({ title: '错误', content: '获取小程序码异常、已上报服务器、抱歉。', success: () => { return } })
           }
+        } else {
+          // statusCode不等于200、服务器有问题
+          wx.navigateTo({ url: '/pages/exception/exception?exception=' + '服务器出了点问题、正在修复、抱歉。' })
         }
       },
       fail(err) {
         // 提示-请检查网络状态-重试(*)
         console.log('Base基类请求失败,进入fail')
-        wx.navigateTo({ url: '/pages/exception/exception' })
+        wx.navigateTo({ url: '/pages/exception/exception?exception=' + '网络状态不佳、请尝试切换网络。' })
       }
     })
   }

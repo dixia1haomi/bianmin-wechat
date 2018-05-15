@@ -1,0 +1,5 @@
+<!-- input -->
+<view class='danhang-list input'>
+  <view class='input-title'>{{title}}</view>
+  <input class='input-text' bindinput='input_' maxlength='{{maxlength}}' placeholder='{{placeholder}}' value='{{value}}'></input>
+</view>

@@ -1,0 +1,13 @@
+<view class='base'>
+  <!-- title -->
+  <view class='title'>选择图片</view>
+  <!-- 选择图片 -->
+  <view class='tupian'>
+    <block wx:for="{{img}}" wx:key="">
+      <image class='img' src='{{item}}' mode='aspectFill' id='{{index}}' catchtap='deleteimg_'></image>
+    </block>
+    <view wx:if="{{img.length < 4}}" class='tianjiatupian' catchtap='xuanzeimg_'>+</view>
+  </view>
+  <!-- 删除图片提示 -->
+  <view class='img-tips'>小提示：可添加4张图片、再次点击图片即可删除</view>
+</view>

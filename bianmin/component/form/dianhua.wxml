@@ -1,0 +1,5 @@
+<!-- 电话 -->
+<view class='danhang-list dianhua'>
+  <view class='dianhua-text'>电话：{{setData.phone}}</view>
+  <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="dianhua_">获取电话</button>
+</view>

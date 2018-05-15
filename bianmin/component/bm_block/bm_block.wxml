@@ -54,7 +54,7 @@
       <text catchtap='dizhi_' data-longitude='{{Res.longitude}}' data-latitude='{{Res.latitude}}' data-address='{{Res.address}}'>{{Res.address}}</text>
     </view>
 
-    <!-- info在wode/myfabu页是修改、删除、刷新，不使用这个info,用<slot></slot>给wode/myfabu页用 -->
+    <!-- info在bmxx/myfabu页是修改、删除、刷新，不使用这个info,用<slot></slot>给bmxx/myfabu页用 -->
     <block wx:if="{{!myfabu}}">
       <!-- 脚部按钮栏 -->
       <view class='info'>
@@ -78,7 +78,7 @@
       </view>
     </block>
 
-    <!-- 给wode/myfabu的插槽 -->
+    <!-- 给bmxx/myfabu的插槽 -->
     <block wx:else>
       <slot name="myfabu-info"></slot>
     </block>
@@ -147,7 +147,7 @@
 
 
 
-  <!-- 如果wode/myfabu页是回复，不使用这个留言,用<slot></slot>给wode/myfabu页用 -->
+  <!-- 如果bmxx/myfabu页是回复，不使用这个留言,用<slot></slot>给bmxx/myfabu页用 -->
   <block wx:if="{{!myfabu}}">
     <!-- 留言块 -->
     <block wx:if="{{Res.with_liuyan.length > 0}}">
@@ -179,7 +179,7 @@
 
   </block>
 
-  <!-- 给wode/myfabu的插槽 -->
+  <!-- 给bmxx/myfabu的插槽 -->
   <block wx:else>
     <slot name="myfabu-huifu"></slot>
   </block>
@@ -211,4 +211,4 @@
 
 
 <!-- 登陆弹窗 -->
-<component-login bind:login="_login" login-state="{{loginTanChuang}}"></component-login>
+<!-- <component-login login-state="{{loginTanChuang}}"></component-login> -->

@@ -71,7 +71,7 @@ class Cos {
         if (i == length) {
           callbackSucc && callbackSucc('成功' + successUp + '失败' + failUp)
         }
-        else {  //递归调用uploadDIY函数
+        else {  //再次调用uploadDIY函数
           this._uploadFile(cospath, qianmin, filePaths, successUp, failUp, i, length, callback, callbackSucc);
         }
       },

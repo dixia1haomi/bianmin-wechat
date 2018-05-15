@@ -1,5 +1,5 @@
 <!-- 登陆弹窗 -->
-<block wx:if="{{loginTanChuang}}">
+<block wx:if="{{loginState}}">
   <view class="loginTanChuang-mask">
     <view class='loginTanChuang'>
       <view class='loginTanChuang-title'>登陆</view>

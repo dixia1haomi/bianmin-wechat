@@ -1,0 +1,52 @@
+/* 标题 */
+
+.title {
+  text-align: center;
+  font-size: 26rpx;
+  color: #808080;
+  margin-bottom: 10rpx;
+}
+
+/* textarea输入框 */
+
+.textarea-view {
+  position: relative;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.textarea {
+  background-color: aliceblue;
+  width: 100%;
+  height: 500rpx;
+  font-size: 36rpx;
+}
+
+.cursor {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
+}
+
+/* 底部说明 */
+
+.bottom {
+  font-size: 26rpx;
+  color: #808080;
+  margin-top: 10rpx;
+}
+
+/* --------------------------------- 带箭头的单行列表--------------------------------- */
+
+.danhang-list {
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}

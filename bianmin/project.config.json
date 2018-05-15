@@ -35,8 +35,8 @@
 					"id": 0,
 					"name": "list",
 					"pathName": "pages/bmxx/fabu",
-					"query": "",
-					"scene": "1014"
+					"query": "id=358",
+					"scene": "1012"
 				}
 			]
 		}

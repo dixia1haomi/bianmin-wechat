@@ -165,11 +165,19 @@ class Api extends Base {
     })
   }
 
-  // 获取电话
+  // 获取电话、可能token突然过期返回-41003、让用户重试一次
   getPhone(data, callback) {
     wx.showLoading({ title: '请稍候', mask: true })
     this.request({
       url: 'index/getphone', data: data, sCallback: (res) => {
+        console.log('getPhone', res)
+        if (res.data == -41003) {
+          wx.showModal({
+            title: '错误、请重试一次',
+            content: '可能因为登录态突然过期、请尝试再次获取电话',
+            showCancel: false
+          })
+        }
         wx.hideLoading()
         callback && callback(res)
       }

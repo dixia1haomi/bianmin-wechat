@@ -31,7 +31,7 @@ Component({
       value: false
     },
 
-    // wode/myfabu不使用info内容
+    // bmxx/myfabu不使用info内容
     myfabu: {
       type: Boolean,
       value: false
@@ -41,11 +41,6 @@ Component({
 
   //	否	组件的内部数据，和 properties 一同用于组件的模版渲染
   data: {
-    // 登陆弹窗
-    loginTanChuang: false,
-    // form_id
-    form_id: null,
-
     // ---- 留言 ----
     tanChuang: false,
     input: null,
@@ -67,8 +62,8 @@ Component({
         this.tanchuang_()
         this.setData({ bianmin_id: e.currentTarget.dataset.bianmin_id, })
       } else {
-        // 登陆弹窗
-        this.setData({ loginTanChuang: !this.data.loginTanChuang })
+        // 请求登陆弹窗
+        this.triggerEvent('call-login', {})
       }
     },
 

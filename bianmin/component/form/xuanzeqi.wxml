@@ -1,0 +1,8 @@
+<!-- 选择器 -->
+<view class='danhang-list xuanzeqi' catchtap='xuanzeqi_'>
+  <view class='xuanzeqi-title'>{{title}}：{{content}}</view>
+  <view class='youjiantou7'></view>
+</view>
+
+<!-- 插入信息类目组件的插槽 -->
+<slot name="xinxileimu"></slot>

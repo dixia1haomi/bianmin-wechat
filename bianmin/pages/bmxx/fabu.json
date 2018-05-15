@@ -1,6 +1,12 @@
 {
   "usingComponents": {
     "my-toptips": "/component/toptips/toptips",
-    "xuanzeleimu": "/component/xuanzeleimu/xuanzeleimu"
+    "form-dianhua": "/component/form/dianhua",
+    "form-dizhi": "/component/form/dizhi",
+    "form-input": "/component/form/input",
+    "form-textarea": "/component/form/textarea",
+    "form-xuanzeqi": "/component/form/xuanzeqi",
+    "xuanzeleimu": "/component/xuanzeleimu/xuanzeleimu",
+    "xuanzetupian": "/component/xinxi/xuanzetupian"
   }
 }

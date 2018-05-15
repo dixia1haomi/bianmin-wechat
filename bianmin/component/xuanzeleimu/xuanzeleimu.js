@@ -41,32 +41,34 @@
 //   }
 // ],
 
+import { Api } from '../../utils/Api.js'
+const api = new Api()
+
+// 生命周期函数,API获得类目数组
+// 接受kaiguan，控制组件内容显示隐藏
+// 抛出xuanzeleimu，{
+//   name:'xxx',
+//   value2:{ [moban:'xxx'], [moban:'xxx']}
+// }
+// < xuanzeleimu bind: xuanzeleimu = "com_xuanzeleimu_" kaiguan= "{{com_xuanzeleimu_kaiguan}}" > </xuanzeleimu>
+
 Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
-    // 类目数据
-    arr: {
-      type: Array,
-      value: [],
-      observer(newVal, oldVal) {
-
-      }
-    },
-
-    // 显示开关
+    // 显示开关，控制组件内容显示隐藏
     kaiguan: {
       type: Boolean,
-      value: false,
-      observer(newVal, oldVal) {
-        this.setData({ kaiguan: newVal })
-      }
+      value: true
     },
 
   },
 
 
   data: {
+    // 类目数据
+    arr: [],
+    // arr数据1级ID
     id: 0,
   },
 
@@ -76,22 +78,23 @@ Component({
       this.setData({ id: e.currentTarget.id })
     },
 
-    // 二级选择
+    // 二级选择(选择后抛出类目下的类目名称和模板)
     xuanze2_(e) {
       console.log('xuanze2', e.currentTarget.dataset.value)
       // 抛出
-      this.triggerEvent('event', { value: e.currentTarget.dataset.value })
+      this.triggerEvent('xuanzeleimu', e.currentTarget.dataset.value)
+      // 关闭组件
+      this.setData({ kaiguan: false })
     },
   },
 
-
+  // 生命周期函数
+  attached: function () {
+    // API获得类目数组
+    api.leiMu({}, back => { this.setData({ arr: back.data }) })
+  },
 
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
 })
-
-// 方法名	参数	描述
-// setData	Object newData	设置data并执行视图层渲染
-// hasBehavior	Object behavior	检查组件是否具有 behavior （检查时会递归检查被直接或间接引入的所有behavior）
-// triggerEvent	String name, Object detail, Object options	触发事件，参见 组件事件

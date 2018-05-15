@@ -3,12 +3,15 @@
     <view class='xuanzeleimu-title'>选择类目</view>
 
     <view class='base'>
+
+      <!-- 左边一级类目 -->
       <view class='base1'>
         <block wx:for="{{arr}}" wx:key="">
           <view class="base1-name {{item.id == id && 'base1-name-xuanzhong'}}" catchtap='xuanze1_' id='{{item.id}}'>{{item.name}}</view>
         </block>
       </view>
 
+      <!-- 右边二级类目 -->
       <view class='base2'>
         <block wx:for="{{arr[id].value}}" wx:key="">
           <view class='base2-name' catchtap='xuanze2_' data-value='{{item}}'>{{item.name}}</view>

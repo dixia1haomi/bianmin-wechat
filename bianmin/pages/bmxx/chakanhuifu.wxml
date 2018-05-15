@@ -14,13 +14,16 @@
   <block wx:else>
 
     <!-- 组件 -->
-    <component-demo Res="{{Res}}" state="true" />
+    <component-demo Res="{{Res}}" state="true" bind:call-login="com_login_"></component-demo>
     <!-- 回首页 -->
     <view class='huishouye'>
       <navigator open-type='reLaunch' url='/pages/index/index1' hover-class="none">
         <button>回首页</button>
       </navigator>
     </view>
-    
+
+    <!-- 登陆弹窗 -->
+    <component-login login-state="{{loginState}}"></component-login>
+
   </block>
 </block>

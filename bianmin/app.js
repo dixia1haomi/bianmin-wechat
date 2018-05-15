@@ -24,7 +24,7 @@ App({
   onLaunch: function (op) {
     console.log('app op', op)
     // 检查来源(直接从需要携带token的页面进来时可能token还未生成，需要主动调用checkToken)
-    if (op.path == "pages/wode/myfabu") { return; }
+    if (op.path == "pages/bmxx/myfabu") { return; }
 
     // 小程序初始化检查token
     this.checkToken()

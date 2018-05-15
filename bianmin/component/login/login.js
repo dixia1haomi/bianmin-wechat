@@ -19,21 +19,14 @@ Component({
     // wx:for-item
     loginState: {
       type: Boolean,
-      value: false,
-      observer(newVal, oldVal) {
-        console.log('loginState')
-        this.setData({ loginTanChuang: true })
-      }
+      value: false
     },
 
   },
 
 
   data: {
-    // 登陆弹窗
-    loginTanChuang: false,
-    // form_id
-    form_id: null,
+    form_id: '',
   },
 
   methods: {
@@ -41,7 +34,7 @@ Component({
 
     // 关闭登陆弹窗
     loginTanChuangQuXiao_() {
-      this.setData({ loginTanChuang: false })
+      this.setData({ loginState: false })
     },
 
     // formid
@@ -57,7 +50,7 @@ Component({
         } else {
           e.detail.userInfo.form_id = ''
         }
-        this.setData({ loginTanChuang: false }, () => {
+        this.setData({ loginState: false }, () => {
           app.saveUserInfo(e.detail, () => {
             this.triggerEvent('login', {})
           })
@@ -96,7 +89,3 @@ Component({
   },
 })
 
-// 方法名	参数	描述
-// setData	Object newData	设置data并执行视图层渲染
-// hasBehavior	Object behavior	检查组件是否具有 behavior （检查时会递归检查被直接或间接引入的所有behavior）
-// triggerEvent	String name, Object detail, Object options	触发事件，参见 组件事件

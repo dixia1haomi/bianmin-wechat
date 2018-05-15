@@ -11,7 +11,7 @@ Page({
     // 昵称头像
     userinfo: null,
     // 登陆窗
-    loginTanChuang: false,
+    loginState: false,
   },
 
 
@@ -21,7 +21,7 @@ Page({
 
 
   // --------------------- 登陆组件传回来的事件(关闭登陆弹窗) ---------------------
-  _login() {
+  com_login_() {
     // 设置头像
     this._set_UserInfo()
   },
@@ -48,14 +48,14 @@ Page({
         console.log('myFabu', back)
         // 如果已经有信息不能在发布,没有信息back.data == null
         if (back.data) {
-          wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息' })
+          wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息', showCancel: false })
         } else {
           wx.navigateTo({ url: '/pages/bmxx/fabu' })
         }
       })
     } else {
       // 提示登陆
-      this.setData({ loginTanChuang: !this.data.loginTanChuang })
+      this.setData({ loginState: true })
     }
   },
 
@@ -63,9 +63,10 @@ Page({
 
   my_fabu_() {
     if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/wode/myfabu' })
+      wx.navigateTo({ url: '/pages/bmxx/myfabu' })
     } else {
-      this.setData({ loginTanChuang: !this.data.loginTanChuang })
+      // 提示登陆
+      this.setData({ loginState: true })
     }
   },
 
@@ -83,7 +84,8 @@ Page({
         }
       })
     } else {
-      this.setData({ loginTanChuang: !this.data.loginTanChuang })
+      // 提示登陆
+      this.setData({ loginState: true })
     }
   },
 
@@ -94,7 +96,8 @@ Page({
     if (app.data.LoginState) {
       wx.navigateTo({ url: '/pages/wode/my-shangjia' })
     } else {
-      this.setData({ loginTanChuang: !this.data.loginTanChuang })
+      // 提示登陆
+      this.setData({ loginState: true })
     }
   },
 

@@ -1,2 +1,2 @@
 
-<view class="title">网络状态不佳.</view>
+<view class="title">{{exception}}</view>

@@ -1,0 +1,45 @@
+.base {
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.title{
+  margin-bottom: 10rpx;
+}
+
+/* 填充图片 */
+
+.tupian {
+  display: flex;
+}
+
+/* 添加图片 */
+
+.tianjiatupian {
+  height: 166rpx;
+  width: 166rpx;
+  background-color: aliceblue;
+  border: 1rpx dashed #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  color: #808080;
+}
+
+/* 显示图片 */
+
+.img {
+  height: 170rpx;
+  width: 170rpx;
+  margin-right: 10rpx;
+}
+
+/* 图片删除提示 */
+
+.img-tips {
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #808080;
+}

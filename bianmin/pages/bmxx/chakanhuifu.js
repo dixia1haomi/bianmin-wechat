@@ -6,7 +6,7 @@ Page({
 
   data: {
     Res: false,
-
+    loginState: false
   },
 
 
@@ -14,9 +14,7 @@ Page({
 
   // ---------------------------- onLoad -----------------------------
   onLoad: function (op) {
-    console.log('q', op)
-    var scene = decodeURIComponent(op.scene)
-    console.log('index1-scene', scene)
+    // mobanxiaoxi携带id
     this._load(op.id)
   },
 
@@ -27,6 +25,11 @@ Page({
       this.setData({ Res: back.data })
     })
   },
+
+  // 组件留言触发的登录弹窗
+  com_login_() {
+    this.setData({ loginState: true })
+  }
 
 
 })
