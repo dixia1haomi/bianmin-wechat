@@ -8,7 +8,7 @@
 }
 
 .input-title {
-  margin-right: 20rpx;
+  /* margin-right: 20rpx; */
 }
 
 .input-text {

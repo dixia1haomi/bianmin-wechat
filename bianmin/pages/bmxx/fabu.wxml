@@ -19,7 +19,7 @@
 
   <!-- 选择图片 -->
   <view style='margin-bottom: 10rpx;'>
-    <xuanzetupian bind:xuanzetupian="com_xuanzetupian_"></xuanzetupian>
+    <xuanzetupian bind:xuanzetupian="com_xuanzetupian_" count="4"></xuanzetupian>
   </view>
 
   <!-- 地址 -->

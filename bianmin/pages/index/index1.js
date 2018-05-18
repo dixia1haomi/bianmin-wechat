@@ -13,6 +13,20 @@ Page({
 
   },
 
+  // 剪贴板
+  fuzhi_() {
+    wx.setClipboardData({
+      data: 'daishuweixin1',
+      success: function (res) {
+        wx.showModal({
+          title: '袋鼠微信已复制',
+          content: '你好、我是小优、很期待与你成为朋友、快去加我吧。',
+          showCancel:false
+        })
+      }
+    })
+  },
+
   // ----------------- 登录组件 -------------------
   // 打开登录弹窗
   com_login_() {
@@ -29,7 +43,7 @@ Page({
 
   onLoad: function (op) {
     this._load()
-    // this._getShangjiaList()
+    this._getShangjiaList()
   },
 
 
@@ -72,7 +86,7 @@ Page({
       this.setData({ noData: false })
       wx.stopPullDownRefresh()
     })
-    // this._getShangjiaList()
+    this._getShangjiaList()
   },
 
   // 上拉触底

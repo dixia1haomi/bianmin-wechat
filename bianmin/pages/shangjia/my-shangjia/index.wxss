@@ -1,52 +1,13 @@
-.title {
-  padding: 60rpx;
-  background-color: #fff;
-  /* margin-bottom: 20rpx; */
-}
 
-/* 头图 */
 
-.toutu {
-  height: 562.5rpx;
-  border-bottom: 1rpx solid #e5e5e5;
-  margin-bottom: 20rpx;
-}
-
-.toutu-img {
-  /* 16:9 */
-  width: 100%;
-  height: 562.5rpx;
-}
-
-/* 名称 */
-
-.name-input {
-  background-color: #fff;
-  padding: 20rpx;
-}
-
-.name-button {
-  border-top: 1rpx solid #e5e5e5;
-  background-color: #fff;
-  padding: 20rpx;
-  text-align: center;
-}
-
-/* 地址 */
-
-.dizhi {
-  margin-top: 20rpx;
-  background-color: #fff;
-  padding: 20rpx;
-}
 
 /* 电话 */
 
-.phone {
-  margin-top: 20rpx;
-  background-color: #fff;
-  padding: 20rpx;
+.dianhua {
+  margin-bottom: 10rpx;
+  padding: 30rpx;
 }
+
 
 /* 描述 */
 

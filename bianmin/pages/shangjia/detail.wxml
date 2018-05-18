@@ -1,43 +1,10 @@
 <view>
 
-  <!-- 头图 -->
-  <view class='toutu'>
-    <image class='toutu-img' src='{{shangjiaRes.toutu}}' mode=''></image>
-  </view>
-
-  <!-- 名称,地址，电话 -->
-  <view class='name-dizhi-dianhua'>
-    <!-- 名称,地址 -->
-    <view class='name-dizhi'>
-      <view class='name'>{{shangjiaRes.name}}</view>
-      <view class='dizhi' catchtap='open_map_'>
-        <text class='iconfont icon-dizhi' style='color:#2c2c2c;'></text> {{shangjiaRes.dizhi}}
-      </view>
-
-    </view>
-
-    <!-- 电话 -->
-    <view class='dianhua' catchtap='call_phone_'>
-      <text class='iconfont icon-shangjia-dianhua' style='font-size: 70rpx;'></text>
-    </view>
-  </view>
-
+  <!-- 头 -->
+  <shangjia-tou shangjiaRes="{{shangjiaRes}}"></shangjia-tou>
 
   <!-- 描述 -->
-  <view class='miaoshu'>
-    <view class='miaoshu-title'>
-      <view>商家描述</view>
-      <view class='liulangcishu'>
-        <text class='iconfont icon-yueduliang' /> {{shangjiaRes.liulangcishu}}
-      </view>
-    </view>
-    <text class='miaoshu-text'>{{shangjiaRes.miaoshu}}</text>
-  </view>
+  <shangjia-miaoshu shangjiaRes="{{shangjiaRes}}"></shangjia-miaoshu>
 
-  <!-- 详情图 -->
-  <view class='xiangqingtu'>
-    <block wx:for="{{shangjiaRes.withshangjia_img}}" wx:key="">
-      <image class='xiangqingtu-img' src='{{item.url}}' mode='widthFix'></image>
-    </block>
-  </view>
 </view>
+

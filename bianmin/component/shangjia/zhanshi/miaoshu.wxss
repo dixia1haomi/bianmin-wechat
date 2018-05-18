@@ -1,0 +1,34 @@
+/* 描述 */
+
+.miaoshu {
+  padding: 20rpx 0;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.miaoshu-title {
+  margin-left: 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+/* 详情图 */
+
+.tuwenxiangqing {
+  background-color: #fff;
+  padding-top: 80rpx;
+}
+
+.tuwenxiangqing .text-view {
+  text-align: center;
+}
+
+.tuwenxiangqing-img {
+  width: 100%;
+}
+
+/* 暂无描述 */
+.no-miaoshu{
+  text-align: center;
+  margin-top: 200rpx;
+}

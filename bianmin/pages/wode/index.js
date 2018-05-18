@@ -72,15 +72,15 @@ Page({
 
 
   // -------------------------------------- 商家入驻 --------------------------------------
-  create_shangjia() {
+  create_shangjia_() {
     // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
     if (app.data.LoginState) {
       api.getMyShangjia({}, (res) => {
         console.log('我的店铺', res)
         if (res.data == null) {
-          wx.navigateTo({ url: '/pages/wode/create-shangjia' })
+          wx.navigateTo({ url: '/pages/shangjia/create-shangjia' })
         } else {
-          wx.showModal({ content: '已入驻过,可以先去「我的店铺」删除旧店铺' })
+          wx.showModal({ content: '已入驻过,可以先去「我的店铺」删除旧店铺', showCancel: false })
         }
       })
     } else {
@@ -94,7 +94,7 @@ Page({
   my_shangjia_() {
     // 是否登陆过 ？
     if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/wode/my-shangjia' })
+      wx.navigateTo({ url: '/pages/shangjia/my-shangjia/index' })
     } else {
       // 提示登陆
       this.setData({ loginState: true })

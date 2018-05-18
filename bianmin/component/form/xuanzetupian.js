@@ -4,6 +4,18 @@ Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
+    // title
+    title: {
+      type: String,
+      value: '选择图片'
+    },
+
+    // 数量
+    count: {
+      type: Number,
+      value: 1
+    },
+
   },
 
 
@@ -20,7 +32,7 @@ Component({
     xuanzeimg_: function () {
       let imgArray = this.data.img
       wx.chooseImage({
-        count: 4 - imgArray.length,      // 默认9
+        count: this.data.count - imgArray.length,      // 默认9
         sizeType: ['compressed'],        // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: (res) => {

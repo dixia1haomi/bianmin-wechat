@@ -1,1 +1,19 @@
-/* pages/wode/guanyuwo.wxss */
+.title {
+  text-align: center;
+  padding: 100rpx 0 60rpx 0;
+  font-size: 36rpx;
+  font-weight: 700;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+
+.content {
+  font-size: 30rpx;
+  padding: 32rpx;
+}
+
+.content .fuzhi {
+  padding-top: 100rpx;
+  text-align: center;
+  color: #007aff;
+}

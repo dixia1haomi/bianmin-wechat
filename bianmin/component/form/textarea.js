@@ -38,6 +38,12 @@ Component({
       type: Boolean,
       value: true
     },
+
+    // disabled
+    disabled: {
+      type: Boolean,
+      value: false
+    },
   },
 
 
@@ -60,6 +66,10 @@ Component({
       this.triggerEvent('textarea', e.detail)
     },
 
+    // 失去焦点时触发
+    blur_() {
+      this.triggerEvent('blur')
+    }
   },
 
 

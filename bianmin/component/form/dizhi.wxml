@@ -1,6 +1,6 @@
 <!-- 地址 -->
 
 <view class='danhang-list dizhi' catchtap='dizhi_'>
-  <view class='dizhi-text'>地址：{{setData.address}}</view>
+  <view class='dizhi-text'>地址：{{address}}</view>
   <view class='youjiantou7'></view>
 </view>

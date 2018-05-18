@@ -9,8 +9,10 @@
     "pages/exception/exception",
     "pages/wode/index",
     "pages/wode/guanyuwo",
-    "pages/wode/create-shangjia",
-    "pages/wode/my-shangjia",
+    "pages/shangjia/create-shangjia",
+    "pages/shangjia/my-shangjia/index",
+    "pages/shangjia/my-shangjia/tuwenxiangqingye",
+    "pages/shangjia/my-shangjia/jibenziliaoye",
     "pages/shangjia/detail",
     "pages/shangjia/list"
   ],

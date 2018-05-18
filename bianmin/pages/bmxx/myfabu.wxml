@@ -104,7 +104,7 @@
       <button catchtap='fenxiangTanChuang_Kai_'>邀请朋友帮我顶置</button>
       <!-- 说明 -->
       <view class='shuoming'>
-        <text>小提示：每个好友能为你增加24小时顶置时间、自己也可以给自己增加</text>
+        <text>小提示：每个好友能为你增加24小时顶置时间.</text>
       </view>
       <!-- 海报 -->
       <view wx:if="{{haibaoImg}}">

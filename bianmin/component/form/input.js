@@ -26,6 +26,12 @@ Component({
       type: String,
       value: ''
     },
+
+    // disabled
+    disabled: {
+      type: Boolean,
+      value: false
+    },
   },
 
 
@@ -43,6 +49,12 @@ Component({
     input_(e) {
       this.triggerEvent('input', e.detail)
     },
+
+
+    // 失去焦点时触发
+    blur_() {
+      this.triggerEvent('blur')
+    }
   },
 
   options: {

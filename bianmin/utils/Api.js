@@ -226,20 +226,111 @@ class Api extends Base {
   createShangjia(data, callback) {
     wx.showLoading({ title: '请稍候', mask: true })
     this.request({
-      url: 'index/createshangjia', data: data, sCallback: (res) => {
+      url: 'shangjia/createshangjia', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
       }
     })
   }
 
-  // 新增商家图片
-  createShangjiaImg(data, callback) {
-    wx.showLoading({ title: '上传中', mask: true })
+  // -------------- 编辑商家图基本资料 --------------
+
+  // 修改店铺头图
+  xiugaiShangjiaToutu(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
     this.request({
-      url: 'index/createshangjiaimg', data: data, sCallback: (res) => {
+      url: 'shangjia/xiugaishangjiatoutu', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改店铺名称
+  xiugaiShangjiaName(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'shangjia/xiugaishangjianame', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改店铺地址
+  xiugaiShangjiaDizhi(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'shangjia/xiugaishangjiadizhi', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改店铺描述
+  // xiugaiShangjiaMiaoshu(data, callback) {
+  //   wx.showLoading({ title: '修改中', mask: true })
+  //   this.request({
+  //     url: 'shangjia/xiugaishangjiamiaoshu', data: data, sCallback: (res) => {
+  //       wx.hideLoading()
+  //       callback && callback(res)
+  //       wx.showToast({ title: '修改成功' })
+  //     }
+  //   })
+  // }
+
+
+
+  // -------------- 编辑商家图文详情块 --------------
+
+  // 新增商家IMG表
+  createShangjiaImg(data, callback) {
+    wx.showLoading({ title: '创建中', mask: true })
+    this.request({
+      url: 'shangjia/createshangjiaimg', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '创建成功' })
+      }
+    })
+  }
+
+  // 修改商家IMG里的text字段
+  createShangjiaImgText(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'shangjia/updateshangjiaimgtext', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改商家IMG里的url字段
+  createShangjiaImgUrl(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'shangjia/updateshangjiaimgurl', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 删除商家IMG一条数据
+  deleteShangjiaImg(data, callback) {
+    wx.showLoading({ title: '删除中', mask: true })
+    this.request({
+      url: 'shangjia/deleteshangjiaimg', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '删除成功' })
       }
     })
   }
@@ -248,7 +339,7 @@ class Api extends Base {
   findShangjia(data, callback) {
     wx.showLoading({ title: '请稍候', mask: true })
     this.request({
-      url: 'index/findshangjia', data: data, sCallback: (res) => {
+      url: 'shangjia/findshangjia', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
       }
@@ -259,7 +350,7 @@ class Api extends Base {
   selectShangjia(data, callback) {
     wx.showLoading({ title: '加载中', mask: true })
     this.request({
-      url: 'index/selectshangjia', data: data, sCallback: (res) => {
+      url: 'shangjia/selectshangjia', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
       }
@@ -270,7 +361,7 @@ class Api extends Base {
   getMyShangjia(data, callback) {
     wx.showLoading({ title: '请稍候', mask: true })
     this.request({
-      url: 'index/myshangjia', data: data, sCallback: (res) => {
+      url: 'shangjia/myshangjia', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
       }
@@ -281,37 +372,22 @@ class Api extends Base {
   deleteShangjia(data, callback) {
     wx.showLoading({ title: '删除中', mask: true })
     this.request({
-      url: 'index/deleteshangjia', data: data, sCallback: (res) => {
+      url: 'shangjia/deleteshangjia', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
+        wx.showToast({ title: '删除成功' })
       }
     })
   }
 
   // 删除店铺详情图1张
   deleteShangjiaImg(data, callback) {
-    this.request({ url: 'index/deleteshangjiaimg', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({ url: 'shangjia/deleteshangjiaimg', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
-  // 修改店铺头图
-  xiugaiShangjiaToutu(data, callback) {
-    this.request({ url: 'index/xiugaishangjiatoutu', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
 
-  // 修改店铺名称
-  xiugaiShangjiaName(data, callback) {
-    this.request({ url: 'index/xiugaishangjianame', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
 
-  // 修改店铺描述
-  xiugaiShangjiaMiaoshu(data, callback) {
-    this.request({ url: 'index/xiugaishangjiamiaoshu', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
 
-  // 修改店铺地址
-  xiugaiShangjiaDizhi(data, callback) {
-    this.request({ url: 'index/xiugaishangjiadizhi', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
 
 
 

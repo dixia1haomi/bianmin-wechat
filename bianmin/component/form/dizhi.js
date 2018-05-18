@@ -4,6 +4,17 @@ Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
+    // address
+    address: {
+      type: String,
+      value: ''
+    },
+
+    // name
+    // name: {
+    //   type: String,
+    //   value: ''
+    // },
   },
 
 
@@ -30,7 +41,8 @@ Component({
             if ((e.address.indexOf("云南省曲靖市")) != -1) {
               e.address = e.address.substring((e.address.indexOf("市") + 1), e.address.length)
             }
-            this.setData({ setData: e })
+            // address只是用来初始显示用的、抛出的是setData对象里面也包含address
+            this.setData({ setData: e, address: e.address })
             // 记录已选择的位置
             this.triggerEvent('dizhi', e)
           }

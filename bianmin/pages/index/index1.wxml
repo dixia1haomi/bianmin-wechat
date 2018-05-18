@@ -1,38 +1,39 @@
-<view class='title'>
+<view class='title' catchtap='fuzhi_'>
   <image class='title-img' src='/img/150.jpg'></image>
   <view>
     <view style='font-size: 46rpx;font-weight: 700;'>沾益袋鼠同城+</view>
     <view class='title-1'>
-      <view>沾益本地同城信息分发平台.</view>
-      <view>欢迎使用,完全免费.</view>
+      <view>加袋鼠微信,帮你顶置,转发信息.</view>
+      <view style='margin-top: 10rpx;'>点击添加</view>
     </view>
   </view>
 </view>
 
 
+<view class='scroll-title'>本地商家</view>
 <!-- 本地商家 -->
-<!-- <view class='scroll'>
-  <view class='tuijian'>本地商家</view>
-
+<view class='scroll'>
   <scroll-view scroll-x class='scroll-view'>
     <block wx:for="{{shangjiaList}}" wx:key="">
       <view style='display: inline-block; padding-right: 20rpx;' id='{{item.id}}' catchtap='scroll'>
-        <image class='wenzhang-img' src='{{item.toutu}}' mode='aspectFill'></image>
-        <view class='scroll-title'>{{item.name}}</view>
+        <image class='shangjia-img' src='{{item.toutu}}' mode='aspectFill'></image>
+        <view class='scroll-name'>{{item.name}}</view>
       </view>
     </block>
-    <view wx:if="{{shangjiaList.length == 10}}" class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多></view>
+    <!-- <view wx:if="{{shangjiaList.length >= 10}}" class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多></view> -->
+    <view class='scroll-gengduo' catchtap='go_shangjiaList_'>查看更多></view>
   </scroll-view>
-</view> -->
+</view>
 
 <!-- 测试组件 -->
+<view class='bmxx-title'>同城信息</view>
 <block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
   <component-demo Res="{{item}}" bind:call-login="com_login_"></component-demo>
 </block>
 
 
 <!-- 没有更多了 -->
-<view wx:if="{{noData}}" class='nodata'>---- 没有更多了 ----</view>
+<view wx:if="{{noData}}" class='nodata'>———— 这是底线 ————</view>
 
 <!-- -----------按钮----------- -->
 <view class='juzhong'>

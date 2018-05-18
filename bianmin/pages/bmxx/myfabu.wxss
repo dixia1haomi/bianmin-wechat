@@ -73,7 +73,7 @@
 .dingzhi .dingzhi-time {
   font-size: 26rpx;
   color: #808080;
-  margin-bottom: 10rpx;
+  margin-bottom: 30rpx;
 }
 
 .dingzhi .shuoming {

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "form-input": "/component/form/input",
+    "form-dizhi": "/component/form/dizhi",
+    "form-xuanzetupian": "/component/form/xuanzetupian"
+  }
+}

@@ -3,7 +3,7 @@
   <!-- title -->
   <view wx:if="{{title}}" class='title'>{{title}}</view>
   <!-- 输入框 -->
-  <textarea class='textarea' bindinput="textarea_" maxlength='{{maxlength}}' placeholder="{{placeholder}}" value='{{value}}'>
+  <textarea class='textarea' bindinput="textarea_" maxlength='{{maxlength}}' placeholder="{{placeholder}}" value='{{value}}' disabled='{{disabled}}' bindblur="blur_">
     <text class='cursor'>{{setData.textarea.cursor + '/200'}}</text>
   </textarea>
   <!-- bottom -->

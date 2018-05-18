@@ -1,0 +1,30 @@
+<!-- 头 -->
+<view class='title'>编辑基本资料</view>
+
+<!-- 头图 -->
+<view class='toutu'>
+  <image class='toutu-img' src='{{myShangjiaRes.toutu}}' catchtap='xiugai_toutu_'></image>
+  <!-- <view class='tips'>提示：点击头图可更换</view> -->
+</view>
+
+<!-- 修改名称 -->
+<view catchtap='input_'>
+  <form-input bind:input="com_name_" bind:blur="com_blur_input_" title="名称" placeholder='请填写店名..' maxlength='10' value="{{myShangjiaRes.name}}" disabled='{{name.disabled}}'>
+  </form-input>
+</view>
+
+<!-- 修改地址 -->
+<view>
+  <form-dizhi bind:dizhi="com_dizhi_" address="{{myShangjiaRes.dizhi}}"></form-dizhi>
+</view>
+
+<!-- 电话 -- 不可以修改 -->
+<view class='danhang-list dianhua'>
+  <view>电话：{{myShangjiaRes.phone}}</view>
+</view>
+
+<!-- tips -->
+<view class='tips'>
+  <view>电话暂不支持修改、</view>
+  <view>如有必要请回到微信更换绑定的电话后重新入驻。</view>
+</view>

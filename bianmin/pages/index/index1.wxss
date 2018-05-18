@@ -1,7 +1,6 @@
 .title {
   padding: 100rpx 0 60rpx 30rpx;
   background-color: tomato;
-  /* background-color: skyblue; */
   color: #fff;
   display: flex;
   align-items: center;
@@ -16,13 +15,22 @@
 
 .title-1 {
   margin-top: 10rpx;
-  font-size: 34rpx;
+  /* font-size: 34rpx; */
   font-weight: 600;
 }
 
+/* 商家 */
+
 .scroll {
   background-color: #fff;
-  padding: 0 20rpx 0 20rpx;
+  padding: 20rpx;
+}
+
+.scroll-title {
+  padding: 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+   background-color: #fff; 
 }
 
 .scroll-view {
@@ -39,29 +47,33 @@
   display: inline-block;
 }
 
-.tuijian {
-  padding: 20rpx 0 20rpx 0;
-  font-size: 34rpx;
-  font-weight: 700;
-}
-
-.scroll-title {
-  padding-bottom: 20rpx;
+.scroll-name {
+  /* padding-bottom: 20rpx; */
   width: 180rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* .wenzhang-img {
+.shangjia-img {
   width: 180rpx;
   height: 180rpx;
   border-radius: 4rpx;
-} */
+}
 
 .swiper {
   height: 180rpx;
   width: 100%;
+}
+
+/* 信息 */
+
+.bmxx-title {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
 }
 
 /* 没有更多 */
@@ -70,6 +82,7 @@
   padding: 40rpx;
   text-align: center;
   color: #808080;
+  font-size: 26rpx;
 }
 
 /* 分享 */
