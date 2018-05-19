@@ -179,10 +179,9 @@ Page({
   myDelete(e) {
     if (app.data.LoginState) {
       wx.showModal({
-        title: '删除这条信息？',
+        title: '删除这条信息？', content: '将会删除信息相关的所有数据。',
         success: (res) => {
           if (res.confirm) {
-            console.log('用户点击确定')
             api.deleteMyFabu({ list_id: e.currentTarget.id }, res => {
               // 删除成功
               console.log('删除成功', res)

@@ -3,18 +3,20 @@
   <view class='title'>商家列表</view>
 
   <block wx:for="{{shangjiaList}}" wx:key="">
+
     <view class='shangjia-item' catchtap='go_shangjiaDetail_' id='{{item.id}}'>
       <!-- 头图 -->
-      <!-- <view> -->
-      <image class='item-toutu' src="{{item.toutu}}"></image>
-      <!-- </view> -->
-
+      <image class='item-toutu' src="{{item.toutu}}" mode='aspectFill'></image>
       <!-- 简要信息 -->
       <view class='item-xinxi'>
-        <view>{{item.name}}</view>
-        <view>{{item.dizhi}}</view>
+        <view class='name'>{{item.name}}</view>
+        <view class='dizhi'>{{item.dizhi}}</view>
       </view>
     </view>
+
   </block>
+
+  <!-- 没有更多了 -->
+  <view wx:if="{{noData}}" class='nodata'>———— 这是底线 ————</view>
 
 </view>

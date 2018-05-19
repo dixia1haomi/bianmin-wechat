@@ -1,11 +1,11 @@
 <!-- textarea输入框 -->
 <view class='textarea-view' hidden='{{hid}}'>
   <!-- title -->
-  <view wx:if="{{title}}" class='title'>{{title}}</view>
+  <text wx:if="{{title}}" class='title'>{{title}}</text>
   <!-- 输入框 -->
   <textarea class='textarea' bindinput="textarea_" maxlength='{{maxlength}}' placeholder="{{placeholder}}" value='{{value}}' disabled='{{disabled}}' bindblur="blur_">
     <text class='cursor'>{{setData.textarea.cursor + '/200'}}</text>
   </textarea>
   <!-- bottom -->
-  <view wx:if="{{bottom}}" class='bottom'>{{bottom}}</view>
+  <text wx:if="{{bottom}}" class='bottom'>{{bottom}}</text>
 </view>

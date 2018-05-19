@@ -1,10 +1,16 @@
-
-
 /* 地址 */
 
 .dizhi {
   margin-bottom: 10rpx;
-  padding: 30rpx;
+  padding: 0 30rpx;
+}
+
+
+.dizhi-text {
+  margin: 30rpx 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* --------------------------------- 带箭头的单行列表--------------------------------- */

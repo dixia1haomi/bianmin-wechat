@@ -19,61 +19,31 @@
   font-weight: 600;
 }
 
-/* 商家 */
-
-.scroll {
-  background-color: #fff;
-  padding: 20rpx;
-}
+/* 轮播图title */
 
 .scroll-title {
   padding: 20rpx;
   font-size: 34rpx;
   font-weight: 700;
-   background-color: #fff; 
+  background-color: #fff;
 }
 
-.scroll-view {
-  white-space: nowrap;
-  width: 100%;
-  height: 258rpx;
-  position: relative;
-}
-
-.scroll-gengduo {
-  position: absolute;
-  top: 60rpx;
-  color: #007aff;
-  display: inline-block;
-}
-
-.scroll-name {
-  /* padding-bottom: 20rpx; */
-  width: 180rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.shangjia-img {
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 4rpx;
-}
-
-.swiper {
-  height: 180rpx;
-  width: 100%;
+.scroll-title-text {
+  border-bottom: 8rpx solid green;
 }
 
 /* 信息 */
 
 .bmxx-title {
-  padding: 20rpx;
-  background-color: #fff;
   margin-top: 20rpx;
+  padding: 20rpx;
   font-size: 34rpx;
   font-weight: 700;
+  background-color: #fff;
+}
+
+.bmxx-title-text {
+  border-bottom: 8rpx solid green;
 }
 
 /* 没有更多 */

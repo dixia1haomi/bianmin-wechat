@@ -1,87 +1,20 @@
+/* tips */
 
-
-
-/* 电话 */
-
-.dianhua {
-  margin-bottom: 10rpx;
-  padding: 30rpx;
-}
-
-
-/* 描述 */
-
-.miaoshu-textarea {
-  margin-top: 20rpx;
-  padding: 20rpx;
-  background-color: #fff;
-}
-
-.miaoshu-textarea-1 {
+.tips {
+  position: absolute;
   width: 100%;
-}
-
-.miaoshu-button {
-  border-top: 1rpx solid #e5e5e5;
-  background-color: #fff;
-  padding: 20rpx;
+  bottom: 100rpx;
+  font-size: 26rpx;
+  color: #808080;
   text-align: center;
 }
 
-/* 详情图 */
-
-.xiangqingtu {
-  display: flex;
-  padding: 20rpx;
-  background-color: #fff;
-  margin-top: 20rpx;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.item-img {
-  width: 30%;
-  box-sizing: border-box;
-  height: 213rpx;
-  margin-top: 20rpx;
-}
-
-.tianjiatupian {
-  width: 213rpx;
-  height: 213rpx;
-  background-color: aliceblue;
-  border: 1rpx dashed #808080;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 100rpx;
-  color: #808080;
-   margin-top: 20rpx; 
-}
-
-.shangjia-item {
-  display: flex;
-  background-color: #fff;
-  border-bottom: 1rpx solid #e5e5e5;
-  border-top: 1rpx solid #e5e5e5;
-}
-
-.item-toutu {
-  height: 180rpx;
-  width: 180rpx;
-}
-
-.item-xinxi {
-  flex: 1;
-  margin: 20rpx 0 20rpx 20rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .delete {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   margin-top: 20rpx;
-  padding: 20rpx;
+  padding: 20rpx 0;
   background-color: #fff;
   text-align: center;
 }

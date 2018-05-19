@@ -60,8 +60,7 @@
 /* 使用帮助 */
 
 .bangzhu {
-  margin-top: 80rpx;
-  padding: 0 40rpx;
+  padding: 80rpx 40rpx 120rpx 40rpx;
 }
 
 .bangzhu-title {

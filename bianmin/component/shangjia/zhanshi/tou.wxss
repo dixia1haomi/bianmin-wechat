@@ -16,12 +16,12 @@
 /* 名称，地址，电话 */
 
 .name-dizhi-dianhua {
-  padding: 20rpx;
+  padding: 20rpx 0 20rpx 20rpx;
   background-color: #fff;
   margin-bottom: 20rpx;
   display: flex;
-  border-top: 1rpx solid #e5e5e5;
   border-bottom: 1rpx solid #e5e5e5;
+  height: 110rpx;
 }
 
 /* 名称，地址 */
@@ -33,7 +33,8 @@
 .name {
   font-size: 38rpx;
   font-weight: 700;
-  padding-bottom: 20rpx;
+  /* padding-bottom: 20rpx; */
+  height: 70rpx;
 }
 
 .liulangcishu {
@@ -43,10 +44,11 @@
 }
 
 .dizhi {
-  /* overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; */
+  white-space: nowrap;
   color: #007aff;
+  font-size: 30rpx;
 }
 
 /* 电话 */

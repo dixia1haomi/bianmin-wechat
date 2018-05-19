@@ -17,6 +17,11 @@ Component({
 
   methods: {
 
+    // 点击头图事件(在我的商家页点击头图进入商家详情页使用)
+    toutu_tap_(e){
+      this.triggerEvent('toutu', { id: e.currentTarget.id })
+    },
+
     // 打开地图查看地址
     open_map_() {
       wx.openLocation({

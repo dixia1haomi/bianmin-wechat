@@ -20,11 +20,13 @@
   height: 562.5rpx;
 }
 
-/* .tips{
+/* tips */
+
+.tips {
   font-size: 26rpx;
+  padding: 10rpx 20rpx;
   color: #808080;
-  padding: 6rpx 20rpx;
-} */
+}
 
 /* 电话 */
 
@@ -33,9 +35,11 @@
   padding: 30rpx;
 }
 
-/* tips */
-.tips{
+/* 电话说明 */
+
+.dianhua-tips {
   font-size: 26rpx;
-  padding: 30rpx;
+  /* padding: 10rpx 20rpx; */
+  margin-left: 20rpx;
   color: #808080;
 }

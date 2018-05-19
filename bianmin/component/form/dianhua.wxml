@@ -3,3 +3,6 @@
   <view class='dianhua-text'>电话：{{setData.phone}}</view>
   <button class='button-phone' open-type="getPhoneNumber" bindgetphonenumber="dianhua_">获取电话</button>
 </view>
+<view wx:if="{{tips}}" class='tips'>
+  <text>{{shuoming}}</text>
+</view>

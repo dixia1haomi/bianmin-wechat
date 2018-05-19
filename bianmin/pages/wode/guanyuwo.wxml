@@ -2,7 +2,6 @@
 <view class='title'>使用帮助</view>
 
 <view class='content'>
-  <text>这里发布的信息还会同时在袋鼠微信的朋友圈里转发、希望能为大家更有效的分发信息、突破个人朋友圈的封闭环境、所有服务都是免费提供、欢迎使用。</text>
-
+  <text>发布的信息袋鼠微信还会帮你转发、突破个人朋友圈的封闭环境、所有服务都是免费提供、欢迎使用。</text>
   <view class='fuzhi' catchtap='fuzhi_'>我也要加袋鼠微信</view>
 </view>

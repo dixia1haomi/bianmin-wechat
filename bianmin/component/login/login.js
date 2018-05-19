@@ -35,6 +35,7 @@ Component({
     // 关闭登陆弹窗
     loginTanChuangQuXiao_() {
       this.setData({ loginState: false })
+      this.triggerEvent('quxiao', {})
     },
 
     // formid

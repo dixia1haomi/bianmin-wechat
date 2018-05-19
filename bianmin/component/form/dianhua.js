@@ -5,6 +5,10 @@ Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
+    tips: {
+      type: Boolean,
+      value: false
+    }
 
   },
 
@@ -14,7 +18,11 @@ Component({
     setData: {
       // 电话
       phone: '',
-    }
+    },
+
+    // 电话说明
+    shuoming:'获取电话说明：授权后直接获取微信已绑定的电话号码，如果还未绑定，建议绑定。'
+
   },
 
   methods: {

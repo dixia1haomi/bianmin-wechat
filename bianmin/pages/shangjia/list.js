@@ -1,27 +1,25 @@
 import { Api } from '../../utils/Api.js'
-// import { Base } from '../../utils/Base.js'
-// const base = new Base()
+
 const api = new Api()
+
+let page = 1;
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    noData: false,              // 上拉更多
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad: function (op) {
     this._getShangjiaList()
   },
 
   // 获取商家列表
   _getShangjiaList() {
-    api.selectShangjia({}, res => {
+    // 分页1
+    page = 1
+    api.selectShangjia({ page: page }, res => {
       console.log('商家列表', res)
       this.setData({ shangjiaList: res.data })
     })
@@ -33,52 +31,31 @@ Page({
     wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
+  // 上拉触底
   onReachBottom: function () {
-
+    console.log('上拉触底')
+    if (this.data.noData == false) {
+      console.log('上拉触底noData = false')
+      if (this.data.shangjiaList.length < 20) {
+        console.log('上拉触底Res.length < 20')
+        this.setData({ noData: true })
+      } else {
+        page++
+        api.selectShangjia({ page: page }, res => {
+          if (res.data.length == 0) {
+            this.setData({ noData: true })
+          } else {
+            if (res.data.length < 20) {
+              let newRes = this.data.shangjiaList.concat(res.data)
+              this.setData({ shangjiaList: newRes, noData: true })
+            } else {
+              let newRes = this.data.shangjiaList.concat(res.data)
+              this.setData({ shangjiaList: newRes })
+            }
+          }
+        })
+      }
+    }
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

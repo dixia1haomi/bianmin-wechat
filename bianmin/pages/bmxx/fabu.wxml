@@ -10,7 +10,7 @@
   </form-xuanzeqi>
 
   <!-- 输入框 -->
-  <form-textarea bind:textarea="com_textarea_" bottom="对应的类目下有对应的模板、不满意请尝试切换、并删改" value="{{com_xuanzeleimu_data.value2[value2index].moban}}" hid="{{com_xuanzeleimu_kaiguan}}"></form-textarea>
+  <form-textarea bind:textarea="com_textarea_" bottom="请尝试切换模板并删改。\n暂不支持表情，如果内容中包含表情请删除。" value="{{com_xuanzeleimu_data.value2[value2index].moban}}" hid="{{com_xuanzeleimu_kaiguan}}"></form-textarea>
 
   <!-- 切换模板按钮 -->
   <view class='qiehuan'>
@@ -26,7 +26,7 @@
   <form-dizhi bind:dizhi="com_dizhi_"></form-dizhi>
 
   <!-- 电话 -->
-  <form-dianhua bind:dianhua="com_dianhua_"></form-dianhua>
+  <form-dianhua bind:dianhua="com_dianhua_" tips="1"></form-dianhua>
 
   <!-- 提交 -->
   <form report-submit='true' bindsubmit='tijiao'>

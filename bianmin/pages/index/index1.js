@@ -1,6 +1,7 @@
 import { Api } from '../../utils/Api.js'
-const api = new Api()
 
+const api = new Api()
+const app = getApp()
 
 let page = 1;
 
@@ -10,7 +11,6 @@ Page({
     Res: [],
     shangjiaList: [],           // 商家列表
     noData: false,              // 上拉更多
-
   },
 
   // 剪贴板
@@ -21,7 +21,7 @@ Page({
         wx.showModal({
           title: '袋鼠微信已复制',
           content: '你好、我是小优、很期待与你成为朋友、快去加我吧。',
-          showCancel:false
+          showCancel: false
         })
       }
     })
@@ -30,7 +30,7 @@ Page({
   // ----------------- 登录组件 -------------------
   // 打开登录弹窗
   com_login_() {
-    console.log('asd')
+    console.log('com_login_')
     this.setData({ loginState: true })
   },
 
@@ -38,6 +38,7 @@ Page({
   zhankai_() {
     this.setData({ zhankai: !this.data.zhankai })
   },
+
 
   // -------------------------------------------- onLoad --------------------------------------
 
@@ -47,12 +48,12 @@ Page({
   },
 
 
+
   // 请求数据
   _load(callback) {
     // 分页1
     page = 1
     api.getList({ page: page }, res => {
-      console.log('aa', res.data)
       this.setData({ Res: res.data })
       // 回调给下拉刷新用
       callback && callback()
@@ -67,11 +68,7 @@ Page({
     })
   },
 
-  // 去商家列表页
-  go_shangjiaList_() { wx.navigateTo({ url: '/pages/shangjia/list' }) },
 
-  // 商家横向滚动视图 
-  scroll(e) { wx.navigateTo({ url: '/pages/shangjia/detail?id=' + e.currentTarget.id }) },
 
   // 去我的页
   go_wode() { wx.navigateTo({ url: '/pages/wode/index' }) },
@@ -91,6 +88,8 @@ Page({
 
   // 上拉触底
   onReachBottom: function () {
+    // 检查登录状态
+    this._checkLogin()
     console.log('上拉触底')
     if (this.data.noData == false) {
       console.log('上拉触底noData = false')
@@ -115,10 +114,25 @@ Page({
           }
         })
       }
-
     }
+  },
+
+  // 检查登录状态
+  _checkLogin() {
+    console.log('_checkLogin-app-loginstate', app.data.LoginState)
+    if (!app.data.LoginState && !this.data.login_quxiao) {
+      // setTimeout(() => {
+        this.com_login_()
+      // }, 2000)
+    }
+  },
+
+  // 登录组件取消 -- 取消过就不在提示
+  com_login_quxiao_() {
+    if (!this.data.login_quxiao) { this.setData({ login_quxiao: true }) }
   },
 
   // 分享
   onShareAppMessage: function () { return { title: '', path: '/pages/index/index1' } }
+
 })

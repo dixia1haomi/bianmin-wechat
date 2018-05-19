@@ -5,18 +5,18 @@
   <!-- 头图 -->
   <view class='toutu'>
     <block wx:if="{{toutu.length > 0}}">
-      <image class='toutu-img' src='{{toutu[0]}}' catchtap='tianjia_toutu_'></image>
+      <image class='toutu-img' src='{{toutu[0]}}' catchtap='tianjia_toutu_' mode='aspectFill'></image>
     </block>
     <block wx:else>
       <view class='tianjia-toutu' catchtap='tianjia_toutu_'>添加店铺头图</view>
     </block>
   </view>
 
-  <!-- 商家名称 -->
-  <form-input bind:input="com_name_" title="名称" placeholder='请填写店名..' maxlength='10'></form-input>
+  <view class='toutu-tips'>小提示：头图比例4:3，请横向拍摄，创建后可随时修改。</view>
 
-  <!-- 上传头图 -->
-  <!-- <form-xuanzetupian bind:xuanzetupian="com_toutu_" title="上传头图" count="1"></form-xuanzetupian> -->
+  <!-- 商家名称 -->
+  <form-input bind:input="com_name_" title="店名" placeholder='请填写店名..' maxlength='10'></form-input>
+
 
   <!-- 获取地理位置 -->
   <view style='margin-top: 10rpx;'>
@@ -24,28 +24,13 @@
   </view>
 
   <!-- 电话 -->
-  <form-dianhua bind:dianhua="com_dianhua_"></form-dianhua>
-
-  <!-- 描述 -->
-  <!-- <form-textarea bind:textarea="com_textarea_" placeholder='请填写商家描述..' title="" hid=""></form-textarea> -->
+  <form-dianhua bind:dianhua="com_dianhua_" tips="1"></form-dianhua>
 
   <!-- 提交 -->
   <form report-submit='true' bindsubmit='tijiao_'>
-    <button class='tijiao' form-type="submit" type="" size="">确认发布</button>
+    <button class='tijiao' form-type="submit" type="" size="">确认创建</button>
   </form>
 
-  <!-- 上传详情图片 -->
-  <!-- <view class='xiangqingtu'>
-    <view class='xiangqingtu-title'>上传详情图片</view>
-    <view class='xiangqingtu-1'>
-      <block wx:for="{{xiangqingtu}}" wx:key="">
-        <image class='xiangqingtu-img-item' src='{{item}}' mode='aspectFill' catchtap='shanchu_xiangqingtu_' id='{{index}}'></image>
-      </block>
-      <view wx:if="{{xiangqingtu.length < 9}}" class='tianjia-xiangqingtu' catchtap='xiangqingtu_'>+</view>
-    </view>
-  </view> -->
-
-  <!-- <view class='tijiao' catchtap='tijiao_'>提交</view> -->
 </view>
 
 <!-- -------------------- 验证参数 ------------------------- -->

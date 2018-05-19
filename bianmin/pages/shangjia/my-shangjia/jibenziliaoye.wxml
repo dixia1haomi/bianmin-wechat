@@ -3,8 +3,8 @@
 
 <!-- 头图 -->
 <view class='toutu'>
-  <image class='toutu-img' src='{{myShangjiaRes.toutu}}' catchtap='xiugai_toutu_'></image>
-  <!-- <view class='tips'>提示：点击头图可更换</view> -->
+  <image class='toutu-img' src='{{myShangjiaRes.toutu}}' catchtap='xiugai_toutu_' mode='aspectFill'></image>
+  <view class='tips'>提示：点击头图更换</view>
 </view>
 
 <!-- 修改名称 -->
@@ -23,8 +23,8 @@
   <view>电话：{{myShangjiaRes.phone}}</view>
 </view>
 
-<!-- tips -->
-<view class='tips'>
+<!-- dianhua-tips -->
+<view class='dianhua-tips'>
   <view>电话暂不支持修改、</view>
-  <view>如有必要请回到微信更换绑定的电话后重新入驻。</view>
+  <view>如有必要请回到微信更换绑定的电话后重新创建商家。</view>
 </view>

@@ -1,7 +1,8 @@
 <view wx:if="{{myShangjiaRes}}">
 
   <!-- 商家组件--头 -->
-  <shangjia-tou shangjiaRes="{{myShangjiaRes}}"></shangjia-tou>
+  <shangjia-tou bind:toutu="com_toutu_" shangjiaRes="{{myShangjiaRes}}"></shangjia-tou>
+
 
   <!-- 编辑基本资料 -->
   <navigator url="/pages/shangjia/my-shangjia/jibenziliaoye" open-type='navigate'>
@@ -19,27 +20,14 @@
     </view>
   </navigator>
 
+  <!-- tips -->
+  <view class='tips'>小提示：点击头图预览、修改过资料请下拉刷新。</view>
+
   <!-- 删除 -->
   <view class='delete' catchtap='deleteShangjia_' id='{{myShangjiaRes.id}}'>删除</view>
 
-
-  <!-- <view class='xiangqingtu'>
-    <block wx:for="{{myShangjiaRes.withshangjia_img}}" wx:key="">
-      <image src='{{item.url}}' class='item-img' catchtap='shanchu_xiangqingtu_item_' id='{{item.id}}' data-url='{{item.url}}'></image>
-    </block>
-    <text wx:if="{{myShangjiaRes.withshangjia_img.length < 9}}" class='tianjiatupian' catchtap='tianjia_img_'>+</text>
-  </view> -->
-
-
-  <!-- <view class='shangjia-item' catchtap='go_shangjiaDetail_'>
-    <image class='item-toutu' src='{{myShangjiaRes.toutu}}'></image>
-
-    <view class='item-xinxi'>
-      <view>{{myShangjiaRes.name}}</view>
-      <view>{{myShangjiaRes.dizhi}}</view>
-      <view>{{myShangjiaRes.phone}}</view>
-    </view>
-  </view> -->
+  <!-- 登录 -->
+  <component-login login-state="{{loginState}}"></component-login>
 
 </view>
 <view wx:else>

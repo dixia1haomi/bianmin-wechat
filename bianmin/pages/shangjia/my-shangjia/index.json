@@ -1,5 +1,7 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "shangjia-tou": "/component/shangjia/zhanshi/tou"
+    "shangjia-tou": "/component/shangjia/zhanshi/tou",
+    "component-login": "/component/login/login"
   }
 }

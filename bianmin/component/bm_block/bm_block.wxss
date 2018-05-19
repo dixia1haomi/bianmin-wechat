@@ -105,10 +105,10 @@
 }
 
 .img {
-  width: 160rpx;
-  height: 160rpx;
-  margin-right: 16rpx;
-  border-radius: 4rpx;
+  width: 168rpx;
+  height: 168rpx;
+  margin-left: 8rpx;
+  border-radius: 2rpx;
 }
 
 /* 地址 */

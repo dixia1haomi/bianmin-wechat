@@ -7,22 +7,34 @@
 
 .shangjia-item {
   display: flex;
-  /* padding: 0 20rpx 0 20rpx; */
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
   background-color: #fff;
-  border-bottom: 1rpx solid #e5e5e5;
-  border-top: 1rpx solid #e5e5e5;
+  padding: 20rpx;
 }
 
 .item-toutu {
+  width: 240rpx;
   height: 180rpx;
-  width: 180rpx;
 }
 
 .item-xinxi {
   flex: 1;
-  margin: 20rpx 0 20rpx 20rpx;
+  padding: 20rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.item-xinxi .name {
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+/* 没有更多 */
+
+.nodata {
+  padding: 40rpx;
+  text-align: center;
+  color: #808080;
+  font-size: 26rpx;
 }

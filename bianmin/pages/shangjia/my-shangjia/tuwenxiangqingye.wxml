@@ -35,9 +35,9 @@
 </view>
 
 <!-- 介绍图文详情使用 -->
-<block wx:if="{{Res.length == 0}}">
-  <view class='bangzhu'>
-    <view class='bangzhu-title'>使用帮助</view>
-    <text>\n商家详细描述由最多9个图文块组成、每个图文块包含一段描述和一张图片。\n\n图文描述的修改自由度很高、如果不能一次完成可以分多次逐步完成。</text>
-  </view>
-</block>
+<!-- <block wx:if="{{Res.length == 0}}"> -->
+<view class='bangzhu'>
+  <view class='bangzhu-title'>使用帮助</view>
+  <text>\n长按可删除图文块。\n\n商家详细描述由最多9个图文块组成、每个图文块包含一段描述和一张图片。\n\n图文描述的修改自由度很高、如果不能一次完成可以分多次逐步完成。\n\n建议使用横屏拍摄的图片、文字可以使用上下换行让整体更加清爽易读。</text>
+</view>
+<!-- </block> -->

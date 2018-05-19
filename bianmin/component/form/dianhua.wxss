@@ -1,10 +1,11 @@
-
-
 /* 电话 */
 
 .dianhua {
   margin-bottom: 10rpx;
-  padding: 30rpx;
+}
+
+.dianhua-text{
+  margin: 30rpx;
 }
 
 .button-phone {
@@ -25,7 +26,14 @@
   border: none;
 }
 
+/* 获取电话说明 */
 
+.tips {
+  font-size: 26rpx;
+  color: #808080;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
 
 /* --------------------------------- 带箭头的单行列表--------------------------------- */
 
@@ -39,4 +47,3 @@
   align-items: center;
   position: relative;
 }
-

@@ -18,7 +18,7 @@ const rules = {
 }
 // 验证字段的提示信息，若不传则调用默认的信息
 const messages = {
-  name: { required: '名称不能为空', rangelength: '名称长度在 2 到 10 之间' },
+  name: { required: '店名不能为空', rangelength: '店名长度在 2 到 10 之间' },
   toutu: { required: '头图不能为空' },
   dizhi: { required: '地址不能为空' },
   phone: { required: '电话不能为空' }

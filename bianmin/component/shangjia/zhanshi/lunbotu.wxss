@@ -1,0 +1,38 @@
+/* 商家 */
+
+.scroll {
+  background-color: #fff;
+  padding: 20rpx;
+  height: 240rpx;
+}
+
+.scroll-view {
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+.scroll-gengduo {
+  position: absolute;
+  top: 80rpx;
+  color: #007aff;
+  display: inline-block;
+  padding: 0 40rpx;
+}
+
+.scroll-name {
+  width: 240rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shangjia-img {
+  width: 240rpx;
+  height: 180rpx;
+}
+
+.swiper {
+  height: 180rpx;
+  width: 100%;
+}

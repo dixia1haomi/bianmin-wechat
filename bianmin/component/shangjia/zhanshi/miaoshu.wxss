@@ -16,7 +16,6 @@
 
 .tuwenxiangqing {
   background-color: #fff;
-  padding-top: 80rpx;
 }
 
 .tuwenxiangqing .text-view {
@@ -27,8 +26,17 @@
   width: 100%;
 }
 
+/* 浏览次数 */
+
+.liulangcishu {
+  color: #808080;
+  font-size: 26rpx;
+  padding: 80rpx 20rpx 40rpx 20rpx;
+}
+
 /* 暂无描述 */
-.no-miaoshu{
+
+.no-miaoshu {
   text-align: center;
   margin-top: 200rpx;
 }
