@@ -266,8 +266,18 @@ class Api extends Base {
       }
     })
   }
-  
 
+  // 刷新店铺
+  shuaXinShangjia(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'shangjia/shuaxin', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+  
   // 删除店铺
   deleteShangjia(data, callback) {
     wx.showLoading({ title: '删除中', mask: true })

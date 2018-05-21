@@ -7,9 +7,6 @@ const app = getApp()
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     Res: false,
 
@@ -20,7 +17,6 @@ Page({
 
     fenxiangTanChuang: false,  // 分享弹窗
     haibaoImg: '',             // 海报图片
-
     // 登录弹窗
     loginState: false
   },

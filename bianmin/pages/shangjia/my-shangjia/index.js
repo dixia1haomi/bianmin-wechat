@@ -7,7 +7,7 @@ const app = getApp()
 Page({
 
   data: {
-    myShangjiaRes: {},
+    myShangjiaRes: false,
   },
 
 
@@ -23,6 +23,17 @@ Page({
       console.log('我的店铺', res)
       this.setData({ myShangjiaRes: res.data })
       callback && callback()
+    })
+  },
+
+
+
+  // 刷新
+  shuaxin_(e) {
+    console.log('shuaxin', e.detail.formId, e.currentTarget.id)
+    api.shuaXinShangjia({ id: e.currentTarget.id, form_id: e.detail.formId }, back => {
+      this.setData({ 'myShangjiaRes.form_id': e.detail.formId })
+      wx.showToast({ title: '刷新成功' })
     })
   },
 
