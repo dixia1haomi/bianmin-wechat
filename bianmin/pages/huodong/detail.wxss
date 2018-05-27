@@ -1,0 +1,19 @@
+/* 按钮 */
+
+.canyu{
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.canyu button {
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.canyu button::after {
+  border: none;
+}

@@ -1,0 +1,40 @@
+<!-- 头 -->
+<view class='title'>编辑活动基本资料</view>
+
+<!-- 头图 -->
+<view class='toutu'>
+  <image class='toutu-img' src='{{huodongRes.toutu}}' catchtap='xiugai_huodong_toutu_' mode='aspectFill'></image>
+  <view class='tips'>提示：点击头图更换</view>
+</view>
+
+<!-- 修改标题 -->
+<form-input edit editTitle="修改标题?" bind:input="com_biaoti_" bind:queding="com_biaoti_queding_" title="标题" placeholder='请填写标题..' maxlength='20' disabled='{{biaoti.disabled}}' value="{{huodongRes.biaoti}}">
+</form-input>
+
+<!-- 修改原价 -->
+<form-input edit editTitle="修改原价?" bind:input="com_yuanjia_" bind:queding="com_yuanjia_queding_" title="原价" placeholder='请填写原价..' maxlength='5' disabled='{{yuanjia.disabled}}' value="{{huodongRes.yuanjia}}" input_type="number">
+</form-input>
+
+<!-- 修改活动价 -->
+<form-input edit editTitle="修改活动价?" bind:input="com_huodongjia_" bind:queding="com_huodongjia_queding_" title="活动价" placeholder='请填写活动价..' maxlength='5' disabled='{{huodongjia.disabled}}' value="{{huodongRes.huodongjia}}" input_type="number">
+</form-input>
+
+<!-- 修改数量 -->
+<form-input edit editTitle="修改数量?" bind:input="com_shuliang_" bind:queding="com_shuliang_queding_" title="数量" placeholder='请填写数量..' maxlength='3' disabled='{{shuliang.disabled}}' value="{{huodongRes.shuliang}}" input_type="number">
+</form-input>
+
+<!-- 要求助力数 -->
+<form-input edit editTitle="修改助力数?" bind:input="com_tiaojian_" bind:queding="com_tiaojian_queding_" title="要求助力数" placeholder='请填写要求的助力数..' maxlength='2' disabled='{{tiaojian.disabled}}' value="{{huodongRes.tiaojian}}" input_type="number">
+</form-input>
+
+<!-- 有效期 -->
+<view class="end-date">
+  <picker mode="date" start="{{start_data}}" end="{{end_data}}" bindchange="bindDateChange_">
+    <view>活动结束时间：{{huodongRes.jieshu_time}}</view>
+  </picker>
+</view>
+
+<!-- 修改说明 -->
+<form-textarea edit editTitle="修改说明?" disabled='{{shuoming.disabled}}' hid="" autoheight minheight="200" title="活动说明" bind:textarea="com_shuoming_" bind:queding="com_shuoming_queding_" value='{{huodongRes.shuoming}}' maxlength='200'></form-textarea>
+
+<view>编辑基本资料说明：</view>

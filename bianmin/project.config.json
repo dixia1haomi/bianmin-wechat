@@ -29,13 +29,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/shangjia/list",
-					"query": "id=24",
+					"pathName": "pages/huodong/detail",
+					"query": "id=10",
 					"scene": "1012"
 				}
 			]

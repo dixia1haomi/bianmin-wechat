@@ -78,7 +78,7 @@ Page({
       api.getMyShangjia({}, (res) => {
         console.log('我的店铺', res)
         if (res.data == null) {
-          wx.navigateTo({ url: '/pages/shangjia/create-shangjia' })
+          wx.navigateTo({ url: '/pages/shangjia/my-shangjia/create-shangjia' })
         } else {
           wx.showModal({ content: '已入驻过,可以先去「我的店铺」删除旧店铺', showCancel: false })
         }

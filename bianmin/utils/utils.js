@@ -27,7 +27,26 @@ class Utils {
   }
 
 
-  // -------------------------- 处理换行符号 --------------------------
+  // -------------------------- 获得当前年月日 --------------------------
+  get_Y_M_D() {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+    var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+    var data = year + "-" + month + "-" + day;
+    return data;
+  }
+
+  // -------------------------- 获得当前年月日的下一个月 --------------------------
+  get_Y_M_1_D() {
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 2 < 10 ? "0" + (nowDate.getMonth() + 2) : nowDate.getMonth() + 2;
+    var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+    var data = year + "-" + month + "-" + day;
+    return data;
+  }
+
   // -------------------------- 处理换行符号 --------------------------
 
 }

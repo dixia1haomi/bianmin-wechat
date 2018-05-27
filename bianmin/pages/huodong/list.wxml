@@ -1,0 +1,26 @@
+<!-- 头 -->
+<view class='title'>活动列表</view>
+
+<block wx:if="{{huodongList}}">
+  <!-- 活动列表 -->
+  <block wx:for="{{huodongList}}" wx:key="">
+
+    <view class='shangjia-item' catchtap='go_huodong_Detail_' id='{{item.id}}'>
+      <!-- 头图 -->
+      <image class='item-toutu' src="{{item.toutu}}" mode='aspectFill'></image>
+      <!-- 简要信息 -->
+      <view class='item-xinxi'>
+        <view class='name'>{{item.biaoti}}</view>
+        <!-- 状态 -->
+        <view class='state'>{{item.state === 0 ? '未发布':'已发布'}}</view>
+      </view>
+    </view>
+    
+  </block>
+
+  <!-- 创建活动 -->
+  <block wx:if="{{huodongList.length < 3}}">
+    <view class='create-huodong' catchtap='create_huodong_'>创建活动</view>
+  </block>
+
+</block>

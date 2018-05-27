@@ -31,6 +31,14 @@
       </view>
     </navigator>
 
+    <!-- 商家活动入口 -->
+    <navigator url="/pages/huodong/list?id={{myShangjiaRes.id}}" open-type='navigate'>
+      <view class='danhang-list'>
+        <view style='margin:30rpx;'>商家活动入口</view>
+        <view class='youjiantou7'></view>
+      </view>
+    </navigator>
+
     <!-- tips -->
     <view class='tips'>小提示：点击头图预览、修改过资料请下拉刷新。</view>
 

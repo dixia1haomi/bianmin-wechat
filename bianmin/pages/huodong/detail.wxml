@@ -1,0 +1,11 @@
+<!-- 活动组件头 -->
+<huodong-tou huodongRes="{{huodongRes}}"></huodong-tou>
+
+<!-- 参与活动 -->
+<view class='canyu'>
+  <button catchtap='canyu_' id='{{huodongRes.id}}'>参与活动</button>
+
+</view>
+
+<!-- 描述 -->
+<huodong-miaoshu huodongRes="{{huodongRes}}"></huodong-miaoshu>

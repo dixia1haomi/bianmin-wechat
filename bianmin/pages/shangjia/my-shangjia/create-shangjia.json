@@ -2,7 +2,6 @@
   "usingComponents": {
     "my-toptips": "/component/toptips/toptips",
     "form-input": "/component/form/input",
-    "form-xuanzetupian": "/component/form/xuanzetupian",
     "form-dizhi": "/component/form/dizhi",
     "form-dianhua": "/component/form/dianhua"
   }

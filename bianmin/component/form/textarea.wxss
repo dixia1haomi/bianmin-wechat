@@ -1,10 +1,7 @@
 /* 标题 */
 
 .title {
-  text-align: center;
-  font-size: 26rpx;
-  color: #808080;
-  margin-bottom: 10rpx;
+  padding-bottom: 20rpx;
 }
 
 /* textarea输入框 */
@@ -17,8 +14,8 @@
 
 .textarea {
   background-color: aliceblue;
-  width: 100%;
   height: 500rpx;
+  width: 100%;
   font-size: 36rpx;
 }
 
@@ -36,6 +33,24 @@
   font-size: 26rpx;
   color: #808080;
   margin-top: 10rpx;
+}
+
+/* 按钮 */
+
+.button {
+   padding-top: 20rpx; 
+}
+
+.button button {
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.button button::after {
+  border: none;
 }
 
 /* --------------------------------- 带箭头的单行列表--------------------------------- */

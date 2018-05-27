@@ -30,6 +30,18 @@
 .shangjia-img {
   width: 240rpx;
   height: 180rpx;
+  position: relative;
+}
+
+.shangjia-img .text {
+  position: absolute;
+  width: 100%;
+  top: 20rpx;
+  left: -80rpx;
+  text-align: center;
+  background-color: tomato;
+  color: #fff;
+  transform: rotate(-45deg);
 }
 
 .swiper {

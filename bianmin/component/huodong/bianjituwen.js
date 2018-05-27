@@ -51,8 +51,8 @@ Component({
     textarea_queding_(e) {
       let id = e.currentTarget.id
       let text = this.data.Res.text
-      // API 更新商家IMG表text
-      api.updateShangjiaImgText({ params: { id: id, text: text } }, back => {
+      // API 更新活动IMG表text
+      api.updateHuodongImgText({ params: { id: id, text: text } }, back => {
         console.log('修改text确定-OK', back)
         // 禁用输入框、清空保存的value
         this.setData({ disabled: true, save_value: null })
@@ -81,13 +81,13 @@ Component({
               success: (imgres) => {
                 // 上传COS
                 let img = imgres.tempFilePaths
-                let cospath = "/shangjia"
+                let cospath = "/huodongimg"
                 cos.update_img_cos(cospath, img, (back) => {
                   // 上传成功
                   // API 更新商家IMG表url
                   let id = e.currentTarget.id
                   let url = back.data.source_url
-                  api.updateShangjiaImgUrl({ params: { id: id, url: url } }, apiback => {
+                  api.updateHuodongImgUrl({ params: { id: id, url: url } }, apiback => {
                     console.log('修改图片OK', apiback)
                     this.setData({ 'Res.url': img[0] })
                   })
@@ -109,8 +109,8 @@ Component({
           if (res.confirm) {
             // API 删除商家IMG一条数据
             let id = e.currentTarget.id
-            api.deleteShangjiaImg({ id: id }, back => {
-              console.log('删除商家IMG-OK', back)
+            api.deleteHuodongImg({ id: id }, back => {
+              console.log('删除活动IMG-OK', back)
               this.triggerEvent('delete', { id: id })
             })
           }

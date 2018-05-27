@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "huodong-tou": "/component/huodong/tou",
+    "huodong-miaoshu": "/component/huodong/miaoshu"
+  }
+}

@@ -1,0 +1,27 @@
+<view class='huodong-base'>
+  <!-- title -->
+  <view class='title'>商家活动</view>
+
+  <!-- 活动列表 -->
+  <block wx:for="{{shangjiaRes.with_fabuhuodong}}" wx:key="">
+    <view class='huodong' catchtap='go_huodong_detail_' id='{{item.id}}'>
+
+      <!-- 头图 -->
+      <image class='huodong-toutu' src="{{item.toutu}}" mode='aspectFill'></image>
+      <!-- 简要信息 -->
+      <view class='huodong-xinxi'>
+        <!-- 标题 -->
+        <text class='name'>{{item.biaoti}}</text>
+        <!-- 价格 - 已领 -->
+        <view class='miaoshu'>
+          <view>
+            <text class='huodongjia'>￥{{item.huodongjia}}  </text>
+            <text class='yuanjia'>{{item.yuanjia}}元</text>
+          </view>
+          <view class='yiling'>已领{{item.lq_shuliang}}份</view>
+        </view>
+      </view>
+
+    </view>
+  </block>
+</view>

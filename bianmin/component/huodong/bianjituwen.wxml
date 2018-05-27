@@ -1,0 +1,20 @@
+<view class='res-item' catchlongpress='delete_' id="{{Res.id}}">
+  <view>
+    <!-- 输入框、装item.text -->
+    <view class='textarea-view' catchtap='textarea_kaiguan_'>
+      <textarea class='textarea' bindinput='textarea_bindinput_' disabled="{{disabled}}" value='{{Res.text}}' maxlength='200' auto-height='1'>
+        <text class='cursor'>{{Res.text.length + '/200'}}</text>
+      </textarea>
+      <block wx:if="{{!disabled}}">
+        <view class='button'>
+          <button catchtap='textarea_queding_' id="{{Res.id}}">确定</button>
+          <button catchtap='textarea_quxiao_' style='background-color:skyblue;'>取消</button>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 图片 -->
+  <view>
+    <image class='img' src='{{Res.url}}' catchtap='xiugai_img_' id='{{Res.id}}' mode='widthFix'></image>
+  </view>
+</view>

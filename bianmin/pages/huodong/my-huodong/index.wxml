@@ -1,0 +1,35 @@
+<!-- title -->
+<view class='title'>活动详情页</view>
+
+<!-- 活动组件头 -->
+<huodong-tou bind:toutu="com_toutu_" huodongRes="{{huodongRes}}"></huodong-tou>
+
+<!-- 编辑基本资料 -->
+<navigator url="/pages/huodong/my-huodong/jiben" open-type='navigate'>
+  <view class='danhang-list'>
+    <view style='margin:30rpx;'>编辑活动基本资料</view>
+    <view class='youjiantou7'></view>
+  </view>
+</navigator>
+
+<!-- 编辑图文详情 -->
+<navigator url="/pages/huodong/my-huodong/tuwen" open-type='navigate'>
+  <view class='danhang-list'>
+    <view style='margin:30rpx;'>编辑活动图文详情</view>
+    <view class='youjiantou7'></view>
+  </view>
+</navigator>
+
+<!-- 申请发布 -->
+<navigator url="/pages/huodong/my-huodong/tuwen" open-type='navigate'>
+  <view class='danhang-list' style='margin-top:20rpx;'>
+    <view style='margin:30rpx;'>申请发布</view>
+    <view class='youjiantou7'></view>
+  </view>
+</navigator>
+
+<!-- 删除 -->
+<view class='delete' catchtap='deleteHuodong_' id='{{huodongRes.id}}'>删除</view>
+
+<!-- 登录 -->
+<component-login login-state="{{loginState}}"></component-login>

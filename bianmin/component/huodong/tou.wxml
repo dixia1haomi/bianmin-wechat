@@ -1,0 +1,35 @@
+<!-- 头图 -->
+<view class='toutu' catchtap='toutu_tap_' id='{{huodongRes.id}}'>
+  <image class='toutu-img' src='{{huodongRes.toutu}}' mode='aspectFill'></image>
+</view>
+
+<!-- 基本信息 -->
+<view class='xinxi'>
+  <!-- 标题 -->
+  <view class='biaoti'>{{huodongRes.biaoti}}</view>
+  <!-- 价格 -->
+  <view class='jiage'>
+    <view>
+      <text class='huodongjia'>￥{{huodongRes.huodongjia}} </text>
+      <text class='yuanjia'>{{huodongRes.yuanjia}}元</text>
+    </view>
+    <text>已领 {{huodongRes.lq_shuliang}} 份</text>
+  </view>
+</view>
+
+<!-- 有效期 -->
+<view class='jieshu-time'>
+  <text>领取后有效期至</text>
+  <text>{{huodongRes.jieshu_time}}</text>
+</view>
+
+<!-- 已有多少人领取 -->
+<view class='lingqurenshu'>
+  已有多少人领取
+</view>
+
+<!-- 活动说明 -->
+<view>
+  <view class='title'>活动说明</view>
+
+</view>

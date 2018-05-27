@@ -1,4 +1,4 @@
-<block wx:if="shangjiaRes">
+
   <!-- 头图 -->
   <view class='toutu' catchtap='toutu_tap_' id='{{shangjiaRes.id}}'>
     <image class='toutu-img' src='{{shangjiaRes.toutu}}' mode='aspectFill'></image>
@@ -19,4 +19,3 @@
       <text class='iconfont icon-shangjia-dianhua' style='font-size: 70rpx;'></text>
     </view>
   </view>
-</block>

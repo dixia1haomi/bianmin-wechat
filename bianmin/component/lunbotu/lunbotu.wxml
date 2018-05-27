@@ -4,7 +4,9 @@
     <scroll-view scroll-x class='scroll-view'>
       <block wx:for="{{shangjiaList}}" wx:key="">
         <view style='display: inline-block; padding-right: 20rpx;' id='{{item.id}}' catchtap='scroll'>
-          <image class='shangjia-img' src='{{item.toutu}}' mode='aspectFill' lazy-load='1'></image>
+          <image class='shangjia-img' src='{{item.toutu}}' mode='aspectFill' lazy-load='1'>
+            <text wx:if="{{item.with_fabuhuodong.length > 0}}" class='text'>活动</text>
+          </image>
           <view class='scroll-name'>{{item.name}}</view>
         </view>
       </block>

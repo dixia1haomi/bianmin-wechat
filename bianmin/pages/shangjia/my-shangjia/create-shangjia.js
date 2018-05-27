@@ -1,8 +1,8 @@
-import { Api } from '../../utils/Api.js'
-import { Base } from '../../utils/Base.js'
-import { Cos } from '../../utils/Cos.js'
+import { Api } from '../../../utils/Api.js'
+import { Base } from '../../../utils/Base.js'
+import { Cos } from '../../../utils/Cos.js'
 
-import WxValidate from '../../validate/WxValidate.js'
+import WxValidate from '../../../validate/WxValidate.js'
 
 const cos = new Cos()
 const api = new Api()
@@ -103,48 +103,6 @@ Page({
     this.setData({ phone: e.detail })
   },
 
-  // 输入框 
-  // com_textarea_(e) {
-  //   console.log('textarea', e.detail)
-  //   this.setData({ miaoshu: e.detail })
-  // },
-
-
-
-
-  // ----------------------------------------- 详情图 -----------------------------------------
-  // xiangqingtu_() {
-  //   let xiangqingtu_ImgArray = this.data.xiangqingtu
-  //   wx.chooseImage({
-  //     count: 9 - xiangqingtu_ImgArray.length, // 默认9
-  //     sizeType: ['compressed'],         // 可以指定是原图还是压缩图，默认二者都有
-  //     sourceType: ['album', 'camera'],  // 可以指定来源是相册还是相机，默认二者都有
-  //     success: (res) => {
-  //       // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片,tempFilePaths = res.tempFilePaths
-  //       console.log('xiangqingtu_Image', res)
-  //       // 把选择的图片push进imgArray
-  //       xiangqingtu_ImgArray = xiangqingtu_ImgArray.concat(res.tempFilePaths)
-  //       this.setData({ xiangqingtu: xiangqingtu_ImgArray })
-  //     }
-  //   })
-  // },
-
-
-
-
-  // ----------------------------------------- 删除详情图 -----------------------------------------
-  // shanchu_xiangqingtu_(e) {
-  //   wx.showModal({
-  //     title: '删除这张图片？', success: (res) => {
-  //       if (res.confirm) {
-  //         let key = e.currentTarget.id, xiangqingtuArray = this.data.xiangqingtu
-  //         // splice删除数组中的元素
-  //         xiangqingtuArray.splice(key, 1)
-  //         this.setData({ xiangqingtu: xiangqingtuArray })
-  //       }
-  //     }
-  //   })
-  // },
 
   // ----------------------------------------- 提交 -----------------------------------------
   tijiao_(e) {

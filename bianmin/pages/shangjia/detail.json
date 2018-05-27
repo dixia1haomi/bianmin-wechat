@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "shangjia-tou": "/component/shangjia/zhanshi/tou",
-    "shangjia-miaoshu": "/component/shangjia/zhanshi/miaoshu"
+    "shangjia-tou": "/component/shangjia/tou",
+    "shangjia-miaoshu": "/component/shangjia/miaoshu",
+    "shangjia-huodong": "/component/shangjia/huodong"
   }
 }

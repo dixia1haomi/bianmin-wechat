@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "form-input": "/component/form/input",
-    "form-dizhi": "/component/form/dizhi"
+    "form-textarea": "/component/form/textarea"
   }
 }

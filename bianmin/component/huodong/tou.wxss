@@ -1,0 +1,101 @@
+/* 引入iconfont */
+@import "../../utils/iconfont.wxss";
+
+/* 头图 */
+
+.toutu {
+  height: 562.5rpx;
+}
+
+.toutu-img {
+  /* 16:9 */
+  width: 100%;
+  height: 562.5rpx;
+}
+
+/* 活动基本信息 */
+
+.xinxi {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+/* 标题 */
+
+.biaoti {
+  font-size: 36rpx;
+  font-weight: 700;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+/* 价格 */
+
+.jiage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #808080;
+  font-size: 28rpx;
+  padding-top: 20rpx;
+}
+
+.jiage .huodongjia {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: tomato;
+}
+
+.jiage .yuanjia {
+  font-size: 26rpx;
+  text-decoration: line-through;
+}
+
+/* 结束时间 */
+
+.jieshu-time {
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+/* 领取人 */
+
+.lingqurenshu {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+/* 我也要领取 */
+.lingqu{
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+
+/* 活动说明 */
+
+.title {
+  padding: 20rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+/* 电话 */
+
+.dianhua {
+  flex: 1;
+  border-left: 1rpx solid #e5e5e5;
+  color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

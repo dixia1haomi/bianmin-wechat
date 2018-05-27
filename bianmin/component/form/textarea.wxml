@@ -1,11 +1,41 @@
 <!-- textarea输入框 -->
-<view class='textarea-view' hidden='{{hid}}'>
-  <!-- title -->
-  <text wx:if="{{title}}" class='title'>{{title}}</text>
-  <!-- 输入框 -->
-  <textarea class='textarea' bindinput="textarea_" maxlength='{{maxlength}}' placeholder="{{placeholder}}" value='{{value}}' disabled='{{disabled}}' bindblur="blur_">
-    <text class='cursor'>{{setData.textarea.cursor + '/200'}}</text>
-  </textarea>
-  <!-- bottom -->
-  <text wx:if="{{bottom}}" class='bottom'>{{bottom}}</text>
-</view>
+
+
+<!-- 传入edit渲染编辑 -->
+<block wx:if="{{edit}}">
+  <!-- 编辑 -->
+
+  <view class='textarea-view' hidden='{{hid}}' catchtap='dianji_'>
+    <!-- title -->
+    <view wx:if="{{title}}" class='title'>{{title}}</view>
+    <!-- 输入框 -->
+    <textarea class='textarea' bindinput="textarea_" maxlength='{{maxlength}}' placeholder="{{placeholder}}" value='{{value}}' disabled='{{disabled}}' auto-height='{{autoheight}}' style="min-height: {{minheight}}rpx; max-height: {{maxheight}}rpx;">
+      <text class='cursor'>{{setData.textarea.cursor + '/200'}}</text>
+    </textarea>
+    <!-- bottom -->
+    <text wx:if="{{bottom}}" class='bottom'>{{bottom}}</text>
+  </view>
+  <!-- 编辑按钮 -->
+  <block wx:if="{{!disabled}}">
+    <view class='button'>
+      <button catchtap='queding_'>确定</button>
+      <button catchtap='quxiao_' style='background-color:skyblue;'>取消</button>
+    </view>
+  </block>
+
+</block>
+<block wx:else>
+  <!-- 创建 -->
+
+  <view class='textarea-view' hidden='{{hid}}'>
+    <!-- title -->
+    <view wx:if="{{title}}" class='title'>{{title}}</view>
+    <!-- 输入框 -->
+    <textarea class='textarea' bindinput="textarea_" maxlength='{{maxlength}}' placeholder="{{placeholder}}" value='{{value}}' disabled='{{disabled}}' auto-height='{{autoheight}}' style="min-height: {{minheight}}rpx; max-height: {{maxheight}}rpx;">
+      <text class='cursor'>{{setData.textarea.cursor + '/200'}}</text>
+    </textarea>
+    <!-- bottom -->
+    <text wx:if="{{bottom}}" class='bottom'>{{bottom}}</text>
+  </view>
+
+</block>

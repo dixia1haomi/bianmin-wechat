@@ -7,12 +7,26 @@
   padding: 30rpx;
 }
 
-.input-title {
-  /* margin-right: 20rpx; */
-}
-
 .input-text {
   flex: 1;
+}
+
+/* 按钮 */
+
+.button {
+   padding-top: 20rpx; 
+}
+
+.button button {
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.button button::after {
+  border: none;
 }
 
 

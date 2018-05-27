@@ -1,5 +1,5 @@
-.page {
-  padding-bottom: 200rpx;
+.huodong-base {
+  padding-bottom: 260rpx;
 }
 
 .title {
@@ -38,39 +38,41 @@
   color: #007aff;
 }
 
-.xiangqingtu {
+/* 输入框 */
+
+.textarea-view {
+  position: relative;
+  padding: 20rpx 30rpx;
   background-color: #fff;
-  margin-bottom: 20rpx;
-  padding: 20rpx;
+  /* text-align: center; */
 }
 
-.xiangqingtu-title {
-  margin-bottom: 20rpx;
+.textarea-view .textarea-title {
+  padding-bottom: 20rpx;
 }
 
-.xiangqingtu-1 {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tianjia-xiangqingtu {
-  height: 126rpx;
-  width: 126rpx;
+.textarea-view .textarea {
+  width: 100%;
+  min-height: 150rpx;
   background-color: aliceblue;
-  border: 1rpx dashed #808080;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 100rpx;
+}
+
+.cursor {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
   color: #808080;
 }
 
-.xiangqingtu-img-item {
-  height: 130rpx;
-  width: 130rpx;
-  margin-right: 10rpx;
-  margin-bottom: 10rpx;
+/* 结束时间 */
+
+.end-date {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
 }
+
 
 /* 提交 */
 
@@ -81,6 +83,7 @@
   border-radius: 0;
   background-color: tomato;
   color: #fff;
+  z-index: 999;
 }
 
 .tijiao::after {

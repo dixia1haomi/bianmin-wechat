@@ -1,0 +1,20 @@
+<!-- 描述 -->
+<view class='title'>活动描述</view>
+
+<block wx:if="{{huodongRes.withhuodong_img.length > 0}}">
+  <!-- 图文详情 -->
+  <view class='tuwenxiangqing'>
+    <block wx:for="{{huodongRes.withhuodong_img}}" wx:key="">
+      <view class='text-view'>
+        <text>{{item.text}}</text>
+      </view>
+      <!-- mode='widthFix' aspectFit 保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。 -->
+      <image class='tuwenxiangqing-img' src='{{item.url}}' mode='widthFix' lazy-load='1'></image>
+    </block>
+    <!-- 阅读量 -->
+    <view class='liulangcishu'>浏览：{{huodongRes.liulangcishu}}</view>
+  </view>
+</block>
+<block wx:else>
+  <view class='no-miaoshu'>暂无描述</view>
+</block>

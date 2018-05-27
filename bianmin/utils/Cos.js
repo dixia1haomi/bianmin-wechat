@@ -10,6 +10,8 @@ class Cos {
 
   // 上传图片 -- 新修改的用在my-shangjia.js
   update_img_cos(cospath, imgArr, callback, callbackupdateOk) {
+    wx.showLoading({ title: '上传中', mask: true })
+
     var successUp = 0; //成功个数
     var failUp = 0; //失败个数
     var length = imgArr.length; //总共个数
@@ -18,6 +20,7 @@ class Cos {
       console.log('back--------------', JSON.parse(back))
       callback && callback(JSON.parse(back))
     }, updateOk => {
+      wx.hideLoading()
       console.log('updateOk--上传完成')
       callbackupdateOk && callbackupdateOk(updateOk)
     });
@@ -64,7 +67,8 @@ class Cos {
       },
       fail: (res) => {
         failUp++;
-        console.log('fail-上传失败', res)
+        console.log('fail-上传失败', res,)
+        return
       },
       complete: () => {
         i++;

@@ -3,6 +3,18 @@ Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
+    // 编辑 (传了就是修改)
+    edit: {
+      type: Boolean,
+      value: false
+    },
+
+    // 编辑提示文字
+    editTitle: {
+      type: String,
+      value: '修改XX?'
+    },
+
     // 标题
     title: {
       type: String,
@@ -32,6 +44,12 @@ Component({
       type: Boolean,
       value: false
     },
+
+    // 类型
+    input_type: {
+      type: String,
+      value: 'text'
+    },
   },
 
 
@@ -45,16 +63,33 @@ Component({
   },
 
   methods: {
+
+    // 点击事件（只有编辑状态有）
+    dianji_() {
+      console.log('点击事件（只有编辑状态有）')
+      if (this.data.disabled) {
+        wx.showModal({ title: this.data.editTitle, success: (res) => { if (res.confirm) { this.setData({ disabled: false }) } } })
+      }
+    },
+
     // ----- input -----
     input_(e) {
       this.triggerEvent('input', e.detail)
     },
 
+    // 确定
+    queding_() {
+      this.triggerEvent('queding')
+    },
 
-    // 失去焦点时触发
-    blur_() {
-      this.triggerEvent('blur')
-    }
+    // 取消
+    quxiao_() {
+      this.setData({
+        value: this.data.value,
+        disabled: true
+      })
+    },
+
   },
 
   options: {

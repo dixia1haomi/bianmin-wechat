@@ -3,8 +3,12 @@
   <!-- 头 -->
   <shangjia-tou shangjiaRes="{{shangjiaRes}}"></shangjia-tou>
 
+  <!-- 活动 -->
+  <block wx:if="{{shangjiaRes.with_fabuhuodong.length > 0}}">
+    <shangjia-huodong shangjiaRes="{{shangjiaRes}}"></shangjia-huodong>
+  </block>
+
   <!-- 描述 -->
   <shangjia-miaoshu shangjiaRes="{{shangjiaRes}}"></shangjia-miaoshu>
 
 </view>
-

@@ -277,7 +277,7 @@ class Api extends Base {
       }
     })
   }
-  
+
   // 删除店铺
   deleteShangjia(data, callback) {
     wx.showLoading({ title: '删除中', mask: true })
@@ -345,7 +345,7 @@ class Api extends Base {
   }
 
   // 修改商家IMG里的text字段
-  createShangjiaImgText(data, callback) {
+  updateShangjiaImgText(data, callback) {
     wx.showLoading({ title: '修改中', mask: true })
     this.request({
       url: 'shangjia/updateshangjiaimgtext', data: data, sCallback: (res) => {
@@ -357,7 +357,7 @@ class Api extends Base {
   }
 
   // 修改商家IMG里的url字段
-  createShangjiaImgUrl(data, callback) {
+  updateShangjiaImgUrl(data, callback) {
     wx.showLoading({ title: '修改中', mask: true })
     this.request({
       url: 'shangjia/updateshangjiaimgurl', data: data, sCallback: (res) => {
@@ -379,6 +379,202 @@ class Api extends Base {
       }
     })
   }
+
+  // ------------------------------------------------- 商家活动 ---------------------------------------------------
+  // 新增商家活动
+  createShangjiaHuodong(data, callback) {
+    wx.showLoading({ title: '创建中', mask: true })
+    this.request({
+      url: 'huodong/createhuodong', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '创建成功' })
+      }
+    })
+  }
+
+  // 查询活动详情
+  findShangjiaHuodong(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodong/findhuodong', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 查询活动列表
+  selectShangjiaHuodong(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodong/selecthuodong', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 删除活动
+  deleteShangjiaHuodong(data, callback) {
+    wx.showLoading({ title: '删除中', mask: true })
+    this.request({
+      url: 'huodong/deletehuodong', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '删除成功' })
+      }
+    })
+  }
+
+  // -------------- 编辑活动基本资料 --------------
+
+  // 修改活动头图
+  xiugaiHuodongToutu(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongtoutu', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动标题
+  xiugaiHuodongBiaoti(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongbiaoti', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动原价
+  xiugaiHuodongYuanjia(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongyuanjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动价
+  xiugaiHuodongHuodongjia(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodonghuodongjia', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动数量
+  xiugaiHuodongShuliang(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongshuliang', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动条件
+  xiugaiHuodongTiaojian(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongtiaojian', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动结束时间
+  xiugaiHuodongTime(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongtime', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动说明
+  xiugaiHuodongShuoming(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/xiugaihuodongshuoming', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // -------------- 编辑活动图文详情块 --------------
+
+  // 新增活动IMG表
+  createHuodongImg(data, callback) {
+    wx.showLoading({ title: '创建中', mask: true })
+    this.request({
+      url: 'huodong/createhuodongimg', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '创建成功' })
+      }
+    })
+  }
+
+  // 修改活动IMG里的text字段
+  updateHuodongImgText(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/updatehuodongimgtext', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 修改活动IMG里的url字段
+  updateHuodongImgUrl(data, callback) {
+    wx.showLoading({ title: '修改中', mask: true })
+    this.request({
+      url: 'huodong/updatehuodongimgurl', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '修改成功' })
+      }
+    })
+  }
+
+  // 删除活动IMG一条数据
+  deleteHuodongImg(data, callback) {
+    wx.showLoading({ title: '删除中', mask: true })
+    this.request({
+      url: 'huodong/deletehuodongimg', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+        wx.showToast({ title: '删除成功' })
+      }
+    })
+  }
+
 
 
 

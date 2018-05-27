@@ -1,18 +1,16 @@
 /* tips */
 
 .tips {
-  position: absolute;
-  width: 100%;
-  bottom: 100rpx;
+  /* position: absolute; */
+  /* width: 100%; */
+  /* bottom: 100rpx; */
   font-size: 26rpx;
   color: #808080;
   text-align: center;
+  margin-top: 200rpx;
 }
 
 .delete {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
   margin-top: 20rpx;
   padding: 20rpx 0;
   background-color: #fff;

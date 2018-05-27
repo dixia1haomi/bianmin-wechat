@@ -1,16 +1,16 @@
 <!-- 头 -->
-<view class='title'>我的店铺 —— 图文详情</view>
+<view class='title'>编辑活动图文详情</view>
 
 <view class='page'>
 
   <!-- 已有图文详情 -->
   <block wx:for="{{Res}}" wx:key="">
     <!-- 组件--商家--编辑图文 -->
-    <shangjia-bianjituwen Res="{{item}}" bind:delete="com_delete_"></shangjia-bianjituwen>
+    <huodong-bianjituwen Res="{{item}}" bind:delete="com_delete_"></huodong-bianjituwen>
   </block>
 
   <!-- 添加图文详情 -->
-  <view wx:if="{{content.state}}">
+  <block wx:if="{{content.state}}">
     <!-- 输入框 -->
     <view class='textarea-view'>
       <textarea class='textarea' bindinput='textarea_bindinput_' maxlength='200' placeholder='选填、提交后可以继续编辑'>
@@ -24,7 +24,8 @@
       <button catchtap='content_queding_'>提交</button>
       <button catchtap='content_quxiao_' style='background-color:skyblue;'>取消</button>
     </view>
-  </view>
+  </block>
+  
   <!-- 添加图文块按钮 -->
   <block wx:if="{{Res.length < 9 && content.state == false}}">
     <view class='button'>

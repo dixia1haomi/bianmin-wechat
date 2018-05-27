@@ -1,5 +1,5 @@
 /* 引入iconfont */
-@import "../../../utils/iconfont.wxss";
+@import "../../utils/iconfont.wxss";
 
 /* 头图 */
 

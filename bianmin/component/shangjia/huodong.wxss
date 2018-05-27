@@ -1,0 +1,61 @@
+.huodong-base{
+  margin-bottom: 20rpx;
+}
+
+.title {
+  padding: 20rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+/* 列表 */
+
+.huodong {
+  display: flex;
+  border-bottom: 1rpx solid #e5e5e5;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+.huodong-toutu {
+  width: 240rpx;
+  height: 180rpx;
+}
+
+.huodong-xinxi {
+  flex: 1;
+  padding: 10rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.huodong-xinxi .miaoshu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.miaoshu .huodongjia {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: tomato;
+}
+
+.miaoshu .yuanjia {
+  font-size: 28rpx;
+  color: #808080;
+  text-decoration: line-through;
+}
+
+.miaoshu .yiling {
+  font-size: 28rpx;
+  color: #808080;
+}
+
+/* .item-xinxi .name {
+  font-size: 38rpx;
+  font-weight: 700;
+} */
