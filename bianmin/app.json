@@ -15,6 +15,7 @@
 
     "pages/shangjia/list",
     "pages/shangjia/detail",
+
     "pages/shangjia/my-shangjia/create-shangjia",
     "pages/shangjia/my-shangjia/index",
     "pages/shangjia/my-shangjia/tuwenxiangqingye",
@@ -22,10 +23,14 @@
 
     "pages/huodong/list",
     "pages/huodong/detail",
+
     "pages/huodong/my-huodong/create-huodong",
     "pages/huodong/my-huodong/index",
     "pages/huodong/my-huodong/jiben",
-    "pages/huodong/my-huodong/tuwen"
+    "pages/huodong/my-huodong/tuwen",
+
+    "pages/kajuan/list",
+    "pages/kajuan/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "white",

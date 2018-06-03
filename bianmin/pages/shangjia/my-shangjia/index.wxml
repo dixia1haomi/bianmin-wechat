@@ -39,6 +39,9 @@
       </view>
     </navigator>
 
+    <!-- 核销 -->
+    <button catchtap='saoma_'>核销</button>
+
     <!-- tips -->
     <view class='tips'>小提示：点击头图预览、修改过资料请下拉刷新。</view>
 

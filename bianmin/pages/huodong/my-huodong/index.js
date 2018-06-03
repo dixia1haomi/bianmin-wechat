@@ -22,6 +22,7 @@ Page({
       console.log('查询活动详情', back)
       this.setData({ huodongRes: back.data })
       callback && callback()
+      wx.hideLoading()
     })
   },
 

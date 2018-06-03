@@ -1,11 +1,63 @@
-<!-- 活动组件头 -->
-<huodong-tou huodongRes="{{huodongRes}}"></huodong-tou>
+<block wx:if="{{huodongRes != null}}">
+  <!-- 活动组件头 -->
+  <huodong-tou huodongRes="{{huodongRes}}"></huodong-tou>
 
-<!-- 参与活动 -->
-<view class='canyu'>
-  <button catchtap='canyu_' id='{{huodongRes.id}}'>参与活动</button>
+  <!-- 活动 -->
 
-</view>
+  <view class='canyu'>
+    <!-- 参与 -->
+    <block wx:if="{{canyu}}">
+      <button catchtap='canyu_'>参与活动</button>
+    </block>
+    <!-- 领取 -->
+    <block wx:if="{{lingqu}}">
+      <button catchtap='lingqu_'>领取</button>
+    </block>
 
-<!-- 描述 -->
-<huodong-miaoshu huodongRes="{{huodongRes}}"></huodong-miaoshu>
+    <block wx:if="{{canyuRes}}">
+      <!-- 助力 -->
+      <block wx:if="{{zhuli}}">
+        <button catchtap='zhuli_'>帮他助力</button>
+      </block>
+      <!-- 切换 -->
+      <block wx:if="{{qiehuan}}">
+        <button catchtap='qiehuan_'>切换到我的专属页</button>
+      </block>
+      <!-- 邀请 -->
+      <block wx:if="{{yaoqing}}">
+        <button catchtap='yaoqing_' id='{{huodongRes.id}}'>邀请好友助力 {{canyuRes.with_zhuli.length}}/{{huodongRes.tiaojian}}</button>
+      </block>
+      <!-- 跳转 -->
+      <block wx:if="{{tiaozhuan}}">
+        <button catchtap='tiaozhuan_'>已领取、去看看</button>
+      </block>
+
+      <!-- 助力榜组件 -->
+      <component-zhulibang title="好友助力榜" Res="{{canyuRes.with_zhuli}}">
+        <view slot="touxiang">
+          <image class='img' src='{{canyuRes.avatar_url}}'></image>
+        </view>
+      </component-zhulibang>
+    </block>
+  </view>
+
+  <!-- 海报 -->
+  <view wx:if="{{haibaoImg}}">
+    <image class='haibaoimg' src='{{haibaoImg}}' catchtap='yulanghaibao_'></image>
+  </view>
+
+  <!-- 描述 -->
+  <huodong-miaoshu huodongRes="{{huodongRes}}"></huodong-miaoshu>
+  
+</block>
+<block wx:else>
+  <view>商家活动已结束</view>
+</block>
+
+
+
+<!-- 登录 -->
+<component-login login-state="{{loginState}}"></component-login>
+
+<!-- 分享窗 -->
+<component-fenxiangchuang fenxiangTanChuang="{{fenxiangTanChuang}}" bind:haibao="com_haibao_"></component-fenxiangchuang>

@@ -80,22 +80,18 @@
 
 /* 活动说明 */
 
-.title {
-  padding: 20rpx;
+.shuoming{
   background-color: #fff;
-  border-bottom: 1rpx solid #e5e5e5;
-  font-size: 34rpx;
-  font-weight: 700;
   margin-bottom: 20rpx;
 }
 
-/* 电话 */
+.shuoming-title{
+  padding: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 34rpx;
+  font-weight: 700;
+}
 
-.dianhua {
-  flex: 1;
-  border-left: 1rpx solid #e5e5e5;
-  color: tomato;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.shuoming-text{
+  padding: 20rpx;
 }

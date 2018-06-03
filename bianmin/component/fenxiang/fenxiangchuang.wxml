@@ -1,0 +1,11 @@
+<!-- 分享弹窗 -->
+<block wx:if="{{fenxiangTanChuang}}">
+  <view class="fenxiangTanChuang-mask">
+    <view class='fenxiangTanChuang'>
+      <view class='fenxiangTanChuang-title'>分享</view>
+      <button open-type='share'>直接分享给好友或群</button>
+      <button catchtap='haibao_'>生成海报分享朋友圈</button>
+      <button catchtap='quxiao_' style='background-color:skyblue;'>取消</button>
+    </view>
+  </view>
+</block>

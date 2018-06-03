@@ -29,13 +29,27 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/huodong/detail",
-					"query": "id=10",
+					"pathName": "pages/index/index1",
+					"query": "page=huodongDetail&id=10&canyuId=36",
+					"scene": "1012"
+				},
+				{
+					"id": -1,
+					"name": "list",
+					"pathName": "pages/index/index1",
+					"query": "page=huodongDetail&id=10",
+					"scene": "1012"
+				},
+				{
+					"id": 2,
+					"name": "list",
+					"pathName": "pages/kajuan/detail",
+					"query": "id=12",
 					"scene": "1012"
 				}
 			]

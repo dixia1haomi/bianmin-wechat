@@ -1,0 +1,20 @@
+<block wx:if="{{juanRes}}">
+  <view class="page">
+    <view class="panel">
+      <view class="header">
+      </view>
+      <view class="barcode">
+        <view class="barnum">{{code}}</view>
+        <canvas canvas-id="barcode" />
+      </view>
+      <view class="qrcode">
+        <canvas canvas-id="qrcode" />
+      </view>
+    </view>
+  </view>
+
+  <button catchtap='deletejuan_'>立即使用</button>
+</block>
+<block wx:else>
+  <view class='nodata'>不存在或已核销</view>
+</block>

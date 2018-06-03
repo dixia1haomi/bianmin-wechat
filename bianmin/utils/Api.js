@@ -49,8 +49,8 @@ class Api extends Base {
     })
   }
 
-  // 生成二维码
-  shengChengErWeiMa(data, callback) {
+  // 生成信息顶置二维码
+  xinxiDingzhierweima(data, callback) {
     wx.showLoading({ title: '生成中', mask: true })
     this.request({
       url: 'xinxi/erweima', data: data, sCallback: (res) => {
@@ -398,7 +398,7 @@ class Api extends Base {
     wx.showLoading({ title: '请稍候', mask: true })
     this.request({
       url: 'huodong/findhuodong', data: data, sCallback: (res) => {
-        wx.hideLoading()
+        // wx.hideLoading()
         callback && callback(res)
       }
     })
@@ -576,6 +576,96 @@ class Api extends Base {
   }
 
 
+  // -------------- 参与活动 --------------
+
+  // 检查有canyuId的参与结果
+  checkBieren(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/checkbieren', data: data, sCallback: (res) => {
+        // wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 检查无canyuId的参与结果
+  checkZiji(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/checkziji', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 新增参与
+  createCanyuHuodong(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/canyu', data: data, sCallback: (res) => {
+        // wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 新增助力
+  createZhuliHuodong(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/zhuli', data: data, sCallback: (res) => {
+        // wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 新增领取
+  createLingquHuodong(data, callback) {
+    wx.showLoading({ title: '领取中', mask: true })
+    this.request({
+      url: 'huodongcanyu/lingqu', data: data, sCallback: (res) => {
+        // wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 查询领取详情
+  getLingquHuodong(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/getlingqu', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 核销劵
+  hexiaoLingquHuodong(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/hexiao', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+
+  // 生成活动助力二维码
+  huodongZhulierweima(data, callback) {
+    wx.showLoading({ title: '生成中', mask: true })
+    this.request({
+      url: 'huodongcanyu/erweima', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
 
 
   // ------------------------------------------------- onError ---------------------------------------------------

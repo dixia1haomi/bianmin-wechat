@@ -37,6 +37,12 @@
       <view class='youjiantou7'></view>
     </view>
 
+    <!-- 活动劵 -->
+    <view class='danhang-list' catchtap='huodong_juan_' style='margin-top: 20rpx;'>
+      <view style='margin:30rpx;'>劵包</view>
+      <view class='youjiantou7'></view>
+    </view>
+
     <view class='danhang-list' catchtap='go_guanyuwo' style='margin-top: 20rpx;'>
       <view style='margin:30rpx;'>使用帮助</view>
       <view class='youjiantou7'></view>

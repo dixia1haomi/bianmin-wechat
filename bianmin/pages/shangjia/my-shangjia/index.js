@@ -27,6 +27,48 @@ Page({
   },
 
 
+  // 商家扫描核销
+  // 1.自己只可以核销自己店铺下的
+  //   （码上带商家ID，扫后对比是不是商家的活动）
+  //   （码上带活动ID，扫后对比是否一致）
+  // 
+  saoma_() {
+    // 登录
+    if (app.data.LoginState) {
+      // 只允许从相机扫码
+      wx.scanCode({
+        onlyFromCamera: true,
+        success: (res) => {
+          console.log('只允许从相机扫码', res)
+          if (res.result) {
+            let arr = res.result.split('-');
+            console.log('arr', arr)
+            // 对比
+            let myShangjiaRes = this.data.myShangjiaRes
+            if (myShangjiaRes.id == arr[0]) {
+              console.log('对比成功', myShangjiaRes.id, arr[0])
+              // 准备发送请求删除劵
+              api.hexiaoLingquHuodong({
+                // state：1 商家扫码核销标识
+                params: { state: 1, shangjia_id: arr[0], huodong_id: arr[1], id: arr[2] }
+              }, back => {
+                console.log('扫码核销OK', back)
+                // back.msg = 成功 || 不存在 || 对比失败
+                wx.showModal({ title: back.msg })
+              })
+            } else {
+              console.log('对比失败', shangjia_id, arr[0])
+              // 提示对比失败
+            }
+          }
+        }
+      })
+    } else {
+      // 提示登陆
+      this.setData({ loginState: true })
+    }
+  },
+
 
   // 刷新
   shuaxin_(e) {

@@ -41,7 +41,7 @@ Page({
 
   // ----- 海报 ----- 
   shengChengHaiBao_(e) {
-    api.shengChengErWeiMa({ scene: e.currentTarget.id }, back => {
+    api.xinxiDingzhierweima({ scene: e.currentTarget.id }, back => {
       console.log('erweima', back)
       if (back.msg == 'ok') {
         // 显示图片

@@ -43,17 +43,43 @@ Page({
   // -------------------------------------------- onLoad --------------------------------------
 
   onLoad: function (op) {
+    app.checkToken(() => {
+      // 检查op
+      op = this._check_op(op)
+      console.log('qwe',op)
+      // 检查page
+      if (op.page == 'huodongDetail') {
+        // 去活动页
+        let url = op.canyuId ? '/pages/huodong/detail?id=' + op.id + '&canyuId=' + op.canyuId : '/pages/huodong/detail?id=' + op.id
+        wx.navigateTo({ url: url })
+      }
+    })
+
     this._load()
     this._getShangjiaList()
   },
 
-
+ 
+  // 检查op
+  _check_op(op) {
+    if (op.scene) {
+      let scene_arr = decodeURIComponent(op.scene).split('-');
+      console.log('scene_arr', scene_arr)
+      if (scene_arr[0] == 'huodongDetail') {
+        op.page = scene_arr[0]
+        op.id = scene_arr[1]
+        op.canyuId = scene_arr[2]
+      }
+    }
+    return op;
+  },
 
   // 请求数据
   _load(callback) {
     // 分页1
     page = 1
     api.getList({ page: page }, res => {
+      console.log('信息列表', res)
       this.setData({ Res: res.data })
       // 回调给下拉刷新用
       callback && callback()
@@ -122,7 +148,7 @@ Page({
     console.log('_checkLogin-app-loginstate', app.data.LoginState)
     if (!app.data.LoginState && !this.data.login_quxiao) {
       // setTimeout(() => {
-        this.com_login_()
+      this.com_login_()
       // }, 2000)
     }
   },

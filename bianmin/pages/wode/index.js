@@ -101,6 +101,18 @@ Page({
     }
   },
 
+
+  // -------------------------------------- 活动劵 --------------------------------------
+  huodong_juan_() {
+    // 是否登陆过 ？
+    if (app.data.LoginState) {
+      wx.navigateTo({ url: '/pages/kajuan/list' })
+    } else {
+      // 提示登陆
+      this.setData({ loginState: true })
+    }
+  },
+
   // -------------------------------------- 关于我 --------------------------------------
   go_guanyuwo() { wx.navigateTo({ url: '/pages/wode/guanyuwo' }) }
 })

@@ -16,7 +16,6 @@ class Base {
         'token_key': wx.getStorageSync('token_key')
       },
       success(res) {
-        console.log('base', res)
         if (res.statusCode == 200) {
 
           if (res.data.errorCode == 0) {

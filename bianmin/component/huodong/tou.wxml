@@ -29,7 +29,9 @@
 </view>
 
 <!-- 活动说明 -->
-<view>
-  <view class='title'>活动说明</view>
-
+<view class='shuoming'>
+  <view class='shuoming-title'>活动说明</view>
+  <view class='shuoming-text'>
+    <text>{{huodongRes.shuoming}}</text>
+  </view>
 </view>
