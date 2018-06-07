@@ -7,7 +7,7 @@ Page({
 
   data: {
     // 活动信息
-    huodongRes: null,
+    huodongRes: false,
     // 参与人数据
     canyuRes: null,
     // 助力按钮
@@ -199,9 +199,16 @@ Page({
     if (app.data.LoginState) {
       api.createLingquHuodong({ params: { shangjia_id: this.data.huodongRes.shangjia_id, huodong_id: this.data.huodongRes.id } }, back => {
         console.log('领取OK', back)
+        // 
+        this.setData({ 'canyuRes.kajuan': back.data, tiaozhuan: true, lingqu: false })
         // 提示
-        wx.showModal({ title: '领取成功', content: '袋鼠同城感谢您的参与', showCancel: false })
-        this.setData({ tiaozhuan: true, lingqu: false })
+        wx.showModal({
+          title: '领取成功', content: '袋鼠同城感谢您的参与', showCancel: false, success: (res) => {
+            if (res.confirm) {
+              wx.navigateTo({ url: '/pages/kajuan/detail?id=' + back.data.id })
+            }
+          }
+        })
         wx.hideLoading()
       })
     } else {

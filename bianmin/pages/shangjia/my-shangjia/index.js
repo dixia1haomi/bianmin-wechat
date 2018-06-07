@@ -47,15 +47,25 @@ Page({
             let myShangjiaRes = this.data.myShangjiaRes
             if (myShangjiaRes.id == arr[0]) {
               console.log('对比成功', myShangjiaRes.id, arr[0])
-              // 准备发送请求删除劵
-              api.hexiaoLingquHuodong({
-                // state：1 商家扫码核销标识
-                params: { state: 1, shangjia_id: arr[0], huodong_id: arr[1], id: arr[2] }
-              }, back => {
-                console.log('扫码核销OK', back)
-                // back.msg = 成功 || 不存在 || 对比失败
-                wx.showModal({ title: back.msg })
+              wx.navigateTo({
+                url: '/pages/kajuan/detail?id=' + arr[2] + '&state=shangjia',
               })
+              // 准备发送请求删除劵
+              // wx.showModal({
+              //   title: '核销此劵？', success: (res) => {
+              //     if (res.confirm) {
+              //       // API
+              //       api.hexiaoLingquHuodong({
+              //         // state：1 商家扫码核销标识
+              //         params: { state: 1, shangjia_id: arr[0], huodong_id: arr[1], id: arr[2] }
+              //       }, back => {
+              //         console.log('扫码核销OK', back)
+              //         // back.msg = 成功 || 不存在 || 对比失败
+              //         wx.showModal({ title: back.msg })
+              //       })
+              //     }
+              //   }
+              // })
             } else {
               console.log('对比失败', shangjia_id, arr[0])
               // 提示对比失败

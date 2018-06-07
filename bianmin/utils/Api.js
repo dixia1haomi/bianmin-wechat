@@ -634,10 +634,21 @@ class Api extends Base {
   }
 
   // 查询领取详情
-  getLingquHuodong(data, callback) {
+  getJuanDetail(data, callback) {
     wx.showLoading({ title: '请稍候', mask: true })
     this.request({
-      url: 'huodongcanyu/getlingqu', data: data, sCallback: (res) => {
+      url: 'huodongcanyu/juandetail', data: data, sCallback: (res) => {
+        wx.hideLoading()
+        callback && callback(res)
+      }
+    })
+  }
+
+  // 查询领取列表
+  getJuanList(data, callback) {
+    wx.showLoading({ title: '请稍候', mask: true })
+    this.request({
+      url: 'huodongcanyu/juanlist', data: data, sCallback: (res) => {
         wx.hideLoading()
         callback && callback(res)
       }
