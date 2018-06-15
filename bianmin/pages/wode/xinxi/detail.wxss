@@ -1,0 +1,24 @@
+.foot {
+  color: #007aff;
+  border-top: 1rpx dashed #e5e5e5;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  background-color: #fff;
+  padding: 20rpx 0;
+}
+
+/* 刷新 */
+
+.shuaxin {
+  padding: 20rpx;
+  background-color: tomato;
+}
+
+.shuaxin-title {
+  padding-bottom: 20rpx;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}

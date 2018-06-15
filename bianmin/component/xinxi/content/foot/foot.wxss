@@ -1,0 +1,27 @@
+
+/* 引入iconfont */
+@import "../../../../utils/iconfont.wxss";
+
+.info {
+  color: #007aff;
+  border-top: 1rpx dashed #e5e5e5;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  background-color: #fff;
+  padding: 20rpx 0;
+}
+
+.liulangcishu {
+  color: #808080;
+  flex: 1;
+}
+
+.dianhua {
+  flex: 1;
+}
+
+.liuyananniu {
+  flex: 1;
+}

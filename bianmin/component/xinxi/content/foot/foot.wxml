@@ -1,0 +1,19 @@
+<!-- 脚部按钮栏 -->
+<view class='info'>
+  <!-- 浏览量 -->
+  <view class='liulangcishu'>
+    <text class='iconfont icon-yueduliang' />
+    <text> {{Res.liulangcishu}}</text>
+  </view>
+  <!-- 电话 -->
+  <view class='dianhua' id='{{Res.phone}}' catchtap='foot_phone_'>
+    <text class='iconfont icon-phone' />
+    <text> 电话</text>
+  </view>
+  <!-- 留言弹窗事件携带信息ID -->
+  <view class='liuyananniu' catchtap='foot_liuyan_' id='{{Res.id}}'>
+    <text class='iconfont icon-liuyan' />
+    <text> 留言</text>
+  </view>
+</view>
+

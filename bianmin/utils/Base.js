@@ -39,6 +39,7 @@ class Base {
             wx.showModal({ title: '错误', content: 'errorCode==40000、已上报服务器、抱歉。', success: () => { return } })
           }
           else if (res.data.errorCode == 50000) {
+            console.log('errorCode=50000', res)
             wx.showModal({ title: '错误', content: '获取小程序码异常、已上报服务器、抱歉。', success: () => { return } })
           }
         } else {

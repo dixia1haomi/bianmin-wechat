@@ -1,0 +1,18 @@
+/* 留言 */
+
+.liuyan-base {
+  padding: 0 10rpx 0 10rpx;
+  margin-top: 20rpx;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+  background-color: #e5e5e5;
+}
+
+.liuyan {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.liuyan-huifu {
+  margin-left: 30rpx;
+}

@@ -1,0 +1,46 @@
+<!-- 好友帮顶榜 -->
+<!-- <view class='liebiao'>
+  <slot name="touxiang"></slot>
+  <view class='liebiao-title'>—— {{title}} ——</view>
+  <block wx:if="{{userList.length > 0}}">
+    <block wx:for="{{userList}}" wx:key="">
+      <view class='user'>
+        <image class='user-img' src='{{item.avatar_url}}'></image>
+        <text class='user-name'>{{item.nick_name}}</text>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class='nodata'>{{nodata}}</view>
+  </block>
+</view> -->
+
+<view class='dingzhi'>
+  <!-- 顶置时长 -->
+  <view wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi-time'>顶置状态将在 {{Res.dingzhi_time}} 到期</view>
+  <!-- 帮顶按钮 -->
+  <button catchtap='button_'>{{button_text}}</button>
+  <!-- 说明 -->
+  <view class='shuoming'>
+    <text>小提示：每个好友能为你增加24小时顶置时间.</text>
+  </view>
+  <!-- 海报 -->
+  <view wx:if="{{haibaoImg}}">
+    <image class='haibaoimg' src='{{haibaoImg}}' catchtap='yulanghaibao_'></image>
+  </view>
+  <!-- 好友帮顶榜 -->
+  <view class='liebiao'>
+    <view class='dingzhi-title'>—— 好友帮顶榜 ——</view>
+    <block wx:if="{{Res.with_bangdinguser.length > 0}}">
+      <block wx:for="{{Res.with_bangdinguser}}" wx:key="">
+        <view class='user'>
+          <image class='dingzhi-img' src='{{item.avatar_url}}'></image>
+          <text class='name'>{{item.nick_name}}</text>
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+      <view class='name'>暂无好友帮顶</view>
+    </block>
+  </view>
+</view>

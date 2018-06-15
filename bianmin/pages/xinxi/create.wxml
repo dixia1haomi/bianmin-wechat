@@ -1,0 +1,113 @@
+<view class='page'>
+  <!-- 头 -->
+  <component-title title="发布信息"></component-title>
+
+  <!-- 选择类目 -->
+  <form-xuanzeqi title="选择类目" content="{{com_xuanzeleimu_data.name}}" state="{{leimu_state}}">
+    <view>
+      <form-xuanzeleimu bind:xuanzeleimu="com_xuanzeleimu_" arr="{{leimuArr}}"></form-xuanzeleimu>
+    </view>
+  </form-xuanzeqi>
+
+  <!-- -------------- 变动区域 -------------- -->
+
+  <!-- ----- 招聘 ----- -->
+  <block wx:if="{{com_xuanzeleimu_data.name == '招聘'}}">
+    <!-- 职位-input -->
+    <form-input title="职位" placeholder='请输入您要招聘的职位' maxlength='10' bind:input="zhaopin_zhiwei_"></form-input>
+    <!-- 薪资-单选 -->
+    <form-picker title="薪资" range='{{zhaopin_xinziArr}}' index="{{zhaopin_xinzi_index}}" bind:picker="zhaopin_xinzi_"></form-picker>
+    <!-- 公司-input -->
+    <form-input title="公司" placeholder='请输入公司名称' maxlength='10' bind:input="zhaopin_gongsi_"></form-input>
+    <!-- 工作地址-input -->
+    <form-input title="工作地址" placeholder='请输入工作地址' maxlength='10' bind:input="zhaopin_gongzuodizhi_"></form-input>
+    <!-- 福利-checkbox -->
+    <form-checkbox Arr="{{checkboxArr}}" bind:checkbox="zhaopin_fuli_"></form-checkbox>
+  </block>
+
+  <!-- ----- 求职 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '求职'}}">
+    <!-- 性别-单选 -->
+    <form-picker title="性别" range="{{qiuzhi_xingbieArr}}" index="{{qiuzhi_xingbie_index}}" bind:picker="qiuzhi_xingbie_"></form-picker>
+    <!-- 年龄-input -->
+    <form-input title="年龄" type='number' placeholder='请输入年龄' maxlength='2' bind:input="qiuzhi_nianling_"></form-input>
+    <!-- 学历-单选 -->
+    <form-picker title="学历" range="{{qiuzhi_xueliArr}}" index="{{qiuzhi_xueli_index}}" bind:picker="qiuzhi_xueli_"></form-picker>
+    <!-- 意向职位-input -->
+    <form-input title="意向职位" placeholder='请输入意向职位' maxlength='10' bind:input="qiuzhi_yixiangzhiwei_"></form-input>
+  </block>
+
+  <!-- ----- 房产出售 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '房产出售'}}">
+    <!-- 小区-input、面积-input、总价-input、装修-单选 -->
+    <form-input title="小区" placeholder='请输入小区名' maxlength='10' bind:input="fangchan_chushou_xiaoqu_"></form-input>
+    <form-input title="面积" placeholder='请输入房屋面积' maxlength='6' bind:input="fangchan_chushou_mianji_"></form-input>
+    <form-input title="总价" placeholder='请输入房屋总价' maxlength='4' bind:input="fangchan_chushou_zongjia_"></form-input>
+    <form-picker title="装修" range="{{fangchan_chushou_zhuangxiuArr}}" index="{{fangchan_chushou_zhuangxiu_index}}" bind:picker="fangchan_chushou_zhuangxiu_"></form-picker>
+  </block>
+
+  <!-- ----- 房产求购 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '房产求购'}}">
+    <!-- 区域-input -->
+    <form-input title="区域" placeholder='请输入求购区域' maxlength='10' bind:input="fangchan_qiugou_quyu_"></form-input>
+  </block>
+
+  <!-- ----- 房产出租 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '房产出租'}}">
+    <!-- 小区-input、面积-input、房型- picker2、价格-input -->
+    <form-input title="小区" placeholder='请输入小区名或位置' maxlength='10' bind:input="fangchan_chuzu_xiaoqu_"></form-input>
+    <form-input title="面积" placeholder='请输入房屋面积' maxlength='6' bind:input="fangchan_chuzu_mianji_"></form-input>
+    <form-input title="价格" placeholder='请输入房屋价格' maxlength='4' bind:input="fangchan_chuzu_jiage_"></form-input>
+    <form-pickermulti title="房型" multiArray="{{multiArray}}" multiIndex="{{multiIndex}}" bind:pickermulti="fangchan_chuzu_fangxing_">
+    </form-pickermulti>
+  </block>
+
+  <!-- ----- 房产求租 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '房产求租'}}">
+    <!-- 区域-input -->
+    <form-input title="区域" placeholder='请输入求租区域' maxlength='10' bind:input="fangchan_qiuzu_quyu_"></form-input>
+  </block>
+
+  <!-- ----- 汽车出售 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车出售'}}">
+    <view>汽车出售</view>
+  </block>
+  <!-- ----- 汽车求购 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车求购'}}">
+    <view>汽车求购</view>
+  </block>
+  <!-- ----- 汽车出租 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车出租'}}">
+    <view>汽车出租</view>
+  </block>
+  <!-- ----- 汽车求租 ----- -->
+  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车求租'}}">
+    <view>汽车求租</view>
+  </block>
+
+
+  <!-- -------------- 固定区域 -------------- -->
+
+  <!-- 详情描述输入框 -->
+  <form-textarea bind:textarea="com_textarea_" bottom="请尝试切换模板并删改。\n暂不支持表情，如果内容中包含表情请删除。" value="{{com_xuanzeleimu_data.value2[value2index].moban}}" hid="{{leimu_state}}"></form-textarea>
+  <!-- 详情描述切换模板按钮 -->
+  <view class='qiehuan'>
+    <button class='moban-button' catchtap='qiehuanmoban_'>点我切换模板 {{value2index+1}}/{{com_xuanzeleimu_data.value2.length}}</button>
+  </view>
+  <!-- 选择详情图 -->
+  <view style='margin-bottom: 10rpx;'>
+    <form-xuanzetupian bind:xuanzetupian="com_xuanzetupian_" count="4"></form-xuanzetupian>
+  </view>
+  <!-- 地址 -->
+  <form-dizhi bind:dizhi="com_dizhi_"></form-dizhi>
+  <!-- 电话 -->
+  <form-dianhua bind:dianhua="com_dianhua_" tips="1"></form-dianhua>
+  <!-- 提交 -->
+  <view class="container">
+    <form report-submit='true' bindsubmit='tijiao_'>
+      <button class='btn btn__size--d' hover-class='btn__hover' form-type="submit">确认发布</button>
+    </form>
+  </view>
+
+
+</view>

@@ -1,0 +1,5 @@
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{range}}">
+  <view class='danhang-list picker'>
+    {{title}}：{{range[index]}}
+  </view>
+</picker>

@@ -1,0 +1,12 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "title": "/component/title/title",
+    "zhaopin": "/component/xinxi/content/fenlei/zhaopin",
+    "qiuzhi": "/component/xinxi/content/fenlei/qiuzhi",
+    "fangchanchushou": "/component/xinxi/content/fenlei/fangchanchushou",
+    "fangchanchuzu": "/component/xinxi/content/fenlei/fangchanchuzu",
+    "fangchanqiugou": "/component/xinxi/content/fenlei/fangchanqiugou",
+    "fangchanqiuzu": "/component/xinxi/content/fenlei/fangchanqiuzu"
+  }
+}

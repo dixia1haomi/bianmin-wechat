@@ -1,0 +1,64 @@
+<!-- 头 -->
+<title title="我的信息详情"></title>
+
+<block wx:if="{{Res}}">
+
+  <!-- 刷新 -->
+  <block wx:if="{{Res.form_id == ''}}">
+    <view class='shuaxin'>
+      <view class='shuaxin-title'>您获得了刷新权限</view>
+      <form report-submit bindsubmit='shuaxin_' id='{{Res.id}}'>
+        <button form-type="submit">刷新</button>
+      </form>
+    </view>
+  </block>
+
+  <!-- 内容 -->
+  <block wx:if="{{Res.leibie == '招聘'}}">
+    <zhaopin Res="{{Res}}"></zhaopin>
+  </block>
+  <block wx:elif="{{Res.leibie == '求职'}}">
+    <qiuzhi Res="{{Res}}"></qiuzhi>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产出售'}}">
+    <fangchanchushou Res="{{Res}}"></fangchanchushou>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产求购'}}">
+    <fangchanqiugou Res="{{Res}}"></fangchanqiugou>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产出租'}}">
+    <fangchanchuzu Res="{{Res}}"></fangchanchuzu>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产求租'}}">
+    <fangchanqiuzu Res="{{Res}}"></fangchanqiuzu>
+  </block>
+
+  <!-- 脚部 -->
+  <view class='foot'>
+    <text>浏览量</text>
+    <text>删除</text>
+  </view>
+
+  <!-- 留言 -->
+  <liuyan Res="{{Res}}" bind:name="huifu_"></liuyan>
+
+
+
+  <!-- 榜单 -->
+  <dingzhibang Res="{{Res}}" bind:button="yaoqing_" haibaoImg="{{haibaoImg}}"></dingzhibang>
+
+  <!-- 邀请顶置弹窗 -->
+  <dingzhi state="{{yaoqingchuang_state}}" bind:haibao="yaoqing_haibao_"></dingzhi>
+
+  <!-- 留言弹窗 -->
+  <liuyanchuang state="{{liuyanchuang_state}}" title="回复" bind:queding="huifuchuang_queding_"></liuyanchuang>
+
+</block>
+
+<block wx:elif="{{Res == null}}">
+  <view>没有数据</view>
+</block>
+
+<block wx:else>
+  <view>加载中</view>
+</block>

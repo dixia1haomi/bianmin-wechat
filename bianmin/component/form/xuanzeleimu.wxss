@@ -1,0 +1,48 @@
+.xuanzeleimu {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.xuanzeleimu-title {
+  text-align: center;
+  padding: 100rpx 0 60rpx 0;
+  font-size: 36rpx;
+  font-weight: 700;
+  background-color: #fff;
+}
+
+.base {
+  flex: 1;
+  display: flex;
+  background-color: #fff;
+}
+
+.base1 {
+  background-color: #efefef;
+}
+
+.base1-name {
+  padding: 30rpx 60rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.base1-name-xuanzhong {
+  background-color: #fff;
+}
+
+.base2 {
+  flex: 1;
+}
+
+.base2-name {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 36rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}

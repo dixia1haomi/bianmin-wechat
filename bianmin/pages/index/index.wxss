@@ -1,0 +1,86 @@
+/* 地址 */
+
+.dizhi {
+  margin: 10rpx 0 10rpx 0;
+  font-size: 28rpx;
+  color: #007aff;
+}
+
+.title {
+  padding: 100rpx 0 60rpx 30rpx;
+  background-color: tomato;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.title-img {
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.title-1 {
+  margin-top: 10rpx;
+  /* font-size: 34rpx; */
+  font-weight: 600;
+}
+
+/* 轮播图title */
+
+.scroll-title {
+  padding: 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  background-color: #fff;
+}
+
+.scroll-title-text {
+  border-bottom: 8rpx solid green;
+}
+
+/* 信息 */
+
+.bmxx-title {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  background-color: #fff;
+}
+
+.bmxx-title-text {
+  border-bottom: 8rpx solid green;
+}
+
+/* 没有更多 */
+
+.nodata {
+  padding: 40rpx;
+  text-align: center;
+  color: #808080;
+  font-size: 26rpx;
+}
+
+/* 分享 */
+
+.juzhong {
+  display: flex;
+  position: fixed;
+  bottom: 80rpx;
+  right: 40rpx;
+}
+
+.fenxiang {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #2c2c2c;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10rpx #2c2c2c;
+}

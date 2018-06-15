@@ -46,7 +46,7 @@ Component({
     },
 
     // 类型
-    input_type: {
+    type: {
       type: String,
       value: 'text'
     },

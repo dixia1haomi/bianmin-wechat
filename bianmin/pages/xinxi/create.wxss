@@ -1,0 +1,80 @@
+/* pages/fabu/fabu.wxss */
+
+.page {
+  padding-bottom: 200rpx;
+}
+
+.title {
+  text-align: center;
+  padding: 100rpx 0 60rpx 0;
+  font-size: 36rpx;
+  font-weight: 700;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+
+/* 切换模板按钮 */
+
+.qiehuan {
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  padding-bottom: 20rpx;
+}
+
+.moban-button {
+  /* margin-top: 20rpx; */
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: skyblue;
+  color: #fff;
+  /* margin-bottom: 20rpx; */
+}
+
+.moban-button::after {
+  border: none;
+}
+
+/* 提交 */
+
+.tijiao {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0;
+  background-color: tomato;
+  color: #fff;
+}
+
+.tijiao::after {
+  border: none;
+}
+
+/* --------------------------------------------- */
+
+.container {
+  width: 100%;
+  padding-top: 20rpx;
+  background: #fff;
+  text-align: center;
+}
+
+.container:after {
+  display: block;
+  content: " ";
+  clear: both;
+  visibility: hidden;
+  height: 0;
+}
+  .button-large-wrap {
+    margin-bottom: 10rpx;
+  }
+
+.title {
+  line-height: 50rpx;
+  margin-left: 35rpx;
+  margin-bottom: 10rpx;
+  text-align: left;
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #333;
+}

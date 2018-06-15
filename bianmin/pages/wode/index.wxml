@@ -15,7 +15,7 @@
   <view class='base2'>
 
     <!-- 信息 -->
-    <view class='danhang-list' catchtap='go_fabu_'>
+    <view class='danhang-list' catchtap='go_create_'>
       <view style='margin:30rpx;'>发布信息</view>
       <view class='youjiantou7'></view>
     </view>
@@ -27,7 +27,7 @@
 
 
     <!-- 商家 -->
-    <view class='danhang-list' style='margin-top: 20rpx;' catchtap='create_shangjia_'>
+    <!-- <view class='danhang-list' style='margin-top: 20rpx;' catchtap='create_shangjia_'>
       <view style='margin:30rpx;'>商家入驻</view>
       <view class='youjiantou7'></view>
     </view>
@@ -35,13 +35,13 @@
     <view class='danhang-list' catchtap='my_shangjia_'>
       <view style='margin:30rpx;'>我的店铺</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
     <!-- 活动劵 -->
-    <view class='danhang-list' catchtap='huodong_juan_' style='margin-top: 20rpx;'>
+    <!-- <view class='danhang-list' catchtap='huodong_juan_' style='margin-top: 20rpx;'>
       <view style='margin:30rpx;'>劵包</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
     <view class='danhang-list' catchtap='go_guanyuwo' style='margin-top: 20rpx;'>
       <view style='margin:30rpx;'>使用帮助</view>
@@ -56,7 +56,7 @@
   </view>
 
   <!-- 登陆弹窗 -->
-  <component-login bind:login="com_login_" login-state="{{loginState}}"></component-login>
+  <login bind:login="com_login_" login-state="{{loginState}}"></login>
 
 
 </view>

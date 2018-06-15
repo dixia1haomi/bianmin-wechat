@@ -3,7 +3,7 @@
   <!-- 编辑 -->
   <view class='danhang-list input' catchtap='dianji_'>
     <view>{{title}}：</view>
-    <input class='input-text' bindinput='input_' maxlength='{{maxlength}}' placeholder='{{placeholder}}' value='{{value}}' disabled='{{disabled}}' type='{{input_type}}'></input>
+    <input class='input-text' bindinput='input_' maxlength='{{maxlength}}' placeholder='{{placeholder}}' value='{{value}}' disabled='{{disabled}}' type='{{type}}'></input>
   </view>
   <!-- 编辑按钮 -->
   <block wx:if="{{!disabled}}">

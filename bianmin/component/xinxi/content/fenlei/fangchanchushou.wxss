@@ -1,0 +1,42 @@
+/* 引入iconfont */
+
+/* @import "../../../../utils/iconfont.wxss";  */
+
+.base {
+  background-color: #fff;
+}
+
+/* 信息 */
+
+.xinxi {
+  flex: 1;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.xinxileibie {
+}
+
+.xinxi-tishi {
+  text-align: center;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.touming {
+  opacity: 0;
+}
+
+/* 配图 */
+
+.img-view {
+  width: 100%;
+  overflow: hidden;
+}
+
+.img {
+  width: 168rpx;
+  height: 168rpx;
+  margin-left: 8rpx;
+  border-radius: 2rpx;
+}

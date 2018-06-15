@@ -1,0 +1,14 @@
+<!-- 复选框 -->
+<!-- <checkbox-group bindchange="checkboxChange">
+  <label wx:for="{{cartArr}}">
+    <checkbox value="{{index}}"></checkbox>
+    <view>{{item}}</view>
+  </label>
+</checkbox-group> -->
+
+<view class='base'>
+  <block wx:for="{{Arr}}" wx:key="">
+    <!-- 数组的下标index来进行判断是哪个的事件 -->
+    <view class="item {{item.state ? 'xuanzhong':''}}" bindtap="selectRep" data-index="{{index}}">{{item.name}}</view>
+  </block>
+</view>

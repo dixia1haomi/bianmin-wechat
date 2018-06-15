@@ -1,0 +1,44 @@
+<block wx:if="{{Res}}">
+
+  <!-- <bianmin-item Res="{{Res}}" bind:call-login="com_login_" info=""> -->
+  <!-- <view slot="info">
+    <view>删除</view>
+    <view>刷新</view>
+  </view> -->
+  <!-- </bianmin-item>  -->
+
+  <!-- 内容 -->
+  <block wx:if="{{Res.leibie == '招聘'}}">
+    <zhaopin Res="{{Res}}"></zhaopin>
+  </block>
+  <block wx:elif="{{Res.leibie == '求职'}}">
+    <qiuzhi Res="{{Res}}"></qiuzhi>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产出售'}}">
+    <fangchanchushou Res="{{Res}}"></fangchanchushou>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产求购'}}">
+    <fangchanqiugou Res="{{Res}}"></fangchanqiugou>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产出租'}}">
+    <fangchanchuzu Res="{{Res}}"></fangchanchuzu>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产求租'}}">
+    <fangchanqiuzu Res="{{Res}}"></fangchanqiuzu>
+  </block>
+
+  <!-- 榜单 -->
+  <dingzhibang Res="{{Res}}" bind:button="dingzhi_" button_text="帮好友增加顶置时间"></dingzhibang>
+
+  <!-- 登录 -->
+  <login login-state="{{loginState}}"></login>
+
+</block>
+
+<block wx:elif="{{Res == null}}">
+  <view>信息已删除</view>
+</block>
+
+<block wx:else>
+  <view>加载中</view>
+</block>

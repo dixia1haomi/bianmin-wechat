@@ -4,5 +4,7 @@
   <view class='youjiantou7'></view>
 </view>
 
-<!-- 插入信息类目组件的插槽 -->
-<slot name="xinxileimu"></slot>
+<!-- 插槽 -->
+<block wx:if="{{state}}">
+  <slot></slot>
+</block>

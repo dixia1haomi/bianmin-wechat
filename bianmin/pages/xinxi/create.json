@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "component-title": "/component/title/title",
+    "form-dianhua": "/component/form/dianhua",
+    "form-dizhi": "/component/form/dizhi",
+    "form-textarea": "/component/form/textarea",
+    "form-xuanzeqi": "/component/form/xuanzeqi",
+    "form-xuanzeleimu": "/component/form/xuanzeleimu",
+    "form-xuanzetupian": "/component/form/xuanzetupian",
+    "form-input": "/component/form/input",
+    "form-picker": "/component/form/picker",
+    "form-pickermulti": "/component/form/picker2",
+    "form-checkbox": "/component/form/checkbox"
+  }
+}

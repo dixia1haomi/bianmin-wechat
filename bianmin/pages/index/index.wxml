@@ -1,0 +1,80 @@
+<view class='title' catchtap='fuzhi_'>
+  <image class='title-img' src='/img/150.jpg'></image>
+  <view>
+    <view style='font-size: 46rpx;font-weight: 700;'>沾益袋鼠同城+</view>
+    <view class='title-1'>
+      <view>加袋鼠微信,帮你顶置,转发信息.</view>
+      <view style='margin-top: 10rpx;'>点击加我</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 商家轮播图 -->
+<!-- 头 -->
+<!-- <view class='scroll-title'>
+  <text class='scroll-title-text'>本地商家</text>
+</view>
+<component-shangjia-lunbotu shangjiaList="{{shangjiaList}}"></component-shangjia-lunbotu> -->
+
+
+<!-- 同城标题 -->
+<view class='bmxx-title'>
+  <text class='bmxx-title-text'>同城信息</text>
+</view>
+
+<!-- 同城item -->
+<block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
+  <!-- <bianmin-item Res="{{item}}" bind:call-login="com_login_"></bianmin-item> -->
+
+
+  <!-- 内容 -->
+  <block wx:if="{{item.leibie == '招聘'}}">
+    <zhaopin Res="{{item}}"></zhaopin>
+  </block>
+  <block wx:elif="{{item.leibie == '求职'}}">
+    <qiuzhi Res="{{item}}"></qiuzhi>
+  </block>
+  <block wx:elif="{{item.leibie == '房产出售'}}">
+    <fangchanchushou Res="{{item}}"></fangchanchushou>
+  </block>
+  <block wx:elif="{{item.leibie == '房产求购'}}">
+    <fangchanqiugou Res="{{item}}"></fangchanqiugou>
+  </block>
+  <block wx:elif="{{item.leibie == '房产出租'}}">
+    <fangchanchuzu Res="{{item}}"></fangchanchuzu>
+  </block>
+  <block wx:elif="{{item.leibie == '房产求租'}}">
+    <fangchanqiuzu Res="{{item}}"></fangchanqiuzu>
+  </block>
+
+  <!-- 地址 -->
+  <!-- <view class='dizhi'>
+    <text catchtap='dizhi_' data-longitude='{{item.longitude}}' data-latitude='{{item.latitude}}' data-address='{{item.address}}'>{{item.address}}</text>
+  </view> -->
+
+  <!-- 脚部 -->
+  <foot Res="{{item}}" bind:foot_liuyan="foot_liuyan_"></foot>
+
+  <!-- 留言 -->
+  <liuyan Res="{{item}}"></liuyan>
+
+</block>
+
+
+
+<!-- 没有更多了 -->
+<view wx:if="{{noData}}" class='nodata'>———— 这是底线 ————</view>
+
+<!-- -----------按钮----------- -->
+<view class='juzhong'>
+  <view class='fenxiang' catchtap='go_wode'>
+    <view class=''>+</view>
+  </view>
+</view>
+
+<!-- 登录 -->
+<login loginState="{{loginState}}"></login>
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

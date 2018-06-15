@@ -1,36 +1,19 @@
 {
   "pages": [
-    "pages/index/index1",
-
+    "pages/index/index",
     "pages/bmxx/fabu",
     "pages/bmxx/chakanhuifu",
     "pages/bmxx/erweimafenxiangye",
     "pages/bmxx/myfabu",
     "pages/bmxx/xiugaifabu",
-
     "pages/exception/exception",
-
     "pages/wode/index",
     "pages/wode/guanyuwo",
-
-    "pages/shangjia/list",
-    "pages/shangjia/detail",
-
-    "pages/shangjia/my-shangjia/create-shangjia",
-    "pages/shangjia/my-shangjia/index",
-    "pages/shangjia/my-shangjia/tuwenxiangqingye",
-    "pages/shangjia/my-shangjia/jibenziliaoye",
-
-    "pages/huodong/list",
-    "pages/huodong/detail",
-
-    "pages/huodong/my-huodong/create-huodong",
-    "pages/huodong/my-huodong/index",
-    "pages/huodong/my-huodong/jiben",
-    "pages/huodong/my-huodong/tuwen",
-
-    "pages/kajuan/list",
-    "pages/kajuan/detail"
+    "pages/wode/xinxi/list",
+    "pages/wode/xinxi/detail",
+    "pages/wode/xinxi/yaoqing",
+    "pages/xinxi/create",
+    "pages/xinxi/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "white",

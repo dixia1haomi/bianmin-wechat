@@ -1,0 +1,41 @@
+<!-- 头 -->
+<title title="我的信息列表"></title>
+
+<block wx:if="{{Res}}">
+  <block wx:for="{{Res}}" wx:key="">
+    <!-- <bianmin-item Res="{{item}}" bind:call-login="com_login_" info="">
+      <view slot="info">
+        <view class='info' catchtap='go_wode_xinxi_detail_' id='{{item.id}}'>管理</view>
+      </view>
+    </bianmin-item> -->
+    <!-- 内容 -->
+    <block wx:if="{{item.leibie == '招聘'}}">
+      <zhaopin Res="{{item}}"></zhaopin>
+    </block>
+    <block wx:elif="{{item.leibie == '求职'}}">
+      <qiuzhi Res="{{item}}"></qiuzhi>
+    </block>
+    <block wx:elif="{{item.leibie == '房产出售'}}">
+      <fangchanchushou Res="{{item}}"></fangchanchushou>
+    </block>
+    <block wx:elif="{{item.leibie == '房产求购'}}">
+      <fangchanqiugou Res="{{item}}"></fangchanqiugou>
+    </block>
+    <block wx:elif="{{item.leibie == '房产出租'}}">
+      <fangchanchuzu Res="{{item}}"></fangchanchuzu>
+    </block>
+    <block wx:elif="{{item.leibie == '房产求租'}}">
+      <fangchanqiuzu Res="{{item}}"></fangchanqiuzu>
+    </block>
+
+    <!-- 管理 -->
+    <view class='guanli' catchtap='go_wode_xinxi_detail_' id='{{item.id}}'>管理</view>
+
+  </block>
+</block>
+<block wx:elif="{{Res.length == 0}}">
+  <view>没有数据</view>
+</block>
+<block wx:else>
+  <view>加载中</view>
+</block>

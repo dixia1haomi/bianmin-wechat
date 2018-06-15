@@ -1,0 +1,22 @@
+<!-- 留言弹窗 -->
+<block wx:if="{{state}}">
+  <view class="liuyan-huifu-tanchuang">
+    <view class='tanchuang-block'>
+      <view class='tanchuang-block-title'>{{title}}</view>
+      <view class='tips'>小提示：{{title}}成功对方将收到推送提醒</view>
+      <view class='tanchuang-textarea'>
+        <!-- <textarea placeholder='请输入内容..' bindinput='_input_' maxlength="50" focus fixed>
+          <text>{{input_cursor}}/50</text>
+        </textarea> -->
+        <input class='input' placeholder='请输入{{title}}内容..' bindinput='_input_' maxlength="20"></input>
+        <view class='cursor'>{{input_cursor}}/20</view>
+      </view>
+      <view class='tanchuang-input-fool'>
+        <form report-submit bindsubmit='queding_'>
+          <button form-type="submit">确定</button>
+        </form>
+        <button catchtap='_guan_' style='background-color:skyblue;'>取消</button>
+      </view>
+    </view>
+  </view>
+</block>

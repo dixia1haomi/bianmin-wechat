@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -34,22 +34,22 @@
 				{
 					"id": 0,
 					"name": "list",
-					"pathName": "pages/index/index1",
-					"query": "page=huodongDetail&id=10&canyuId=37",
+					"pathName": "pages/wode/xinxi/detail",
+					"query": "id=443",
 					"scene": "1012"
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "list",
-					"pathName": "pages/index/index1",
-					"query": "page=huodongDetail&id=10",
+					"pathName": "pages/xinxi/yaoqing",
+					"query": "id=443",
 					"scene": "1012"
 				},
 				{
 					"id": 2,
 					"name": "list",
-					"pathName": "pages/kajuan/detail",
-					"query": "id=12",
+					"pathName": "pages/index/index",
+					"query": "page=yaoqing&id=441",
 					"scene": "1012"
 				}
 			]

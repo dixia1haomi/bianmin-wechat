@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zhaopin": "/component/bianmin_item/fenlei/zhaopin/zhaopin",
+    "qiuzhi": "/component/bianmin_item/fenlei/qiuzhi/qiuzhi",
+    "fangchanchushou": "/component/bianmin_item/fenlei/fangchanchushou/fangchanchushou",
+    "fangchanqiugou": "/component/bianmin_item/fenlei/fangchanqiugou/fangchanqiugou",
+    "fangchanchuzu": "/component/bianmin_item/fenlei/fangchanchuzu/fangchanchuzu",
+    "fangchanqiuzu": "/component/bianmin_item/fenlei/fangchanqiuzu/fangchanqiuzu"
+  }
+}

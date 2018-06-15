@@ -1,0 +1,19 @@
+.base {
+  display: flex;
+  justify-content: space-around;
+  /* width: 100%; */
+  padding: 20rpx 0;
+}
+
+.item {
+  border: 1rpx solid #808080;
+  padding: 6rpx 10rpx;
+  border-radius: 4rpx;
+}
+
+/* 选中 */
+
+.xuanzhong {
+  background-color: tomato;
+  color: #fff;
+}

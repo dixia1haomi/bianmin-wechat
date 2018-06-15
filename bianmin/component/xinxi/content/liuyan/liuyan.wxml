@@ -1,0 +1,24 @@
+<!-- 留言块 -->
+<block wx:if="{{Res.with_liuyan.length > 0}}">
+  <view class='liuyan-base'>
+    <block wx:for="{{Res.with_liuyan}}" wx:for-item="liuyan" wx:key="">
+      <view class='liuyan'>
+        <view>
+          <text style='color: #007aff;' catchtap='name_' data-liuyan_id='{{liuyan.id}}' data-user_id="{{liuyan.user_id}}" data-bmxx_id="{{liuyan.bmxx_id}}">{{liuyan.nick_name}}</text>
+          <text>：{{liuyan.neirong}}</text>
+        </view>
+        <!-- 二级回复 -->
+        <view class='liuyan-huifu'>
+          <block wx:for="{{liuyan.liuyanwith_huifu}}" wx:for-item="huifu" wx:key="">
+            <view>
+              <text style='color: #007aff;'>{{huifu.user}}</text>
+              <text style='color: #808080;'> 回复 </text>
+              <text style='color: #007aff;'>{{huifu.hf_user}}</text>
+              <text>：{{huifu.neirong}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>

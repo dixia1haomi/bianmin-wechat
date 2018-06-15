@@ -85,11 +85,9 @@ Page({
       imageUrl: '/img/150.jpg',
       success: (res) => {
         // 转发成功,关闭分享弹窗
-        this.fenxiangTanChuang_Guan_()
       },
       fail: (res1) => {
         // 转发失败,关闭分享弹窗
-        this.fenxiangTanChuang_Guan_()
       }
     }
   },

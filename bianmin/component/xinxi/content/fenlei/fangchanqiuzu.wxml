@@ -1,0 +1,41 @@
+<!-- ------------------------------------ 招聘 ------------------------------------ -->
+
+<!-- 标题 -->
+<view class='xinxileibie'>
+  <text>/ {{Res.leibie}} /</text>
+  <text wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi'>顶置</text>
+  <text class='time'>{{Res.time || '刚刚'}}</text>
+</view>
+<!-- ------------------ 展开 ------------------ -->
+<view catchtap='flodFn_'>
+  <block wx:if="{{zhankai}}">
+    <!-- 信息 -->
+    <view class='xinxi'>
+
+      <view style='color:red;'>区域：{{Res.with_kuozhan.fangchan_qiuzu_quyu}}</view>
+      <!-- 内容 -->
+      <view>
+        <text>{{Res.neirong}}</text>
+      </view>
+      <!-- 箭头 -->
+      <view class='xinxi-tishi'>
+        <text class="iconfont icon-zhankai .touming"></text>
+      </view>
+      <!-- 配图 -->
+      <view class='img-view'>
+        <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
+          <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
+        </block>
+      </view>
+    </view>
+  </block>
+  <!-- ------------------ 折叠 ------------------ -->
+  <block wx:else>
+
+    <view style='color:red;'>区域：{{Res.with_kuozhan.fangchan_qiuzu_quyu}}</view>
+    <!-- 箭头 -->
+    <view class='xinxi-tishi'>
+      <text class="iconfont icon-zhankai"></text>
+    </view>
+  </block>
+</view>

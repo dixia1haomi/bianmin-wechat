@@ -40,17 +40,17 @@ Page({
 
   // -------------------------------------- 发布信息 --------------------------------------
 
-  go_fabu_(e) {
+  go_create_() {
     // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
     if (app.data.LoginState) {
       // 检查发布限制,调用myFabu接口检查
       api.myFabu({}, (back) => {
         console.log('myFabu', back)
         // 如果已经有信息不能在发布,没有信息back.data == null
-        if (back.data) {
-          wx.showModal({ content: '只能同时展示1条信息,可以先去「我的发布」删除旧信息再回来发新信息', showCancel: false })
+        if (back.data && back.data.length > 4) {
+          wx.showModal({ content: '只能同时展示1条信息,请先删除旧信息', showCancel: false })
         } else {
-          wx.navigateTo({ url: '/pages/bmxx/fabu' })
+          wx.navigateTo({ url: '/pages/xinxi/create' })
         }
       })
     } else {
@@ -63,7 +63,7 @@ Page({
 
   my_fabu_() {
     if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/bmxx/myfabu' })
+      wx.navigateTo({ url: '/pages/wode/xinxi/list' })
     } else {
       // 提示登陆
       this.setData({ loginState: true })

@@ -1,0 +1,51 @@
+/* ------------------------------ 登陆弹窗 -------------------------------- */
+
+.loginTanChuang-mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loginTanChuang {
+  width: 700rpx;
+  height: 420rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  margin-top: 200rpx;
+}
+
+.loginTanChuang-title {
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: 700;
+  padding: 20rpx 0 20rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.loginTanChuang-tips{
+  text-align: center;
+  font-size: 26rpx;
+  color: #808080;
+  margin-top: 20rpx;
+}
+
+.loginTanChuang-XuanXiang {
+  margin-top: 20rpx;
+}
+
+.loginTanChuang-XuanXiang button {
+  margin-bottom: 20rpx;
+  width: 80%;
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.loginTanChuang-XuanXiang button::after {
+  border: none;
+}

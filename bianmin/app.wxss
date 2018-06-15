@@ -8,9 +8,59 @@ page {
   color: #3e3e3e;
 }
 
-
-
 /* ----------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 4rpx;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+.btn::after {
+  content: none;
+}
+
+/* size 属性 large, normal, small*/
+
+.btn__size--d {
+  width: 690rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 24rpx;
+  font-size: 36rpx;
+}
+
+.btn__size--z {
+  display: inline-block;
+  min-width: 180rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+}
+
+.btn__size--x {
+  display: inline-block;
+  min-width: 102rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0 24rpx;
+  font-size: 24rpx;
+}
+
+.btn__info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn__hover {
+  opacity: 0.9;
+}
 
 /* 带箭头的单行列表 */
 

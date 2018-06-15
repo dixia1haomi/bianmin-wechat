@@ -1,0 +1,80 @@
+/* ------------------------------ 帮顶置 ------------------------------ */
+
+.dingzhi {
+  text-align: center;
+  background-color: #fff;
+  padding: 40rpx;
+}
+
+.dingzhi .dingzhi-time {
+  font-size: 26rpx;
+  color: #808080;
+  margin-bottom: 30rpx;
+}
+
+.dingzhi .shuoming {
+  font-size: 26rpx;
+  color: #808080;
+  padding: 20rpx 50rpx 20rpx 50rpx;
+}
+
+.dingzhi .haibaoimg {
+  width: 670rpx;
+  height: 820rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.dingzhi .liebiao {
+  margin-top: 40rpx;
+  padding: 20rpx 0 20rpx 0;
+  border: 1rpx dashed #808080;
+}
+
+.dingzhi .dingzhi-title {
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.dingzhi .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.dingzhi .dingzhi-img {
+  height: 40rpx;
+  width: 40rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.dingzhi .name {
+  font-size: 30rpx;
+  padding-bottom: 4rpx;
+}
+
+/* .dingzhi button {
+  display: inline-block;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 4rpx;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+.dingzhi button::after {
+  content: none;
+} */
+
+ .dingzhi button {
+  border-radius: 50rpx;
+  background-color: tomato;
+  color: #fff;
+}
+
+.dingzhi button::after {
+  border: none;
+} 
