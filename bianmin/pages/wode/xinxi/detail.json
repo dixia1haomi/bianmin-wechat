@@ -10,6 +10,13 @@
     "dingzhi": "/component/xinxi/tangchuang/dingzhi",
     "dingzhibang": "/component/xinxi/content/dingzhibang/dingzhibang",
     "liuyanchuang": "/component/xinxi/tangchuang/liuyanhuifu",
-    "liuyan": "/component/xinxi/content/liuyan/liuyan"
+    "liuyan": "/component/xinxi/content/liuyan/liuyan",
+    "cheliangchushou": "/component/xinxi/content/fenlei/cheliangchushou",
+    "wupinchushou": "/component/xinxi/content/fenlei/wupinchushou",
+    "dianpuzhuanrang": "/component/xinxi/content/fenlei/dianpuzhuanrang",
+        "shangpuchuzu": "/component/xinxi/content/fenlei/shangpuchuzu",
+    "chezhaoren": "/component/xinxi/content/fenlei/chezhaoren",
+    "renzhaoche": "/component/xinxi/content/fenlei/renzhaoche",
+        "qita": "/component/xinxi/content/fenlei/qita"
   }
 }

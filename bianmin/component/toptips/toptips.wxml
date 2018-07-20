@@ -1,3 +1,0 @@
- <view class='root' wx:if="{{state}}"> 
-  <view class="tips {{donghua}}">{{tipsText}}</view>
- </view> 

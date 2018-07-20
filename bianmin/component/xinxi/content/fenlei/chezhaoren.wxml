@@ -1,0 +1,82 @@
+<!-- ------------------------------------ 车找人 ------------------------------------ -->
+
+<!-- 信息 -->
+<view class='content' catchtap='flodFn_'>
+
+  <!-- title -->
+  <view class='title'>
+    <text class='title-leibie'>{{Res.leibie}}</text>
+    <text wx:if="{{Res.dingzhi_state == 1}}" class='title-dingzhi'>顶置</text>
+    <text class='title-time'>{{Res.time || '刚刚'}}</text>
+  </view>
+
+  <!-- 出发地 -->
+  <view style="padding-bottom: 5rpx;">
+    <text style='color:#808080;'>从 </text>
+    <text style="color:tomato;font-weight: bold;">{{Res.kuozhan.chezhaoren_chufadi}}</text>
+  </view>
+  <!-- 目的地 -->
+  <view style="padding-bottom: 5rpx;">
+    <text style='color:#808080;'>到 </text>
+    <text style="color:tomato;font-weight: bold;">{{Res.kuozhan.chezhaoren_mudidi}}</text>
+  </view>
+
+  <!-- 出发时间 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text>{{Res.kuozhan.chezhaoren_riqi}} {{Res.kuozhan.chezhaoren_zuizaoshijian}}-{{Res.kuozhan.chezhaoren_zuiwanshijian}}</text>
+  </view>
+
+  <!-- 车型 -->
+  <view style=''>
+    <text>{{Res.kuozhan.chezhaoren_chexing}} {{'空'+Res.kuozhan.chezhaoren_zuowei}}</text>
+  </view>
+
+
+  <!-- 内容 -->
+  <view wx:if="{{Res.neirong.length > 0}}" style="padding-top: 10rpx;">
+    <text wx:if="{{!zhankai}}">...</text>
+    <text wx:else style='word-break: break-all;'>{{Res.neirong}}</text>
+  </view>
+
+
+  <!-- 配图 -->
+  <view wx:if="{{Res.with_img.length > 0 && zhankai}}" style='margin-top: 20rpx;'>
+    <hengxiang imgArr="{{Res.with_img}}"></hengxiang>
+  </view>
+
+  <!-- 留言 -->
+  <block wx:if="{{Res.with_liuyan.length > 0}}">
+    <liuyan Res="{{Res}}" bind:name="liuyan_name_"></liuyan>
+  </block>
+
+
+
+</view>
+
+<!-- 脚info -->
+<block wx:if="{{info}}">
+  <view wx:if="{{zhankai}}" class='info'>
+    <view class='info-dianhua' id='{{Res.phone}}' catchtap='foot_phone_' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-phone' style='margin-right: 10rpx;'></text>
+      <text>电话</text>
+    </view>
+
+    <view class='info-liuyan' catchtap='foot_liuyan_' id='{{Res.id}}' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-liuyan' style='margin-right: 10rpx;'></text>
+      <text>留言</text>
+    </view>
+  </view>
+</block>
+<!-- 我的info -->
+<block wx:else>
+  <slot name="wode"></slot>
+</block>
+
+<!-- margin-bottom -->
+<view class='margin-bottom'></view>
+
+<!-- 登录 -->
+<login loginState="{{loginState}}"></login>
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

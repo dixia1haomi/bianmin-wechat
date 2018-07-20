@@ -20,7 +20,7 @@ class Cos {
       console.log('back--------------', JSON.parse(back))
       callback && callback(JSON.parse(back))
     }, updateOk => {
-      wx.hideLoading()
+      
       console.log('updateOk--上传完成')
       callbackupdateOk && callbackupdateOk(updateOk)
     });

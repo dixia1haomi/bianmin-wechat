@@ -3,8 +3,7 @@
 /* input */
 
 .input {
-  margin-bottom: 10rpx;
-  padding: 30rpx;
+  padding: 30rpx 20rpx;
 }
 
 .input-text {
@@ -34,7 +33,7 @@
 
 .danhang-list {
   background-color: #fff;
-  border-top: 1px solid #e5e5e5;
+  /* border-top: 1px solid #e5e5e5; */
   border-bottom: 1px solid #e5e5e5;
   font-size: 34rpx;
   display: flex;

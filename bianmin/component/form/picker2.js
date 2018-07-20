@@ -37,12 +37,13 @@ Component({
 
     bindMultiPickerColumnChange: function (e) {
       console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-      var data = {
-        multiArray: this.data.multiArray,
-        multiIndex: this.data.multiIndex
-      };
-      data.multiIndex[e.detail.column] = e.detail.value;
-      this.setData(data);
+      // 不应该在组件内部随动,应该确定后在外部改变
+      // var data = {
+      //   multiArray: this.data.multiArray,
+      //   multiIndex: this.data.multiIndex
+      // };
+      // data.multiIndex[e.detail.column] = e.detail.value;
+      // this.setData(data);
     },
 
   },

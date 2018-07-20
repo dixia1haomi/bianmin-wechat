@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/map",
     "pages/bmxx/fabu",
     "pages/bmxx/chakanhuifu",
     "pages/bmxx/erweimafenxiangye",
@@ -12,8 +13,10 @@
     "pages/wode/xinxi/list",
     "pages/wode/xinxi/detail",
     "pages/wode/xinxi/yaoqing",
+    "pages/xinxi/leibie",
     "pages/xinxi/create",
-    "pages/xinxi/detail"
+    "pages/xinxi/detail",
+    "pages/xinxi/textarea"
   ],
   "window": {
     "navigationBarBackgroundColor": "white",
@@ -22,5 +25,11 @@
     "navigationBarTitleText": "WeChat",
     "onReachBottomDistance": 0,
     "navigationStyle": "custom"
+  },
+  "plugins": {
+    "tengxunditu": {
+      "version": "1.0.6",
+      "provider": "wx5bc2ac602a747594"
+    }
   }
 }

@@ -1,3 +1,38 @@
+/* 引入iconfont */
+@import "../../utils/iconfont.wxss";
+
+/* where */
+
+.where {
+  display: flex;
+  margin-top: 20rpx;
+  position: absolute;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 999px;
+  background-color: #fff;
+}
+
+.itme1 {
+  padding: 20rpx 40rpx 20rpx 20rpx;
+  border-right: 1rpx solid #e5e5e5;
+}
+
+.itme1-xuanzhong {
+  border-right: 1rpx solid #007aff;
+  color: #007aff;
+}
+
+.itme2 {
+  flex: 1;
+  padding: 20rpx 40rpx;
+}
+
+.itme2-xuanzhong {
+  color: #007aff;
+}
+
 /* 地址 */
 
 .dizhi {
@@ -23,7 +58,6 @@
 
 .title-1 {
   margin-top: 10rpx;
-  /* font-size: 34rpx; */
   font-weight: 600;
 }
 
@@ -43,14 +77,17 @@
 /* 信息 */
 
 .bmxx-title {
-  margin-top: 20rpx;
-  padding: 20rpx;
-  font-size: 34rpx;
+  /* margin-top: 20rpx; */
+  padding: 20rpx 0;
+  font-size: 40rpx;
   font-weight: 700;
   background-color: #fff;
+  position: relative;
 }
 
 .bmxx-title-text {
+  display: inline-block;
+  margin: 0 20rpx;
   border-bottom: 8rpx solid green;
 }
 
@@ -83,4 +120,24 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10rpx #2c2c2c;
+}
+
+.loadding {
+  display: flex;
+  width: 100%;
+  height: 92rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadding-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  animation: weuiLoading 1s steps(12, end) infinite;
+  background: url('https://s10.mogucdn.com/mlcdn/c45406/171016_4a61e09hcadd157gadhdeje55e82c_32x32.png') no-repeat;
+  -webkit-background-size: 100%;
+  background-size: 100%;
 }

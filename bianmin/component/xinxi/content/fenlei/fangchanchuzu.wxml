@@ -1,46 +1,150 @@
+<!-- ------------------------------------ 房屋出租 ------------------------------------ -->
 
-<!-- 标题 -->
-<view class='xinxileibie'>
-  <text>/ {{Res.leibie}} /</text>
-  <text wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi'>顶置</text>
-  <text class='time'>{{Res.time || '刚刚'}}</text>
-</view>
-<!-- ------------------ 展开 ------------------ -->
-<view catchtap='flodFn_'>
-  <block wx:if="{{zhankai}}">
-    <!-- 信息 -->
-    <view class='xinxi'>
 
-      <view style='color:red;'>小区：{{Res.with_kuozhan.fangchan_chuzu_xiaoqu}}</view>
-      <view style='color:red;'>面积：{{Res.with_kuozhan.fangchan_chuzu_mianji}}</view>
-      <view style='color:red;'>价格：{{Res.with_kuozhan.fangchan_chuzu_jiage}}</view>
-      <view style='color:red;'>房型：{{Res.with_kuozhan.fangchan_chuzu_fangxing}}</view>
-      <!-- 内容 -->
-      <view>
-        <text>{{Res.neirong}}</text>
-      </view>
-      <!-- 箭头 -->
-      <view class='xinxi-tishi'>
-        <text class="iconfont icon-zhankai .touming"></text>
-      </view>
-      <!-- 配图 -->
-      <view class='img-view'>
-        <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
-          <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
-        </block>
-      </view>
+<!-- 信息 -->
+<view class='content' catchtap='flodFn_'>
+
+  <!-- title -->
+  <view class='title'>
+    <text class='title-leibie'>{{Res.leibie}}</text>
+    <text wx:if="{{Res.dingzhi_state == 1}}" class='title-dingzhi'>顶置</text>
+    <text class='title-time'>{{Res.time || '刚刚'}}</text>
+  </view>
+
+
+  <!-- 标题 -->
+  <view style='font-size:36rpx;font-weight: 700; padding-bottom: 10rpx;'>{{Res.kuozhan.fangchan_chuzu_xiaoqu}}</view>
+
+  <!-- 租金 -->
+  <view style='margin-bottom:5rpx;'>
+    <text style='color:#515151;'>租金：</text>
+    <text style='color:tomato;font-weight: 700;'>{{Res.kuozhan.fangchan_chuzu_jiage}}元/月</text>
+    <text style='color:#e5e5e5;'> | </text>
+    <!-- 缴付方式 -->
+    <text>{{Res.kuozhan.fangchan_chuzu_zujinjiaofu}}</text>
+  </view>
+
+  <!-- 面积 -->
+  <view style='margin-bottom:5rpx;'>
+    <text style='color:#515151;'>面积：</text>
+    <text>{{Res.kuozhan.fangchan_chuzu_mianji}}㎡</text>
+    <text style='color:#e5e5e5;'>  | </text>
+    <!-- 房型 -->
+    <text>{{Res.kuozhan.fangchan_chuzu_fangxing}}</text>
+    <text style='color:#e5e5e5;'> | </text>
+    <!-- 装修 -->
+    <text>{{Res.kuozhan.fangchan_chuzu_zhuangxiu}}</text>
+  </view>
+
+  <!-- 楼层 -->
+  <view style='margin-bottom:5rpx;'>
+    <text style='color:#515151;'>楼层：</text>
+    <text>{{Res.kuozhan.fangchan_chuzu_louceng}}</text>
+  </view>
+
+  <!-- 配置 -->
+  <block wx:if="{{Res.kuozhan.fangchan_chuzu_peizhi && Res.kuozhan.fangchan_chuzu_peizhi.length > 0}}">
+    <view style='display: flex;justify-content: flex-start;align-items: flex-start;flex-wrap: wrap;color:#808080;'>
+      <block wx:for="{{Res.kuozhan.fangchan_chuzu_peizhi}}" wx:key="">
+        <view wx:if="{{item == '床'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-chuang' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>床</view>
+        </view>
+        <view wx:if="{{item == '宽带'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-kuandai' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>宽带</view>
+        </view>
+        <view wx:if="{{item == '电视'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-dianshi' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>电视</view>
+        </view>
+        <view wx:if="{{item == '冰箱'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-bingxiang' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>冰箱</view>
+        </view>
+        <view wx:if="{{item == '空调'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-kongtiao' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>空调</view>
+        </view>
+        <view wx:if="{{item == '热水器'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-reshuiqi' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>热水器</view>
+        </view>
+        <view wx:if="{{item == '洗衣机'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-xiyiji' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>洗衣机</view>
+        </view>
+        <view wx:if="{{item == '沙发'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-shafa' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>沙发</view>
+        </view>
+        <view wx:if="{{item == '衣柜'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-yigui' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>衣柜</view>
+        </view>
+        <view wx:if="{{item == '可做饭'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-kezuofan' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>可做饭</view>
+        </view>
+        <view wx:if="{{item == '独立卫生间'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-matong' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>独卫</view>
+        </view>
+        <view wx:if="{{item == '阳台'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-yangtai' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>阳台</view>
+        </view>
+        <view wx:if="{{item == '暖气'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+          <view class='iconfont icon-nuanqi' style='font-size:60rpx;'></view>
+          <view style='font-size:22rpx;'>暖气</view>
+        </view>
+      </block>
     </view>
   </block>
-  <!-- ------------------ 折叠 ------------------ -->
-  <block wx:else>
 
-    <view style='color:red;'>小区：{{Res.with_kuozhan.fangchan_chuzu_xiaoqu}}</view>
-    <view style='color:red;'>面积：{{Res.with_kuozhan.fangchan_chuzu_mianji}}</view>
-    <view style='color:red;'>价格：{{Res.with_kuozhan.fangchan_chuzu_jiage}}</view>
-    <view style='color:red;'>房型：{{Res.with_kuozhan.fangchan_chuzu_fangxing}}</view>
-    <!-- 箭头 -->
-    <view class='xinxi-tishi'>
-      <text class="iconfont icon-zhankai"></text>
-    </view>
+  <!-- 内容 -->
+  <view wx:if="{{Res.neirong.length > 0}}" style="padding-top: 10rpx;">
+    <text wx:if="{{!zhankai}}">...</text>
+    <text wx:else style='word-break: break-all;'>{{Res.neirong}}</text>
+  </view>
+
+  <!-- 配图 -->
+  <view wx:if="{{Res.with_img.length > 0 && zhankai}}" style='margin-top: 20rpx;'>
+    <hengxiang imgArr="{{Res.with_img}}"></hengxiang>
+  </view>
+
+  <!-- 留言 -->
+  <block wx:if="{{Res.with_liuyan.length > 0}}">
+    <liuyan Res="{{Res}}" bind:name="liuyan_name_"></liuyan>
   </block>
+
+
 </view>
+
+<!-- 脚info -->
+<block wx:if="{{info}}">
+  <view wx:if="{{zhankai}}" class='info'>
+    <view class='info-dianhua' id='{{Res.phone}}' catchtap='foot_phone_' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-phone' style='margin-right: 10rpx;'></text>
+      <text>电话</text>
+    </view>
+
+    <view class='info-liuyan' catchtap='foot_liuyan_' id='{{Res.id}}' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-liuyan' style='margin-right: 10rpx;'></text>
+      <text>留言</text>
+    </view>
+  </view>
+</block>
+<!-- 我的info -->
+<block wx:else>
+  <slot name="wode"></slot>
+</block>
+
+<!-- margin-bottom -->
+<view class='margin-bottom'></view>
+
+<!-- 登录 -->
+<login loginState="{{loginState}}"></login>
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

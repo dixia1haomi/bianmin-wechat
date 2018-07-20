@@ -15,12 +15,12 @@
   <view class='base2'>
 
     <!-- 信息 -->
-    <view class='danhang-list' catchtap='go_create_'>
+    <view class='danhang-list' catchtap='go_create_' hover-class='view__hover' hover-stay-time="30"  hover-start-time="0">
       <view style='margin:30rpx;'>发布信息</view>
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='danhang-list' style='' catchtap='my_fabu_'>
+    <view class='danhang-list' style='' catchtap='my_fabu_' hover-class='view__hover' hover-stay-time="30"  hover-start-time="0">
       <view style='margin:30rpx;'>我的发布</view>
       <view class='youjiantou7'></view>
     </view>
@@ -43,7 +43,7 @@
       <view class='youjiantou7'></view>
     </view> -->
 
-    <view class='danhang-list' catchtap='go_guanyuwo' style='margin-top: 20rpx;'>
+    <view class='danhang-list' catchtap='go_guanyuwo' style='margin-top: 20rpx;' hover-class='view__hover' hover-stay-time="30"  hover-start-time="0">
       <view style='margin:30rpx;'>使用帮助</view>
       <view class='youjiantou7'></view>
     </view>

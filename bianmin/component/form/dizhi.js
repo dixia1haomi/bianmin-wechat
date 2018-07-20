@@ -10,11 +10,11 @@ Component({
       value: ''
     },
 
-    // name
-    // name: {
-    //   type: String,
-    //   value: ''
-    // },
+    // title
+    title: {
+      type: String,
+      value: '地址'
+    },
   },
 
 

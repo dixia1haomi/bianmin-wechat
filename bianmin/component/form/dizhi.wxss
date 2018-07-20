@@ -1,8 +1,8 @@
 /* 地址 */
 
 .dizhi {
-  margin-bottom: 10rpx;
-  padding: 0 30rpx;
+  /* margin-bottom: 10rpx; */
+  padding: 30rpx 20rpx;
 }
 
 
@@ -18,7 +18,7 @@
 .danhang-list {
   /* padding: 30rpx; */
   background-color: #fff;
-  border-top: 1px solid #e5e5e5;
+  /* border-top: 1px solid #e5e5e5; */
   border-bottom: 1px solid #e5e5e5;
   font-size: 34rpx;
   display: flex;

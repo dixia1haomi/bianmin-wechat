@@ -1,0 +1,29 @@
+
+/* 弹出 */
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  background-color: #e5e5e5;
+  padding: 20rpx;
+  color: #808080;
+  position: relative;
+}
+
+.wancheng {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: tomato;
+  /* background-color: aliceblue; */
+  padding: 20rpx 40rpx;
+}

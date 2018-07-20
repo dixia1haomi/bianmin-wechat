@@ -1,5 +1,27 @@
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{range}}">
-  <view class='danhang-list picker'>
-    {{title}}：{{range[index]}}
-  </view>
-</picker>
+<block wx:if="{{mode == 'selector'}}">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{range}}">
+    <view class='danhang-list picker'>
+      <view>{{title}}
+        <text wx:if="{{bitian}}" style='color:red;'>*</text>：{{range[index]}}
+      </view>
+    </view>
+  </picker>
+</block>
+<block wx:elif="{{mode == 'date'}}">
+  <picker bindchange="bindDateChange" mode="date" start="{{start}}" end="{{end}}">
+    <view class='danhang-list picker'>
+      <view>{{title}}
+        <text wx:if="{{bitian}}" style='color:red;'>*</text>：{{date}}
+      </view>
+    </view>
+  </picker>
+</block>
+<block wx:elif="{{mode == 'time'}}">
+  <picker bindchange="bindTimeChange" mode="time" start="08:00" end="23:59">
+    <view class='danhang-list picker'>
+      <view>{{title}}
+        <text wx:if="{{bitian}}" style='color:red;'>*</text>：{{time}}
+      </view>
+    </view>
+  </picker>
+</block>

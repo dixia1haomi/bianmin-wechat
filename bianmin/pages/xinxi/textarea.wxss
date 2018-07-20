@@ -1,0 +1,35 @@
+.tips {
+  display: flex;
+  justify-content: center;
+  padding: 20rpx;
+  color: #808080;
+  font-size: 28rpx;
+}
+
+.textarea-base {
+  display: flex;
+  justify-content: center;
+}
+
+.textarea {
+  width: 614rpx;
+  height: 700rpx;
+  background-color: #fff;
+  position: relative;
+}
+
+.cursor {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
+}
+
+.btn--tianchong {
+  width: 614rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: skyblue;
+  color: #fff;
+}

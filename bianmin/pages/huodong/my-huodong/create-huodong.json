@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "form-input": "/component/form/input",
-    "my-toptips": "/component/toptips/toptips"
-  }
-}

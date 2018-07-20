@@ -1,22 +1,7 @@
-<!-- 传入edit渲染编辑 -->
-<block wx:if="{{edit}}">
-  <!-- 编辑 -->
-  <view class='danhang-list input' catchtap='dianji_'>
-    <view>{{title}}：</view>
-    <input class='input-text' bindinput='input_' maxlength='{{maxlength}}' placeholder='{{placeholder}}' value='{{value}}' disabled='{{disabled}}' type='{{type}}'></input>
+<!-- input -->
+<view class='danhang-list input'>
+  <view>{{title}}
+    <text wx:if="{{bitian}}" style='color:red;'>*</text>：
   </view>
-  <!-- 编辑按钮 -->
-  <block wx:if="{{!disabled}}">
-    <view class='button'>
-      <button catchtap='queding_'>确定</button>
-      <button catchtap='quxiao_' style='background-color:skyblue;'>取消</button>
-    </view>
-  </block>
-</block>
-<block wx:else>
-  <!-- 创建 -->
-  <view class='danhang-list input'>
-    <view class='input-title'>{{title}}：</view>
-    <input class='input-text' bindinput='input_' maxlength='{{maxlength}}' placeholder='{{placeholder}}' value='{{value}}' disabled='{{disabled}}' type='{{input_type}}'></input>
-  </view>
-</block>
+  <input class='input-text' bindinput='input_' maxlength='{{maxlength}}' placeholder='{{placeholder}}' value='{{value}}' disabled='{{disabled}}' type='{{type}}'></input>
+</view>

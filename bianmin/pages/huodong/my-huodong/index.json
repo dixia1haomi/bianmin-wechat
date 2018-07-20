@@ -1,7 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "huodong-tou": "/component/huodong/tou",
-    "component-login": "/component/login/login"
-  }
-}

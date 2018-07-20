@@ -16,6 +16,12 @@ Component({
       value: 1
     },
 
+    // 必填
+    bitian: {
+      type: Boolean,
+      value: false
+    },
+
   },
 
 

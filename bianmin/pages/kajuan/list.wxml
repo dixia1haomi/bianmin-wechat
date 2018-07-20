@@ -1,3 +1,0 @@
-<block wx:for="{{juanRes}}" wx:key="">
-  <view catchtap='go_juanDetail_' id='{{item.id}}'>{{item.id}}-{{item.state == 0 ? '有效':'已核销'}}</view>
-</block>

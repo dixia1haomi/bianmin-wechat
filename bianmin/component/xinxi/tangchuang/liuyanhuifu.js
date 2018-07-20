@@ -1,5 +1,3 @@
-
-
 Component({
 
   properties: {
@@ -37,12 +35,17 @@ Component({
 
     // 关闭
     _guan_() {
-      this.setData({ state: false })
+      this.setData({
+        state: false
+      })
     },
 
     // 输入事件
     _input_(e) {
-      this.setData({ input: e.detail.value, input_cursor: e.detail.cursor })
+      this.setData({
+        input: e.detail.value,
+        input_cursor: e.detail.cursor
+      })
     },
 
     // ---- 留言确定 ----
@@ -55,9 +58,12 @@ Component({
           // bmxx_id: this.data.liuyanchuangID,
           input: this.data.input
         }
-        this.triggerEvent('queding', { params: params })
+        this.triggerEvent('queding', params)
       } else {
-        wx.showModal({ title: '至少输入1个字', showCancel: false })
+        wx.showModal({
+          title: '至少输入1个字',
+          showCancel: false
+        })
       }
 
       // 检查换行符
@@ -81,7 +87,9 @@ Component({
 
 
       // 关闭弹窗
-      this.setData({ state: false })
+      this.setData({
+        state: false
+      })
     },
 
     // ------------------------------------------------- 留言 -------------------------------------------------
@@ -106,4 +114,3 @@ Component({
   }
 
 })
-

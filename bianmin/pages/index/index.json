@@ -2,14 +2,22 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "login": "/component/xinxi/tangchuang/login",
+    "form-xuanzeleimu": "/component/form/xuanzeleimu",
     "zhaopin": "/component/xinxi/content/fenlei/zhaopin",
     "qiuzhi": "/component/xinxi/content/fenlei/qiuzhi",
     "fangchanchushou": "/component/xinxi/content/fenlei/fangchanchushou",
     "fangchanchuzu": "/component/xinxi/content/fenlei/fangchanchuzu",
     "fangchanqiugou": "/component/xinxi/content/fenlei/fangchanqiugou",
     "fangchanqiuzu": "/component/xinxi/content/fenlei/fangchanqiuzu",
-    "foot": "/component/xinxi/content/foot/foot",
-    "liuyanchuang": "/component/xinxi/tangchuang/liuyanhuifu",
-    "liuyan": "/component/xinxi/content/liuyan/liuyan"
+    "cheliangchushou": "/component/xinxi/content/fenlei/cheliangchushou",
+    "wupinchushou": "/component/xinxi/content/fenlei/wupinchushou",
+    "dianpuzhuanrang": "/component/xinxi/content/fenlei/dianpuzhuanrang",
+    "shangpuchuzu": "/component/xinxi/content/fenlei/shangpuchuzu",
+    "chezhaoren": "/component/xinxi/content/fenlei/chezhaoren",
+    "renzhaoche": "/component/xinxi/content/fenlei/renzhaoche",
+    "qita": "/component/xinxi/content/fenlei/qita",
+    "mask": "/component/base/mask/mask",
+    "popup": "/component/base/popup/popup",
+    "form-checkbox": "/component/form/checkbox"
   }
 }

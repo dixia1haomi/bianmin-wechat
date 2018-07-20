@@ -1,2 +1,45 @@
-<!--pages/xinxi/detail.wxml-->
-<text>pages/xinxi/detail.wxml</text>
+<block wx:if="{{Res}}">
+
+  <block wx:if="{{Res.leibie == '招聘'}}">
+    <zhaopin Res="{{Res}}"></zhaopin>
+  </block>
+  <block wx:elif="{{Res.leibie == '求职'}}">
+    <qiuzhi Res="{{Res}}"></qiuzhi>
+  </block>
+  <block wx:elif="{{Res.leibie == '房产出售'}}">
+    <fangchanchushou Res="{{Res}}"></fangchanchushou>
+  </block>
+  <block wx:elif="{{Res.leibie == '房屋出租'}}">
+    <fangchanchuzu Res="{{Res}}"></fangchanchuzu>
+  </block>
+  <block wx:elif="{{Res.leibie == '房屋求租'}}">
+    <fangchanqiuzu Res="{{Res}}"></fangchanqiuzu>
+  </block>
+  <block wx:elif="{{item.leibie == '车辆出售'}}">
+    <cheliangchushou Res="{{item}}"></cheliangchushou>
+  </block>
+  <block wx:elif="{{item.leibie == '物品出售'}}">
+    <wupinchushou Res="{{item}}"></wupinchushou>
+  </block>
+  <block wx:elif="{{item.leibie == '店铺转让'}}">
+    <dianpuzhuanrang Res="{{item}}"></dianpuzhuanrang>
+  </block>
+  <block wx:elif="{{item.leibie == '人找车'}}">
+    <renzhaoche Res="{{item}}"></renzhaoche>
+  </block>
+  <block wx:elif="{{item.leibie == '车找人'}}">
+    <chezhaoren Res="{{item}}"></chezhaoren>
+  </block>
+  <block wx:elif="{{item.leibie == '其他'}}">
+    <qita Res="{{item}}"></qita>
+  </block>
+</block>
+
+<block wx:else>
+  <!-- loading -->
+  <view class="loading">
+    <view class="loading__image loading__box">
+      <view class="loading__slip loading__box"></view>
+    </view>
+  </view>
+</block>

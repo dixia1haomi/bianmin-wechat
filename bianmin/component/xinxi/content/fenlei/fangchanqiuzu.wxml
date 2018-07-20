@@ -1,41 +1,97 @@
-<!-- ------------------------------------ 招聘 ------------------------------------ -->
+<!-- ------------------------------------ 房屋求租 ------------------------------------ -->
 
-<!-- 标题 -->
-<view class='xinxileibie'>
-  <text>/ {{Res.leibie}} /</text>
-  <text wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi'>顶置</text>
-  <text class='time'>{{Res.time || '刚刚'}}</text>
-</view>
-<!-- ------------------ 展开 ------------------ -->
-<view catchtap='flodFn_'>
-  <block wx:if="{{zhankai}}">
-    <!-- 信息 -->
-    <view class='xinxi'>
+<!-- 信息 -->
+<view class='content' catchtap='flodFn_'>
 
-      <view style='color:red;'>区域：{{Res.with_kuozhan.fangchan_qiuzu_quyu}}</view>
-      <!-- 内容 -->
-      <view>
-        <text>{{Res.neirong}}</text>
-      </view>
-      <!-- 箭头 -->
-      <view class='xinxi-tishi'>
-        <text class="iconfont icon-zhankai .touming"></text>
-      </view>
-      <!-- 配图 -->
-      <view class='img-view'>
-        <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
-          <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
-        </block>
-      </view>
+  <!-- title -->
+  <view class='title'>
+    <text class='title-leibie'>{{Res.leibie}}</text>
+    <text wx:if="{{Res.dingzhi_state == 1}}" class='title-dingzhi'>顶置</text>
+    <text class='title-time'>{{Res.time || '刚刚'}}</text>
+  </view>
+
+  <!-- 标题 -->
+  <view style='font-size:36rpx;font-weight: 700; padding-bottom: 10rpx;'>{{Res.kuozhan.fangchan_qiuzu_quyu}}</view>
+
+  <!-- 房型要求 -->
+  <view style='margin-bottom:5rpx;'>
+    <text style='color:#515151;'>房型：</text>
+    <text>{{Res.kuozhan.fangchan_qiuzu_fangxing}}</text>
+  </view>
+
+  <!-- 期望租金 -->
+  <view style='margin-bottom:5rpx;'>
+    <text style='color:#515151;'>期望租金：</text>
+    <text style='color:tomato;font-weight: 700;'>{{Res.kuozhan.fangchan_qiuzu_qiwangzujin}}</text>
+  </view>
+
+  <!-- 配置要求 -->
+  <block wx:if="{{Res.kuozhan.fangchan_qiuzu_peizhi && Res.kuozhan.fangchan_qiuzu_peizhi.length > 0}}">
+    <view style='padding-bottom: 5rpx;'>
+      <text style='color:#515151;'>配置要求：</text>
+      <block wx:for="{{Res.kuozhan.fangchan_qiuzu_peizhi}}" wx:key="">
+        <text style='font-size:30rpx;background-color: #e0ffff;color: #1e90ff;padding: 0 10rpx;margin-right:10rpx;line-height: 38rpx;'>{{item}}</text>
+      </block>
     </view>
   </block>
-  <!-- ------------------ 折叠 ------------------ -->
-  <block wx:else>
 
-    <view style='color:red;'>区域：{{Res.with_kuozhan.fangchan_qiuzu_quyu}}</view>
-    <!-- 箭头 -->
-    <view class='xinxi-tishi'>
-      <text class="iconfont icon-zhankai"></text>
-    </view>
+  <!-- 个人信息 -->
+  <view style='margin-bottom:5rpx;'>
+    <text style='color:#515151;'>个人信息：</text>
+    <!-- 我的性别 -->
+    <text>{{Res.kuozhan.fangchan_qiuzu_xingbie}}</text>
+    <text style='color:#e5e5e5;'> | </text>
+    <!-- 我的年龄 -->
+    <text>{{Res.kuozhan.fangchan_qiuzu_nianling}}岁</text>
+  </view>
+
+  <!-- 内容 -->
+  <view wx:if="{{Res.neirong.length > 0}}" style="padding-top: 10rpx;">
+    <text wx:if="{{!zhankai}}">...</text>
+    <text wx:else style='word-break: break-all;'>{{Res.neirong}}</text>
+  </view>
+
+  <view wx:if="{{zhankai}}" style=''>
+    <text style='word-break: break-all;'>{{Res.neirong}}</text>
+  </view>
+
+  <!-- 配图 -->
+  <view wx:if="{{Res.with_img.length > 0 && zhankai}}" style='margin-top: 20rpx;'>
+    <hengxiang imgArr="{{Res.with_img}}"></hengxiang>
+  </view>
+
+  <!-- 留言 -->
+  <block wx:if="{{Res.with_liuyan.length > 0}}">
+    <liuyan Res="{{Res}}" bind:name="liuyan_name_"></liuyan>
   </block>
+
+
 </view>
+
+<!-- 脚info -->
+<block wx:if="{{info}}">
+  <view wx:if="{{zhankai}}" class='info'>
+    <view class='info-dianhua' id='{{Res.phone}}' catchtap='foot_phone_' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-phone' style='margin-right: 10rpx;'></text>
+      <text>电话</text>
+    </view>
+
+    <view class='info-liuyan' catchtap='foot_liuyan_' id='{{Res.id}}' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-liuyan' style='margin-right: 10rpx;'></text>
+      <text>留言</text>
+    </view>
+  </view>
+</block>
+<!-- 我的info -->
+<block wx:else>
+  <slot name="wode"></slot>
+</block>
+
+<!-- margin-bottom -->
+<view class='margin-bottom'></view>
+
+<!-- 登录 -->
+<login loginState="{{loginState}}"></login>
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

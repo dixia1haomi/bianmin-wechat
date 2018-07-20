@@ -6,7 +6,7 @@
   justify-content: space-around;
   text-align: center;
   background-color: #fff;
-  padding: 20rpx 0;
+  padding-top: 20rpx;
 }
 
 /* 刷新 */
@@ -21,4 +21,33 @@
   text-align: center;
   color: #fff;
   font-weight: 700;
+}
+
+/* 脚部按钮 */
+
+.info {
+  display: flex;
+  border-top: 1rpx solid #e5e5e5;
+  color: #007aff;
+  padding-top: 20rpx;
+  margin-top: 20rpx;
+}
+
+/* 顶置 */
+
+.dingzhi {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1rpx solid #e5e5e5;
+}
+
+/* 删除 */
+
+.shanchu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,6 +1,8 @@
 <view class='base'>
   <!-- title -->
-  <view class='title'>{{title}}</view>
+  <view class='title'>{{title}}
+    <text wx:if="{{bitian}}" style='color:red;'>*</text>
+  </view>
   <!-- 选择图片 -->
   <view class='tupian'>
     <block wx:for="{{img}}" wx:key="">

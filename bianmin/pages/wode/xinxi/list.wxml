@@ -1,7 +1,7 @@
 <!-- 头 -->
 <title title="我的信息列表"></title>
 
-<block wx:if="{{Res}}">
+<block wx:if="{{Res.length > 0}}">
   <block wx:for="{{Res}}" wx:key="">
     <!-- <bianmin-item Res="{{item}}" bind:call-login="com_login_" info="">
       <view slot="info">
@@ -10,32 +10,56 @@
     </bianmin-item> -->
     <!-- 内容 -->
     <block wx:if="{{item.leibie == '招聘'}}">
-      <zhaopin Res="{{item}}"></zhaopin>
+      <zhaopin Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></zhaopin>
     </block>
     <block wx:elif="{{item.leibie == '求职'}}">
-      <qiuzhi Res="{{item}}"></qiuzhi>
+      <qiuzhi Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></qiuzhi>
     </block>
     <block wx:elif="{{item.leibie == '房产出售'}}">
-      <fangchanchushou Res="{{item}}"></fangchanchushou>
+      <fangchanchushou Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></fangchanchushou>
     </block>
-    <block wx:elif="{{item.leibie == '房产求购'}}">
-      <fangchanqiugou Res="{{item}}"></fangchanqiugou>
+    <block wx:elif="{{item.leibie == '房屋出租'}}">
+      <fangchanchuzu Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></fangchanchuzu>
     </block>
-    <block wx:elif="{{item.leibie == '房产出租'}}">
-      <fangchanchuzu Res="{{item}}"></fangchanchuzu>
+    <block wx:elif="{{item.leibie == '房屋求租'}}">
+      <fangchanqiuzu Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></fangchanqiuzu>
     </block>
-    <block wx:elif="{{item.leibie == '房产求租'}}">
-      <fangchanqiuzu Res="{{item}}"></fangchanqiuzu>
+    <block wx:elif="{{item.leibie == '车辆出售'}}">
+      <cheliangchushou Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></cheliangchushou>
+    </block>
+    <block wx:elif="{{item.leibie == '物品出售'}}">
+      <wupinchushou Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></wupinchushou>
+    </block>
+    <block wx:elif="{{item.leibie == '店铺转让'}}">
+      <dianpuzhuanrang Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></dianpuzhuanrang>
+    </block>
+    <block wx:elif="{{item.leibie == '人找车'}}">
+      <renzhaoche Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></renzhaoche>
+    </block>
+    <block wx:elif="{{item.leibie == '车找人'}}">
+      <chezhaoren Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></chezhaoren>
+    </block>
+    <block wx:elif="{{item.leibie == '其他'}}">
+      <qita Res="{{item}}" navigate="1" bind:navigate="navigate_" wode="1"></qita>
     </block>
 
+
     <!-- 管理 -->
-    <view class='guanli' catchtap='go_wode_xinxi_detail_' id='{{item.id}}'>管理</view>
+    <!-- <view class='guanli' catchtap='go_wode_xinxi_detail_' id='{{item.id}}'>管理</view> -->
 
   </block>
 </block>
-<block wx:elif="{{Res.length == 0}}">
-  <view>没有数据</view>
-</block>
+
 <block wx:else>
-  <view>加载中</view>
+  <block wx:if="{{Res.length == 0}}">
+    <view class='noxinxi'>没有数据</view>
+  </block>
+  <block wx:else>
+    <!-- loading -->
+    <view class="loading">
+      <view class="loading__image loading__box">
+        <view class="loading__slip loading__box"></view>
+      </view>
+    </view>
+  </block>
 </block>

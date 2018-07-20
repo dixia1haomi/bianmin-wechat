@@ -1,0 +1,35 @@
+<!-- 头 -->
+<component-title title="{{title}}"></component-title>
+
+<!-- 提示 -->
+<view class='tips' style=''>
+  <view style='width: 614rpx;background-color: #e5e5e5;'>
+    <text style=''>下面提供了一些简单的模板,请填充后按需修改</text>
+  </view>
+</view>
+
+<!-- 填充 -->
+<view class="container">
+  <button catchtap='qiehuan_' class='btn btn--tianchong' hover-class='btn__hover'>填充
+    <text style='font-size:26rpx;'>{{mobanContent_index+1}}</text>
+  </button>
+</view>
+
+<!-- 提示 -->
+<view class='tips' style=''>
+  <view style='width: 614rpx;background-color: #e5e5e5;'>
+    <text style=''>{{tips}}</text>
+  </view>
+</view>
+
+<!-- textarea -->
+<view class='textarea-base'>
+  <textarea class='textarea' bindinput='bindinput_' value='{{value}}' placeholder='moren' maxlength='1000'>
+    <text class='cursor'>{{cursor + '/1000'}}</text>
+  </textarea>
+</view>
+
+<!-- 完成 -->
+<view class="container">
+  <button catchtap='ok_' class='btn btn--tianchong' hover-class='btn__hover' style='background-color: tomato;margin-top: 40rpx;'>完成</button>
+</view>

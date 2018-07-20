@@ -1,8 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "component-shangjia-lunbotu": "/component/lunbotu/lunbotu",
-    "component-demo": "/component/bm_block/bm_block",
-    "component-login": "/component/login/login"
-  }
-}

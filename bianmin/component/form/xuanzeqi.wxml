@@ -1,10 +1,24 @@
-<!-- 选择器 -->
-<view class='danhang-list xuanzeqi' catchtap='xuanzeqi_'>
-  <view class='xuanzeqi-title'>{{title}}：{{content}}</view>
-  <view class='youjiantou7'></view>
-</view>
+<!-- 多行 -->
+<block wx:if="{{textarea}}">
+  <!-- 选择器 -->
+  <view class='xuanzeqi' catchtap='xuanzeqi_'>
+    <view class='' style=''>{{title}}
+      <text wx:if="{{bitian}}" style='color:red;'>*</text>：</view>
+    <text class='text' style='flex:1;height: 142rpx;'>{{content}}</text>
+    <!-- <textarea class='text' disabled style='flex:1;height: 132rpx;' value='{{content}}'>{{content}}</textarea> -->
+  </view>
+  <!-- 插槽 -->
+  <slot></slot>
+</block>
 
-<!-- 插槽 -->
-<block wx:if="{{state}}">
+<!-- 单行 -->
+<block wx:else>
+  <!-- 选择器 -->
+  <view class='danhang-list xuanzeqi' catchtap='xuanzeqi_'>
+    <view class='xuanzeqi-title'>{{title}}
+      <text wx:if="{{bitian}}" style='color:red;'>*</text>：{{content}}</view>
+    <view class='youjiantou7'></view>
+  </view>
+  <!-- 插槽 -->
   <slot></slot>
 </block>

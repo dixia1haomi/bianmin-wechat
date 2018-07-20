@@ -10,6 +10,8 @@
     "form-input": "/component/form/input",
     "form-picker": "/component/form/picker",
     "form-pickermulti": "/component/form/picker2",
-    "form-checkbox": "/component/form/checkbox"
+    "form-checkbox": "/component/form/checkbox",
+    "mask": "/component/base/mask/mask",
+    "popup": "/component/base/popup/popup"
   }
 }

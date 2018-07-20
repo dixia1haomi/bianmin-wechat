@@ -1,0 +1,97 @@
+/* 信息-content-分类CSS */
+
+/* 引入iconfont */
+@import "./iconfont.wxss";
+
+/* ----- content ----- */
+
+.content {
+  flex: 1;
+  background-color: #fff;
+  padding: 40rpx 20rpx 40rpx 20rpx;
+}
+
+/* ----- title ----- */
+
+.title {
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* 类别 */
+
+.title-leibie {
+  border: 1rpx solid #e5e5e5;
+  padding: 2rpx 20rpx;
+  font-size: 28rpx;
+  color: #808080;
+}
+
+/* 顶置 */
+
+.title-dingzhi {
+  background-color: tomato;
+  margin-left: 20rpx;
+  padding: 0 4rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+/* 时间 */
+
+.title-time {
+  margin-left: 20rpx;
+  color: #808080;
+  font-size: 24rpx;
+}
+
+/* ----- 折叠样式 ----- */
+
+.flod {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* 脚部按钮 */
+
+.info {
+  display: flex;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
+  color: #007aff;
+  background-color: #fff;
+}
+
+/* 电话 */
+
+.info-dianhua {
+  flex: 1;
+  border-right: 1rpx solid #e5e5e5;
+  text-align: center;
+  padding: 20rpx 0;
+}
+
+/* 留言 */
+
+.info-liuyan {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+}
+
+/* margin-bottom */
+
+.margin-bottom {
+  margin-bottom: 20rpx;
+}
+
+/* view点击态 */
+
+.view__hover {
+  background-color: #f8f8f8;
+}

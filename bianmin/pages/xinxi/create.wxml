@@ -1,111 +1,722 @@
 <view class='page'>
   <!-- 头 -->
-  <component-title title="发布信息"></component-title>
+  <component-title title="{{params.leibie}}"></component-title>
 
   <!-- 选择类目 -->
-  <form-xuanzeqi title="选择类目" content="{{com_xuanzeleimu_data.name}}" state="{{leimu_state}}">
+  <!-- <form-xuanzeqi bind:xuanzeqi="com_xuanzeqi_" title="选择类目" content="{{params.leibie}}" state="{{leimu_state}}">
     <view>
-      <form-xuanzeleimu bind:xuanzeleimu="com_xuanzeleimu_" arr="{{leimuArr}}"></form-xuanzeleimu>
+      <form-xuanzeleimu bind:xuanzeleimu="com_xuanzeleimu_" arr="{{leibieArr}}"></form-xuanzeleimu>
+    </view>
+  </form-xuanzeqi> -->
+  <form-xuanzeqi bind:xuanzeqi="com_xuanzeqi_" title="类目" content="{{params.leibie}}">
+    <view>
+      <form-xuanzeleimu bind:xuanzeleimu="com_xuanzeleimu_" arr="{{leibieArr}}" state="{{leibie_state}}"></form-xuanzeleimu>
     </view>
   </form-xuanzeqi>
 
   <!-- -------------- 变动区域 -------------- -->
 
   <!-- ----- 招聘 ----- -->
-  <block wx:if="{{com_xuanzeleimu_data.name == '招聘'}}">
-    <!-- 职位-input -->
-    <form-input title="职位" placeholder='请输入您要招聘的职位' maxlength='10' bind:input="zhaopin_zhiwei_"></form-input>
+  <block wx:if="{{params.leibie == '招聘'}}">
+    <!-- 预览 -->
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- 标题 -->
+      <view style='font-size:36rpx; padding-bottom: 10rpx;'>
+        <text style='color:#515151;'>标题：</text>
+        <text>{{params.kuozhan.zhaopin_zhiwei}}</text>
+      </view>
+      <!-- 薪资-公司 -->
+      <view style='padding-bottom: 5rpx;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;'>
+        <!-- 薪资 -->
+        <text style='color:#515151;'>薪资：</text>
+        <text style='color:tomato;font-weight: 700;font-size: 36rpx;'>{{zhaopin_xinziArr[zhaopin_xinzi_index]}}</text>
+        <!-- 公司 -->
+        <text style='color:#808080;'>  |  </text>
+        <text style=''>{{params.kuozhan.zhaopin_gongsi}}</text>
+      </view>
+      <!-- 要求 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text style='color:#515151;'>要求：</text>
+        <!-- 学历-经验 -->
+        <text style=''>学历{{zhaopin_xueliArr[zhaopin_xueli_index]}} / 经验{{zhaopin_jingyanArr[zhaopin_jingyan_index]}}</text>
+      </view>
+      <!-- 福利 -->
+      <block wx:if="{{params.kuozhan.zhaopin_fuli && params.kuozhan.zhaopin_fuli.length > 0}}">
+        <view style='padding-bottom: 5rpx;'>
+          <text style='color:#515151;'>福利：</text>
+          <block wx:for="{{params.kuozhan.zhaopin_fuli}}" wx:key="">
+            <text style='font-size:30rpx;background-color: #e0ffff;color: #1e90ff;padding: 0 10rpx;margin-right:10rpx;'>{{item}}</text>
+          </block>
+        </view>
+      </block>
+      <!-- 工作地址 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text style='color:#515151;'>地址：</text>
+        <text style='color:#007aff;'>{{params.kuozhan.zhaopin_gongzuodizhi}}</text>
+      </view>
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+
+    <!-- 标题-input -->
+    <form-input title="标题" placeholder='招聘职位+人数 最多10字' maxlength='10' bitian bind:input="zhaopin_zhiwei_"></form-input>
     <!-- 薪资-单选 -->
     <form-picker title="薪资" range='{{zhaopin_xinziArr}}' index="{{zhaopin_xinzi_index}}" bind:picker="zhaopin_xinzi_"></form-picker>
     <!-- 公司-input -->
-    <form-input title="公司" placeholder='请输入公司名称' maxlength='10' bind:input="zhaopin_gongsi_"></form-input>
-    <!-- 工作地址-input -->
-    <form-input title="工作地址" placeholder='请输入工作地址' maxlength='10' bind:input="zhaopin_gongzuodizhi_"></form-input>
+    <form-input title="公司" placeholder='公司或店铺名称 最多10字' maxlength='10' bitian bind:input="zhaopin_gongsi_"></form-input>
+    <!-- 学历要求-单选 -->
+    <form-picker title="学历" range='{{zhaopin_xueliArr}}' index="{{zhaopin_xueli_index}}" bind:picker="zhaopin_xueli_"></form-picker>
+    <!-- 经验要求-单选 -->
+    <form-picker title="经验" range='{{zhaopin_jingyanArr}}' index="{{zhaopin_jingyan_index}}" bind:picker="zhaopin_jingyan_"></form-picker>
     <!-- 福利-checkbox -->
-    <form-checkbox Arr="{{checkboxArr}}" bind:checkbox="zhaopin_fuli_"></form-checkbox>
+    <form-xuanzeqi bind:xuanzeqi="zhaopin_fuli_xuanzeqi_" title="福利" content="{{zhaopin_fuli_xuanzeqi_content}}" state="{{zhaopin_fuli_xuanzeqi_state}}">
+      <view>
+        <!-- 蒙层 -->
+        <mask state="{{zhaopin_fuli_xuanzeqi_state}}" bind:mask="zhaopin_fuli_xuanzeqi_"></mask>
+        <!-- 弹出窗 -->
+        <popup state="{{zhaopin_fuli_xuanzeqi_state}}" bind:wancheng="zhaopin_fuli_xuanzeqi_">
+          <view>
+            <form-checkbox Arr="{{zhaopinfuliArr}}" bind:checkbox="zhaopin_fuli_"></form-checkbox>
+          </view>
+        </popup>
+      </view>
+    </form-xuanzeqi>
+    <!-- 工作地址-input -->
+    <form-xuanzeqi bind:xuanzeqi="zhaopin_dizhi_" title="工作地址" bitian content="{{params.kuozhan.zhaopin_gongzuodizhi}}"></form-xuanzeqi>
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bind:xuanzeqi="zhaopin_miaoshu_" title="描述" bitian content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian bind:xuanzetupian="com_xuanzetupian_" count="9"></form-xuanzetupian>
+
   </block>
 
   <!-- ----- 求职 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '求职'}}">
+  <block wx:elif="{{params.leibie == '求职'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- 标题 -->
+      <view>
+        <text style='color:#515151;'>标题：</text>
+        <text style='font-weight: 700;'>{{params.kuozhan.qiuzhi_yixiangzhiwei}}</text>
+      </view>
+      <!-- 基本信息 -->
+      <view>
+        <text style='color:#515151;'>基本信息：</text>
+        <!-- 性别 -->
+        <text style='color:red;'>{{qiuzhi_xingbieArr[qiuzhi_xingbie_index]}} / </text>
+        <!-- 年龄 -->
+        <text style='color:red;'>{{params.kuozhan.qiuzhi_nianling}}岁 / </text>
+        <!-- 学历 -->
+        <text style='color:red;'>{{qiuzhi_xueliArr[qiuzhi_xueli_index]}} / </text>
+        <!-- 工作时间 -->
+        <text style='color:red;'>{{qiuzhi_shijianArr[qiuzhi_shijian_index]}}</text>
+      </view>
+      <!-- 亮点标签 -->
+      <block wx:if="{{params.kuozhan.qiuzhi_liangdian && params.kuozhan.qiuzhi_liangdian.length > 0}}">
+        <view style='padding-bottom: 5rpx;'>
+          <text style='color:#515151;'>个人亮点：</text>
+          <block wx:for="{{params.kuozhan.qiuzhi_liangdian}}" wx:key="">
+            <text style='font-size:30rpx;background-color: #e0ffff;color: #1e90ff;padding: 0 10rpx;margin-right:10rpx;'>{{item}}</text>
+          </block>
+        </view>
+      </block>
+      <!-- 求职区域 -->
+      <view>
+        <text style='color:#515151;'>求职区域：</text>
+        <text>{{qiuzhi_quyuArr[qiuzhi_quyu_index]}}</text>
+      </view>
+      <!-- 期望薪资 -->
+      <view>
+        <text style='color:#515151;'>期望薪资：</text>
+        <text>{{qiuzhi_xinziArr[qiuzhi_xinzi_index]}}</text>
+      </view>
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+    <!-- 标题-input -->
+    <form-input title="标题" placeholder='想找什么工作 最多20字' maxlength='20' bind:input="qiuzhi_yixiangzhiwei_" bitian></form-input>
     <!-- 性别-单选 -->
     <form-picker title="性别" range="{{qiuzhi_xingbieArr}}" index="{{qiuzhi_xingbie_index}}" bind:picker="qiuzhi_xingbie_"></form-picker>
     <!-- 年龄-input -->
-    <form-input title="年龄" type='number' placeholder='请输入年龄' maxlength='2' bind:input="qiuzhi_nianling_"></form-input>
+    <form-input title="年龄" type='number' placeholder='请输入年龄' maxlength='2' bind:input="qiuzhi_nianling_" bitian></form-input>
     <!-- 学历-单选 -->
     <form-picker title="学历" range="{{qiuzhi_xueliArr}}" index="{{qiuzhi_xueli_index}}" bind:picker="qiuzhi_xueli_"></form-picker>
-    <!-- 意向职位-input -->
-    <form-input title="意向职位" placeholder='请输入意向职位' maxlength='10' bind:input="qiuzhi_yixiangzhiwei_"></form-input>
+    <!-- 工作时间-单选 -->
+    <form-picker title="工作时间" range="{{qiuzhi_shijianArr}}" index="{{qiuzhi_shijian_index}}" bind:picker="qiuzhi_shijian_"></form-picker>
+    <!-- 期望薪资-单选 -->
+    <form-picker title="期望薪资" range="{{qiuzhi_xinziArr}}" index="{{qiuzhi_xinzi_index}}" bind:picker="qiuzhi_xinzi_"></form-picker>
+    <!-- 求职区域-单选 -->
+    <form-picker title="求职区域" range="{{qiuzhi_quyuArr}}" index="{{qiuzhi_quyu_index}}" bind:picker="qiuzhi_quyu_"></form-picker>
+    <!-- 亮点标签--checkbox -->
+    <form-xuanzeqi bind:xuanzeqi="qiuzhi_liangdian_xuanzeqi_" title="亮点标签" bitian content="{{qiuzhi_liangdian_xuanzeqi_content}}" state="{{qiuzhi_liangdian_xuanzeqi_state}}">
+      <view>
+        <!-- 蒙层 -->
+        <mask state="{{qiuzhi_liangdian_xuanzeqi_state}}" bind:mask="qiuzhi_liangdian_xuanzeqi_"></mask>
+        <!-- 弹出窗 -->
+        <popup title="亮点标签(多选 最多3项)" state="{{qiuzhi_liangdian_xuanzeqi_state}}" bind:wancheng="qiuzhi_liangdian_xuanzeqi_">
+          <view>
+            <form-checkbox Arr="{{qiuzhi_liangdianArr}}" xianzhi="3" bind:checkbox="qiuzhi_liangdian_"></form-checkbox>
+          </view>
+        </popup>
+      </view>
+    </form-xuanzeqi>
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bind:xuanzeqi="qiuzhi_miaoshu_" title="个人描述" bitian content="{{params.neirong}}"></form-xuanzeqi>
+    <!-- 选择详情图 -->
+    <form-xuanzetupian bind:xuanzetupian="com_xuanzetupian_" count="9"></form-xuanzetupian>
+
   </block>
 
   <!-- ----- 房产出售 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '房产出售'}}">
-    <!-- 小区-input、面积-input、总价-input、装修-单选 -->
-    <form-input title="小区" placeholder='请输入小区名' maxlength='10' bind:input="fangchan_chushou_xiaoqu_"></form-input>
-    <form-input title="面积" placeholder='请输入房屋面积' maxlength='6' bind:input="fangchan_chushou_mianji_"></form-input>
-    <form-input title="总价" placeholder='请输入房屋总价' maxlength='4' bind:input="fangchan_chushou_zongjia_"></form-input>
+  <block wx:elif="{{params.leibie == '房产出售'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- 标题 -->
+      <view style='padding-bottom:'>
+        <text style='color:#515151;'>标题：</text>
+        <text>{{params.kuozhan.fangchan_chushou_xiaoqu}}</text>
+      </view>
+      <view>
+        <text style='color:#515151;'>总价：</text>
+        <text style='color:red;'>{{params.kuozhan.fangchan_chushou_zongjia}}万</text>
+      </view>
+      <view>
+        <text style='color:#515151;'>面积：</text>
+        <text style='color:red;'>{{params.kuozhan.fangchan_chushou_mianji}} </text>
+        <text style='font-size:26rpx;color:#808080;'>({{params.kuozhan.fangchan_chushou_danjia}}元/㎡)</text>
+      </view>
+      <view>
+        <text style='color:#515151;'>房型：</text>
+        <text>{{multiArray[0][multiIndex[0]] + multiArray[1][multiIndex[1]] + multiArray[2][multiIndex[2]]}}</text>
+      </view>
+      <view>
+        <text style='color:#515151;'>装修：</text>
+        <text>{{fangchan_chushou_zhuangxiuArr[fangchan_chushou_zhuangxiu_index]}}</text>
+      </view>
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+
+    <!-- 标题-input -->
+    <form-input title="标题" bitian placeholder='房产位置或小区名' maxlength='20' bind:input="fangchan_chushou_xiaoqu_"></form-input>
+    <!-- 总价-input -->
+    <form-input title="总价(万)" bitian type='number' placeholder='房屋总价' maxlength='4' bind:input="fangchan_chushou_zongjia_"></form-input>
+    <!-- 面积-input -->
+    <form-input title="面积(㎡)" bitian type='number' placeholder='房屋面积' maxlength='4' bind:input="fangchan_chushou_mianji_"></form-input>
+    <!-- 单价-input -->
+    <form-input title="单价(元/㎡)" disabled type='number' placeholder='房屋单价 不能操作' maxlength='5' value='{{params.kuozhan.fangchan_chushou_danjia}}'></form-input>
+    <!-- 房型-单选 -->
+    <form-pickermulti title="房型" multiArray="{{multiArray}}" multiIndex="{{multiIndex}}" bind:pickermulti="fangchan_chushou_fangxing_">
+    </form-pickermulti>
+    <!-- 装修-单选 -->
     <form-picker title="装修" range="{{fangchan_chushou_zhuangxiuArr}}" index="{{fangchan_chushou_zhuangxiu_index}}" bind:picker="fangchan_chushou_zhuangxiu_"></form-picker>
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bind:xuanzeqi="fangchan_chushou_miaoshu_" title="描述" bitian content="{{params.neirong}}"></form-xuanzeqi>
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="房产图片" bind:xuanzetupian="com_xuanzetupian_" count="9" bitian></form-xuanzetupian>
   </block>
 
-  <!-- ----- 房产求购 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '房产求购'}}">
-    <!-- 区域-input -->
-    <form-input title="区域" placeholder='请输入求购区域' maxlength='10' bind:input="fangchan_qiugou_quyu_"></form-input>
-  </block>
 
-  <!-- ----- 房产出租 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '房产出租'}}">
-    <!-- 小区-input、面积-input、房型- picker2、价格-input -->
-    <form-input title="小区" placeholder='请输入小区名或位置' maxlength='10' bind:input="fangchan_chuzu_xiaoqu_"></form-input>
-    <form-input title="面积" placeholder='请输入房屋面积' maxlength='6' bind:input="fangchan_chuzu_mianji_"></form-input>
-    <form-input title="价格" placeholder='请输入房屋价格' maxlength='4' bind:input="fangchan_chuzu_jiage_"></form-input>
+  <!-- ----- 房屋出租 ----- -->
+  <block wx:elif="{{params.leibie == '房屋出租'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- 标题 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>标题：</text>
+        <text style='font-weight: 700;'>{{params.kuozhan.fangchan_chuzu_xiaoqu}}</text>
+      </view>
+      <!-- 租金 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>租金：</text>
+        <text style='color:red;font-weight: 700;'>{{params.kuozhan.fangchan_chuzu_jiage}}</text>
+        <text style='color:red; font-size:26rpx;'>元</text>
+        <text style='color:#e5e5e5;'> | </text>
+        <!-- 缴付方式 -->
+        <text>{{fangchan_chuzu_zujinjiaofuArr[fangchan_chuzu_zujinjiaofu_index]}}</text>
+      </view>
+      <!-- 面积 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>面积：</text>
+        <text>{{params.kuozhan.fangchan_chuzu_mianji}}㎡</text>
+        <text style='color:#e5e5e5;'>  | </text>
+        <!-- 房型 -->
+        <text>{{multiArray[0][multiIndex[0]] + multiArray[1][multiIndex[1]] + multiArray[2][multiIndex[2]]}}</text>
+        <text style='color:#e5e5e5;'> | </text>
+        <!-- 装修 -->
+        <text>{{fangchan_chushou_zhuangxiuArr[fangchan_chuzu_zhuangxiu_index]}}</text>
+      </view>
+      <!-- 楼层 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>楼层：</text>
+        <text>{{loucengArray[0][loucengIndex[0]] + ' ' + loucengArray[1][loucengIndex[1]]}}</text>
+      </view>
+      <!-- 配置 -->
+      <block wx:if="{{params.kuozhan.fangchan_chuzu_peizhi && params.kuozhan.fangchan_chuzu_peizhi.length > 0}}">
+        <view style='display: flex;justify-content: flex-start;align-items: flex-start;flex-wrap: wrap;color:#808080;'>
+          <block wx:for="{{params.kuozhan.fangchan_chuzu_peizhi}}" wx:key="">
+            <view wx:if="{{item == '床'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-chuang' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>床</view>
+            </view>
+            <view wx:if="{{item == '宽带'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-kuandai' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>宽带</view>
+            </view>
+            <view wx:if="{{item == '电视'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-dianshi' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>电视</view>
+            </view>
+            <view wx:if="{{item == '冰箱'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-bingxiang' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>冰箱</view>
+            </view>
+            <view wx:if="{{item == '空调'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-kongtiao' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>空调</view>
+            </view>
+            <view wx:if="{{item == '热水器'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-reshuiqi' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>热水器</view>
+            </view>
+            <view wx:if="{{item == '洗衣机'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-xiyiji' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>洗衣机</view>
+            </view>
+            <view wx:if="{{item == '沙发'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-shafa' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>沙发</view>
+            </view>
+            <view wx:if="{{item == '衣柜'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-yigui' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>衣柜</view>
+            </view>
+            <view wx:if="{{item == '可做饭'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-kezuofan' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>可做饭</view>
+            </view>
+            <view wx:if="{{item == '独立卫生间'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-matong' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>独卫</view>
+            </view>
+            <view wx:if="{{item == '阳台'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-yangtai' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>阳台</view>
+            </view>
+            <view wx:if="{{item == '暖气'}}" style='margin: 10rpx 30rpx 10rpx 10rpx;text-align: center;'>
+              <view class='iconfont icon-nuanqi' style='font-size:60rpx;'></view>
+              <view style='font-size:22rpx;'>暖气</view>
+            </view>
+          </block>
+        </view>
+      </block>
+
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+
+    <!-- 标题 -->
+    <form-input title="标题" bitian placeholder='请输入房屋位置或小区名' maxlength='20' bind:input="fangchan_chuzu_xiaoqu_"></form-input>
+    <!-- 租金 -->
+    <form-input title="租金(元/月)" bitian type='number' placeholder='房屋租金' maxlength='5' bind:input="fangchan_chuzu_jiage_"></form-input>
+    <!-- 租金缴付 -->
+    <form-picker title="租金缴付" range="{{fangchan_chuzu_zujinjiaofuArr}}" index="{{fangchan_chuzu_zujinjiaofu_index}}" bind:picker="fangchan_chuzu_zujinjiaofu_"></form-picker>
+    <!-- 面积 -->
+    <form-input title="面积(㎡)" bitian type='number' placeholder='房屋面积' maxlength='5' bind:input="fangchan_chuzu_mianji_"></form-input>
+    <!-- 房型 -->
     <form-pickermulti title="房型" multiArray="{{multiArray}}" multiIndex="{{multiIndex}}" bind:pickermulti="fangchan_chuzu_fangxing_">
     </form-pickermulti>
+    <!-- 装修 -->
+    <form-picker title="装修" range="{{fangchan_chushou_zhuangxiuArr}}" index="{{fangchan_chuzu_zhuangxiu_index}}" bind:picker="fangchan_chuzu_zhuangxiu_"></form-picker>
+    <!-- 楼层 -->
+    <form-pickermulti title="楼层" multiArray="{{loucengArray}}" multiIndex="{{loucengIndex}}" bind:pickermulti="fangchan_chuzu_louceng_">
+    </form-pickermulti>
+    <!-- 配置--checkbox -->
+    <form-xuanzeqi bind:xuanzeqi="fangchan_chuzu_peizhi_xuanzeqi_" title="配置" content="{{fangchan_chuzu_peizhi_xuanzeqi_content}}" state="{{fangchan_chuzu_peizhi_xuanzeqi_state}}">
+      <view>
+        <!-- 蒙层 -->
+        <mask state="{{fangchan_chuzu_peizhi_xuanzeqi_state}}" bind:mask="fangchan_chuzu_peizhi_xuanzeqi_"></mask>
+        <!-- 弹出窗 -->
+        <popup title="配置(多选)" state="{{fangchan_chuzu_peizhi_xuanzeqi_state}}" bind:wancheng="fangchan_chuzu_peizhi_xuanzeqi_">
+          <view>
+            <form-checkbox Arr="{{fangchan_chuzu_peizhiArr}}" bind:checkbox="fangchan_chuzu_peizhi_"></form-checkbox>
+          </view>
+        </popup>
+      </view>
+    </form-xuanzeqi>
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bind:xuanzeqi="fangchan_chuzu_miaoshu_" title="房屋描述" bitian content="{{params.neirong}}"></form-xuanzeqi>
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="房屋图片" bitian bind:xuanzetupian="com_xuanzetupian_" count="9"></form-xuanzetupian>
+
   </block>
 
-  <!-- ----- 房产求租 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '房产求租'}}">
-    <!-- 区域-input -->
-    <form-input title="区域" placeholder='请输入求租区域' maxlength='10' bind:input="fangchan_qiuzu_quyu_"></form-input>
+  <!-- ----- 房屋求租 ----- -->
+  <block wx:elif="{{params.leibie == '房屋求租'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- 标题 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>标题：</text>
+        <text style='font-weight: 700;'>{{params.kuozhan.fangchan_qiuzu_quyu}}</text>
+      </view>
+      <!-- 房型要求 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>房型：</text>
+        <text>{{multiArray[0][fangchan_qiuzu_fangxingIndex[0]] + multiArray[1][fangchan_qiuzu_fangxingIndex[1]] + multiArray[2][fangchan_qiuzu_fangxingIndex[2]]}}</text>
+      </view>
+      <!-- 期望租金 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>期望租金：</text>
+        <text style='color:tomato;font-weight: 700;'>{{fangchan_qiuzu_qiwangzujinArr[fangchan_qiuzu_qiwangzujin_index]}}</text>
+      </view>
+      <!-- 配置要求 -->
+      <block wx:if="{{params.kuozhan.fangchan_qiuzu_peizhi && params.kuozhan.fangchan_qiuzu_peizhi.length > 0}}">
+        <view style='padding-bottom: 5rpx;'>
+          <text style='color:#515151;'>配置要求：</text>
+          <block wx:for="{{params.kuozhan.fangchan_qiuzu_peizhi}}" wx:key="">
+            <text style='font-size:30rpx;background-color: #e0ffff;color: #1e90ff;padding: 0 10rpx;margin-right:10rpx;line-height: 38rpx;'>{{item}}</text>
+          </block>
+        </view>
+      </block>
+      <!-- 个人信息 -->
+      <view style='margin-bottom:5rpx;'>
+        <text style='color:#515151;'>个人信息：</text>
+        <!-- 我的性别 -->
+        <text>{{qiuzhi_xingbieArr[fangchan_qiuzu_xingbie_index]}}</text>
+        <text style='color:#e5e5e5;'> | </text>
+        <!-- 我的年龄 -->
+        <text>{{params.kuozhan.fangchan_qiuzu_nianling}}岁</text>
+      </view>
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+
+    <!-- 求租区域-input -->
+    <form-input title="标题" bitian placeholder='区县+房源范围 如:麒麟 南片区' maxlength='20' bind:input="fangchan_qiuzu_quyu_"></form-input>
+    <!-- 求租房型 -->
+    <form-pickermulti title="房型" multiArray="{{multiArray}}" multiIndex="{{fangchan_qiuzu_fangxingIndex}}" bind:pickermulti="fangchan_qiuzu_fangxing_">
+    </form-pickermulti>
+    <!-- 期望租金 -->
+    <form-picker title="期望租金" range="{{fangchan_qiuzu_qiwangzujinArr}}" index="{{fangchan_qiuzu_qiwangzujin_index}}" bind:picker="fangchan_qiuzu_qiwangzujin_"></form-picker>
+    <!-- 配置要求 -->
+    <form-xuanzeqi bind:xuanzeqi="fangchan_qiuzu_peizhi_xuanzeqi_" title="配置要求" content="{{fangchan_qiuzu_peizhi_xuanzeqi_content}}" state="{{fangchan_qiuzu_peizhi_xuanzeqi_state}}">
+      <view>
+        <!-- 蒙层 -->
+        <mask state="{{fangchan_qiuzu_peizhi_xuanzeqi_state}}" bind:mask="fangchan_qiuzu_peizhi_xuanzeqi_"></mask>
+        <!-- 弹出窗 -->
+        <popup title="配置要求(多选)" state="{{fangchan_qiuzu_peizhi_xuanzeqi_state}}" bind:wancheng="fangchan_qiuzu_peizhi_xuanzeqi_">
+          <view>
+            <!-- 配置Arr共用出租的 -->
+            <form-checkbox Arr="{{fangchan_chuzu_peizhiArr}}" bind:checkbox="fangchan_qiuzu_peizhi_"></form-checkbox>
+          </view>
+        </popup>
+      </view>
+    </form-xuanzeqi>
+    <!-- 我的性别 - 公用求职的性别Arr - index独立 -->
+    <form-picker title="性别" range="{{qiuzhi_xingbieArr}}" index="{{fangchan_qiuzu_xingbie_index}}" bind:picker="fangchan_qiuzu_xingbie_"></form-picker>
+    <!-- 我的年龄 -->
+    <form-input title="年龄" bitian type='number' placeholder='请输入年龄' maxlength='2' bind:input="fangchan_qiuzu_nianling_"></form-input>
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bitian bind:xuanzeqi="fangchan_qiuzu_miaoshu_" title="详细描述" content="{{params.neirong}}"></form-xuanzeqi>
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="选择图片" bind:xuanzetupian="com_xuanzetupian_" count="9"></form-xuanzetupian>
+
   </block>
 
-  <!-- ----- 汽车出售 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车出售'}}">
-    <view>汽车出售</view>
+  <!-- ----- 店铺转让 ----- -->
+  <block wx:elif="{{params.leibie == '店铺转让'}}">
+
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- 标题 -->
+      <view style='font-size:36rpx;font-weight: 700; padding-bottom: 10rpx;'>
+        <text style='color: #515151;'>标题：</text>
+        <text>{{params.kuozhan.dianpu_zhuanrang_biaoti}}</text>
+      </view>
+      <!-- 位置 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text style='color: #515151;'>位置：</text>
+        <text>{{params.kuozhan.dianpu_zhuanrang_weizhi}}</text>
+      </view>
+      <!-- 面积 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text style='color: #515151;'>面积：</text>
+        <text style='color:tomato;'>{{params.kuozhan.dianpu_zhuanrang_mianji}}㎡</text>
+      </view>
+      <!-- 剩余租期 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text style='color: #515151;'>剩余租期：</text>
+        <text style='color:tomato;'>{{params.kuozhan.dianpu_zhuanrang_zuqi}}个月</text>
+      </view>
+      <!-- 转让费用 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text style='color: #515151;'>转让费用：</text>
+        <text style=''>{{dianpu_zhuanrang_feiyongArr[dianpu_zhuanrang_feiyong_index]}}</text>
+      </view>
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>店铺描述:</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+    <!-- 标题 - 包含经营行业 -->
+    <form-input title="标题" bitian placeholder='标题' maxlength='20' bind:input="dianpu_zhuanrang_biaoti_" />
+    <!-- 位置 -->
+    <form-xuanzeqi title="位置" bitian bind:xuanzeqi="dianpu_zhuanrang_weizhi_" content="{{params.kuozhan.dianpu_zhuanrang_weizhi}}" />
+    <!-- 面积 -->
+    <form-input title="面积(㎡)" bitian type='number' placeholder='请输入面积' maxlength='5' bind:input="dianpu_zhuanrang_mianji_" />
+    <!-- 剩余租期 -->
+    <form-input title="剩余租期(月)" bitian type='number' placeholder='剩余租期' maxlength='2' bind:input="dianpu_zhuanrang_zuqi_" />
+    <!-- 转让费用 -->
+    <form-picker title="转让费用" range="{{dianpu_zhuanrang_feiyongArr}}" index="{{dianpu_zhuanrang_feiyong_index}}" bind:picker="dianpu_zhuanrang_feiyong_" />
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bitian bind:xuanzeqi="dianpu_zhuanrang_miaoshu_" title="店铺描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="店铺图片" bitian bind:xuanzetupian="com_xuanzetupian_" count="9" />
+
   </block>
-  <!-- ----- 汽车求购 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车求购'}}">
-    <view>汽车求购</view>
+
+  <!-- ----- 商铺出租 ----- -->
+  <block wx:elif="{{params.leibie == '商铺出租'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+    <!-- 标题 -->
+    <form-input title="标题" bitian placeholder='标题' maxlength='20' bind:input="shangpu_chuzu_biaoti_" />
+    <!-- 位置 -->
+    <form-xuanzeqi title="位置" bitian bind:xuanzeqi="shangpu_chuzu_weizhi_" content="{{params.kuozhan.shangpu_chuzu_weizhi}}" />
+    <!-- 面积 -->
+    <form-input title="面积(㎡)" bitian type='number' placeholder='请输入面积' maxlength='5' bind:input="shangpu_chuzu_mianji_" />
+    <!-- 历史经营行业 -->
+    <form-xuanzeqi bind:xuanzeqi="shangpu_chuzu_lishihangye_xuanzeqi_" title="历史经营行业" content="{{shangpu_chuzu_lishihangye_xuanzeqi_content}}" state="{{shangpu_chuzu_lishihangye_xuanzeqi_state}}">
+      <view>
+        <!-- 蒙层 -->
+        <mask state="{{shangpu_chuzu_lishihangye_xuanzeqi_state}}" bind:mask="shangpu_chuzu_lishihangye_xuanzeqi_"></mask>
+        <!-- 弹出窗 -->
+        <popup title="历史经营行业(单选)" state="{{shangpu_chuzu_lishihangye_xuanzeqi_state}}" bind:wancheng="shangpu_chuzu_lishihangye_xuanzeqi_">
+          <view>
+            <form-checkbox Arr="{{shangpu_chuzu_lishihangyeArr}}" xianzhi="1" bind:checkbox="shangpu_chuzu_lishihangye_"></form-checkbox>
+          </view>
+        </popup>
+      </view>
+    </form-xuanzeqi>
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bitian bind:xuanzeqi="shangpu_chuzu_miaoshu_" title="商铺描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="商铺图片" bitian bind:xuanzetupian="com_xuanzetupian_" count="9" />
+
   </block>
-  <!-- ----- 汽车出租 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车出租'}}">
-    <view>汽车出租</view>
+
+  <!-- ----- 车辆出售 ----- -->
+  <block wx:elif="{{params.leibie == '车辆出售'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+    <!-- 车型 -->
+    <form-input title="车型" bitian placeholder='大众 捷达 2017款 1.5L 自动豪华型' maxlength='30' bind:input="cheliang_chushou_chexing_" />
+    <!-- 行驶里程 -->
+    <form-input title="里程(万公里)" type='digit' bitian placeholder='最多两位整数+两位小数' maxlength='5' bind:input="cheliang_chushou_licheng_" />
+    <!-- 价格 -->
+    <form-input title="价格(万)" type='digit' bitian placeholder='最多两位整数+两位小数' maxlength='5' bind:input="cheliang_chushou_jiage_" />
+    <!-- 上牌时间 -->
+    <form-picker title="上牌时间" mode="date" bitian bind:date="cheliang_chushou_shangpai_" start="2008-01-01" end="{{end_date}}"></form-picker>
+    <!-- 看车地址 -->
+    <form-xuanzeqi bind:xuanzeqi="cheliang_chushou_dizhi_" title="看车地址" bitian content="{{params.kuozhan.cheliang_chushou_dizhi}}" />
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bitian bind:xuanzeqi="cheliang_chushou_miaoshu_" title="车辆描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="选择图片" bitian bind:xuanzetupian="com_xuanzetupian_" count="9" />
+
   </block>
-  <!-- ----- 汽车求租 ----- -->
-  <block wx:elif="{{com_xuanzeleimu_data.name == '汽车求租'}}">
-    <view>汽车求租</view>
+
+  <!-- ----- 物品出售 ----- -->
+  <block wx:elif="{{params.leibie == '物品出售'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+    <!-- 标题 -->
+    <form-input title="标题" bitian placeholder='宝贝标题 品牌 型号 最多30字' maxlength='30' bind:input="wupin_chushou_biaoti_" />
+    <!-- 价格 -->
+    <form-input title="价格" bitian type='number' placeholder='想卖多少钱' maxlength='5' bind:input="wupin_chushou_jiage_" />
+    <!-- 原价 -->
+    <form-input title="原价" bitian type='number' placeholder='请输入原价' maxlength='5' bind:input="wupin_chushou_yuanjia_" />
+    <!-- 成色 -->
+    <form-picker title="成色" range="{{wupin_chushou_chengseArr}}" index="{{wupin_chushou_chengse_index}}" bind:picker="wupin_chushou_chengse_" />
+    <!-- 交易方式 -->
+    <form-xuanzeqi bind:xuanzeqi="wupin_chushou_fangshi_xuanzeqi_" title="交易方式" content="{{wupin_chushou_fangshi_xuanzeqi_content}}" state="{{wupin_chushou_fangshi_xuanzeqi_state}}">
+      <view>
+        <!-- 蒙层 -->
+        <mask state="{{wupin_chushou_fangshi_xuanzeqi_state}}" bind:mask="wupin_chushou_fangshi_xuanzeqi_"></mask>
+        <!-- 弹出窗 -->
+        <popup title="配置要求(多选)" state="{{wupin_chushou_fangshi_xuanzeqi_state}}" bind:wancheng="wupin_chushou_fangshi_xuanzeqi_">
+          <view>
+            <!-- 配置Arr共用出租的 -->
+            <form-checkbox Arr="{{wupin_chushou_fangshiArr}}" bind:checkbox="wupin_chushou_fangshi_"></form-checkbox>
+          </view>
+        </popup>
+      </view>
+    </form-xuanzeqi>
+    <!-- 位置 -->
+    <form-xuanzeqi title="位置" bitian bind:xuanzeqi="wupin_chushou_weizhi_" content="{{params.kuozhan.wupin_chushou_weizhi}}" />
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bitian bind:xuanzeqi="cheliang_chushou_miaoshu_" title="描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="物品图片" bitian bind:xuanzetupian="com_xuanzetupian_" count="9" />
+
   </block>
 
 
-  <!-- -------------- 固定区域 -------------- -->
+  <!-- ----- 人找车 ----- -->
+  <block wx:elif="{{params.leibie == '人找车'}}">
 
-  <!-- 详情描述输入框 -->
-  <form-textarea bind:textarea="com_textarea_" bottom="请尝试切换模板并删改。\n暂不支持表情，如果内容中包含表情请删除。" value="{{com_xuanzeleimu_data.value2[value2index].moban}}" hid="{{leimu_state}}"></form-textarea>
-  <!-- 详情描述切换模板按钮 -->
-  <view class='qiehuan'>
-    <button class='moban-button' catchtap='qiehuanmoban_'>点我切换模板 {{value2index+1}}/{{com_xuanzeleimu_data.value2.length}}</button>
-  </view>
-  <!-- 选择详情图 -->
-  <view style='margin-bottom: 10rpx;'>
-    <form-xuanzetupian bind:xuanzetupian="com_xuanzetupian_" count="4"></form-xuanzetupian>
-  </view>
-  <!-- 地址 -->
-  <form-dizhi bind:dizhi="com_dizhi_"></form-dizhi>
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+
+    <!-- 出发地-input、目的地-input、时间-time、车型-单选、空余座位-input -->
+    <form-input title="出发地" bitian placeholder='请输入出发地' maxlength='10' bind:input="renzhaoche_chufadi_" />
+    <form-input title="目的地" bitian placeholder='请输入目的地' maxlength='10' bind:input="renzhaoche_mudidi_" />
+    <!-- 出发日期 - 公用车找人日期Arr -->
+    <form-picker title="出发日期" range="{{chezhaoren_riqiArr}}" index="{{renzhaoche_riqi_index}}" bind:picker="renzhaoche_riqi_" />
+    <!-- 最早出发时间 -->
+    <form-picker title="最早出发时间" bitian mode="time" bind:time="renzhaoche_zuizaoshijian_" />
+    <!-- 最晚出发时间 -->
+    <form-picker title="最晚出发时间" bitian mode="time" bind:time="renzhaoche_zuiwanshijian_" />
+    <!-- 人数 -->
+    <form-picker title="人数" range="{{renzhaoche_renshuArr}}" index="{{renzhaoche_renshu_index}}" bind:picker="renzhaoche_renshu_" />
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bind:xuanzeqi="renzhaoche_miaoshu_" title="描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="选择图片" bind:xuanzetupian="com_xuanzetupian_" count="9" />
+  </block>
+
+  <!-- ----- 车找人 ----- -->
+  <block wx:elif="{{params.leibie == '车找人'}}">
+    <!-- 预览 -->
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+      <!-- <text style="font-size:28rpx;color:#808080;margin-bottom:6rpx;">概览</text>
+      <!-- 出发地 -->
+      <view style="padding-bottom: 5rpx;">
+        <text style='color:#808080;'>从 </text>
+        <text style="color:tomato;font-weight: bold;">{{params.kuozhan.chezhaoren_chufadi}}</text>
+      </view>
+      <!-- 目的地 -->
+      <view style="padding-bottom: 5rpx;">
+        <text style='color:#808080;'>到 </text>
+        <text style="color:tomato;font-weight: bold;">{{params.kuozhan.chezhaoren_mudidi}}</text>
+      </view>
+      <!-- 出发时间 -->
+      <view style='padding-bottom: 5rpx;'>
+        <text>{{chezhaoren_riqiArr[chezhaoren_riqi_index]}} {{params.kuozhan.chezhaoren_zuizaoshijian}}-{{params.kuozhan.chezhaoren_zuiwanshijian}}</text>
+      </view>
+      <!-- 车型 -->
+      <view style=''>
+        <text>{{chezhaoren_chexingArr[chezhaoren_chexing_index]}} {{'空'+chezhaoren_zuoweiArr[chezhaoren_zuowei_index]}}</text>
+      </view>
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+    <!-- 出发地 -->
+    <form-input title="出发地" bitian placeholder='请输入出发地' maxlength='10' bind:input="chezhaoren_chufadi_" />
+    <!-- 目的地 -->
+    <form-input title="目的地" bitian placeholder='请输入目的地' maxlength='10' bind:input="chezhaoren_mudidi_" />
+    <!-- 出发日期 -->
+    <form-picker title="出发日期" range="{{chezhaoren_riqiArr}}" index="{{chezhaoren_riqi_index}}" bind:picker="chezhaoren_riqi_" />
+    <!-- 最早出发时间 -->
+    <form-picker title="最早出发时间" bitian mode="time" bind:time="chezhaoren_zuizaoshijian_" />
+    <!-- 最晚出发时间 -->
+    <form-picker title="最晚出发时间" bitian mode="time" bind:time="chezhaoren_zuiwanshijian_" />
+    <!-- 车型 -->
+    <form-picker title="车型" range="{{chezhaoren_chexingArr}}" index="{{chezhaoren_chexing_index}}" bind:picker="chezhaoren_chexing_" />
+    <form-picker title="空余座位" range="{{chezhaoren_zuoweiArr}}" index="{{chezhaoren_zuowei_index}}" bind:picker="chezhaoren_zuowei_" />
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bind:xuanzeqi="chezhaoren_miaoshu_" title="描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="选择图片" bind:xuanzetupian="com_xuanzetupian_" count="9" />
+  </block>
+
+  <!-- ----- 其他 ----- -->
+  <block wx:elif="{{params.leibie == '其他'}}">
+
+    <view style="background-color: #e5e5e5;padding:40rpx;">
+
+      <!-- 内容 -->
+      <view wx:if="{{params.neirong.length > 0}}">
+        <text style='color: #515151;'>详细描述：</text>
+        <text> ...</text>
+      </view>
+    </view>
+
+    <!-- 标题 -->
+    <form-input title="标题" bitian placeholder='标题' maxlength='30' bind:input="qita_biaoti_" />
+    <!-- 描述 -->
+    <form-xuanzeqi textarea="1" bitian bind:xuanzeqi="qita_miaoshu_" title="描述" content="{{params.neirong}}" />
+    <!-- 选择详情图 -->
+    <form-xuanzetupian title="选择图片" bind:xuanzetupian="com_xuanzetupian_" count="9" />
+  </block>
+
+
+
+  <!-- ------------------------------------------ 固定区域 ------------------------------------------ -->
+
   <!-- 电话 -->
   <form-dianhua bind:dianhua="com_dianhua_" tips="1"></form-dianhua>
   <!-- 提交 -->
   <view class="container">
     <form report-submit='true' bindsubmit='tijiao_'>
-      <button class='btn btn__size--d' hover-class='btn__hover' form-type="submit">确认发布</button>
+      <button class='btn btn--tijiao' hover-class='btn__hover' form-type="submit" disabled="{{btn_tijiao_loading}}" loading='{{btn_tijiao_loading}}'>确认发布</button>
     </form>
   </view>
 

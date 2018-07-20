@@ -1,14 +1,14 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.0",
+	"libVersion": "2.1.0",
 	"appid": "wx4b5c6d5c3c25c237",
 	"projectname": "%E4%BE%BF%E6%B0%91",
 	"condition": {
@@ -33,23 +33,23 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "list",
-					"pathName": "pages/wode/xinxi/detail",
-					"query": "id=443",
+					"name": "wode",
+					"pathName": "pages/wode/index",
+					"query": "",
 					"scene": "1012"
 				},
 				{
 					"id": 1,
-					"name": "list",
-					"pathName": "pages/xinxi/yaoqing",
-					"query": "id=443",
+					"name": "textarea",
+					"pathName": "pages/xinxi/textarea",
+					"query": "title=职位描述&leibie=招聘",
 					"scene": "1012"
 				},
 				{
 					"id": 2,
 					"name": "list",
 					"pathName": "pages/index/index",
-					"query": "page=yaoqing&id=441",
+					"query": "page=yaoqing&id=456",
 					"scene": "1012"
 				}
 			]

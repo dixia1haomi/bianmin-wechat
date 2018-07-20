@@ -17,3 +17,7 @@
   </view>
 </view>
 
+
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

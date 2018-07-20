@@ -45,6 +45,12 @@ Component({
   //  目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
   properties: {
 
+    // 开关
+    state: {
+      type: Boolean,
+      value: true
+    },
+
     // 类目数组
     arr: {
       type: Array,

@@ -15,34 +15,178 @@
 
   <!-- 内容 -->
   <block wx:if="{{Res.leibie == '招聘'}}">
-    <zhaopin Res="{{Res}}"></zhaopin>
+    <zhaopin Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <!-- 我的插槽 -->
+      <view slot="wode">
+        <view class='info'>
+          <!-- 顶置 -->
+          <view class='dingzhi' catchtap='dingzhi_'>
+            <text>顶置</text>
+          </view>
+          <!-- 删除 -->
+          <view class='shanchu' catchtap='shanchu_' id='{{Res.id}}'>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </zhaopin>
   </block>
   <block wx:elif="{{Res.leibie == '求职'}}">
-    <qiuzhi Res="{{Res}}"></qiuzhi>
+    <qiuzhi Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <!-- 我的插槽 -->
+      <view slot="wode">
+        <view class='info'>
+          <!-- 顶置 -->
+          <view class='dingzhi' catchtap='dingzhi_'>
+            <text>顶置</text>
+          </view>
+          <!-- 删除 -->
+          <view class='shanchu' catchtap='shanchu_' id='{{Res.id}}'>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </qiuzhi>
   </block>
   <block wx:elif="{{Res.leibie == '房产出售'}}">
-    <fangchanchushou Res="{{Res}}"></fangchanchushou>
+    <fangchanchushou Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <!-- 我的插槽 -->
+      <view slot="wode">
+        <view class='info'>
+          <!-- 顶置 -->
+          <view class='dingzhi' catchtap='dingzhi_'>
+            <text>顶置</text>
+          </view>
+          <!-- 删除 -->
+          <view class='shanchu' catchtap='shanchu_' id='{{Res.id}}'>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </fangchanchushou>
   </block>
-  <block wx:elif="{{Res.leibie == '房产求购'}}">
-    <fangchanqiugou Res="{{Res}}"></fangchanqiugou>
+   <!-- <block wx:elif="{{Res.leibie == '房产求购'}}">
+    <fangchanqiugou Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <view slot="wode">
+        <view class='foot'>
+          <text>浏览量</text>
+          <text catchtap='delete_xinxi_' id='{{Res.id}}'>删除</text>
+        </view>
+      </view>
+    </fangchanqiugou>
+  </block>  -->
+  <block wx:elif="{{Res.leibie == '房屋出租'}}">
+    <fangchanchuzu Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <!-- 我的插槽 -->
+      <view slot="wode">
+        <view class='info'>
+          <!-- 顶置 -->
+          <view class='dingzhi' catchtap='dingzhi_'>
+            <text>顶置</text>
+          </view>
+          <!-- 删除 -->
+          <view class='shanchu' catchtap='shanchu_' id='{{Res.id}}'>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </fangchanchuzu>
   </block>
-  <block wx:elif="{{Res.leibie == '房产出租'}}">
-    <fangchanchuzu Res="{{Res}}"></fangchanchuzu>
+  <block wx:elif="{{Res.leibie == '房屋求租'}}">
+    <fangchanqiuzu Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <!-- 我的插槽 -->
+      <view slot="wode">
+        <view class='info'>
+          <!-- 顶置 -->
+          <view class='dingzhi' catchtap='dingzhi_'>
+            <text>顶置</text>
+          </view>
+          <!-- 删除 -->
+          <view class='shanchu' catchtap='shanchu_' id='{{Res.id}}'>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </fangchanqiuzu>
   </block>
-  <block wx:elif="{{Res.leibie == '房产求租'}}">
-    <fangchanqiuzu Res="{{Res}}"></fangchanqiuzu>
+  <block wx:elif="{{Res.leibie == '车辆出售'}}">
+    <cheliangchushou Res="{{Res}}" info="" zhankai="1" bind:huifu="huifu_">
+      <!-- 我的插槽 -->
+      <view slot="wode">
+        <view class='info'>
+          <!-- 顶置 -->
+          <view class='dingzhi' catchtap='dingzhi_'>
+            <text>顶置</text>
+          </view>
+          <!-- 删除 -->
+          <view class='shanchu' catchtap='shanchu_' id='{{Res.id}}'>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </cheliangchushou>
+  </block>
+  <block wx:elif="{{Res.leibie == '物品出售'}}">
+    <wupinchushou Res="{{Res}}" wode="1" zhankai="1" bind:huifu="huifu_">
+      <view slot="wode">
+        <!-- 脚部 -->
+        <view class='foot'>
+          <text>浏览量</text>
+          <text catchtap='delete_xinxi_' id='{{Res.id}}'>删除</text>
+        </view>
+      </view>
+    </wupinchushou>
+  </block>
+  <block wx:elif="{{Res.leibie == '店铺转让'}}">
+    <dianpuzhuanrang Res="{{Res}}" wode="1" zhankai="1" bind:huifu="huifu_">
+      <view slot="wode">
+        <!-- 脚部 -->
+        <view class='foot'>
+          <text>浏览量</text>
+          <text catchtap='delete_xinxi_' id='{{Res.id}}'>删除</text>
+        </view>
+      </view>
+    </dianpuzhuanrang>
   </block>
 
-  <!-- 脚部 -->
-  <view class='foot'>
-    <text>浏览量</text>
-    <text>删除</text>
-  </view>
+  <block wx:elif="{{Res.leibie == '人找车'}}">
+    <renzhaoche Res="{{Res}}" wode="1" zhankai="1" bind:huifu="huifu_">
+      <view slot="wode">
+        <!-- 脚部 -->
+        <view class='foot'>
+          <text>浏览量</text>
+          <text catchtap='delete_xinxi_' id='{{Res.id}}'>删除</text>
+        </view>
+      </view>
+    </renzhaoche>
+  </block>
+
+  <block wx:elif="{{Res.leibie == '车找人'}}">
+    <chezhaoren Res="{{Res}}" wode="1" zhankai="1" bind:huifu="huifu_">
+      <view slot="wode">
+        <!-- 脚部 -->
+        <view class='foot'>
+          <text>浏览量</text>
+          <text catchtap='delete_xinxi_' id='{{Res.id}}'>删除</text>
+        </view>
+      </view>
+    </chezhaoren>
+  </block>
+
+  <block wx:elif="{{Res.leibie == '其他'}}">
+    <qita Res="{{Res}}" wode="1" zhankai="1" bind:huifu="huifu_">
+      <view slot="wode">
+        <!-- 脚部 -->
+        <view class='foot'>
+          <text>浏览量</text>
+          <text catchtap='delete_xinxi_' id='{{Res.id}}'>删除</text>
+        </view>
+      </view>
+    </qita>
+  </block>
 
   <!-- 留言 -->
-  <liuyan Res="{{Res}}" bind:name="huifu_"></liuyan>
-
-
+  <!-- <liuyan Res="{{Res}}" bind:name="huifu_"></liuyan> -->
 
   <!-- 榜单 -->
   <dingzhibang Res="{{Res}}" bind:button="yaoqing_" haibaoImg="{{haibaoImg}}"></dingzhibang>
@@ -50,15 +194,20 @@
   <!-- 邀请顶置弹窗 -->
   <dingzhi state="{{yaoqingchuang_state}}" bind:haibao="yaoqing_haibao_"></dingzhi>
 
-  <!-- 留言弹窗 -->
+  <!-- 回复弹窗 -->
   <liuyanchuang state="{{liuyanchuang_state}}" title="回复" bind:queding="huifuchuang_queding_"></liuyanchuang>
-
-</block>
-
-<block wx:elif="{{Res == null}}">
-  <view>没有数据</view>
 </block>
 
 <block wx:else>
-  <view>加载中</view>
+  <block wx:if="{{Res == 'null'}}">
+    <view class='noxinxi'>没有数据</view>
+  </block>
+  <block wx:else>
+    <!-- loading -->
+    <view class="loading">
+      <view class="loading__image loading__box">
+        <view class="loading__slip loading__box"></view>
+      </view>
+    </view>
+  </block>
 </block>

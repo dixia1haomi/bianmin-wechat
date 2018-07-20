@@ -1,0 +1,9 @@
+<!-- 弹出窗口 -->
+<view  wx:if="{{state}}" class="popup" style='z-index:1001;' bindtap="popupTap_">
+  <view class='title'>
+    <text>{{title}}</text>
+    <!-- 完成按钮-默认有-不需要时传空字符 -->
+    <text wx:if="{{wancheng}}" class='wancheng' catchtap='wancheng_'>{{wancheng}}</text>
+  </view>
+  <slot></slot>
+</view>

@@ -1,52 +1,95 @@
 <!-- ------------------------------------ 招聘 ------------------------------------ -->
 
-<view class='base'>
-  <!-- 标题 -->
-  <view class='xinxileibie'>
-    <text>/ {{Res.leibie}} /</text>
-    <text wx:if="{{Res.dingzhi_state == 1}}" class='dingzhi'>顶置</text>
-    <text class='time'>{{Res.time || '刚刚'}}</text>
+<!-- 信息 -->
+<view class='content' catchtap='flodFn_'>
+
+  <!-- title -->
+  <view class='title'>
+    <text class='title-leibie'>{{Res.leibie}}</text>
+    <text wx:if="{{Res.dingzhi_state == 1}}" class='title-dingzhi'>顶置</text>
+    <text class='title-time'>{{Res.time || '刚刚'}}</text>
   </view>
-  <!-- ------------------ 展开 ------------------ -->
-  <view catchtap='flodFn_'>
-    <block wx:if="{{zhankai}}">
-      <!-- 信息 -->
-      <view class='xinxi'>
 
-        <!-- 职位 -->
-        <view style='color:red;'>职位：{{Res.with_kuozhan.zhaopin_zhiwei}}</view>
-        <!-- 薪资 -->
-        <view style='color:red;'>薪资：{{Res.with_kuozhan.zhaopin_xinzi}}</view>
-        <!-- 公司 -->
-        <view style='color:red;'>公司：{{Res.with_kuozhan.zhaopin_gongsi}}</view>
-        <!-- 工作地址 -->
-        <view style='color:red;'>工作地址：{{Res.with_kuozhan.zhaopin_gongzuodizhi}}</view>
-        <!-- 内容 -->
-        <view>
-          <text>{{Res.neirong}}</text>
-        </view>
-        <!-- 箭头 -->
-        <view class='xinxi-tishi'>
-          <text class="iconfont icon-zhankai .touming"></text>
-        </view>
-        <!-- 配图 -->
-        <view class='img-view'>
-          <block wx:for="{{Res.with_img}}" wx:for-item="img" wx:key="">
-            <image class='img' src="{{img.url}}" catchtap='yulan_' data-img='{{Res.with_img}}' data-index='{{index}}' lazy-load mode='aspectFill' />
-          </block>
-        </view>
-      </view>
-    </block>
-    <!-- ------------------ 折叠 ------------------ -->
-    <block wx:else>
+  <!-- 职位 -->
+  <view style='font-size:36rpx;font-weight: 700; padding-bottom: 10rpx;'>{{Res.kuozhan.zhaopin_zhiwei}}</view>
 
-      <view style=''>{{Res.with_kuozhan.zhaopin_zhiwei}}</view>
-      <view>
-        <text style='color:red;'>{{Res.with_kuozhan.zhaopin_xinzi}}/元</text>
-        <text> | {{Res.with_kuozhan.zhaopin_gongzuodizhi}}</text>
-      </view>
-      <view>{{Res.with_kuozhan.zhaopin_gongsi}}</view>
-
-    </block>
+  <!-- 薪资-公司 -->
+  <view style='padding-bottom: 5rpx;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;'>
+    <!-- 薪资 -->
+    <text style='color:#515151;'>薪资：</text>
+    <text style='color:tomato;font-weight: 700;'>{{Res.kuozhan.zhaopin_xinzi}}</text>
+    <!-- 公司 -->
+    <text style='color:#808080;'>  |  </text>
+    <text style=''>{{Res.kuozhan.zhaopin_gongsi}}</text>
   </view>
+
+  <!-- 要求 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text style='color:#515151;'>要求：</text>
+    <!-- 学历-经验 -->
+    <text style=''>学历{{Res.kuozhan.zhaopin_xueli}} / 经验{{Res.kuozhan.zhaopin_jingyan}}</text>
+  </view>
+
+  <!-- 福利 -->
+  <block wx:if="{{Res.kuozhan.zhaopin_fuli && Res.kuozhan.zhaopin_fuli.length > 0}}">
+    <view style='padding-bottom: 5rpx;'>
+      <text style='color:#515151;'>福利：</text>
+      <block wx:for="{{Res.kuozhan.zhaopin_fuli}}" wx:key="">
+        <text style='font-size:30rpx;background-color: #e0ffff;color: #1e90ff;padding: 0 10rpx;margin-right:10rpx;'>{{item}}</text>
+      </block>
+    </view>
+  </block>
+
+  <!-- 工作地址 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text style='color:#515151;'>地址：</text>
+    <text style='color:#007aff;' catchtap='go_map_'>{{Res.kuozhan.zhaopin_gongzuodizhi}}</text>
+  </view>
+
+  
+  <!-- 内容 -->
+  <view wx:if="{{Res.neirong.length > 0}}" style="padding-top: 10rpx;">
+    <text wx:if="{{!zhankai}}">...</text>
+    <text wx:else style='word-break: break-all;'>{{Res.neirong}}</text>
+  </view>
+
+  <!-- 配图 -->
+  <view wx:if="{{Res.with_img.length > 0 && zhankai}}" style='margin-top: 20rpx;'>
+    <hengxiang imgArr="{{Res.with_img}}"></hengxiang>
+  </view>
+
+  <!-- 留言 -->
+  <block wx:if="{{Res.with_liuyan.length > 0}}">
+    <liuyan Res="{{Res}}" bind:name="liuyan_name_"></liuyan>
+  </block>
+
+
 </view>
+
+<!-- 脚info -->
+<block wx:if="{{info}}">
+  <view wx:if="{{zhankai}}" class='info'>
+    <view class='info-dianhua' id='{{Res.phone}}' catchtap='foot_phone_' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-phone' style='margin-right: 10rpx;'></text>
+      <text>电话</text>
+    </view>
+
+    <view class='info-liuyan' catchtap='foot_liuyan_' id='{{Res.id}}' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-liuyan' style='margin-right: 10rpx;'></text>
+      <text>留言</text>
+    </view>
+  </view>
+</block>
+<!-- 我的info -->
+<block wx:else>
+  <slot name="wode"></slot>
+</block>
+
+<!-- margin-bottom -->
+<view class='margin-bottom'></view>
+
+<!-- 登录 -->
+<login loginState="{{loginState}}"></login>
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

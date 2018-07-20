@@ -56,3 +56,8 @@
   top: 0;
   left: 0;
 }
+
+
+.view__hover {
+  background-color: #f8f8f8;
+}

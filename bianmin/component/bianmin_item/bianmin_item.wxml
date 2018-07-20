@@ -40,13 +40,10 @@
   <block wx:elif="{{Res.leibie == '房产出售'}}">
     <fangchanchushou Res="{{Res}}"></fangchanchushou>
   </block>
-  <block wx:elif="{{Res.leibie == '房产求购'}}">
-    <fangchanqiugou Res="{{Res}}"></fangchanqiugou>
-  </block>
-  <block wx:elif="{{Res.leibie == '房产出租'}}">
+  <block wx:elif="{{Res.leibie == '房屋出租'}}">
     <fangchanchuzu Res="{{Res}}"></fangchanchuzu>
   </block>
-  <block wx:elif="{{Res.leibie == '房产求租'}}">
+  <block wx:elif="{{Res.leibie == '房屋求租'}}">
     <fangchanqiuzu Res="{{Res}}"></fangchanqiuzu>
   </block>
 

@@ -17,11 +17,6 @@
   justify-content: space-around;
 }
 
-.noxinxi {
-  text-align: center;
-  padding-top: 400rpx;
-  color: #007aff;
-}
 
 /* 留言 */
 
@@ -200,4 +195,3 @@
 .tanchuang-input-fool button::after {
   border: none;
 }
-

@@ -1,0 +1,6 @@
+/* 信息-content-分类CSS */
+@import "../../../../utils/componentFenlei.wxss";
+
+.a{
+  font-weight: lighter;
+}

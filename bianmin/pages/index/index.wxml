@@ -1,3 +1,5 @@
+<!-- <view hidden='{{where}}' catchtouchmove="aaa_"> -->
+
 <view class='title' catchtap='fuzhi_'>
   <image class='title-img' src='/img/150.jpg'></image>
   <view>
@@ -9,6 +11,15 @@
   </view>
 </view>
 
+<!-- <text style='word-break: break-all;'>asjdhgjhasgdjashdgjkasghdjasghdjkasghdjasgdewqkjbejhgsadjhgasjkdghasjkdghkjasdghjkasdghjgasjkdghajksgdjkasdg</text> -->
+
+<!-- <mask status="{{mask}}"></mask>
+<popup status="{{mask}}" bind:wancheng="wancheng_">
+   <view>
+     <form-checkbox Arr="{{zhaopinfuliArr}}" bind:checkbox="zhaopin_fuli_"></form-checkbox> 
+  </view> 
+</popup> -->
+<!-- <button catchtap='mask_'>mask</button> -->
 
 <!-- 商家轮播图 -->
 <!-- 头 -->
@@ -20,51 +31,117 @@
 
 <!-- 同城标题 -->
 <view class='bmxx-title'>
-  <text class='bmxx-title-text'>同城信息</text>
+
+  <view class='bmxx-title-text' catchtap='where_xinxi_'>
+    <text>同城信息 {{leibie}} </text>
+    <text class="{{where ? '':'iconfont icon-xia'}}" style='color: #808080;'></text>
+  </view>
+
+  <view wx:if="{{where}}" class='where' catchtouchmove="where_">
+    <view class=''>
+      <block wx:for="{{leibieArr}}" wx:key="">
+        <view catchtap='itme1_' data-index='{{index}}' class="itme1 {{leibieArr_index == index ?'itme1-xuanzhong':''}}">{{item.name}}</view>
+      </block>
+      <view class="itme1" catchtap='itme2_' data-name='全部'>全部</view>
+    </view>
+
+    <view class=''>
+      <block wx:for="{{leibieArr[leibieArr_index].value}}" wx:key="">
+        <view class="itme2 {{leibie == item.name ?'itme2-xuanzhong':''}}" catchtap='itme2_' data-name='{{item.name}}'>{{item.name}}</view>
+      </block>
+    </view>
+  </view>
 </view>
 
+<!-- 选择类目 -->
+<!-- <form-xuanzeqi bind:xuanzeqi="com_xuanzeqi_" title="选择类目" content="{{com_xuanzeleimu_data.name}}" state="{{leimu_state}}"> -->
+<!-- <view>
+    <form-xuanzeleimu bind:xuanzeleimu="com_xuanzeleimu_" arr="{{leimuArr}}"></form-xuanzeleimu>
+  </view> -->
+<!-- </form-xuanzeqi> -->
+
 <!-- 同城item -->
-<block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
-  <!-- <bianmin-item Res="{{item}}" bind:call-login="com_login_"></bianmin-item> -->
+<!-- 没有数据loading -->
+<block wx:if="{{!Res}}">
+  <view class="loading">
+    <view class="loading__image loading__box">
+      <view class="loading__slip loading__box"></view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <!-- 有数据 -->
+  <block wx:if="{{Res.length > 0}}">
 
+    <block wx:for="{{Res}}" wx:key="" wx:for-index="resindex">
 
-  <!-- 内容 -->
-  <block wx:if="{{item.leibie == '招聘'}}">
-    <zhaopin Res="{{item}}"></zhaopin>
-  </block>
-  <block wx:elif="{{item.leibie == '求职'}}">
-    <qiuzhi Res="{{item}}"></qiuzhi>
-  </block>
-  <block wx:elif="{{item.leibie == '房产出售'}}">
-    <fangchanchushou Res="{{item}}"></fangchanchushou>
-  </block>
-  <block wx:elif="{{item.leibie == '房产求购'}}">
-    <fangchanqiugou Res="{{item}}"></fangchanqiugou>
-  </block>
-  <block wx:elif="{{item.leibie == '房产出租'}}">
-    <fangchanchuzu Res="{{item}}"></fangchanchuzu>
-  </block>
-  <block wx:elif="{{item.leibie == '房产求租'}}">
-    <fangchanqiuzu Res="{{item}}"></fangchanqiuzu>
-  </block>
+      <!-- <view hidden='{{where}}'> -->
+      <!-- 内容 -->
+      <block wx:if="{{item.leibie == '招聘'}}">
+        <zhaopin Res="{{item}}" bind:gomap="go_map_"></zhaopin>
+      </block>
+      <block wx:elif="{{item.leibie == '求职'}}">
+        <qiuzhi Res="{{item}}"></qiuzhi>
+      </block>
+      <block wx:elif="{{item.leibie == '房产出售'}}">
+        <fangchanchushou Res="{{item}}"></fangchanchushou>
+      </block>
+      <block wx:elif="{{item.leibie == '房屋出租'}}">
+        <fangchanchuzu Res="{{item}}"></fangchanchuzu>
+      </block>
+      <block wx:elif="{{item.leibie == '房屋求租'}}">
+        <fangchanqiuzu Res="{{item}}"></fangchanqiuzu>
+      </block>
+      <block wx:elif="{{item.leibie == '店铺转让'}}">
+        <dianpuzhuanrang Res="{{item}}" bind:gomap="go_map_"></dianpuzhuanrang>
+      </block>
+      <block wx:elif="{{item.leibie == '商铺出租'}}">
+        <shangpuchuzu Res="{{item}}" bind:gomap="go_map_"></shangpuchuzu>
+      </block>
+      <block wx:elif="{{item.leibie == '车辆出售'}}">
+        <cheliangchushou Res="{{item}}" bind:gomap="go_map_"></cheliangchushou>
+      </block>
+      <block wx:elif="{{item.leibie == '物品出售'}}">
+        <wupinchushou Res="{{item}}" bind:gomap="go_map_"></wupinchushou>
+      </block>
+      <block wx:elif="{{item.leibie == '人找车'}}">
+        <renzhaoche Res="{{item}}"></renzhaoche>
+      </block>
+      <block wx:elif="{{item.leibie == '车找人'}}">
+        <chezhaoren Res="{{item}}"></chezhaoren>
+      </block>
+      <block wx:elif="{{item.leibie == '其他'}}">
+        <qita Res="{{item}}"></qita>
+      </block>
 
-  <!-- 地址 -->
-  <!-- <view class='dizhi'>
+      <!-- </view> -->
+
+      <!-- 地址 -->
+      <!-- <view class='dizhi'>
     <text catchtap='dizhi_' data-longitude='{{item.longitude}}' data-latitude='{{item.latitude}}' data-address='{{item.address}}'>{{item.address}}</text>
   </view> -->
 
-  <!-- 脚部 -->
-  <foot Res="{{item}}" bind:foot_liuyan="foot_liuyan_"></foot>
+    </block>
 
-  <!-- 留言 -->
-  <liuyan Res="{{item}}"></liuyan>
+    <view>
+      <view wx:if="{{loading}}" class='loadding'>
+        <view class='loadding-icon'></view>
+      </view>
+      <view wx:if="{{noData}}" class='nodata'>———— 没有更多了 ————</view>
+    </view>
+  </block>
+  <!-- 数据长度为0 -->
+  <block wx:else>
+    <view class='nodata'>———— 暂无数据 ————</view>
+  </block>
+
 
 </block>
 
 
-
 <!-- 没有更多了 -->
-<view wx:if="{{noData}}" class='nodata'>———— 这是底线 ————</view>
+<!-- <view wx:if="{{noData}}" class='nodata'>———— 没有更多了 ————</view> -->
+
 
 <!-- -----------按钮----------- -->
 <view class='juzhong'>
@@ -76,5 +153,4 @@
 <!-- 登录 -->
 <login loginState="{{loginState}}"></login>
 
-<!-- 留言弹窗 -->
-<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>
+<!-- </view> -->

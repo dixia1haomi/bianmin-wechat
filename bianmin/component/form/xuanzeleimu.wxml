@@ -1,5 +1,5 @@
 
-  <view class='xuanzeleimu'>
+  <view wx:if="{{state}}" class='xuanzeleimu'>
     <view class='xuanzeleimu-title'>选择类目</view>
 
     <view class='base'>

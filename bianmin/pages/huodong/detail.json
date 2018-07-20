@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "huodong-tou": "/component/huodong/tou",
-    "huodong-miaoshu": "/component/huodong/miaoshu",
-    "component-login": "/component/login/login",
-    "component-fenxiangchuang": "/component/fenxiang/fenxiangchuang",
-    "component-zhulibang": "/component/fenxiang/zhulibang"
-  }
-}

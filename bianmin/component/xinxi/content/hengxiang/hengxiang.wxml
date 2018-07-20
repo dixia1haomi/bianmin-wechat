@@ -1,0 +1,10 @@
+<!-- 横向视图 -->
+<scroll-view scroll-x class='scroll-view'>
+  <block wx:for="{{imgArr}}" wx:key="">
+
+    <view class='item-view' data-index='{{index}}' catchtap='item_'>
+      <image class='img' src='{{item.url}}' mode='aspectFill' lazy-load='1'></image>
+    </view>
+
+  </block>
+</scroll-view>

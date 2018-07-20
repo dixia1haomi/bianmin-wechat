@@ -15,11 +15,17 @@ Component({
       value: ''
     },
 
-    // 关闭slot
-    state: {
+    // 是否是多行textarea
+    textarea: {
       type: Boolean,
       value: false
-    }
+    },
+
+    // 必填
+    bitian: {
+      type: Boolean,
+      value: false
+    },
 
   },
 
@@ -33,7 +39,8 @@ Component({
     // ----- 选择器 -----
     xuanzeqi_() {
       console.log('xuanzeqi_')
-      this.setData({ state: true })
+      // this.setData({ state: true })
+      this.triggerEvent('xuanzeqi')
     },
 
   },

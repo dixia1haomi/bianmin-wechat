@@ -49,11 +49,7 @@
   margin-top: 20rpx;
 }
 
-/* .tanchuang-textarea textarea {
-  background-color: aliceblue;
-  height: 200rpx;
-  position: relative;
-} */
+
 
 .tanchuang-textarea text {
   position: absolute;

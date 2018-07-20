@@ -1,0 +1,2 @@
+<!-- 腾讯地图 -->
+<map-route route-info="{{routeInfo}}"></map-route>

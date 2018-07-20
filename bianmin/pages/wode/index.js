@@ -47,7 +47,7 @@ Page({
       api.myFabu({}, (back) => {
         console.log('myFabu', back)
         // 如果已经有信息不能在发布,没有信息back.data == null
-        if (back.data && back.data.length > 4) {
+        if (back.data && back.data.length > 90) {
           wx.showModal({ content: '只能同时展示1条信息,请先删除旧信息', showCancel: false })
         } else {
           wx.navigateTo({ url: '/pages/xinxi/create' })
@@ -72,46 +72,46 @@ Page({
 
 
   // -------------------------------------- 商家入驻 --------------------------------------
-  create_shangjia_() {
-    // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
-    if (app.data.LoginState) {
-      api.getMyShangjia({}, (res) => {
-        console.log('我的店铺', res)
-        if (res.data == null) {
-          wx.navigateTo({ url: '/pages/shangjia/my-shangjia/create-shangjia' })
-        } else {
-          wx.showModal({ content: '已入驻过,可以先去「我的店铺」删除旧店铺', showCancel: false })
-        }
-      })
-    } else {
-      // 提示登陆
-      this.setData({ loginState: true })
-    }
-  },
+  // create_shangjia_() {
+  //   // 是否登陆过 ？ 跳转到新增商家页 ： 调用登陆
+  //   if (app.data.LoginState) {
+  //     api.getMyShangjia({}, (res) => {
+  //       console.log('我的店铺', res)
+  //       if (res.data == null) {
+  //         wx.navigateTo({ url: '/pages/shangjia/my-shangjia/create-shangjia' })
+  //       } else {
+  //         wx.showModal({ content: '已入驻过,可以先去「我的店铺」删除旧店铺', showCancel: false })
+  //       }
+  //     })
+  //   } else {
+  //     // 提示登陆
+  //     this.setData({ loginState: true })
+  //   }
+  // },
 
 
   // -------------------------------------- 我的店铺 --------------------------------------
-  my_shangjia_() {
-    // 是否登陆过 ？
-    if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/shangjia/my-shangjia/index' })
-    } else {
-      // 提示登陆
-      this.setData({ loginState: true })
-    }
-  },
+  // my_shangjia_() {
+  //   // 是否登陆过 ？
+  //   if (app.data.LoginState) {
+  //     wx.navigateTo({ url: '/pages/shangjia/my-shangjia/index' })
+  //   } else {
+  //     // 提示登陆
+  //     this.setData({ loginState: true })
+  //   }
+  // },
 
 
   // -------------------------------------- 活动劵 --------------------------------------
-  huodong_juan_() {
-    // 是否登陆过 ？
-    if (app.data.LoginState) {
-      wx.navigateTo({ url: '/pages/kajuan/list' })
-    } else {
-      // 提示登陆
-      this.setData({ loginState: true })
-    }
-  },
+  // huodong_juan_() {
+  //   // 是否登陆过 ？
+  //   if (app.data.LoginState) {
+  //     wx.navigateTo({ url: '/pages/kajuan/list' })
+  //   } else {
+  //     // 提示登陆
+  //     this.setData({ loginState: true })
+  //   }
+  // },
 
   // -------------------------------------- 关于我 --------------------------------------
   go_guanyuwo() { wx.navigateTo({ url: '/pages/wode/guanyuwo' }) }

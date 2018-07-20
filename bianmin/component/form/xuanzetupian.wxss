@@ -1,9 +1,10 @@
 .base {
   padding: 20rpx;
   background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.title{
+.title {
   margin-bottom: 10rpx;
 }
 
@@ -11,13 +12,14 @@
 
 .tupian {
   display: flex;
+  flex-wrap: wrap;
 }
 
 /* 添加图片 */
 
 .tianjiatupian {
-  height: 166rpx;
-  width: 166rpx;
+  height: 196rpx;
+  width: 196rpx;
   background-color: aliceblue;
   border: 1rpx dashed #808080;
   display: flex;
@@ -30,9 +32,10 @@
 /* 显示图片 */
 
 .img {
-  height: 170rpx;
-  width: 170rpx;
+  height: 200rpx;
+  width: 200rpx;
   margin-right: 10rpx;
+  margin-bottom: 10rpx;
 }
 
 /* 图片删除提示 */

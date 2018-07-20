@@ -6,6 +6,8 @@
   </label>
 </checkbox-group> -->
 
+
+
 <view class='base'>
   <block wx:for="{{Arr}}" wx:key="">
     <!-- 数组的下标index来进行判断是哪个的事件 -->

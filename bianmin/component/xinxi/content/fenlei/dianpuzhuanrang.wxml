@@ -1,0 +1,87 @@
+<!-- ------------------------------------ 店铺转让 ------------------------------------ -->
+
+<!-- 信息 -->
+<view class='content' catchtap='flodFn_'>
+
+  <!-- title -->
+  <view class='title'>
+    <text class='title-leibie'>{{Res.leibie}}</text>
+    <text wx:if="{{Res.dingzhi_state == 1}}" class='title-dingzhi'>顶置</text>
+    <text class='title-time'>{{Res.time || '刚刚'}}</text>
+  </view>
+
+
+  <!-- 标题 -->
+  <view style='font-size:36rpx;font-weight: 700; padding-bottom: 10rpx;'>{{Res.kuozhan.dianpu_zhuanrang_biaoti}}</view>
+
+  <!-- 位置 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text style='color: #808080;'>位置：</text>
+    <text wx:if="{{!zhankai}}">{{Res.kuozhan.dianpu_zhuanrang_weizhi}}</text>
+    <text wx:else style='color:#007aff;' catchtap='go_map_'>{{Res.kuozhan.dianpu_zhuanrang_weizhi}}</text>
+  </view>
+
+  <!-- 面积 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text style='color: #808080;'>面积：</text>
+    <text style='color:tomato;font-weight: 700;'>{{Res.kuozhan.dianpu_zhuanrang_mianji}}㎡</text>
+  </view>
+
+  <!-- 剩余租期 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text style='color: #808080;'>剩余租期：</text>
+    <text style='color:tomato;font-weight: 700;'>{{Res.kuozhan.dianpu_zhuanrang_zuqi}}个月</text>
+  </view>
+
+  <!-- 转让费用 -->
+  <view style='padding-bottom: 5rpx;'>
+    <text style='color: #808080;'>转让费用：</text>
+    <text style=''>{{Res.kuozhan.dianpu_zhuanrang_feiyong}}</text>
+  </view>
+
+  <!-- 内容 -->
+  <view wx:if="{{Res.neirong.length > 0}}" style="padding-top: 10rpx;">
+    <text wx:if="{{!zhankai}}">...</text>
+    <text wx:else style='word-break: break-all;'>{{Res.neirong}}</text>
+  </view>
+
+  <!-- 配图 -->
+  <view wx:if="{{Res.with_img.length > 0 && zhankai}}" style='margin-top: 20rpx;'>
+    <hengxiang imgArr="{{Res.with_img}}"></hengxiang>
+  </view>
+
+  <!-- 留言 -->
+  <block wx:if="{{Res.with_liuyan.length > 0}}">
+    <liuyan Res="{{Res}}" bind:name="liuyan_name_"></liuyan>
+  </block>
+
+
+</view>
+
+<!-- 脚info -->
+<block wx:if="{{info}}">
+  <view wx:if="{{zhankai}}" class='info'>
+    <view class='info-dianhua' id='{{Res.phone}}' catchtap='foot_phone_' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-phone' style='margin-right: 10rpx;'></text>
+      <text>电话</text>
+    </view>
+
+    <view class='info-liuyan' catchtap='foot_liuyan_' id='{{Res.id}}' hover-class='view__hover' hover-stay-time="50" hover-start-time="0">
+      <text class='iconfont icon-liuyan' style='margin-right: 10rpx;'></text>
+      <text>留言</text>
+    </view>
+  </view>
+</block>
+<!-- 我的info -->
+<block wx:else>
+  <slot name="wode"></slot>
+</block>
+
+<!-- margin-bottom -->
+<view class='margin-bottom'></view>
+
+<!-- 登录 -->
+<login loginState="{{loginState}}"></login>
+
+<!-- 留言弹窗 -->
+<liuyanchuang state="{{liuyanchuang_state}}" bind:queding="liuyanchuang_queding_"></liuyanchuang>

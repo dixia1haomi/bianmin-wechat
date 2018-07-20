@@ -1,0 +1,16 @@
+/* 商家 */
+
+.scroll-view {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.item-view{
+  display: inline-block;
+  padding-right: 20rpx;
+}
+
+.img {
+  width: 180rpx;
+  height: 180rpx;
+}

@@ -1,3 +1,9 @@
 {
-  "component": true
+  "component": true,
+    "usingComponents": {
+      "login": "/component/xinxi/tangchuang/login",
+      "liuyanchuang": "/component/xinxi/tangchuang/liuyanhuifu",
+      "liuyan": "/component/xinxi/content/liuyan/liuyan",
+          "hengxiang": "/component/xinxi/content/hengxiang/hengxiang"
+    }
 }

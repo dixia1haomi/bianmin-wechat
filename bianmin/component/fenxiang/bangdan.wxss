@@ -55,19 +55,6 @@
   padding-bottom: 4rpx;
 }
 
-/* .dingzhi button {
-  display: inline-block;
-  margin: 0;
-  border: 1px solid transparent;
-  border-radius: 4rpx;
-  white-space: nowrap;
-  vertical-align: middle;
-  font-weight: 400;
-}
-
-.dingzhi button::after {
-  content: none;
-} */
 
  .dingzhi button {
   border-radius: 50rpx;

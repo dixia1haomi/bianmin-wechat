@@ -25,10 +25,14 @@ Page({
   },
 
   // 去我的信息详情
-  go_wode_xinxi_detail_(e) {
-    console.log('去我的信息详情', e.currentTarget.id)
-    wx.navigateTo({ url: '/pages/wode/xinxi/detail?id=' + e.currentTarget.id })
+  navigate_(e){
+    console.log('去我的信息详情navigate_', e.detail)
+    wx.navigateTo({ url: '/pages/wode/xinxi/detail?id=' + e.detail })
   },
+  // go_wode_xinxi_detail_(e) {
+  //   console.log('去我的信息详情', e.currentTarget.id)
+  //   wx.navigateTo({ url: '/pages/wode/xinxi/detail?id=' + e.currentTarget.id })
+  // },
 
   // 下拉刷新
   onPullDownRefresh: function () {
